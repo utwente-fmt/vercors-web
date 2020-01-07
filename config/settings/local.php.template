@@ -1,0 +1,22 @@
+<?php
+// This file is meant to be copied to local.php, and then updates to correct values.
+
+$config = require(__DIR__ . '/general.php');
+
+$config['components']['db']['dsn'] =
+    // Database connection string
+    'mysql:host=none;dbname=none';
+
+$config['components']['db']['username'] =
+    // Database user
+    '';
+
+$config['components']['db']['password'] =
+    // Database password
+    '';
+
+$config['components']['request']['cookieValidationKey'] =
+    // Secret key used for cookie validation, generate in format [0-9a-zA-Z]{32}
+    '';
+
+return $config;
