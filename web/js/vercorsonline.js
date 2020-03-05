@@ -1,11 +1,11 @@
-const VERIFICATION_SERVER = 'wss://vercors-online.apps.utwente.nl/';
+const VERIFICATION_SERVER = 'wss://vercors-server.apps.utwente.nl/';
 const PROGRESS_BADGE = '[progress] ';
 
 $('#verifythis').click(function() {
 	$('#verification-log').text('');
 	$('#verification-progress').text('Connecting to verification server...');
 
-	var ws = new WebSocket(VERIFICATION_SERVER, 'vercors');
+	var ws = new WebSocket(VERIFICATION_SERVER, 'fmt-tool');
 
 	ws.onerror = function(err) {
 		$('#verification-progress').text('An error occurred: cannot connect to verification server');
@@ -17,11 +17,17 @@ $('#verifythis').click(function() {
 			var message = JSON.parse(e.data);
 
 			switch(message.type) {
+				case 'error':
+					$('#verification-progress').text('An error occurred: ' + message.errorDescription);
+					ws.close();
+					break;
 				case 'stdout':
 				case 'stderr':
 					var parts = message.data.split("\n");
 					for(var i = 0; i < parts.length; i++) {
-						if(parts[i] === '') continue;
+						if(parts[i] === '') {
+							continue;
+						}
 
 						if(parts[i].startsWith(PROGRESS_BADGE)) {
 							$('#verification-progress').text(parts[i].substring(PROGRESS_BADGE.length));
@@ -31,26 +37,27 @@ $('#verifythis').click(function() {
 					}
 					break;
 				case 'finished':
-					if(message.error) {
-						$('#verification-progress').text('An error occurred: ' + message.errorDescription);
-					} else {
-						$('#verification-progress').text('VerCors exited with exit code ' + message.exitCode);
-					}
+					$('#verification-progress').text('VerCors exited with exit code ' + message.exitCode);
 					ws.close();
 					break;
 			}
-		} catch(e) {
+		} catch(err) {
 			$('#verification-progress').text('An error occurred: ' + err);
-			console.log(e);
+			console.log(err);
 		}
-	}
+	};
 
 	ws.onopen = function(e) {
 		$('#verification-progress').text('Connected; sending file...');
 		ws.send(JSON.stringify({
 			type: 'submit',
-			lang: $('input[name=language]').val(),
-			data: $('textarea[name=examplecode]').val()
+
+			files: {
+				'test.pvl': $('textarea[name=examplecode]').val()
+			},
+			arguments: {
+				'files': ['test.pvl'],
+			}
 		}));
-	}
-})
+	};
+});
