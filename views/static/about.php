@@ -60,20 +60,23 @@ $this->title = 'About';
             </tr>
             </thead>
             <tbody>
+				
             <tr>
                 <td><h3><strong><u>Members</u></strong></h3></td>
             </tr>
+			
+			
             <tr>
-                <td><a href='http://sjcjoosten.nl' target="_blank">dr.ir. Sebastiaan Joosten</a></td>
+                <td><a href='https://petravdbos.nl' target="_blank">dr. Petra van den Bos</a></td>
             </tr>
             <tr>
-                <td><a href='' target="_blank">dr. Raúl E. Monti</a></td>
+                <td><a href='https://people.utwente.nl/r.e.monti' target="_blank">dr. Raúl E. Monti</a></td>
             </tr>
             <tr>
+                <td><a href='https://people.utwente.nl/l.armborst' target="_blank">Lukas Armborst, MSc</a></td>
+            </tr>
+			<tr>
                 <td><a href='https://wwwhome.ewi.utwente.nl/~safarim/' target="_blank">Mohsen Safari, MSc</a></td>
-            </tr>
-            <tr>
-                <td><a href='' target="_blank">Fauzia Ehsan, MSc</a></td>
             </tr>
             <tr>
                 <td><a href='https://wwwhome.ewi.utwente.nl/~lathouwerssam/' target="_blank">Sophie Lathouwers, MSc</a>
@@ -91,11 +94,21 @@ $this->title = 'About';
             <tr class="blank_row">
                 <td colspan="3"></td>
             </tr>
+			
+			
             <tr>
                 <td><h3><strong><u>Alumni</u></strong></h3></td>
             </tr>
+			
+			
             <tr>
-                <td><a href='http://wwwhome.ewi.utwente.nl/~oortwijnwhm/' target="_blank">Wytse Oortwijn, MSc</a></td>
+                <td><a href='http://sjcjoosten.nl' target="_blank">dr.ir. Sebastiaan Joosten</a></td>
+            </tr>
+            <tr>
+                <td><a href='' target="_blank">Fauzia Ehsan, MSc</a></td>
+            </tr>
+            <tr>
+                <td><a href='http://wwwhome.ewi.utwente.nl/~oortwijnwhm/' target="_blank">dr. Wytse Oortwijn</a></td>
             </tr>
             <tr>
                 <td><a href='https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en' target="_blank">dr. Stefan
