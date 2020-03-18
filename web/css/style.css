@@ -1,6 +1,13 @@
 @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900");
 
+body {
+    margin: 0;
+}
+
+.dropotron li {
+    list-style-type: none;
+}
 
 /* Basic */
 
