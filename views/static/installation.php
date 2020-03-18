@@ -1,9 +1,5 @@
 <?php
-
-use app\assets\AppAsset;
-
 $this->title = 'Installation Guide';
-
 ?>
 
 <header class="major" style="padding: 0">
