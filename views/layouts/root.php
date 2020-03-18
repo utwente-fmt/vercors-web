@@ -13,7 +13,7 @@ AppAsset::register($this);
 <?php $this->beginPage() ?>
     <!DOCTYPE HTML>
     <!--
-        VerCors Tool --- Formal Methods and Tool Group (EWI)
+        VerCors Tool --- Formal Methods and Tools Group (EWI)
         University of Twente, Enschede, The Netherlands
     -->
     <html>
@@ -90,6 +90,7 @@ AppAsset::register($this);
         <section style="text-align: center; padding:5%; color:#eee; background-image: url(../../web/images/Vercors_Original.jpg); background-repeat: no-repeat; background-size: cover; box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);">
             <?php if(isset($this->blocks['banner'])) { ?><?= $this->blocks['banner'] ?><?php } ?>
             <a href="https://github.com/utwente-fmt/vercors" class="button alt" target="_blank">View on Github</a>
+            <a href="/try_online" class="button alt">Try VerCors Online</a>
         </section>
     </div>
 

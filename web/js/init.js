@@ -7,19 +7,14 @@
 
 	skel.init({
 		breakpoints: {
-			global:		{ range: '*', href: '/css/style.css', containers: 1400, grid: { gutters: 50 } },
-			wide:		{ range: '-1680', containers: 1200, grid: { gutters: 40 } },
-			normal:		{ range: '-1280', containers: 960, lockViewport: true },
-			narrow:		{ range: '-980', containers: '95%', grid: { gutters: 30 } },
-			narrower:	{ range: '-840', grid: { collapse: 1 } },
-			mobile:		{ range: '-640', containers: '90%', grid: { gutters: 15, collapse: 2 } }
+			hamburger: {range: '-840'}
 		}
 	}, {
 		layers: {
 			layers: {
 				navPanel: {
 					animation: 'pushX',
-					breakpoints: 'narrower',
+					breakpoints: 'hamburger',
 					clickToClose: true,
 					height: '100%',
 					hidden: true,
@@ -30,7 +25,7 @@
 					width: 275
 				},
 				titleBar: {
-					breakpoints: 'narrower',
+					breakpoints: 'hamburger',
 					height: 44,
 					html: '<span class="toggle" data-action="toggleLayer" data-args="navPanel"></span><span class="title" data-action="copyHTML" data-args="logo"></span>',
 					position: 'top-left',
