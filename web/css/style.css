@@ -1,6 +1,10 @@
 @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
 }
@@ -503,16 +507,6 @@ input[type="button"].small,
     position: relative;
 }
 
-#header:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(16, 32, 48, 0.25);
-}
-
 #header > * {
     position: relative;
     z-index: 1;
@@ -527,49 +521,10 @@ input[type="button"].small,
     font-size: 2em;
 }
 
-#nav > ul {
-    margin: 0;
-}
-
-#nav > ul > li {
-    border-radius: 8px 8px 0 0;
-    display: inline-block;
-    margin-left: 0.5em;
-    padding: 0.5em 1.5em;
-}
-
-#nav > ul > li a {
-    color: #FFF;
-    text-decoration: none;
-    font-size: 1.2em;
-}
-
-#nav > ul > li:first-child {
-    margin-left: 0;
-}
-
-#nav > ul > li:hover a {
-    color: #fff;
-}
-
-#nav > ul > li.active {
-    background: #3ac984;
-}
-
-#nav > ul > li.active a {
-    color: white;
-}
-
-#nav > ul > li > ul {
-    display: inline-block;
-}
-
 /* Dropotron */
 
 .dropotron {
     margin-top: -2px;
-    background: #3ac984;
-    border-radius: 10px;
     color: white;
     min-width: 12em;
     padding: 1em 0;
@@ -598,7 +553,6 @@ input[type="button"].small,
 
 #banner {
     text-align: center;
-    padding: 4em 0 0 0;
 }
 
 #banner .major h2 {
@@ -690,6 +644,63 @@ input[type="button"].small,
     padding: 0 0 0 50px;
 }
 
+#hamburger {
+    display: none;
+}
+
+@media (min-width: 841px) {
+    #nav {
+        z-index: 100;
+    }
+
+    #nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    #nav > ul > li {
+        display: inline-block;
+        margin-left: 0.5em;
+        position: relative;
+    }
+
+    #nav > ul > li > a {
+        text-align: left;
+        padding: 0.5em 1.5em;
+    }
+
+    #nav > ul > li:hover > a {
+        background: #3ac984;
+        border-radius: 10px 10px 0 0;
+    }
+
+    #nav > ul > li:hover > a + ul {
+        display: block;
+    }
+
+    #nav > ul > li > ul {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 2.0em;
+        width: 300px;
+
+        background: #3ac984;
+        border-radius: 0 10px 10px 10px;
+        text-align: left;
+    }
+
+    #nav > ul > li > ul:hover {
+        display: block;
+    }
+
+    #nav > ul > li > ul > li {
+        display: block;
+        padding: 0.5em 1.5em;
+    }
+}
+
 @media (max-width: 1680px) {
     .container {
         width: 1200px;
@@ -775,11 +786,6 @@ input[type="button"].small,
 }
 
 @media (max-width: 840px) {
-    /* Basic */
-    #skel-layers-wrapper {
-        padding-top: 44px;
-    }
-
     header.major {
         padding-bottom: 2em;
     }
@@ -851,53 +857,6 @@ input[type="button"].small,
         width: 20px;
     }
 
-    #navPanel {
-        background: #222833;
-    }
-
-    #navPanel .link {
-        border-top: solid 1px rgba(192, 192, 192, 0.15);
-        color: #ccc;
-        display: block;
-        height: 44px;
-        line-height: 44px;
-        padding: 0 1em 0 1em;
-        text-decoration: none;
-    }
-
-    #navPanel .link:first-child {
-        border-top: 0;
-    }
-
-    #navPanel .link.depth-0 {
-        color: #fff;
-    }
-
-    #navPanel .link .indent-1 {
-        display: inline-block;
-        width: 1em;
-    }
-
-    #navPanel .link .indent-2 {
-        display: inline-block;
-        width: 2em;
-    }
-
-    #navPanel .link .indent-3 {
-        display: inline-block;
-        width: 3em;
-    }
-
-    #navPanel .link .indent-4 {
-        display: inline-block;
-        width: 4em;
-    }
-
-    #navPanel .link .indent-5 {
-        display: inline-block;
-        width: 5em;
-    }
-
     /* Wrapper */
     .wrapper.style2 {
         padding: 4em 0 3em 0;
@@ -920,28 +879,55 @@ input[type="button"].small,
         padding: 1.1em 3em;
     }
 
-    /* Header */
-    .no-sidebar #header, .left-sidebar #header, .right-sidebar #header {
-        display: none;
+    #header {
+        padding-top: 0;
     }
 
-    .homepage #header {
-        padding: 3em 0 4em 0;
+    #hamburger {
+        display: inline-block;
     }
 
     #logo {
-        display: none;
+        background-color: #333;
+        margin: 0;
+        font-size: 1.5em;
+        padding: 0.5em;
     }
 
     #nav {
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+
+        background-color: #222;
+        text-align: left;
+    }
+
+    #nav.open {
+        max-height: 100%;
+    }
+
+    #nav ul {
+        margin: 0;
+    }
+
+    #nav > ul {
+        padding: 1em;
+    }
+
+    #nav > ul > li {
+        display: block;
+    }
+
+    #nav > ul > li > ul > li {
+        display: block;
+        padding-left: 2em;
     }
 
     /* Banner */
     #banner {
+        margin-top: 1em;
         padding: 0;
     }
-
 
     /* Main */
     #main {

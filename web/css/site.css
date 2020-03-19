@@ -12,10 +12,11 @@ pre {
     border: 1px solid #111;
     background-color: #eee;
     padding: 1em;
+    overflow-x: scroll;
 }
 
 pre, ul, ol {
-    margin: 0 0 2em 0 !important;
+    margin: 0 0 2em 0;
 }
 
 a.asc:after {
@@ -50,21 +51,6 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
 }
 
 .nav > li > form > button.logout:focus,
@@ -134,26 +120,6 @@ table#t01 th {
         text-align: center;
         width: 100%;
         border-bottom: 2px dotted #ccc;
-        align-content: top;
-    }
-
-    /* table#t01 td:last-child {
-      border-bottom: 0;
-    } */
-
-    /* table#t01 td:before {
-      content: attr(data-label);
-      float: left;
-      text-transform: uppercase;
-      font-weight: bold;
-    } */
-}
-
-@media screen and (min-width: 840px) {
-    #fakeheader {
-        display: none !important;
-        padding: 20px;
-        border: 20px;
     }
 }
 
@@ -168,6 +134,13 @@ table#t01 th {
 
 .button + .button {
     margin-left: 16px;
+}
+
+@media (max-width: 840px) {
+    .button + .button {
+        margin-left: 0;
+        margin-top: 16px;
+    }
 }
 
 ul.pagination {
