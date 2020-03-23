@@ -1,3 +1,24 @@
+pre, code {
+    /* Why does our CSS framework reset this?? */
+    font-family: monospace !important;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+pre {
+    border: 1px solid #111;
+    background-color: #eee;
+    padding: 1em;
+    overflow-x: scroll;
+}
+
+pre, ul, ol {
+    margin: 0 0 2em 0;
+}
+
 a.asc:after {
     content: ' (A-Z)';
 }
@@ -30,21 +51,6 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
 }
 
 .nav > li > form > button.logout:focus,
@@ -114,26 +120,6 @@ table#t01 th {
         text-align: center;
         width: 100%;
         border-bottom: 2px dotted #ccc;
-        align-content: top;
-    }
-
-    /* table#t01 td:last-child {
-      border-bottom: 0;
-    } */
-
-    /* table#t01 td:before {
-      content: attr(data-label);
-      float: left;
-      text-transform: uppercase;
-      font-weight: bold;
-    } */
-}
-
-@media screen and (min-width: 840px) {
-    #fakeheader {
-        display: none !important;
-        padding: 20px;
-        border: 20px;
     }
 }
 
@@ -148,6 +134,13 @@ table#t01 th {
 
 .button + .button {
     margin-left: 16px;
+}
+
+@media (max-width: 840px) {
+    .button + .button {
+        margin-left: 0;
+        margin-top: 16px;
+    }
 }
 
 ul.pagination {
@@ -169,3 +162,33 @@ ul.pagination li {
 .glyphicon-trash::after {
     content: 'Delete';
 }
+
+.installation-tabs {
+    font-size: 16pt;
+}
+
+.installation-tabs input[type="radio"] {
+    display: none;
+}
+
+.installation-tabs input[type="radio"] + label {
+    cursor: pointer;
+    margin-right: 12px;
+    padding: 0 4px;
+}
+
+.installation-tabs input[type="radio"]:checked + label {
+    border-bottom: 2px solid #3ac984;
+}
+
+.installation-tab {
+    margin-top: 3em;
+    display: none;
+}
+
+input:checked#linux ~ input:checked#install ~ #install-linux { display: block; }
+input:checked#mac ~ input:checked#install ~ #install-mac { display: block; }
+input:checked#windows ~ input:checked#install ~ #install-windows { display: block; }
+input:checked#linux ~ input:checked#build ~ #build-linux { display: block; }
+input:checked#mac ~ input:checked#build ~ #build-mac { display: block; }
+input:checked#windows ~ input:checked#build ~ #build-windows { display: block; }

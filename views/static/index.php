@@ -30,7 +30,7 @@ $this->title = 'Home';
         </header>
 
         <p style="text-align:justify;">
-        <div style="height:400px;width:100%;overflow:auto;background-color:#f1f1f1f1;color:back;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;">
+        <div style="height:400px;width:100%;overflow:auto;background-color:#f1f1f1f1;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;">
             <div class="blog-posts">
                 <?php foreach($news as $item) { ?>
                     <div class="blog-post spacing">

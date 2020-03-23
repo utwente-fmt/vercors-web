@@ -25,9 +25,6 @@ class AppAsset extends AssetBundle
 
     public $js = [
         'highlight/highlight.pack.js',
-        '/js/jquery.dropotron.min.js',
-        '/js/skel.min.js',
-        '/js/skel-layers.min.js',
         '/js/init.js',
     ];
 		

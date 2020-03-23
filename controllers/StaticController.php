@@ -31,8 +31,6 @@ class StaticController extends Controller
     }
 
     public function actionInstallation() {
-        // TODO: remove the layout override once we (hopefully) rewrite the installation guide with less conflicting CSS
-        $this->layout = 'root';
         return $this->render('installation');
     }
 
