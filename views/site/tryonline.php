@@ -19,9 +19,6 @@ $this->title = 'Try VerCors Online';
 <div class="example-form">
     <label class="control-label" for="example-backendid">Language</label>
     <?= Html::dropDownList('lang', '1', ArrayHelper::map($languages, 'extension', 'extension'), ['class' => 'form-control']) ?>
-    <?php $this->registerJs("$('select[name=lang]').on('change', function () {
-        $('input[name=language]').val($(this).val());
-    })"); ?>
 </div>
 
 <div style="margin-top: 12pt">

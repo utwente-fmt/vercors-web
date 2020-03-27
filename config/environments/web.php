@@ -38,6 +38,7 @@ $config['components']['urlManager'] = [
     'enableStrictParsing' => true,
     'rules' => [
         '' => 'static/index',
+        '/what/is/this/page' => 'static/abstraction',
         '/about' => 'static/about',
         '/license' => 'static/license',
         '/getting_started/installation' => 'static/installation',

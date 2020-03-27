@@ -49,14 +49,15 @@ $('#verifythis').click(function() {
 
 	ws.onopen = function(e) {
 		$('#verification-progress').text('Connected; sending file...');
+		const fileName = 'test.' + $('[name=lang]').val();
 		ws.send(JSON.stringify({
 			type: 'submit',
-
 			files: {
-				'test.pvl': $('textarea[name=examplecode]').val()
+				[fileName]: $('textarea[name=examplecode]').val()
 			},
 			arguments: {
-				'files': ['test.pvl'],
+				'files': [fileName],
+				'backend': 'silicon',
 			}
 		}));
 	};

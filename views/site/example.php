@@ -59,6 +59,7 @@ $this->title = $model->title;
     ]) ?>
 
     <h3>Example code</h3>
+    <input type="hidden" name="lang" value="<?= $model->language->extension ?>">
     <div class="row">
         <div class="col-md-6">
             <?= Codemirror::widget([

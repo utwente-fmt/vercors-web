@@ -33,7 +33,6 @@ AppAsset::register($this);
         <h1 id="logo" style="position: relative">
             <span id="hamburger"
                   onclick="document.querySelector('#nav').classList.toggle('open')"
-                  style="position: absolute; padding: 0 0.75em; left: 0; top: 0; line-height: 2.75em; cursor: pointer;"
                   class="fa fa-bars"></span>
             <?= Html::a('The VerCors Verifier', ['static/index']) ?>
         </h1>
@@ -74,14 +73,16 @@ AppAsset::register($this);
             </ul>
         </nav>
         <div class="container">
-            <!-- Banner -->
             <div id="banner">
                 <div class="container">
                     <section>
                         <?php if(isset($this->blocks['banner'])) { ?><?= $this->blocks['banner'] ?><?php } ?>
-                        <a href="https://github.com/utwente-fmt/vercors" class="button alt" target="_blank">View on
-                            Github</a>
-                        <a href="/try_online" class="button alt">Try VerCors Online</a>
+                        <p>
+                            <a href="https://github.com/utwente-fmt/vercors" class="button alt" target="_blank">
+                                View on Github
+                            </a>
+                            <a href="/try_online" class="button alt">Try VerCors Online</a>
+                        </p>
                     </section>
                 </div>
             </div>
@@ -91,7 +92,6 @@ AppAsset::register($this);
     <?= $content ?>
 
     <div id="footer">
-        <!-- Copyright -->
         <div class="row">
             <a href="https://fmt.ewi.utwente.nl" target="_blank"><img src="/images/FMT logo.png" alt=""></a>
             <div class="copyright">

@@ -5,8 +5,7 @@
     <div class="container">
         <section>
             <header class="major">
-                <h2><strong style="color:#3ac984"> Publications</strong></h2>
-                <!--<span class="byline">Verifying the correctness of Parallel and Concurrent Software</span>-->
+                <h2><strong> Publications</strong></h2>
             </header>
 
             <!-- <script src="https://bibbase.org/show?bib=http://utwente-fmt.github.io/vercors/references.bib&jsonp=1"></script> -->

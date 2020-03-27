@@ -6,7 +6,9 @@ use yii\helpers\Html;
 $this->title = 'news';
 ?>
 
-<h2 class="spacing" style="color: #3ac984">News</h2>
+<header class="major">
+    <h2><strong>News</strong></h2>
+</header>
 
 <div class="blog-posts">
     <?php foreach($news as $item) { ?>

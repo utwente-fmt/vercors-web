@@ -5,9 +5,10 @@
 <!-- Main -->
 <section>
     <header class="major">
-        <h2><strong style="color:#3ac984"> The VerCors Tool Architecture</strong></h2>
+        <h2><strong> The VerCors Tool Architecture</strong></h2>
         <span class="byline">Verifying the correctness of Concurrent and Distributed Software</span>
     </header>
+
     <p style="text-align:justify"> VerCors transforms the verification problem of programs written in a
         high-level programming language into a verification problem in the intermediate language of <a
                 href="http://www.pm.inf.ethz.ch/research/viper.html" style="color:blue">Viper</a>. It builds on
@@ -20,15 +21,14 @@
         for synchronisation between threads and workgroups. It can also how the technology is used to reason
         about compiler directives for parallelisation. The overall architecture of the VerCors tool set is
         presented in the following figure.
-        <a href="#" class="image feature"><img src="{{"/images/VerCors2.png" | prepend: site.baseurl }}"
-            alt="The VerCors Tool Architecture"></a>
+        <a href="#" class="image feature"><img src="/images/VerCors2.png" alt="The VerCors Tool Architecture"></a>
         Our goals are not so much to develop new program verification technology, but rather to make existing
         program verification technology usable for high-level program languages and advanced language features.
         This is reflected in the design of the VerCors tool set, which is implemented as a collection of
         compiler transformations. It takes as input a program in high-level program language, annotated with
         JML-style specifications, and transforms this into a collection of verification problems for an
         intermediate verification language.</p>
-    <h3>Front-end languages </h3>
+    <h2>Front-end languages </h2>
     <p style="text-align:justify"> The current main input languages for VerCors are Java, OpenCL and PVL: it
         supports reasoning about all the main concurrency-related features of these languages. Moreover, a
         commonly used subset of OpenMP, essentially characterising deterministic parallel programming, is
@@ -40,7 +40,7 @@
         particular, PVL already has support to reason about host code). Due to its modular design, the VerCors
         toolset can be extended with any (pointer) language having parallel or concurrent language constructs
         like: dynamic thread creation, deterministic parallelism, and SIMD-like parallelism.</p>
-    <h3>Back-ends</h3>
+    <h2>Back-ends</h2>
     <p style="text-align:justify"> Currently the Viper tool set is the main back-end of VerCors. Viper supports
         the intermediate verification language Silver, which provides support to reason about programs with
         persistent mutable state, annotated with separation logic-style specifications. The Viper tool set
