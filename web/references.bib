@@ -1,3 +1,94 @@
+@unpublished{SOJH2020,
+year="2020",
+title="Formal Verification of Parallel Prefix Sum",
+author="Mohsen Safari and Wytse Oortwijn and Sebastiaan Joosten and Marieke Huisman",
+note="NFM 2020"
+}
+
+
+@unpublished{OHJP2020,
+year="2020",
+title="Automated Verification of Parallel Nested DFS",
+author="Wytse Oortwijn and Marieke Huisman and Sebastiaan Joosten and Jaco van de Pol",
+note="TACAS 2020"
+}
+
+
+@unpublished{OGH2020,
+year="2020",
+title="Practical Abstractions for Automated Verification of Shared-Memory Concurrency",
+author="W. Oortwijn and D. Gurov and M. Huisman.",
+note="VMCAI 2020",
+isbn="978-3-030-39321-2",
+url="https://doi.org/10.1007/978-3-030-39322-9_19"
+}
+
+
+@InProceedings{10.1007/978-3-030-34968-4_22,
+author="Oortwijn, Wytse
+and Huisman, Marieke",
+editor="Ahrendt, Wolfgang
+and Tapia Tarifa, Silvia Lizeth",
+title="Practical Abstractions for Automated Verification of Message Passing Concurrency",
+booktitle="Integrated Formal Methods",
+year="2019",
+publisher="Springer International Publishing",
+address="Cham",
+pages="399--417",
+abstract="Distributed systems are notoriously difficult to develop correctly, due to the concurrency in their communicating subsystems. Several techniques are available to help developers to improve the reliability of message passing software, including deductive verification and model checking. Both these techniques have advantages as well as limitations, which are complementary in nature. This paper contributes a novel verification technique that combines the strengths of deductive and algorithmic verification to reason elegantly about message passing concurrent programs, thereby reducing their limitations. Our approach allows to verify data-centric properties of message passing programs using concurrent separation logic (CSL), and allows to specify their communication behaviour as a process-algebraic model. The key novelty of the approach is that it formally bridges the typical abstraction gap between programs and their models, by extending CSL with logical primitives for proving deductively that a program refines its process-algebraic model. These models can then be analysed via model checking, using mCRL2, to reason indirectly about the program's communication behaviour. Our verification approach is compositional, comes with a mechanised correctness proof in Coq, and is implemented as an encoding in Viper.",
+isbn="978-3-030-34968-4",
+url ="https://doi.org/10.1007/978-3-030-34968-4_22"
+}
+
+
+@InProceedings{10.1007/978-3-030-34968-4_23,
+author="Oortwijn, Wytse
+and Huisman, Marieke",
+editor="Ahrendt, Wolfgang
+and Tapia Tarifa, Silvia Lizeth",
+title="Formal Verification of an Industrial Safety-Critical Traffic Tunnel Control System",
+booktitle="Integrated Formal Methods",
+year="2019",
+publisher="Springer International Publishing",
+address="Cham",
+pages="418--436",
+abstract="Over the last decades, significant progress has been made on formal techniques for software verification. However, despite this progress, these techniques are not yet structurally applied in industry. To reduce the well-known industry--academia gap, industrial case studies are much-needed, to demonstrate that formal methods are now mature enough to help increase the reliability of industrial software. Moreover, case studies also help researchers to get better insight into industrial needs.",
+isbn="978-3-030-34968-4",
+url="https://doi.org/10.1007/978-3-030-34968-4_23"
+}
+
+
+
+@phdthesis{eed8e862be3a4fe785a4e94855d13674,
+title = "Deductive techniques for model-based concurrency verification",
+abstract = "This thesis contributes formal techniques for verifying global behavioural properties of real-world concurrent software in a sound and practical manner.The first part of this thesis discusses how Concurrent Separation Logic (CSL) can be used to mechanically verify the parallel nested depth-first search (NDFS) model checking algorithm. This verification has been performed using VerCors. We also demonstrate how our mechanized correctness proof allows verifying various optimisations of parallel NDFS with only little extra effort.The second part contributes an abstraction technique for verifying global behavioural properties of shared-memory concurrent software. This abstraction technique allows specifying program behavior as a process-algebraic model, with an elegant algebraic structure. Furthermore, we extend CSL with logical primitives that allow one to prove that a program refines its process-algebraic specification. This abstraction technique is proven sound using Coq and is implemented in VerCors. We demonstrate our approach on various examples, including a real-world case study from industry that concerns safety-critical code.In part three, we lift our abstraction technique to the distributed case, by adapting it for verifying message passing concurrent software. This adaptation uses process-algebraic specifications to abstract the communication behavior of distributed agents. We also investigate how model checking of these specifications can soundly be combined with the deductive verification of the specified program.",
+author = "Oortwijn, {Wytse Hendrikus Marinus}",
+year = "2019",
+month = "12",
+day = "12",
+doi = "10.3990/1.9789036548984",
+language = "English",
+isbn = "978-90-365-4898-4",
+series = "DSI Ph.D. Thesis Series",
+publisher = "University of Twente",
+number = "19-021",
+address = "Netherlands",
+school = "University of Twente",
+url="https://doi.org/10.3990/1.9789036548984"
+}
+
+
+@misc{essay77569,
+           month = {March},
+          author = {ir. H.M. {Nguyen}},
+            year = {2019},
+           title = {Formal verification of a red-black tree data structure},
+             url = {http://essay.utwente.nl/77569/},
+        abstract = {Nowadays, although software has been integrated deeply into our society, software errors are still common. Because the failure of software can have devastating effects, being certain that a program does what it is meant to do is crucial. This thesis conducts a case study in deductive verification, which is a sub-area of formal verification. The case study involves a company in the Netherlands and their industrial red-black tree code. This thesis is intended to be an experience report to show how formal verification can be used to help proving the correctness of a program. Ultimately, we want to be able to verify the industrial red-black tree code. However, in this thesis, we only cover the verification of a standard red-black tree code. The main section presents how specifications of a red-black tree can be developed, and the obstacles that are met during the development. Finally, we conclude with the comparisons with the results of other authors and possible future work.}
+}
+
+
+
 @InProceedings{10.1007/978-3-030-17502-3_12,
 author= {Ernst, Gidon and Huisman, Marieke and Mostowski, Wojciech and Ulbrich, Mattias},
 title="VerifyThis -- Verification Competition with a Human Factor",
