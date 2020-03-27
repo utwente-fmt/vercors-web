@@ -107,7 +107,7 @@ class Example extends \yii\db\ActiveRecord
 
     public function examplecode()
     {
-        $contents = file_get_contents('https://raw.githubusercontent.com/utwente-fmt/vercors/master/examples/' . $this->link);
+        $contents = file_get_contents('https://raw.githubusercontent.com/utwente-fmt/vercors/v1.2.0/examples/' . $this->link);
         return $contents === false ? '' : $contents;
     }
 
