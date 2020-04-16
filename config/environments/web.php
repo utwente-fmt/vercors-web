@@ -51,6 +51,9 @@ $config['components']['urlManager'] = [
         '/try_online/examples' => '/site/examples',
         '/try_online/example/<id:\d+>' => 'site/example',
 
+        /* Fully static site namespace. */
+        '/<path:(csl-abstractions)(/.*)?>' => 'custom/page',
+
         '/backoffice' => 'site/backoffice',
         '/backoffice/login' => 'site/login',
         '/backoficce/logout' => 'site/logout',
