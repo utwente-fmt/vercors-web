@@ -26,8 +26,8 @@ $this->title = 'About';
         <li><a href='https://wwwhome.ewi.utwente.nl/~safarim/' target="_blank">Mohsen Safari, MSc</a></li>
 
         <li><a href='https://wwwhome.ewi.utwente.nl/~lathouwerssam/' target="_blank">Sophie Lathouwers, MSc</a></li>
+        <li><a href='' target="_blank">Ömer Şakar, MSc</a></li>
         <li><a href='' target="_blank">Pieter Bos, BSc</a></li>
-        <li><a href='' target="_blank">Ömer Şakar, BSc</a></li>
         <li><a href='' target="_blank">Bob Rubbens, BSc</a></li>
     </ul>
 
