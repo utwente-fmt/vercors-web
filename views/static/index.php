@@ -52,7 +52,7 @@ $this->title = 'Home';
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <section class="container">op gith
+    <section class="container">
         <table id="t01" text-align="left">
             <tr>
                 <!-- The ul here is just to be able to see nice buttons -->
