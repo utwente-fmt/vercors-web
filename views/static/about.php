@@ -26,8 +26,8 @@ $this->title = 'About';
         <li><a href='https://wwwhome.ewi.utwente.nl/~safarim/' target="_blank">Mohsen Safari, MSc</a></li>
 
         <li><a href='https://wwwhome.ewi.utwente.nl/~lathouwerssam/' target="_blank">Sophie Lathouwers, MSc</a></li>
-        <li><a href='' target="_blank">Ömer Şakar, MSc</a></li>
-        <li><a href='' target="_blank">Bob Rubbens, MSc</a></li>
+        <li><a href='https://people.utwente.nl/o.f.o.sakar' target="_blank">Ömer Şakar, MSc</a></li>
+        <li><a href='https://people.utwente.nl/r.b.rubbens' target="_blank">Bob Rubbens, MSc</a></li>
         <li><a href='' target="_blank">Pieter Bos, BSc</a></li>
     </ul>
 
@@ -67,49 +67,64 @@ $this->title = 'About';
 </header>
 
 <section>
-    <p>VerCors is supported by several projects:</p>
+    <p>VerCors is and has been supported by several projects:</p>
 
     <ul class="sponsor-list">
         <li>
             <figure>
                 <img src="/images/Mercedes%20logo.png" width="344" height="146" alt="Mercedes Logo">
                 <figcaption>
-                    <a href="http://fmttools.ewi.utwente.nl/research/projects/Mercedes/">
+                    <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/" target="_blank">
                         Mercedes: Maximal Reliability of concurrent and Distributed Software
                     </a><br>
-                    Funded by: <a href="https://www.nwo.nl">NWO</a>
+                    Funded by: <a href="https://www.nwo.nl" target="_blank" >NWO</a><br>
+										Duration: June 2017 until June 2022
                 </figcaption>
             </figure><br>
         </li>
         <li>
-            <p>
-                <a href="http://fmttools.ewi.utwente.nl/research/projects/VerDi/">
-                    VerDi: Verification of Distributed Software
+            <figure>
+              <img src="/images/cheops.png" height="150" alt="ChEOPS">
+                <figcaption>
+                <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/cheops/" target="_blank">
+                    ChEOPS: Verified Construction of Correct and Optimised Parallel Software
                 </a><br>
-                Funded by: <a href="https://www.nwo.nl">NWO</a>
-            </p>
+                Funded by: <a href="https://www.nwo.nl" target="_blank" >NWO</a><br>
+                Duration: September 2019 until August 2022
+                </figcaption>
+            </figure><br>
         </li>
         <li>
             <figure>
-                <img src="/images/CARP.png" width="200" height="150" alt="CARP">
+                <img style="max-height:150px;height:auto;width:auto;" src="/images/CARP.png" alt="CARP">
                 <figcaption>
-                    <a href="http://fmttools.ewi.utwente.nl/research/projects/CARP/">
+                    <a href="http://carp.doc.ic.ac.uk/external/objectives.php" target="_blank">
                         CARP: Correct and Efficient Accelerator Programming
                     </a><br>
-                    Funded by: <a href="">European Commission FP7</a>
+                    Funded by: <a href="" target="_blank">European Commission FP7</a>
+										Duration: December 2011 until December 2014
                 </figcaption>
             </figure>
         </li>
         <li>
             <figure>
-                <img src="/images/vercors.png" height="150" alt="VerCors">
+                <img src="/images/vercors.jpg" height="150" alt="VerCors">
                 <figcaption>
-                    <a href="https://fmt.ewi.utwente.nl/research/projects/view/vercors/">
+                    <a href="https://fmt.ewi.utwente.nl/research/projects/view/vercors/" target="_blank">
                     VerCors: Verification of Concurrent Data Structures
                     </a><br>
-                    Funded by: <a href="https://erc.europa.eu">European Resource Council</a>
+                    Funded by: <a href="https://erc.europa.eu" target="_blank">European Resource Council</a><br>
+                    Duration: 2011 until 2016
                 </figcaption>
             </figure>
+        </li>
+        <li>
+            <p>
+                <a href="http://fmttools.ewi.utwente.nl/research/projects/VerDi/" target="_blank">
+                VerDi: Verification of Distributed Software
+                </a><br>
+                Funded by: <a href="https://www.nwo.nl/en" target="_blank">NWO</a>
+            </p>
         </li>
     </ul>
 </section>
