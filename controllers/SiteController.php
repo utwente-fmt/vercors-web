@@ -112,9 +112,7 @@ class SiteController extends Controller
     {
         $this->configureEditor();
 
-        return $this->render('tryonline', [
-            'languages' => Language::find()->all()
-        ]);
+        return $this->render('tryonline');
     }
 
     protected function findExample($id)
@@ -124,5 +122,10 @@ class SiteController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionWiki() {
+        $this->configureEditor();
+        return $this->render('wiki');
     }
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\widgets\DetailView;
 use f4soft\codemirror\CodeMirror;
+use app\components\VerificationWidget;
 
 $this->title = $model->title;
 ?>
@@ -60,35 +61,5 @@ $this->title = $model->title;
 
     <h3>Example code</h3>
     <input type="hidden" name="lang" value="<?= $model->language->extension ?>">
-    <div class="row">
-        <div class="col-md-6">
-            <?= Codemirror::widget([
-                'name' => 'examplecode',
-                'value' => $model->examplecode(),
-                'clientOptions' => [
-                    'lineNumbers' => true,
-                    'matchBrackets' => true,
-                    'indentUnit' => 2,
-                    'indentWithTabs' => true
-                ]
-            ]) ?>
-            <?php $this->registerJs("editor.on('change', function () {
-        editor.save();
-    })"); ?>
-        </div>
-        <div class="col-md-6">
-            <div>
-                <?= Html::hiddenInput('language', $model->language->extension) ?>
-
-                <?= Html::button('Verify this!', [
-                    'class' => 'btn btn-success',
-                    'id' => 'verifythis'
-                ]) ?>
-            </div>
-            <div id="verification-progress" style="margin: 12pt 0 12pt 0; font-style: italic">
-                Note, verification may take a while and has a time-out of 20 seconds.
-            </div>
-            <pre id="verification-log"></pre>
-        </div>
-    </div>
+    <?= VerificationWidget::widget(['initialCode' => $model->examplecode(), 'initialLanguage' => $model->language->extension]) ?>
 </div>

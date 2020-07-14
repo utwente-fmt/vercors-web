@@ -1,14 +1,17 @@
 const VERIFICATION_SERVER = 'wss://vercors-server.apps.utwente.nl/';
 const PROGRESS_BADGE = '[progress] ';
 
-$('#verifythis').click(function() {
-	$('#verification-log').text('');
-	$('#verification-progress').text('Connecting to verification server...');
+$('.verifythis').on('click', function(e) {
+	const self = $(e.target.parentNode.parentNode);
+	const log = self.find('.verification-log');
+	const progress = self.find('.verification-progress');
+	log.show().text('');
+	progress.show().text('Connecting to verification server...');
 
 	var ws = new WebSocket(VERIFICATION_SERVER, 'fmt-tool');
 
 	ws.onerror = function(err) {
-		$('#verification-progress').text('An error occurred: cannot connect to verification server');
+		progress.text('An error occurred: cannot connect to verification server');
 		console.log(err);
 	};
 
@@ -18,7 +21,7 @@ $('#verifythis').click(function() {
 
 			switch(message.type) {
 				case 'error':
-					$('#verification-progress').text('An error occurred: ' + message.errorDescription);
+					progress.text('An error occurred: ' + message.errorDescription);
 					ws.close();
 					break;
 				case 'stdout':
@@ -30,30 +33,30 @@ $('#verifythis').click(function() {
 						}
 
 						if(parts[i].startsWith(PROGRESS_BADGE)) {
-							$('#verification-progress').text(parts[i].substring(PROGRESS_BADGE.length));
+							progress.text(parts[i].substring(PROGRESS_BADGE.length));
 						} else {
-							$('#verification-log').text($('#verification-log').text() + parts[i] + '\n');
+							log.text(log.text() + parts[i] + '\n');
 						}
 					}
 					break;
 				case 'finished':
-					$('#verification-progress').text('VerCors exited with exit code ' + message.exitCode);
+					progress.text('VerCors exited with exit code ' + message.exitCode);
 					ws.close();
 					break;
 			}
 		} catch(err) {
-			$('#verification-progress').text('An error occurred: ' + err);
+			progress.text('An error occurred: ' + err);
 			console.log(err);
 		}
 	};
 
 	ws.onopen = function(e) {
-		$('#verification-progress').text('Connected; sending file...');
-		const fileName = 'test.' + $('[name=lang]').val();
+		progress.text('Connected; sending file...');
+		const fileName = 'test.' + self.find('[name=lang]').val();
 		ws.send(JSON.stringify({
 			type: 'submit',
 			files: {
-				[fileName]: $('textarea[name=examplecode]').val()
+				[fileName]: self.find('textarea[name=examplecode]').val()
 			},
 			arguments: {
 				'files': [fileName],

@@ -50,6 +50,7 @@ $config['components']['urlManager'] = [
         '/try_online' => 'site/tryonline',
         '/try_online/examples' => '/site/examples',
         '/try_online/example/<id:\d+>' => 'site/example',
+        '/wiki' => 'site/wiki',
 
         /* Fully static site namespace. */
         '/<path:(csl-abstractions)(/.*)?>' => 'custom/page',
