@@ -25,7 +25,8 @@ use f4soft\codemirror\CodeMirror;
         </div>
     </div>
     <div class="verification-progress verification-non-plain" style="display: none; background-color: #dddddd; padding: 0.4ex 1ex" >
-        Note, verification may take a while and has a time-out of 20 seconds.
+        <span class="fa"></span>
+        <span class="verification-progress-text"></span>
     </div>
     <pre class="verification-log verification-non-plain" style="display: none"></pre>
 </div>

@@ -1,13 +1,19 @@
 const VERIFICATION_SERVER = 'wss://vercors-server.apps.utwente.nl/';
 const PROGRESS_BADGE = '[progress] ';
 
+function setProgress(progress, text, icon) {
+	progress.find('.fa').removeClass().addClass('fa').addClass('fa-' + icon);
+	progress.find('.verification-progress-text').text(text);
+}
+
 $('.code-run-button').click(function() {
 	const self = $(this).closest('.verification-container');
 	self.find('.plain-close').show();
 	const log = self.find('.verification-log');
 	const progress = self.find('.verification-progress');
 	log.show().text('');
-	progress.show().text('Connecting to verification server...');
+	progress.show();
+	setProgress(progress, 'Connecting to verification server...', 'spinner');
 
 	var ws = new WebSocket(VERIFICATION_SERVER, 'fmt-tool');
 
@@ -22,7 +28,7 @@ $('.code-run-button').click(function() {
 
 			switch(message.type) {
 				case 'error':
-					progress.text('An error occurred: ' + message.errorDescription);
+					setProgress(progress, 'An error occurred: ' + message.errorDescription, 'times');
 					ws.close();
 					break;
 				case 'stdout':
@@ -34,25 +40,25 @@ $('.code-run-button').click(function() {
 						}
 
 						if(parts[i].startsWith(PROGRESS_BADGE)) {
-							progress.text(parts[i].substring(PROGRESS_BADGE.length));
+							setProgress(progress, parts[i].substring(PROGRESS_BADGE.length), 'spinner');
 						} else {
 							log.text(log.text() + parts[i] + '\n');
 						}
 					}
 					break;
 				case 'finished':
-					progress.text('VerCors exited with exit code ' + message.exitCode);
+					setProgress(progress, 'VerCors exited with exit code ' + message.exitCode, message.exitCode === 0 ? 'check' : 'times');
 					ws.close();
 					break;
 			}
 		} catch(err) {
-			progress.text('An error occurred: ' + err);
+			setProgress(progress, 'An error occurred: ' + err, 'times');
 			console.log(err);
 		}
 	};
 
 	ws.onopen = function(e) {
-		progress.text('Connected; sending file...');
+		setProgress(progress, 'Connected; sending file...', 'spinner');
 		const fileName = 'test.' + self.find('[name=lang]').val();
 		ws.send(JSON.stringify({
 			type: 'submit',

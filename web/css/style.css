@@ -1057,7 +1057,7 @@ input:checked#windows ~ input:checked#build ~ #build-windows { display: block; }
     z-index: 10;
     color: white;
     float: right;
-    position: fixed;
+    position: absolute;
     top: 16px;
     right: 16px;
     font-size: 24pt;
@@ -1108,4 +1108,18 @@ input:checked#windows ~ input:checked#build ~ #build-windows { display: block; }
 
 .wiki-side-menu-js a.focus + ul {
     display: block;
+}
+
+.fa-spinner {
+    animation: rotation 1s infinite steps(8, end);
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
