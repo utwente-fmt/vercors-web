@@ -20,11 +20,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/style.css',
         'highlight/styles/default.css',
+        'css/codemirror.css',
+        'css/codemirror-monokai.css',
     ];
 
     public $js = [
         'highlight/highlight.pack.js',
         '/js/init.js',
+        '/js/codemirror.js',
     ];
 		
     public $depends = [

@@ -1,8 +1,9 @@
 const VERIFICATION_SERVER = 'wss://vercors-server.apps.utwente.nl/';
 const PROGRESS_BADGE = '[progress] ';
 
-$('.verifythis').on('click', function(e) {
-	const self = $(e.target.parentNode.parentNode);
+$('.code-run-button').click(function() {
+	const self = $(this).closest('.verification-container');
+	self.find('.plain-close').show();
 	const log = self.find('.verification-log');
 	const progress = self.find('.verification-progress');
 	log.show().text('');

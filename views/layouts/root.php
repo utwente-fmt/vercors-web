@@ -95,7 +95,7 @@ AppAsset::register($this);
         <div class="row">
             <a href="https://fmt.ewi.utwente.nl" target="_blank"><img src="/images/FMT logo.png" alt=""></a>
             <div class="copyright">
-                <a href="https://fmt.ewi.utwente.nl/research/projects/view/vercors/" target="_blank">Copyright <code>&copy</code> The VerCors Project 2007-2019</a>
+                <a href="https://fmt.ewi.utwente.nl/research/projects/view/vercors/" target="_blank">Copyright <code>&copy</code> The VerCors Project 2007-2020</a>
                 | <a href="https://fmt.ewi.utwente.nl" target="_blank">FMT - University of Twente</a>
                 | <?= Html::a('About Us', ['static/about']) ?>
                 | <?= Html::a('Backoffice', ['site/backoffice']) ?>
