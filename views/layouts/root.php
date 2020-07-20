@@ -41,15 +41,9 @@ AppAsset::register($this);
                 <li>
                     <a href="">Getting Started</a>
                     <ul>
-                        <li><?= Html::a('Installation Guide', ['static/installation']) ?></li>
-                        <li><?= Html::a('Tool Overview', ['static/architecture']) ?></li>
-                        <li><?= Html::a('Tutorials', ['static/tutorials']) ?></li>
-                        <li>
-                            <a href="https://github.com/utwente-fmt/vercors/wiki" target="_blank">
-                                VerCors with IDEs
-                                <span class="fa fa-external-link" style="font-size: 10pt"></span>
-                            </a>
-                        </li>
+                        <li><?= Html::a('Introduction', ['site/wiki', '#' => 'introduction']) ?></li>
+                        <li><?= Html::a('Installation Guide', ['site/wiki', '#' => 'installing-and-running-vercors']) ?></li>
+                        <li><?= Html::a('Tutorial', ['site/wiki']) ?></li>
                         <li>
                             <a href="https://github.com/utwente-fmt/vercors/issues" target="_blank">
                                 Issue Tracker

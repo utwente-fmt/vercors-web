@@ -1,4 +1,6 @@
-<?php use app\components\VerificationWidget; ?>
+<?php
+$this->title = 'Tutorial';
+?>
 
 <div class="row" style="width: 100%; vertical-align: top">
     <span style="width: 75%; display: inline-block" id="wiki-content">
