@@ -7,7 +7,7 @@ $this->title = 'Home';
 <?php $this->beginBlock('banner'); ?>
 <header class="major">
     <h2>Verification of Concurrent and Distributed Software</h2>
-    <span class="byline"><strong>
+    <span class="byline"><strong text-shadow: 2px 2px #ff0000;>
             VerCors is a tool for static verification of parallel programs.
             VerCors aims to verify many different concurrency constructs,
             including: heterogeneous concurrency (Java and C), GPU kernels
