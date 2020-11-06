@@ -4,10 +4,17 @@ use yii\helpers\Html;
 $this->title = 'Home';
 ?>
 
+<style>
+abstract { 
+  font-weight: bold;
+  text-shadow: 2px 2px #696969;
+}
+</style>
+
 <?php $this->beginBlock('banner'); ?>
 <header class="major">
     <h2>Verification of Concurrent and Distributed Software</h2>
-    <span class="byline"><strong text-shadow: 2px 2px #ff0000;>
+    <span class="byline"><abstract>
             VerCors is a tool for static verification of parallel programs.
             VerCors aims to verify many different concurrency constructs,
             including: heterogeneous concurrency (Java and C), GPU kernels
@@ -16,12 +23,12 @@ $this->title = 'Home';
             to prove data-race freedom, memory safety, and functional
             correctness of (concurrent) programs written in Java, C,
             OpenCL, OpenMP, and its own Prototypal Verification Language PVL.
-        </strong></span>
+        </abstract></span>
 </header>
 <?php $this->endBlock('banner'); ?>
 
 <!-- NEWS -->
-<div class="wrapper style2" style="background-color: #f1f1f1f1;">
+<div class="wrapper style2" style="background-color: #f1f1f1f1;text-align:center;">
     <section class="container">
 
         <header class="major" id="overview">
@@ -29,8 +36,8 @@ $this->title = 'Home';
             <span class="byline"></span>
         </header>
 
-        <p style="text-align:justify;">
-        <div style="height:400px;width:76%;overflow:auto;background-color:#f1f1f1f1;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;">
+        <p style="position:relative;text-align:center;">
+        <div style="height:400px;width:76%;overflow:auto;background-color:#f1f1f1f1;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;margin:auto;">
             <div class="blog-posts">
                 <?php foreach($news as $item) { ?>
                     <div class="blog-post spacing">
@@ -95,13 +102,13 @@ $this->title = 'Home';
                 </td>
                 <td style="text-align: left;">
                     <ul class="style">
-                        <a href="https://surfdrive.surf.nl/files/index.php/s/ImxHX0lJyBRgd60" target="_blank"
+                        <a href="https://github.com/utwente-fmt/vercors/releases/latest" target="_blank"
                            class="link link--dark">
                             <span class="fa fa-leaf"></span>
                         </a>
                         <h2>Latest Release</h2>
-                        <p>VerCors version 1.0 has been released.
-                            <a href="https://surfdrive.surf.nl/files/index.php/s/ImxHX0lJyBRgd60" target="_blank"
+                        <p>Get VerCors latest release from GitHub.
+                            <a href="https://github.com/utwente-fmt/vercors/releases/latest" target="_blank"
                                class="link link--dark">
                                 <button>
                                     <img src="/images/release.png" width="5%" height="5%" alt="Release"></button></p>

@@ -594,13 +594,41 @@ optimized further.}
 }
 
 @MastersThesis{essay71180,
- month = {November},
- title = {Reasoning about Active Object Programs},
- author = {J. {Zeilstra}},
- year = {2016},
- url = {http://essay.utwente.nl/71180/},
- abstract = {Proving the correctness is important to ensure faultless functionality. To prove the correctness of Active Object programs in Java, this research translates them to message passing programs.
+ month      = {November},
+ title      = {Reasoning about Active Object Programs},
+ author     = {J. {Zeilstra}},
+ year       = {2016},
+ url        = {http://essay.utwente.nl/71180/},
+ abstract   = {Proving the correctness is important to ensure faultless functionality. To prove the correctness of Active Object programs in Java, this research translates them to message passing programs.
 Active Object are not a build-in feature of the Java programming language. For asynchronous method calls, we used the Java Future interface to return result values. We created a formal specification for the Java Future interface and proved a simple implementation correct using the VerCors tool set.
 We implemented the communication to Active Objects using message passing with the MPJ Express library. To verify this implementation, the message passing library has been annotated and a definition of valid messages in this program is given. We also annotated our implementation, however we encountered problems annotating the returning of result values. The annotations require a lot of administrative overhead and are hard to get correct. 
 Also the existing VerCors tool set is not capable yet to automatically verify the program, mainly because it lacks support for output parameters or sum notation in the process algebra for futures.}
 }
+
+@misc{essay82062,
+title       = {Encoding deadlock-free monitors in the VerCors verification tool},
+month       = {July},
+year        = {2020},
+author      = {M.J. {Roelink}},
+abstract    = {When developing a concurrent program, a deadlock is never the intended result. However, avoiding them is often attributed to the experience of the developer, as a compiler is generally not able to detect them. Recently, a technique has been proposed to verify deadlock-freeness of a program with monitors. The aim of this research is to investigate how this technique can be encoded in the VerCors verification tool to verify deadlock-freeness of Java-like programs. This paper specifies the required annotation syntax and describes the implementation of the technique in VerCors.},
+url         = {http://essay.utwente.nl/82062/}
+}
+
+@MastersThesis{essay80892,
+title       = {Extending support for axiomatic data types in VerCors},
+author      = {\"O.F.O. {\c{S}akar}},
+year        = {2020},
+month       = {April},
+url         = {http://essay.utwente.nl/80892/},
+abstract    = {VerCors is a static verifier of concurrent/parallel programs developed at the University of Twente. The software that is verified with VerCors (and similar tools) use common data types such as lists or sets. The behavior of these data types is modeled in VerCors using axiomatic data types (ADTs). VerCors currently supports axiomatic data types such as sequences/lists, sets, and bags. To extend the support for ADTs, a list of features to add to VerCors was compiled by using input from end-users. An implementation-level view of VerCors is given with general approaches to implementing a feature in VerCors. For each feature in this list a definition is given, its encoding into Viper (the back end of VerCors) is discussed and its implementation using the general approaches is explained.}
+}
+
+@MastersThesis{essay81338,
+month       = {May},
+author      = {R.B. {Rubbens}},
+year        = {2020},
+title       = {Improving Support for Java Exceptions and Inheritance in VerCors},
+abstract    = {In the age where one software bug can cost millions, software correctness is paramount. Static verifiers are used more and more in both academia and industry to prevent these costly bugs. They can formally prove that an implementation adheres to a specification. With the recent increased use of concurrency, proving correctness of software has become more challenging. However, progress is being made in this area: several static verifiers can now also verify languages in concurrent environments. Unfortunately their features are lagging behind: most checkers do not proceed beyond the prototyping phase and do not tackle the more practical language features. To improve the situation, this work presents an approach for implementing verification support for exceptions and inheritance as presented in Java. We also present, in great detail, the transformation of a language with exceptions and inheritance into a language without, and discuss the theory underlying the practical support for exceptions and inheritance. Finally, we briefly evaluate the approaches for both exceptions and inheritance, and discuss what can be further improved in static verification.},
+url         = {http://essay.utwente.nl/81338/}
+}
+    
