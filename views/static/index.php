@@ -65,24 +65,23 @@ abstract {
                 <!-- The ul here is just to be able to see nice buttons -->
                 <td style="text-align: left;">
                     <ul class="style">
-                        <a href="installation.php#install" target="_blank" class="link link--dark">
+                        <a href="wiki#installing-and-running-vercors" class="link link--dark" target="_self">
                             <span class="fa fa-wrench"></span>
                         </a>
                         <h2>Tool Installation</h2>
                         <p>
                             <span style="text-align:justify">The VerCors toolset can be installed on macOSX, Linux and Windows (via Cygwin). Follow the complete installation guidelines <a
-                                        href="Installation#install" class="url">here</a>.</span>
+                                        href="wiki#installing-and-running-vercors" class="url" target="_self">here</a>.</span>
                         </p>
                     </ul>
                 </td>
                 <td style="text-align: left;">
-                    <ul class="style"><a href="{{ "/Publications.html" | prepend: site.baseurl }}" target="_blank"
+                    <ul class="style"><a href="publications" target="_blank"
                         class="link link--dark">
                         <span class="fa fa-cloud"></span>
                         </a>
                         <h2>Latest Publications</h2>
-                        <p>A complete list of publications is listed <a href="{{ "/Publications.html" | prepend:
-                            site.baseurl }}" class="url" target="_self">here</a>.</p>
+                        <p>A complete list of publications is listed <a href="publications" class="url" target="_self">here</a>.</p>
                     </ul>
                 </td>
             </tr>
