@@ -28,7 +28,7 @@ $this->title = 'About';
         <li><a href='https://wwwhome.ewi.utwente.nl/~lathouwerssam/' target="_blank">Sophie Lathouwers, MSc</a></li>
         <li><a href='https://people.utwente.nl/o.f.o.sakar' target="_blank">Ömer Şakar, MSc</a></li>
         <li><a href='https://people.utwente.nl/r.b.rubbens' target="_blank">Bob Rubbens, MSc</a></li>
-        <li><a href='' target="_blank">Pieter Bos, BSc</a></li>
+        <li><a href='' target="_blank">Pieter Bos, MSc</a></li>
     </ul>
 
     <h3><strong>Alumni</strong></h3>
@@ -91,6 +91,18 @@ $this->title = 'About';
                 </a><br>
                 Funded by: <a href="https://www.nwo.nl" target="_blank" >NWO</a><br>
                 Duration: September 2019 until August 2022
+                </figcaption>
+            </figure><br>
+        </li>
+        <li>
+            <figure>
+              <img src="/images/saves.png" height="150" alt="SAVES">
+                <figcaption>
+                <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/saves/" target="_blank">
+                    SAVES: Scalable Verification of Industrial Control Systems
+                </a><br>
+                Funded by: WWU-UT collaboration grant<br>
+                Duration: January 2021 until December 2021
                 </figcaption>
             </figure><br>
         </li>

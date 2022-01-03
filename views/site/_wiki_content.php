@@ -61,10 +61,8 @@
 <p>The last command tests the VerCors installation by verifying a large collection of examples (from the <code>./examples</code> directory). This command should eventually report that <code>all ? tests passed</code>. There are also instructions for importing VerCors into either eclipse or IntelliJ IDEA <a href="https://github.com/utwente-fmt/vercors/wiki/IDE-Import">here</a>.</p>
 <h3 id="running-vercors-1">Running VerCors</h3>
 <p>The VerCors toolset can be used by running <code>./bin/vct --silicon &lt;filepath&gt;</code>, with <code>&lt;filepath&gt;</code> the path of the (Java, C, or PVL) file to verify.</p>
-<h1 id="prototypical-verification-language">Prototypical Verification Language</h1>
-<p><em>Maybe this page should be merged with <a href="https://github.com/utwente-fmt/vercors/wiki/PVL-Syntax">https://github.com/utwente-fmt/vercors/wiki/PVL-Syntax</a></em> ?</p>
-<p>This page discusses the language features of PVL, the Prototypal Verification Language of VerCors. In particular, it elaborates on design choices and gives implementation details.</p>
-<h5 id="syntax-highlighting">Syntax highlighting</h5>
+<h2 id="syntax-highlighting">Syntax highlighting</h2>
+<p>When writin a program in PVL, the Prototypal Verification Language of VerCors, syntax highlighting can be obtained in the following way:</p>
 <p>VerCors provides syntax highlighting support for PVL in <a href="https://macromates.com/download">TextMate 2</a> (MacOS X) and <a href="https://www.sublimetext.com">Sublime Text</a> (Linux and Windows) as a TextMate Bundle. The bundle is located at <code>./util/VercorsPVL.tmbundle</code>. On MacOS X for TextMate 2 you can simply double click the <code>.tmbundle</code> file to install it. Sublime Text requires you to copy the bundle content to some directory:</p>
 <ol>
 <li>In Sublime Text, click on the <code>Preferences &gt; Browse Packages…</code> menu.</li>
@@ -72,11 +70,65 @@
 <li>Move the contents of <code>VercorsPVL.tmbundle</code> (that is, the <code>./Syntaxes</code> directory) into the directory you just created.</li>
 <li>Restart Sublime Text.</li>
 </ol>
-<p><a href="https://code.visualstudio.com">Visual Studio Code</a> (VS Code) also has support for TextMate bundles to do syntax highlighting (VS Code runs on Windows, Linux and OSX). Click <a href="https://code.visualstudio.com/docs/extensions/themes-snippets-colorizers">here</a> for instructions on how to install this (I have not tested this however).</p>
-<h3 id="language-features">Language features</h3>
-<h5 id="prefix-and-postfix-operators">Prefix and postfix operators</h5>
-<p>PVL has support for the postfix incremental and decremental operators, which are <code>x++</code> and <code>x--</code>. However, these two constructs are implemented as statements rather than expressions; they are simply syntactic sugar for <code>x = x + 1</code> and <code>x := x - 1</code>, respectively. Currently, VerCors does not support expressions with side-effects, and an expression <code>x++</code> (actually, <code>x = x + 1</code> is also considered an expression in Java) would have the side-effect of updating <code>x</code>. For this reason, the prefix versions, <code>++x</code> and <code>--x</code>, are also not implemented (and implementing them as statements gives the same reduction as with <code>x++</code> and <code>x--</code>).</p>
-<p>Implementing support for expressions with side-effects is mostly an engineering effort, not so much a theoretical problem. One could simply transform Java programs that use expressions with side-effects to equivalent programs without such expressions (as a pre-processing step in VerCors). The ABC library (directed by Stephen Siegel, see <a href="https://vsl.cis.udel.edu/trac/civl/wiki/ABC">https://vsl.cis.udel.edu/trac/civl/wiki/ABC</a>) provides such a transformation mechanism that we can probably directly use. The code of ABC can be obtained by running <code>svn checkout svn://vsl.cis.udel.edu/abc</code>.</p>
+<p><a href="https://code.visualstudio.com">Visual Studio Code</a> (VS Code) also has support for TextMate bundles to do syntax highlighting (VS Code runs on Windows, Linux and OSX). Click <a href="https://code.visualstudio.com/docs/extensions/themes-snippets-colorizers">here</a> for instructions on how to install this (this has not been tested however).</p>
+<h1 id="prototypical-verification-language">Prototypical Verification Language</h1>
+<p>This page discusses the language features of PVL, the Prototypal Verification Language of VerCors. The language is similar to Java, so it has classes, methods, etc. It doesn't have modifiers like public and private. This language is used for research too, so some special constructs like the <a href="https://github.com/utwente-fmt/vercors/wiki/Tutorial-Parallel-Blocks">par-block</a> have been added to it. This section elaborates on the basic language features of PVL. The more advanced features are described in later sections.</p>
+<h3 id="basic-types-and-expressions">Basic types and expressions</h3>
+<p>Currently, VerCors supports the types <code>int</code>, <code>boolean</code>, and <code>void</code> (for return types of methods). Identifiers, e.g. variables and method names, can consist of the characters a-z, A-Z, 0-9 and _. However, they must start with a letter (a-z, A-Z). The following words are reserved and can therefore not be used as identifiers:</p>
+<p><code>create, action, destroy, send, recv, use, open, close, atomic, from, merge, split, process, apply, label, \result, write, read, none, empty, current_thread</code></p>
+<p>Standard operators can be used to form expressions from values and variables of type <code>int</code> or <code>boolean</code>:</p>
+<ul>
+<li>boolean operators: <code>&amp;&amp;, ||, !, ==&gt;, ==, !=, &lt;, &lt;=, &gt;, &gt;=</code></li>
+<li>arithmetic operators: <code>+, -, *, /, ++, --</code></li>
+<li>if-then-else expression: <code>b ? e1 : e2</code> where <code>b</code> is a boolean expressions, and <code>e1</code> and <code>e2</code> are expressions of the same type</li>
+</ul>
+<p>Other expressions:</p>
+<ul>
+<li>Create new object: <code>new T(...)</code> where <code>T(...)</code> is defined by the constructor of class <code>T</code></li>
+<li>Create an array: <code>new T[i]</code> where <code>T</code> is a type (so <code>int</code>, <code>boolean</code>, or a class <code>T</code>) and <code>i</code> a non-negative integer.</li>
+</ul>
+<h3 id="classes-fields-methods">Classes, fields, methods</h3>
+<p>A program consists of one of more classes. Classes have a name, zero or more fields, zero or more constructors, and zero or more methods. Below we show a small example class:</p>
+<pre><code>class MyForest {
+    int nrTrees;
+    
+    MyForest(int nr) {
+        nrTrees = nr;
+    }
+
+    void plantTrees(int nr) {
+        nrTrees = nrTrees + nr;
+    }
+}
+</code></pre>
+<p>The keyword <code>this</code> can be used to refer to the current object. The modifier <code>static</code> can be added to methods that do not change any fields or call any non-static methods.</p>
+<h3 id="control-flow-return-if-while-for">Control flow: return, if, while, for</h3>
+<p>A method body consists of statements. The basic statements of PVL are:</p>
+<ul>
+<li>assignment: <code>x = e;</code> where <code>x</code> is a variable and <code>e</code> an expression.</li>
+<li>return: <code>return e;</code>, where e is an expression of the type of the method</li>
+<li>if-statement: <code>if (b) then { s1 }</code> or <code>if (b) then { s1 } else { s2 }</code>, where <code>b</code> is a boolean expression and <code>s1</code> and <code>s2</code> are (sequences of) statements.</li>
+<li>while-loop: <code>while (b) { s1 }</code>, where <code>b</code> is a boolean expression and <code>s1</code> a (sequence of) statement.</li>
+<li>for-loop: <code>for(int i = e1; b; e2)</code>, where <code>i</code> is an identifier <code>e1</code> is an integer expression, <code>b</code> a boolean about <code>i</code> and <code>e2</code> an update of <code>i</code>.</li>
+<li>comments: single line comments <code>// put a comment here</code>, or multiline comments <code>/* put a comment here */</code>.</li>
+</ul>
+<p>Below we show a method using these constructs:</p>
+<pre><code>int myExampleMethod(int nr) {
+    nr = nr + 3;
+    if(nr &gt; 10) { /* here is a multi-line comment
+                     in the if-branch */
+        nr = nr-3;
+        for(int i = 0; i &lt; 2 &amp;&amp; nr &gt; 5; i++) {
+            nr = nr/2;
+        }
+    } else { //we subtract a bit
+        while (nr &gt; 2) {
+            nr--;
+        }
+    }
+    return nr + 5;
+}
+</code></pre>
 <h1 id="syntax">Syntax</h1>
 <p><em>This section describes the syntax of the specification language, which is independent of the target language. Thus, unless otherwise stated, all features are supported for all languages.</em></p>
 <p>In this part of the tutorial, we will take a look at how specifications are expressed in VerCors. While this tutorial provides more detailed explanations of the various constructs, a concise list can be found in the <a href="https://github.com/utwente-fmt/vercors/wiki/PVL-Syntax">PVL Syntax Reference</a> in the annex. The specification language is similar to <a href="http://www.eecs.ucf.edu/~leavens/JML/index.shtml">JML</a>.</p>
@@ -103,7 +155,7 @@
 <p>(You can for now ignore the <code>ghost</code> keyword, it will be discussed later in this chapter).</p>
 <p>An important new type are fractions, <code>frac</code>. VerCors uses concurrent separation logic (CSL) to manage the ownership and permissions to access heap locations. A permission is a value from the interval [0,1], with 0 meaning no permission, and 1 meaning full write access. A permission in between those values means only read access. To express these permission values, the type <code>frac</code> is used. To give a value to a variable of type <code>frac</code>, the new operator of <em>fractional division</em> can be used: While <code>2/3</code> indicates the classical integer division, which in this example gives <code>0</code>, using the backslash instead gives a fraction: <code>2\3</code>. For more on this topic, including some additional keywords for short-hand notations, see the chapter on <a href="https://github.com/utwente-fmt/vercors/wiki/Tutorial-Permissions">permissions</a>.</p>
 <p>Sometimes, you might create complicated expressions and want to use helper variables to simplify them. However, certain constructs only allow for expressions, and not for statements such as variable declarations. To alleviate that, there is the <code>\let</code> construct, which defines a variable just for a single expression: <code>( \let type name = expr1 ; expr2 )</code>, where <code>type</code> is the type of the helper variable, <code>name</code> its name, <code>expr1</code> defines its value, and <code>expr2</code> the complicated expression that you can now simplify by using the helper variable. Example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb4-1" title="1"><span class="co">//@ assert (\let int abs_x = (x&lt;0 ? -x : x); y==(z==null ? abs_x : 5*abs_x));</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">//@ assert (\let int abs_x = (x&lt;0 ? -x : x); y==(z==null ? abs_x : 5*abs_x));</span></span></code></pre></div>
 <h3 id="quantifiers">Quantifiers</h3>
 <p>Note that most target languages, such as Java and C, support array types, such as <code>int[]</code>. Sometimes, you might want to reason about all elements of the array, or need permission to access all those elements. How do you do that, especially if the size of the array is not known beforehand (e.g. user input)? To do that, VerCors supports using <em>quantifiers</em> in the specifications: <code>(\forall varDecl; cond; expr)</code>. The syntax is similar to the header of a for loop: <code>varDecl</code> declares a variable, e.g. <code>int i</code>. <code>cond</code> is a boolean expression describing a boundary condition, restricting the declared variable to the applicable cases, e.g. defining the range of the integer <code>0&lt;=i &amp;&amp; i&lt;arr.length</code>. <code>expr</code> is the boolean expression you are interested in, such as a statement you want to assert. Note that the parentheses are mandatory. Such a quantified expression typically relates to an array, or an axiomatic data type like a <code>seq</code>. However, it is not restricted to such cases. Here is an example:</p>
 <!-- testMethod -->
@@ -227,62 +279,62 @@ public int val;
 
 <p>For splitting and merging we use the <code>**</code> operator, which is known as the separating conjunction, a connective from separation logic. A formula of the form <code>P ** Q</code> can be read as: "<code>P</code>, and <em>separately</em> <code>Q</code>", and comes somewhat close to the standard logical conjunction. In essence, <code>P ** Q</code> expresses that the subformulas <code>P</code> and <code>Q</code> both hold, and in addition, that all ownership resources in <code>P</code> and <code>Q</code> are together <em>disjoint</em>, meaning that all the permission components together do not exceed <code>1</code> for any field. Consider the formula <code>Perm(x.f, 1) ** Perm(y.f, 1)</code>. The permissions for a field <code>f</code> cannot exceed <code>1</code>, therefore we can deduce that <code>x != y</code>.</p>
 <p>One may also try to verify the following alteration, which obviously does not pass, since write permission for <code>this.val</code> is needed, but only read permission is obtained via the precondition. VerCors will again give an 'InsufficientPermission' failure on this example.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb5-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">  requires Perm(this.val, 1\2);</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">  ensures Perm(this.val, 1\2);</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">  ensures this.val == \old(this.val) + n;</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb5-7" title="7">  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</a>
-<a class="sourceLine" id="cb5-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1\2);</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">  ensures Perm(this.val, 1\2);</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">  ensures this.val == \old(this.val) + n;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>If you replace both ownership predicates for <code>Perm(this.val, 3/2)</code>, then the tool will report a 'MethodPreConditionUnsound: MethodPreConditionFalse' error because the precondition can then never by satisfied by any caller, since no thread can have permission greater than <code>1</code> for any shared-memory location. VerCors is a verification tool for <em>partial correctness</em>; if the precondition of a method cannot be satisfied because it is absurd, then the program trivially verifies. To illustrate this, try to change the precondition into <code>requires false</code> and see what happens when running VerCors. Note that VerCors does try to help the user identify these cases by showing a 'MethodPreConditionUnsound' if it can derive that the precondition is unsatisfiable. But one has to be a bit careful about the assumptions made on the program as preconditions.</p>
 <h2 id="self-framing">Self-framing</h2>
 <p>Consider the following variant on our program. Would this verify?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb6-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">  requires Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">  ensures this.val == \old(this.val) + n;</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb6-6" title="6">  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</a>
-<a class="sourceLine" id="cb6-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1);</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">  ensures this.val == \old(this.val) + n;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This program does not verify and gives an 'InsufficientPermission' failure when given to VerCors. The reason is that, also in the specifications one cannot read from shared-memory without the required permissions. In this program, the <code>ensures</code> clause accesses <code>this.val</code>, however no ownership for <code>this.val</code> is ensured by the <code>incr</code> method. Note that, without a notion of ownership, one cannot establish the postcondition: perhaps some other thread changed the contents of <code>this.val</code> while evaluating the postcondition. By having a notion of ownership, no other thread can change the contents of <code>this.val</code> while we evaluate the postcondition of the call, since no other threads can have resources to do so.</p>
 <p>Moreover, the order of specifying permissions and functional properties does matter. For example, the following program also does not verify, even though it ensures enough permissions to establish the postcondition:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb7-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">  requires Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">  ensures this.val == \old(this.val) + n;</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">  ensures Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb7-7" title="7">  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</a>
-<a class="sourceLine" id="cb7-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">  ensures this.val == \old(this.val) + n;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">  ensures Perm(this.val, 1);</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>VerCors enforces that shared-memory accesses are <em>framed</em> by ownership resources. Before accessing <code>this.val</code> in the first <code>ensures</code> clause, the permissions for <code>this.val</code> must already be known! In the program given above, the access to <code>this.val</code> in the postcondition is <em>not</em> framed by the ownership predicate: it comes too late.</p>
 <h2 id="permission-leaks">Permission leaks</h2>
 <p>So what about the following change? Can VerCors successfully verify the following program?</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb8-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co">  requires Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">  ensures Perm(this.val, 1\2);</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">  ensures this.val == \old(this.val) + n;</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb8-7" title="7">  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</a>
-<a class="sourceLine" id="cb8-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1);</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">  ensures Perm(this.val, 1\2);</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">  ensures this.val == \old(this.val) + n;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>VerCors is able to verify the example program given above. However, less permission for <code>this.val</code> is ensured then is required, meaning that any thread that calls <code>c.incr</code> will need to give up write permission for <code>c.val</code>, but only receives read permission back in return, after <code>incr</code> has terminated. So this example has a <em>permission leak</em>. Recall that threads need full permission in order to write to shared heap locations, so essentially, calling <code>c.incr</code> has the effect of losing the ability to ever write to <code>c.val</code> again. In some cases this can be problematic, while in other cases this can be helpful, as losing permissions in such a way causes shared-memory to become read-only, specification-wise. However, in the scenario given below the permission leak will prevent successful verification:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb9-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="co">  requires Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co">  ensures Perm(this.val, 1\2);</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">  ensures this.val == \old(this.val) + n;</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb9-7" title="7">  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</a>
-<a class="sourceLine" id="cb9-8" title="8">}</a>
-<a class="sourceLine" id="cb9-9" title="9">  </a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="co">  requires Perm(this.val, 1);</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="dt">void</span> <span class="fu">incr2</span>(<span class="dt">int</span> n) {</a>
-<a class="sourceLine" id="cb9-14" title="14">  <span class="fu">incr</span>(n);</a>
-<a class="sourceLine" id="cb9-15" title="15">  <span class="fu">incr</span>(n);</a>
-<a class="sourceLine" id="cb9-16" title="16">}</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1);</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="co">  ensures Perm(this.val, 1\2);</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="co">  ensures this.val == \old(this.val) + n;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr</span>(<span class="dt">int</span> n) {</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>  <span class="kw">this</span>.<span class="fu">val</span> = <span class="kw">this</span>.<span class="fu">val</span> + n;</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co">  requires Perm(this.val, 1);</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">incr2</span>(<span class="dt">int</span> n) {</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>  <span class="fu">incr</span>(n);</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>  <span class="fu">incr</span>(n);</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a>}</span></code></pre></div>
 <p>In the <code>incr2</code> method, the first call <code>incr(n)</code> will consume write permission for <code>this.val</code>, but only produce read permission in return. Therefore, the requirements of the second call <code>incr(n)</code> cannot be satisfied, which causes the verification to be unsuccessful.</p>
 <h2 id="some-extra-notation">Some extra notation</h2>
 <p>We end the section by mentioning some notational enhancements for handling permissions. Instead of writing <code>Perm(o.f, 1)</code>, one may also write <code>Perm(o.f, write)</code>, which is perhaps a more readable way to express write permission for <code>o.f</code>.</p>
@@ -317,41 +369,63 @@ public int val;
 <p>If you want to reason about the value that the variable refers to as well then you can use <code>PointsTo(var, p, val)</code> which denotes that you have permission <code>p</code>for variable <code>var</code> which has value <code>val</code>. It is similar to saying <code>Perm(var, p)</code> and <code>var == val</code>.</p>
 <h1 id="openclcudagpgpu">OpenCL/Cuda/GPGPU</h1>
 <p>TODO @Mohsen</p>
+<p>This section explains how to verify GPGPU programs in VerCors. The tool supports both OpenCL and CUDA languages. The synchronization feature (i.e., barrier) in these languages is also supported by VerCors. To demonstrate GPGPU verification, we show two examples in both OpenCl and CUDA, one without barrier and the other one with barrier.</p>
+<h3 id="openclcuda-without-barrier">OpenCL/CUDA without Barrier</h3>
+<p>This simple method shows an OpenCL program that adds two arrays and stores the result in another array:</p>
+<!-- testMethod -->
+
+<?= VerificationWidget::widget(['initialLanguage' => 'opencl', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxICAgI2luY2x1ZGUgPG9wZW5jbC5oPgogICAgMgogICAgMyAgIC8qQAogICAgNCAgIGNvbnRleHQgXHBvaW50ZXJfaW5kZXgoYSwgZ2V0X2dsb2JhbF9pZCgwKSwgcmVhZCk7CiAgICA1ICAgY29udGV4dCBccG9pbnRlcl9pbmRleChiLCBnZXRfZ2xvYmFsX2lkKDApLCByZWFkKTsKICAgIDYgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGMsIGdldF9nbG9iYWxfaWQoMCksIHdyaXRlKTsKICAgIDcgICBlbnN1cmVzIGNbZ2V0X2dsb2JhbF9pZCgwKV0gPT0gYVtnZXRfZ2xvYmFsX2lkKDApXSArIGJbZ2V0X2dsb2JhbF9pZCgwKV07CiAgICA4ICAgQCovCiAgICA5ICAgX19rZXJuZWwgdm9pZCBvcGVuQ0xBZGQoaW50IGFbXSwgaW50IGJbXSwgaW50IGNbXSkgewogICAgMTAgICAgIGludCB0aWQgPSBnZXRfZ2xvYmFsX2lkKDApOwogICAgMTEgICAgIGNbdGlkXSA9IGFbdGlkXSArIGJbdGlkXTsKICAgIDEyICB9Cn0='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSAgICNpbmNsdWRlIDxvcGVuY2wuaD4KMgozICAgLypACjQgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGEsIGdldF9nbG9iYWxfaWQoMCksIHJlYWQpOwo1ICAgY29udGV4dCBccG9pbnRlcl9pbmRleChiLCBnZXRfZ2xvYmFsX2lkKDApLCByZWFkKTsKNiAgIGNvbnRleHQgXHBvaW50ZXJfaW5kZXgoYywgZ2V0X2dsb2JhbF9pZCgwKSwgd3JpdGUpOwo3ICAgZW5zdXJlcyBjW2dldF9nbG9iYWxfaWQoMCldID09IGFbZ2V0X2dsb2JhbF9pZCgwKV0gKyBiW2dldF9nbG9iYWxfaWQoMCldOwo4ICAgQCovCjkgICBfX2tlcm5lbCB2b2lkIG9wZW5DTEFkZChpbnQgYVtdLCBpbnQgYltdLCBpbnQgY1tdKSB7CjEwICAgICBpbnQgdGlkID0gZ2V0X2dsb2JhbF9pZCgwKTsKMTEgICAgIGNbdGlkXSA9IGFbdGlkXSArIGJbdGlkXTsKMTIgIH0gIAo=') ]) ?>
+<p>and this method shows the same example in CUDA:</p>
+<!-- testMethod -->
+
+<?= VerificationWidget::widget(['initialLanguage' => 'cuda', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxICAgI2luY2x1ZGUgPGN1ZGEuaD4KICAgIDIKICAgIDMgICAvKkAKICAgIDQgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGEsIGJsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54LCByZWFkKTsKICAgIDUgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGIsIGJsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54LCByZWFkKTsKICAgIDYgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGMsIGJsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54LCB3cml0ZSk7CiAgICA3ICAgZW5zdXJlcyBjW2Jsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54XSA9PSBhW2Jsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54KV0gKyAKICAgIDggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJbYmxvY2tJZHgueCpibG9ja0RpbS54ICsgdGhyZWFkSWR4LnhdOwogICAgOSAgIEAqLwogICAgMTAgIF9fZ2xvYmFsX18gdm9pZCBDVURBQWRkKGludCBhW10sIGludCBiW10sIGludCBjW10pIHsKICAgIDExICAgICBpbnQgdGlkID0gYmxvY2tJZHgueCpibG9ja0RpbS54ICsgdGhyZWFkSWR4Lng7CiAgICAxMiAgICAgY1t0aWRdID0gYVt0aWRdICsgYlt0aWRdOwogICAgMTMgIH0KfQ=='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSAgICNpbmNsdWRlIDxjdWRhLmg+CjIKMyAgIC8qQAo0ICAgY29udGV4dCBccG9pbnRlcl9pbmRleChhLCBibG9ja0lkeC54KmJsb2NrRGltLnggKyB0aHJlYWRJZHgueCwgcmVhZCk7CjUgICBjb250ZXh0IFxwb2ludGVyX2luZGV4KGIsIGJsb2NrSWR4LngqYmxvY2tEaW0ueCArIHRocmVhZElkeC54LCByZWFkKTsKNiAgIGNvbnRleHQgXHBvaW50ZXJfaW5kZXgoYywgYmxvY2tJZHgueCpibG9ja0RpbS54ICsgdGhyZWFkSWR4LngsIHdyaXRlKTsKNyAgIGVuc3VyZXMgY1tibG9ja0lkeC54KmJsb2NrRGltLnggKyB0aHJlYWRJZHgueF0gPT0gYVtibG9ja0lkeC54KmJsb2NrRGltLnggKyB0aHJlYWRJZHgueCldICsgCjggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJbYmxvY2tJZHgueCpibG9ja0RpbS54ICsgdGhyZWFkSWR4LnhdOwo5ICAgQCovCjEwICBfX2dsb2JhbF9fIHZvaWQgQ1VEQUFkZChpbnQgYVtdLCBpbnQgYltdLCBpbnQgY1tdKSB7CjExICAgICBpbnQgdGlkID0gYmxvY2tJZHgueCpibG9ja0RpbS54ICsgdGhyZWFkSWR4Lng7CjEyICAgICBjW3RpZF0gPSBhW3RpZF0gKyBiW3RpZF07CjEzICB9ICAK') ]) ?>
+<p>In both examples, first we should include the header files (i.g., opencl.h and cuda.h) as in line 1. Next we obtain thread identifiers and then each thread does the computation (lines 10-11 of OpenCL and 11-12 of CUDA examples). As we can see obtaining the global thread identifiers are different in OpenCL and CUDA.</p>
+<p>In the specification of the methods, we specify read permission for each thread in arrays "<em>a</em>" and "<em>b</em>" and write permission in array "<em>c</em>" as pre- and postcondition. The keyword "\<em>pointer_index</em>" is used with three arguments, array name, index and permission to indicate which thread has what permission to which location. Finally in line 7 we specify the result of the methods that each location in array "<em>c</em>" contains the sum of the values in the corresponding locations in arrays "<em>a</em>" and "<em>b</em>".</p>
+<h3 id="openclcuda-with-barrier">OpenCL/CUDA with Barrier</h3>
+<p>This example shows an OpenCL program that uses barrier to synchronize threads:</p>
+<!-- testMethod -->
+
+<?= VerificationWidget::widget(['initialLanguage' => 'opencl', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxICAgI2luY2x1ZGUgPG9wZW5jbC5oPgogICAgMgogICAgMyAgIC8qQAogICAgNCAgIGNvbnRleHRfZXZlcnl3aGVyZSBvcGVuY2xfZ2NvdW50ID09IDE7CiAgICA1ICAgY29udGV4dF9ldmVyeXdoZXJlIGFycmF5Lmxlbmd0aCA9PSBzaXplOwogICAgNiAgIHJlcXVpcmVzIGdldF9sb2NhbF9pZCgwKSAhPSBzaXplLTEgPT0+IFxwb2ludGVyX2luZGV4KGFycmF5LCBnZXRfbG9jYWxfaWQoMCkrMSwgMVwyKTsKICAgIDcgICByZXF1aXJlcyBnZXRfbG9jYWxfaWQoMCkgPT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgMCwgMVwyKTsKICAgIDggICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCBnZXRfbG9jYWxfaWQoMCksIDEpOwogICAgOSAgIGVuc3VyZXMgZ2V0X2xvY2FsX2lkKDApICE9IHNpemUtMSA9PT4gYXJyYXlbZ2V0X2xvY2FsX2lkKDApXSA9PSBcb2xkKGFycmF5W2dldF9sb2NhbF9pZCgwKSsxXSk7CiAgICAxMCAgZW5zdXJlcyBnZXRfbG9jYWxfaWQoMCkgPT0gc2l6ZS0xID09PiBhcnJheVtnZXRfbG9jYWxfaWQoMCldID09IFxvbGQoYXJyYXlbMF0pOwogICAgMTEgIEAqLwogICAgMTIgIF9fa2VybmVsIHZvaWQgb3BlbkNMTGVmdFJvdGF0aW9uKGludCBhcnJheVtdLCBpbnQgc2l6ZSkgewogICAgMTMgICAgIGludCB0aWQgPSBnZXRfbG9jYWxfaWQoMCk7CiAgICAxNCAgICAgaW50IHRlbXA7CiAgICAxNSAgICAgaWYodGlkICE9IHNpemUtMSl7CiAgICAxNiAgICAgdGVtcCA9IGFycmF5W3RpZCsxXTsKICAgIDE3ICAgICB9ZWxzZXsKICAgIDE4ICAgICB0ZW1wID0gYXJyYXlbMF07CiAgICAxOSAgICAgfQogICAgMjAKICAgIDIxICAgICAvKkAKICAgIDIyICAgICByZXF1aXJlcyBnZXRfbG9jYWxfaWQoMCkgIT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgZ2V0X2xvY2FsX2lkKDApKzEsIDFcMik7CiAgICAyMyAgICAgcmVxdWlyZXMgZ2V0X2xvY2FsX2lkKDApID09IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIDAsIDFcMik7CiAgICAyNCAgICAgZW5zdXJlcyBccG9pbnRlcl9pbmRleChhcnJheSwgZ2V0X2xvY2FsX2lkKDApLCAxKTsKICAgIDI1ICAgICBAKi8KICAgIDI2ICAgICBiYXJyaWVyKENMS19MT0NBTF9NRU1fRkVOQ0UpOwogICAgMjcKICAgIDI4ICAgICBhcnJheVt0aWRdID0gdGVtcDsKICAgIDI5IH0KfQ=='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSAgICNpbmNsdWRlIDxvcGVuY2wuaD4KMgozICAgLypACjQgICBjb250ZXh0X2V2ZXJ5d2hlcmUgb3BlbmNsX2djb3VudCA9PSAxOwo1ICAgY29udGV4dF9ldmVyeXdoZXJlIGFycmF5Lmxlbmd0aCA9PSBzaXplOwo2ICAgcmVxdWlyZXMgZ2V0X2xvY2FsX2lkKDApICE9IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIGdldF9sb2NhbF9pZCgwKSsxLCAxXDIpOwo3ICAgcmVxdWlyZXMgZ2V0X2xvY2FsX2lkKDApID09IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIDAsIDFcMik7CjggICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCBnZXRfbG9jYWxfaWQoMCksIDEpOwo5ICAgZW5zdXJlcyBnZXRfbG9jYWxfaWQoMCkgIT0gc2l6ZS0xID09PiBhcnJheVtnZXRfbG9jYWxfaWQoMCldID09IFxvbGQoYXJyYXlbZ2V0X2xvY2FsX2lkKDApKzFdKTsKMTAgIGVuc3VyZXMgZ2V0X2xvY2FsX2lkKDApID09IHNpemUtMSA9PT4gYXJyYXlbZ2V0X2xvY2FsX2lkKDApXSA9PSBcb2xkKGFycmF5WzBdKTsKMTEgIEAqLwoxMiAgX19rZXJuZWwgdm9pZCBvcGVuQ0xMZWZ0Um90YXRpb24oaW50IGFycmF5W10sIGludCBzaXplKSB7CjEzICAgICBpbnQgdGlkID0gZ2V0X2xvY2FsX2lkKDApOwoxNCAgICAgaW50IHRlbXA7CjE1ICAgICBpZih0aWQgIT0gc2l6ZS0xKXsKMTYgICAgIHRlbXAgPSBhcnJheVt0aWQrMV07CjE3ICAgICB9ZWxzZXsKMTggICAgIHRlbXAgPSBhcnJheVswXTsKMTkgICAgIH0KMjAKMjEgICAgIC8qQAoyMiAgICAgcmVxdWlyZXMgZ2V0X2xvY2FsX2lkKDApICE9IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIGdldF9sb2NhbF9pZCgwKSsxLCAxXDIpOwoyMyAgICAgcmVxdWlyZXMgZ2V0X2xvY2FsX2lkKDApID09IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIDAsIDFcMik7CjI0ICAgICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCBnZXRfbG9jYWxfaWQoMCksIDEpOwoyNSAgICAgQCovCjI2ICAgICBiYXJyaWVyKENMS19MT0NBTF9NRU1fRkVOQ0UpOwoyNwoyOCAgICAgYXJyYXlbdGlkXSA9IHRlbXA7CjI5IH0gIAo=') ]) ?>
+<p>And this is the CUDA version of the example:</p>
+<!-- testMethod -->
+
+<?= VerificationWidget::widget(['initialLanguage' => 'cuda', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxICAgI2luY2x1ZGUgPGN1ZGEuaD4KICAgIDIKICAgIDMgICAvKkAKICAgIDQgICAvL2NvbnRleHRfZXZlcnl3aGVyZSBvcGVuY2xfZ2NvdW50ID09IDE7CiAgICA1ICAgY29udGV4dF9ldmVyeXdoZXJlIGFycmF5Lmxlbmd0aCA9PSBzaXplOwogICAgNiAgIHJlcXVpcmVzIHRocmVhZElkeC54ICE9IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIHRocmVhZElkeC54KzEsIDFcMik7CiAgICA3ICAgcmVxdWlyZXMgdGhyZWFkSWR4LnggPT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgMCwgMVwyKTsKICAgIDggICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCB0aHJlYWRJZHgueCwgMSk7CiAgICA5ICAgZW5zdXJlcyB0aHJlYWRJZHgueCAhPSBzaXplLTEgPT0+IGFycmF5W3RocmVhZElkeC54XSA9PSBcb2xkKGFycmF5W3RocmVhZElkeC54KzFdKTsKICAgIDEwICBlbnN1cmVzIHRocmVhZElkeC54ID09IHNpemUtMSA9PT4gYXJyYXlbdGhyZWFkSWR4LnhdID09IFxvbGQoYXJyYXlbMF0pOwogICAgMTEgIEAqLwogICAgMTIgIF9fa2VybmVsIHZvaWQgb3BlbkNMTGVmdFJvdGF0aW9uKGludCBhcnJheVtdLCBpbnQgc2l6ZSkgewogICAgMTMgICAgIGludCB0aWQgPSB0aHJlYWRJZHgueDsKICAgIDE0ICAgICBpbnQgdGVtcDsKICAgIDE1ICAgICBpZih0aWQgIT0gc2l6ZS0xKXsKICAgIDE2ICAgICB0ZW1wID0gYXJyYXlbdGlkKzFdOwogICAgMTcgICAgIH1lbHNlewogICAgMTggICAgIHRlbXAgPSBhcnJheVswXTsKICAgIDE5ICAgICB9CiAgICAyMAogICAgMjEgICAgIC8qQAogICAgMjIgICAgIHJlcXVpcmVzIHRocmVhZElkeC54ICE9IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIHRocmVhZElkeC54KzEsIDFcMik7CiAgICAyMyAgICAgcmVxdWlyZXMgdGhyZWFkSWR4LnggPT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgMCwgMVwyKTsKICAgIDI0ICAgICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCB0aHJlYWRJZHgueCwgMSk7CiAgICAyNSAgICAgQCovCiAgICAyNiAgICAgX19zeW5jdGhyZWFkcygpOwogICAgMjcKICAgIDI4ICAgICBhcnJheVt0aWRdID0gdGVtcDsKICAgIDI5IH0KfQ=='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSAgICNpbmNsdWRlIDxjdWRhLmg+CjIKMyAgIC8qQAo0ICAgLy9jb250ZXh0X2V2ZXJ5d2hlcmUgb3BlbmNsX2djb3VudCA9PSAxOwo1ICAgY29udGV4dF9ldmVyeXdoZXJlIGFycmF5Lmxlbmd0aCA9PSBzaXplOwo2ICAgcmVxdWlyZXMgdGhyZWFkSWR4LnggIT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgdGhyZWFkSWR4LngrMSwgMVwyKTsKNyAgIHJlcXVpcmVzIHRocmVhZElkeC54ID09IHNpemUtMSA9PT4gXHBvaW50ZXJfaW5kZXgoYXJyYXksIDAsIDFcMik7CjggICBlbnN1cmVzIFxwb2ludGVyX2luZGV4KGFycmF5LCB0aHJlYWRJZHgueCwgMSk7CjkgICBlbnN1cmVzIHRocmVhZElkeC54ICE9IHNpemUtMSA9PT4gYXJyYXlbdGhyZWFkSWR4LnhdID09IFxvbGQoYXJyYXlbdGhyZWFkSWR4LngrMV0pOwoxMCAgZW5zdXJlcyB0aHJlYWRJZHgueCA9PSBzaXplLTEgPT0+IGFycmF5W3RocmVhZElkeC54XSA9PSBcb2xkKGFycmF5WzBdKTsKMTEgIEAqLwoxMiAgX19rZXJuZWwgdm9pZCBvcGVuQ0xMZWZ0Um90YXRpb24oaW50IGFycmF5W10sIGludCBzaXplKSB7CjEzICAgICBpbnQgdGlkID0gdGhyZWFkSWR4Lng7CjE0ICAgICBpbnQgdGVtcDsKMTUgICAgIGlmKHRpZCAhPSBzaXplLTEpewoxNiAgICAgdGVtcCA9IGFycmF5W3RpZCsxXTsKMTcgICAgIH1lbHNlewoxOCAgICAgdGVtcCA9IGFycmF5WzBdOwoxOSAgICAgfQoyMAoyMSAgICAgLypACjIyICAgICByZXF1aXJlcyB0aHJlYWRJZHgueCAhPSBzaXplLTEgPT0+IFxwb2ludGVyX2luZGV4KGFycmF5LCB0aHJlYWRJZHgueCsxLCAxXDIpOwoyMyAgICAgcmVxdWlyZXMgdGhyZWFkSWR4LnggPT0gc2l6ZS0xID09PiBccG9pbnRlcl9pbmRleChhcnJheSwgMCwgMVwyKTsKMjQgICAgIGVuc3VyZXMgXHBvaW50ZXJfaW5kZXgoYXJyYXksIHRocmVhZElkeC54LCAxKTsKMjUgICAgIEAqLwoyNiAgICAgX19zeW5jdGhyZWFkcygpOwoyNwoyOCAgICAgYXJyYXlbdGlkXSA9IHRlbXA7CjI5IH0gIAo=') ]) ?>
+<p>This example illustrates a method named "<em>leftRotation</em>" that rotates the elements of an array to the left. In this example, we also have "<em>size</em>" threads in range 0 to "<em>size</em>-1" and "<em>tid</em>" is used to refer to each thread as thread identifier. Inside the parallel block each thread ("<em>tid</em>") stores its right neighbor in a temporary location (i.e., "<em>temp</em>"), except thread "<em>size</em>-1" which stores the first element in the array (lines 15-20). Then each thread synchronizes in a barrier (line 22). The keyword "<em>barrier</em>" and the name of the parallel block as an argument (e.g., "<em>threads</em>" in the example) are used to define a barrier in PVL. After that, each thread writes the value read into its own location at index "<em>tid</em>" in the array (line 29).</p>
 <h1 id="axiomatic-data-types">Axiomatic Data Types</h1>
 <p>This page discusses the axiomatic data types (ADTs) that are supported by VerCors. Some of these ADTs like sequences and sets are natively supported by the Viper toolset, the main back-end of VerCors. ADTs that are not natively supported, like matrices, vectors, and option types, are specified as <em>domains</em> in the <code>config/prelude.sil</code> file (specified in the Silver language). During the translation steps in VerCors, the <code>SilverClassReduction</code> class includes all domains that are needed to verify the input program.</p>
 <h2 id="bags">Bags</h2>
 <p>The notation <code>bag&lt;T&gt;</code> is used by VerCors to denote the type of <em>bags</em> with elements of type <code>T</code>. Bags are immutable and similar to sets; in fact they are <em>multi-sets</em>, meaning that bags permit duplicate elements. For instance, unlike ordinary sets the multi-set <code>{1,1,2,4}</code> is not equal to <code>{1,2,4}</code>. An integer bag can be declared in VerCors using the following syntax:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb11-1" title="1">bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</span></code></pre></div>
 <p>The notation <code>bag&lt;T&gt; { }</code> is used to denote an <em>empty bag</em> of type <code>T</code>. Given a bag <code>b</code>, the notation <code>|b|</code> is used to denote the <em>size</em> of <code>b</code>, that is, the number of elements in <code>b</code>. For example, one could verify:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb12-1" title="1">bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb12-2" title="2">assert |b| == <span class="dv">4</span>;</a>
-<a class="sourceLine" id="cb12-3" title="3">assert |bag&lt;<span class="dt">int</span>&gt; { <span class="dv">7</span>, <span class="dv">8</span> }| == <span class="dv">2</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>assert |b| == <span class="dv">4</span>;</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>assert |bag&lt;<span class="dt">int</span>&gt; { <span class="dv">7</span>, <span class="dv">8</span> }| == <span class="dv">2</span>;</span></code></pre></div>
 <p>Please note that in some languages (like Java), <code>|=</code> is an operator. It is therefore recommended to put spaces between the size operator and any subsequent comparison or implication (<code>==&gt;</code>), i.e. <code>|b| == n</code> instead of <code>|b|==n</code>. This avoids ambiguity for the parser.</p>
 <h3 id="bag-multiplicity">Bag multiplicity</h3>
 <p>Given an integer bag <code>b</code>, the notation <code>2 in b</code> can be used to test whether <code>2</code> occurs in <code>b</code> (similar to testing for set membership, see also the section on Sets). However, bags may contain duplicate elements. Therefore, <code>2 in b</code> does not give a boolean value (like with set membership), but instead yields an integer value denoting the number of occurrences of <code>2</code> in <code>b</code>. In other words, <code>2 in b</code> denotes the <em>multiplicity</em> of <code>2</code> in <code>b</code>. For example, one may verify:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb13-1" title="1">bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="fu">assert</span> (<span class="dv">2</span> in b) == <span class="dv">3</span>;</a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="fu">assert</span> (<span class="dv">1</span> in b) == <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="fu">assert</span> (<span class="dv">3</span> in b) == <span class="dv">0</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> };</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">2</span> in b) == <span class="dv">3</span>;</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">1</span> in b) == <span class="dv">1</span>;</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">3</span> in b) == <span class="dv">0</span>;</span></code></pre></div>
 <h3 id="bag-union">Bag union</h3>
 <p>Given two bags <code>bag&lt;T&gt; b1</code> and <code>bag&lt;T&gt; b2</code> of the same type <code>T</code>, the <em>union</em> of <code>b1</code> and <code>b2</code> is written <code>b1 + b2</code> and denotes the bag containing all elements of <code>b1</code> and <code>b2</code> (and thereby allowing duplicates). For example:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb14-1" title="1">bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</a>
-<a class="sourceLine" id="cb14-2" title="2">bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb14-3" title="3">assert |b1 + b2| == <span class="dv">4</span>;</a>
-<a class="sourceLine" id="cb14-4" title="4">assert b1 + b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="fu">assert</span> (<span class="dv">1</span> in b1 + b2) == <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="fu">assert</span> (<span class="dv">2</span> in b1 + b2) == <span class="dv">2</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>assert |b1 + b2| == <span class="dv">4</span>;</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>assert b1 + b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">1</span> in b1 + b2) == <span class="dv">1</span>;</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">2</span> in b1 + b2) == <span class="dv">2</span>;</span></code></pre></div>
 <h3 id="bag-difference">Bag difference</h3>
 <p>Given two bags <code>b1</code> and <code>b2</code> of the same type, the <em>bag difference</em> (i.e. the relative complement) of <code>b1</code> and <code>b2</code> is written <code>b1 - b2</code>. In other words, <code>b1 - b2</code> denotes the set <code>b1</code> with all elements occurring in <code>b2</code> removed (of course by keeping multiple occurrences of elements into account). For instance:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb15-1" title="1">bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb15-2" title="2">bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb15-3" title="3">assert b1 - b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>assert b1 - b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</span></code></pre></div>
 <h3 id="bag-intersection">Bag intersection</h3>
 <p>Given two bags <code>bag&lt;T&gt; b1</code> and <code>bag&lt;T&gt; b2</code> of equal type <code>T</code>, the <em>intersection</em> of <code>b1</code> and <code>b2</code> is written <code>b1 * b2</code> and denotes the bag containing all elements that occur both in <code>b1</code> and <code>b2</code> and thereby keeping multiplicity into account (unlike ordinary set intersection). As an example, one may verify the following program:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb16-1" title="1">bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb16-2" title="2">bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb16-3" title="3">assert b1 * b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</a>
-<a class="sourceLine" id="cb16-4" title="4">assert b1 * bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> } == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">2</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b1 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>bag&lt;<span class="dt">int</span>&gt; b2 = bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span> };</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>assert b1 * b2 == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>assert b1 * bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span> } == bag&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">2</span> };</span></code></pre></div>
 <h3 id="future-enhancements">Future enhancements</h3>
 <p>Given a bag <code>b</code>, VerCors currently does not support shorthand notations for adding or removing elements from <code>b</code>, like <code>b += 3</code> and <code>b -= 2</code>. In essence, the notation <code>b += 3</code> can be rewritten to <code>b += bag&lt;int&gt; { 3 }</code> (by inferring the bag type, in this case <code>int</code>), which can in turn be defined as shorthand for <code>b = b + bag&lt;int&gt; { 3 }</code>. The same reduction pattern would apply for <code>-=</code>.</p>
 <p>We could introduce the notation <code>v member b</code> as a shorthand for <code>(v in b) &gt; 0</code>, thereby returning a boolean result. We may even reuse the notation <code>v in b</code> for this, perhaps depending on the context.</p>
@@ -359,40 +433,40 @@ public int val;
 <p>VerCors does not have support for maps yet. As a future enhancement we may implement support for maps, for example using the notation <code>map&lt;T,U&gt; m</code>, where <code>T</code> denotes the type of all <em>keys</em> of <code>m</code> (i.e. the type of the <em>domain</em> of <code>m</code>) and <code>U</code> denotes the type of the <em>values</em> of <code>m</code> (i.e. the codomain type).</p>
 <h2 id="option-types">Option Types</h2>
 <p>The notation <code>option&lt;T&gt;</code> is used to denote the <em>option data type</em>: the type that extends the given type <code>T</code> with an extra element named <code>None</code>. More specifically, elements of type <code>option&lt;T&gt;</code> are either <code>None</code> or <code>Some(e)</code>, where <code>e</code> is of type <code>T</code>. For example, the option integer type can be declared in VerCors using the following notation:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb17-1" title="1">option&lt;<span class="dt">int</span>&gt; field1 = None;</a>
-<a class="sourceLine" id="cb17-2" title="2">option&lt;<span class="dt">int</span>&gt; field2 = <span class="fu">Some</span>(<span class="dv">3</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>option&lt;<span class="dt">int</span>&gt; field1 = None;</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>option&lt;<span class="dt">int</span>&gt; field2 = <span class="fu">Some</span>(<span class="dv">3</span>);</span></code></pre></div>
 <p>Axioms are provided so that <code>None != Some(e)</code> for every element <code>e</code>, and for every <code>e1</code> and <code>e2</code> we have <code>Some(e1) == Some(e1)</code> only if <code>e1 == e2</code>.</p>
 <h2 id="sequences">Sequences</h2>
 <p>VerCors uses the notation <code>seq&lt;T&gt;</code> to denote sequence types: the type of sequences with elements of type <code>T</code>. Sequences represent ordered lists and are immutable; once created they cannot be altered.</p>
 <h3 id="construction">Construction</h3>
 <p>Sequences of type <code>T</code> can be constructed using the notation <code>seq&lt;T&gt; { E_0, ..., E_n }</code>, where <code>E_i</code> is of type <code>T</code> for every <code>i</code>. For example, <code>seq&lt;int&gt; { 1, 2, 3 }</code> is the <em>constant sequence</em> of three elements: 1, 2, and 3. In PVL this sequence can be constructed by writing:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb18-1" title="1">seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span></code></pre></div>
 <p>Naturally, the notation <code>seq&lt;T&gt; { }</code> is used to denote the <em>empty sequence</em> of type <code>T</code>.</p>
 <p>Two sequences <code>s1</code> and <code>s2</code> are <em>equal</em> if they are: of equal length, of equal type, and if their elements are equal pair-wise. To test for equality the standard operator for equality <code>s1 == s2</code> can be used. The notation <code>|s|</code> is used to obtain the <em>length</em> of the sequence <code>s</code>. As with bags, it is recommended to put a space between the length operator and any subsequent comparison or implication, to avoid ambiguity with the <code>|=</code> operator when the code is parsed. In PVL one may for example verify:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb19-1" title="1">seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb19-2" title="2">assert |s| == <span class="dv">3</span>;</a>
-<a class="sourceLine" id="cb19-3" title="3">assert |seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> }| == <span class="dv">4</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>assert |s| == <span class="dv">3</span>;</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>assert |seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> }| == <span class="dv">4</span>;</span></code></pre></div>
 <h3 id="indexing">Indexing</h3>
 <p>A sequence <code>seq&lt;T&gt; xs</code> may be <em>indexed</em> at position <code>i</code>, written <code>xs[i]</code>, to retrieve the <code>i</code>-th element of <code>xs</code>. For example, the following should verify:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb20-1" title="1">seq&lt;<span class="dt">int</span>&gt; xs = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb20-2" title="2">assert xs[<span class="dv">0</span>] == <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb20-3" title="3">assert xs[<span class="dv">2</span>] == <span class="dv">3</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; xs = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>assert xs[<span class="dv">0</span>] == <span class="dv">1</span>;</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>assert xs[<span class="dv">2</span>] == <span class="dv">3</span>;</span></code></pre></div>
 <p>However, the current version of VerCors is rather limited in its indexing support. For example, the line <code>assert seq&lt;int&gt; { 1, 2, 3 }[0] == 1</code> gives a syntax error. This is because the left-hand side <code>E1</code> of any indexing notation <code>E1[E2]</code> can not be an arbitrary expression of type <code>seq&lt;T&gt;</code>, but most be <em>exactly</em> a sequence of type <code>T</code>. To solve this, one can either declare the sequence explicitly, like in the code example given above, or define an auxiliary <code>get</code> function as given below, and write <code>get(seq&lt;int&gt; { 1, 2, 3 }, i)</code> instead.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb21-1" title="1"><span class="dt">static</span> pure <span class="dt">int</span> <span class="fu">get</span>(seq&lt;<span class="dt">int</span>&gt; xs, <span class="dt">int</span> n) = xs[n];</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="dt">static</span> pure <span class="dt">int</span> <span class="fu">get</span>(seq&lt;<span class="dt">int</span>&gt; xs, <span class="dt">int</span> n) = xs[n];</span></code></pre></div>
 <h3 id="concatenation">Concatenation</h3>
 <p>Two sequences <code>seq&lt;T&gt; s1</code> and <code>seq&lt;T&gt; s2</code> of the same type <code>T</code> can be <em>concatenated</em> by using the plus operator: <code>s1 + s2</code>. For example in PVL one may verify:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb22-1" title="1">seq&lt;<span class="dt">int</span>&gt; s1 = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</a>
-<a class="sourceLine" id="cb22-2" title="2">seq&lt;<span class="dt">int</span>&gt; s2 = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">3</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb22-3" title="3">assert s1 + s2 == seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s1 = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s2 = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">3</span>, <span class="dv">4</span> };</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>assert s1 + s2 == seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</span></code></pre></div>
 <p>Axioms are provided to make sequence concatenation associative, <code>s1 + (s2 + s3) == (s1 + s2) + s3</code>, and to make the empty sequence neutral in the sense that <code>s + seq&lt;T&gt; { } == s</code> and <code>seq&lt;T&gt; { } + s == s</code>.</p>
 <h3 id="head-tail-notation">Head-tail notation</h3>
 <p>VerCors has built-in functions for obtaining the <em>head</em> and <em>tail</em> of a sequence, which are named <code>head</code> and <code>tail</code>. The <code>head(s)</code> function simply gives the first element of <code>s</code>, provided that such an element exists, and <code>tail(s)</code> gives the tail sequence of <code>s</code>. For example:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb23-1" title="1">seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb23-2" title="2">assert <span class="fu">head</span>(s) == <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb23-3" title="3">assert <span class="fu">tail</span>(s) == seq&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a>assert <span class="fu">head</span>(s) == <span class="dv">1</span>;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a>assert <span class="fu">tail</span>(s) == seq&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</span></code></pre></div>
 <p>The head of an empty sequence is undefined. The tail of an empty sequence is empty:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb24-1" title="1">seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { };</a>
-<a class="sourceLine" id="cb24-2" title="2">assert <span class="fu">tail</span>(s) == seq&lt;<span class="dt">int</span>&gt; { };</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>seq&lt;<span class="dt">int</span>&gt; s = seq&lt;<span class="dt">int</span>&gt; { };</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>assert <span class="fu">tail</span>(s) == seq&lt;<span class="dt">int</span>&gt; { };</span></code></pre></div>
 <h3 id="future-enhancements-1">Future enhancements</h3>
 <p>There is currently no alternative notation to construct sequences from elements, like <code>[1,2,3]</code>, but this would be a nice enhancement.</p>
 <p>VerCors does not yet permit slicing notations for sequences. For example, <code>s[2..]</code> should denote the subsequence of <code>s</code> starting from index 2. The Viper toolset currently supports these notations.</p>
@@ -400,30 +474,30 @@ public int val;
 <p>Like in Dafny we could give support for the <em>membership operators</em> <code>in</code> and <code>!in</code>, so that <code>v in s</code> equals <code>true</code> only if <code>v</code> is contained in <code>s</code> (and likewise <code>v !in s</code> only if <code>!(v in s)</code>).</p>
 <h2 id="sets">Sets</h2>
 <p>The notation <code>set&lt;T&gt;</code> is used by VerCors to denote the type of <em>sets</em> with elements of type <code>T</code>. Sets are immutable, orderless (meaning that the elements are not ordered), and do not allow duplicates (the sets <code>{1,1,2}</code> and <code>{1,2}</code> are equivalent). As an example, a set of integers can be declared as follows:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb25-1" title="1">set&lt;<span class="dt">int</span>&gt; s = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span></code></pre></div>
 <p>The <em>empty set</em> of type <code>T</code> is denoted <code>set&lt;T&gt; { }</code>, the <em>singleton set</em> is denoted <code>set&lt;T&gt; { e }</code> (with <code>e</code> of type <code>T</code>), et cetera. As said before, sets do not permit duplicate elements and are orderless:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb26-1" title="1">assert set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> } == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb26-2" title="2">assert set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> } == set&lt;<span class="dt">int</span>&gt; { <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>assert set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> } == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>assert set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> } == set&lt;<span class="dt">int</span>&gt; { <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span> };</span></code></pre></div>
 <h3 id="set-membership">Set membership</h3>
 <p>Given a set <code>set&lt;T&gt; s</code> of type <code>T</code> and an element <code>T e</code> (an element <code>e</code> of type <code>T</code>), we may test whether <code>e</code> is a <em>member</em> of <code>s</code> by writing <code>(e in s)</code>. The <code>in</code> operation yields a Boolean result when applied to sets, indicating whether the given element (e.g. <code>e</code>) occurs in the specified set (e.g. <code>s</code>). For example:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb27-1" title="1">set&lt;<span class="dt">int</span>&gt; s = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="fu">assert</span> (<span class="dv">2</span> in s);</a>
-<a class="sourceLine" id="cb27-3" title="3">assert !(<span class="dv">8</span> in s);</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="fu">assert</span> (<span class="dv">2</span> in s);</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a>assert !(<span class="dv">8</span> in s);</span></code></pre></div>
 <h3 id="set-union">Set union</h3>
 <p>The <em>union</em> of two sets <code>set&lt;T&gt; s1</code> and <code>set&lt;T&gt; s2</code> of the same type <code>T</code> is written <code>s1 + s2</code> and denotes the set containing all elements of both <code>s1</code> and <code>s2</code> (that is, without duplicates). For example:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb28-1" title="1">set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</a>
-<a class="sourceLine" id="cb28-2" title="2">set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb28-3" title="3">assert s1 + s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span> };</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>assert s1 + s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span></code></pre></div>
 <h3 id="set-difference">Set difference</h3>
 <p>Given two sets <code>set&lt;T&gt; s1</code> and <code>set&lt;T&gt; s2</code> of the same type <code>T</code>, the <em>set difference</em> of <code>s1</code> and <code>s2</code> is written <code>s1 - s2</code> and denotes the set of all elements that are in <code>s1</code> but not in <code>s2</code>. A simple verification example is given below.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb29-1" title="1">set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb29-2" title="2">set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span> };</a>
-<a class="sourceLine" id="cb29-3" title="3">assert s1 - s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">4</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span> };</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>assert s1 - s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">4</span> };</span></code></pre></div>
 <h3 id="set-intersection">Set intersection</h3>
 <p>Given two sets <code>set&lt;T&gt; s1</code> and <code>set&lt;T&gt; s2</code> of the same type <code>T</code>, the <em>intersection</em> of <code>s1</code> and <code>s2</code> is written <code>s1 * s2</code> and denotes the set containing all elements that are in both <code>s1</code> and <code>s2</code>. For example:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb30-1" title="1">set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</a>
-<a class="sourceLine" id="cb30-2" title="2">set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</a>
-<a class="sourceLine" id="cb30-3" title="3">assert s1 * s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s1 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> };</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>set&lt;<span class="dt">int</span>&gt; s2 = set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> };</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>assert s1 * s2 == set&lt;<span class="dt">int</span>&gt; { <span class="dv">2</span>, <span class="dv">3</span> };</span></code></pre></div>
 <h3 id="future-enhancements-2">Future enhancements</h3>
 <p>We do not have a <em>subset</em> notation yet. For example, given two sets <code>s1</code> and <code>s2</code> of equal type, VerCors might be extended with the notation <code>s1 &lt;= s2</code> to test whether <code>s1</code> is a subset of <code>s2</code>. In the same way, <code>s1 &lt; s2</code> might be used as notation for <em>strict subset</em> testing.</p>
 <p>Another nice extension would be a notation for <em>set comprehension</em>. For example, the notation <code>set&lt;int&gt; { n | n &gt;= 0 }</code> might denote the set of all non-negative integers.</p>
@@ -431,62 +505,62 @@ public int val;
 <p><em>This tutorial explains how to specify arrays and pointers in vercors. Java and PVL support arrays, whereas C and the GPGPU frontends only support pointers. The tutorial assumes you are familiar with arrays and pointers already.</em></p>
 <h2 id="array-permissions">Array permissions</h2>
 <p>We have learned already how to specify ownership of variables on the heap. Arrays generalize this concept by treating each element of the array as a separate location on the heap. For example, you might specify:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb31-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb31-2" title="2"><span class="co">requires ar != null &amp;&amp; ar.length == 3;</span></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="co">context Perm(ar[0], write) ** Perm(ar[1], write) ** Perm(ar[2], write);</span></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb31-5" title="5"><span class="dt">void</span> <span class="fu">example1</span>(<span class="dt">int</span>[] ar);</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a><span class="co">requires ar != null &amp;&amp; ar.length == 3;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a><span class="co">context Perm(ar[0], write) ** Perm(ar[1], write) ** Perm(ar[2], write);</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">example1</span>(<span class="dt">int</span>[] ar);</span></code></pre></div>
 <p>This means we require the length to be 3, and require and return permission over each of the elements of the array. Length is treated in a special way here: even though it is a "field", we do not need permission to read it, because the length of an array cannot be changed and it is baked into Vercors.</p>
 <p>Of course writing a specific length and manually asserting permission over each location is cumbersome, so we can write a contract that accepts arrays of any length as such:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb32-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="co">requires ar != null;</span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="co">context (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb32-5" title="5"><span class="dt">void</span> <span class="fu">example2</span>(<span class="dt">int</span>[] ar);</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="co">requires ar != null;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a><span class="co">context (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">example2</span>(<span class="dt">int</span>[] ar);</span></code></pre></div>
 <p>As mentioned in the permissions tutorial, the permissions are combined with <code>**</code> to <code>Perm(ar[0], write) ** Perm(ar[1], write) ** … ** Perm(ar[ar.length-1], write)</code>. Please note the <code>*</code> after forall, which denotes that the body of the forall is combined with separating conjunction (<code>**</code>) and not boolean conjunction (<code>&amp;&amp;</code>).</p>
 <p>As you might expect, we can also use forall to specify properties about the values of the array:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb33-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="co">requires ar != null;</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="co">context (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></a>
-<a class="sourceLine" id="cb33-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb33-6" title="6"><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</a>
-<a class="sourceLine" id="cb33-7" title="7">    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</a>
-<a class="sourceLine" id="cb33-8" title="8">    <span class="co">/*@</span></a>
-<a class="sourceLine" id="cb33-9" title="9"><span class="co">    loop_invariant (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></a>
-<a class="sourceLine" id="cb33-10" title="10"><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></a>
-<a class="sourceLine" id="cb33-11" title="11">    {</a>
-<a class="sourceLine" id="cb33-12" title="12">        ar[i] = i;</a>
-<a class="sourceLine" id="cb33-13" title="13">    }</a>
-<a class="sourceLine" id="cb33-14" title="14">}</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="co">requires ar != null;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="co">context (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true"></a>    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true"></a>    <span class="co">/*@</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true"></a><span class="co">    loop_invariant (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true"></a><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true"></a>    {</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true"></a>        ar[i] = i;</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true"></a>    }</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true"></a>}</span></code></pre></div>
 <h2 id="syntactic-sugar">Syntactic sugar</h2>
 <p>Specifying arrays quickly leads to prefix a lot of statement with <code>\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length;</code>, so there is some syntactic sugar. First, you might want to use <code>context_everywhere</code> for the permission specification of the array, so that it is automatically propagates to loop invariants:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb34-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="co">context_everywhere (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></a>
-<a class="sourceLine" id="cb34-3" title="3"><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></a>
-<a class="sourceLine" id="cb34-4" title="4"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb34-5" title="5"><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</a>
-<a class="sourceLine" id="cb34-6" title="6">    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</a>
-<a class="sourceLine" id="cb34-7" title="7">    <span class="co">/*@</span></a>
-<a class="sourceLine" id="cb34-8" title="8"><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></a>
-<a class="sourceLine" id="cb34-9" title="9">    {</a>
-<a class="sourceLine" id="cb34-10" title="10">        ar[i] = i;</a>
-<a class="sourceLine" id="cb34-11" title="11">    }</a>
-<a class="sourceLine" id="cb34-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a><span class="co">context_everywhere (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; ar.length; Perm(ar[i], write));</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true"></a>    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true"></a>    <span class="co">/*@</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true"></a><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true"></a>    {</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true"></a>        ar[i] = i;</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true"></a>    }</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This whole forall* can also be written as <code>Perm(ar[*], write)</code>, which still means write permission over all the elements of the array:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb35-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="co">requires ar != null;</span></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="co">context_everywhere Perm(ar[*], write);</span></a>
-<a class="sourceLine" id="cb35-4" title="4"><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></a>
-<a class="sourceLine" id="cb35-5" title="5"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb35-6" title="6"><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</a>
-<a class="sourceLine" id="cb35-7" title="7">    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</a>
-<a class="sourceLine" id="cb35-8" title="8">    <span class="co">/*@</span></a>
-<a class="sourceLine" id="cb35-9" title="9"><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></a>
-<a class="sourceLine" id="cb35-10" title="10">    {</a>
-<a class="sourceLine" id="cb35-11" title="11">        ar[i] = i;</a>
-<a class="sourceLine" id="cb35-12" title="12">    }</a>
-<a class="sourceLine" id="cb35-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a><span class="co">requires ar != null;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true"></a><span class="co">context_everywhere Perm(ar[*], write);</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true"></a><span class="co">ensures (\forall int i; 0 &lt;= &amp;&amp; i &lt; ar.length; ar[i] == i);</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">identity</span>(<span class="dt">int</span>[] ar) {</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true"></a>    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ar.<span class="fu">length</span>; i++)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true"></a>    <span class="co">/*@</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true"></a><span class="co">    loop_invariant (\forall int j; 0 &lt;= j &amp;&amp; j &lt; i; ar[j] == j); */</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true"></a>    {</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true"></a>        ar[i] = i;</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true"></a>    }</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true"></a>}</span></code></pre></div>
 <p>If you want to specify the length of an array, you can write as well: <code>\array(ar, N)</code> which is equivalent to <code>ar != null &amp;&amp; ar.length == N</code>. More interestingly, there is also <code>\matrix(mat, M, N)</code>, which is equivalent to:</p>
 <pre><code>mat != null ** mat.length == M **
 (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; M; Perm(mat[i], read)) **
@@ -498,27 +572,36 @@ public int val;
 <p>Pointers themselves are quite well-supported, but we don't support casting and structs in C, making the end result quite limited. For the support that we do have, pointers can be specified with two constructs: <code>\pointer</code> and <code>\pointer_index</code>.</p>
 <p>We write <code>\pointer(p, size, perm)</code> to express that <code>p != NULL</code>, the pointer <code>p</code> is valid from (at least) <code>0</code> to <code>size-1</code>, and we assert <code>perm</code> permission over those locations.</p>
 <p>We write <code>\pointer_index(p, index, perm)</code> to express that <code>p != NULL</code>, <code>(p+i)</code> is a valid location, and we have permission <code>perm</code> at that location.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb37-1" title="1"><span class="co">/*@</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="co">requires \pointer(a, 10, write);</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb37-4" title="4"><span class="dt">void</span> test(<span class="dt">int</span> *a) {</a>
-<a class="sourceLine" id="cb37-5" title="5">    <span class="co">//@ assert \pointer(a, 10, write);</span></a>
-<a class="sourceLine" id="cb37-6" title="6">    <span class="co">//@ assert \pointer(a, 8, write);</span></a>
-<a class="sourceLine" id="cb37-7" title="7">    <span class="co">//@ assert (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; 10; \pointer_index(a, i, write));</span></a>
-<a class="sourceLine" id="cb37-8" title="8">    <span class="dt">int</span> *b = a+<span class="dv">5</span>;</a>
-<a class="sourceLine" id="cb37-9" title="9">    <span class="co">//@ assert a[5] == b[0];</span></a>
-<a class="sourceLine" id="cb37-10" title="10">    <span class="co">//@ assert \pointer(b, 5, write);</span></a>
-<a class="sourceLine" id="cb37-11" title="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="co">/*@</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a><span class="co">requires \pointer(a, 10, write);</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a><span class="co">*/</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a><span class="dt">void</span> test(<span class="dt">int</span> *a) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true"></a>    <span class="co">//@ assert \pointer(a, 10, write);</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true"></a>    <span class="co">//@ assert \pointer(a, 8, write);</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true"></a>    <span class="co">//@ assert (\forall* int i; 0 &lt;= i &amp;&amp; i &lt; 10; \pointer_index(a, i, write));</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true"></a>    <span class="dt">int</span> *b = a+<span class="dv">5</span>;</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true"></a>    <span class="co">//@ assert a[5] == b[0];</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true"></a>    <span class="co">//@ assert \pointer(b, 5, write);</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true"></a>}</span></code></pre></div>
 <h2 id="injectivity-object-arrays-and-efficient-verification">Injectivity, object arrays and efficient verification</h2>
 <h2 id="internals">Internals</h2>
 <h1 id="parallel-blocks">Parallel Blocks</h1>
-<p>TODO @Mohsen (including barriers)</p>
-<p>In this section we explain how to verify parallel algorithms by creating parallel blocks in PVL. To demonstrate this, we go through an example as follows:</p>
-<!-- testBlock -->
+<p>In this section we explain how to verify parallel algorithms by creating parallel blocks in PVL. First, we explain an example of a simple method included a parallel block. Then, we illustrate another example with a barrier inside the parallel block. A barrier is used to synchronize threads inside a parallel block.</p>
+<h3 id="parallel-block-without-barrier">Parallel Block without Barrier</h3>
+<p>This example shows a simple method that adds two arrays in parallel and stores the result in another array:</p>
+<!-- testMethod -->
 
-<?= VerificationWidget::widget(['initialLanguage' => 'pvl', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICB2b2lkIHRlc3QoKSB7CiAgICAgICAgMSBjb250ZXh0X2V2ZXJ5d2hlcmUgYXJyYXkgIT0gbnVsbCAmJiBhcnJheS5sZW5ndGggPT0gc2l6ZTsKICAgICAgICAyIHJlcXVpcmVzIChcZm9yYWxsKiBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgUGVybShhcnJheVtpXSwgMVwyKSk7CiAgICAgICAgMyBlbnN1cmVzIChcZm9yYWxsKiBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgUGVybShhcnJheVtpXSwgMSkpOwogICAgICAgIDQgZW5zdXJlcyAoXGZvcmFsbCBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgKGkgIT0gc2l6ZS0xID09PiBhcnJheVtpXSA9PSBcb2xkKGFycmF5W2krMV0pKSAmJiAKICAgICAgICA1ICAgICAgICAgIChpID09IHNpemUtMSA9PT4gYXJyYXlbaV0gPT0gXG9sZChhcnJheVswXSkpICk7CiAgICAgICAgNiB2b2lkIGxlZnRSb3RhdGlvbihpbnRbXSBhcnJheSwgaW50IHNpemUpewogICAgICAgIDcKICAgICAgICA4ICAgIHBhciB0aHJlYWRzIChpbnQgdGlkID0gMCAuLiBzaXplKQogICAgICAgIDkgICAgIHJlcXVpcmVzIHRpZCAhPSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbdGlkKzFdLCAxXDIpOwogICAgICAgIDEwICAgIHJlcXVpcmVzIHRpZCA9PSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbMF0sIDFcMik7CiAgICAgICAgMTEgICAgZW5zdXJlcyBQZXJtKGFycmF5W3RpZF0sIDEpOwogICAgICAgIDEyICAgIGVuc3VyZXMgdGlkICE9IHNpemUtMSA9PT4gYXJyYXlbdGlkXSA9PSBcb2xkKGFycmF5W3RpZCsxXSk7CiAgICAgICAgMTMgICAgZW5zdXJlcyB0aWQgPT0gc2l6ZS0xID09PiBhcnJheVt0aWRdID09IFxvbGQoYXJyYXlbMF0pOwogICAgICAgIDE0ICAgewogICAgICAgIDE1ICAgICAgaW50IHRlbXA7CiAgICAgICAgMTYgIGlmKHRpZCAhPSBzaXplLTEpewogICAgICAgIDE3ICAgICAgdGVtcCA9IGFycmF5W3RpZCsxXTsKICAgICAgICAxOCAgfWVsc2V7CiAgICAgICAgMTkgICAgICB0ZW1wID0gYXJyYXlbMF07CiAgICAgICAgMjAgIH0KICAgICAgICAyMQogICAgICAgIDIyICAgICAgYmFycmllcih0aHJlYWRzKQogICAgICAgIDIzICAgICAgewogICAgICAgIDI0ICAgICAgICByZXF1aXJlcyB0aWQgIT0gc2l6ZS0xID09PiBQZXJtKGFycmF5W3RpZCsxXSwgMVwyKTsKICAgICAgICAyNSAgICByZXF1aXJlcyB0aWQgPT0gc2l6ZS0xID09PiBQZXJtKGFycmF5WzBdLCAxXDIpOwogICAgICAgIDI2ICAgIGVuc3VyZXMgUGVybShhcnJheVt0aWRdLCAxKTsKICAgICAgICAyNyAgICAgIH0KICAgICAgICAyOAogICAgICAgIDI5ICAgICAgYXJyYXlbdGlkXSA9IHRlbXA7CiAgICAgICAgMzAgICB9CiAgICAgICAgMzEgfQogICAgfQp9'), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSBjb250ZXh0X2V2ZXJ5d2hlcmUgYXJyYXkgIT0gbnVsbCAmJiBhcnJheS5sZW5ndGggPT0gc2l6ZTsKMiByZXF1aXJlcyAoXGZvcmFsbCogaW50IGk7IGkgPj0gMCAmJiAgaSA8IHNpemU7IFBlcm0oYXJyYXlbaV0sIDFcMikpOwozIGVuc3VyZXMgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGFycmF5W2ldLCAxKSk7CjQgZW5zdXJlcyAoXGZvcmFsbCBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgKGkgIT0gc2l6ZS0xID09PiBhcnJheVtpXSA9PSBcb2xkKGFycmF5W2krMV0pKSAmJiAKNSAgICAgICAgICAoaSA9PSBzaXplLTEgPT0+IGFycmF5W2ldID09IFxvbGQoYXJyYXlbMF0pKSApOwo2IHZvaWQgbGVmdFJvdGF0aW9uKGludFtdIGFycmF5LCBpbnQgc2l6ZSl7CjcKOCAgICBwYXIgdGhyZWFkcyAoaW50IHRpZCA9IDAgLi4gc2l6ZSkKOSAgICAgcmVxdWlyZXMgdGlkICE9IHNpemUtMSA9PT4gUGVybShhcnJheVt0aWQrMV0sIDFcMik7CjEwICAgIHJlcXVpcmVzIHRpZCA9PSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbMF0sIDFcMik7CjExICAgIGVuc3VyZXMgUGVybShhcnJheVt0aWRdLCAxKTsKMTIgICAgZW5zdXJlcyB0aWQgIT0gc2l6ZS0xID09PiBhcnJheVt0aWRdID09IFxvbGQoYXJyYXlbdGlkKzFdKTsKMTMgICAgZW5zdXJlcyB0aWQgPT0gc2l6ZS0xID09PiBhcnJheVt0aWRdID09IFxvbGQoYXJyYXlbMF0pOwoxNCAgIHsKMTUgICAgICBpbnQgdGVtcDsKMTYgIGlmKHRpZCAhPSBzaXplLTEpewoxNyAgICAgIHRlbXAgPSBhcnJheVt0aWQrMV07CjE4ICB9ZWxzZXsKMTkgICAgICB0ZW1wID0gYXJyYXlbMF07CjIwICB9CjIxCjIyICAgICAgYmFycmllcih0aHJlYWRzKQoyMyAgICAgIHsKMjQgICAgICAgIHJlcXVpcmVzIHRpZCAhPSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbdGlkKzFdLCAxXDIpOwoyNSAgICByZXF1aXJlcyB0aWQgPT0gc2l6ZS0xID09PiBQZXJtKGFycmF5WzBdLCAxXDIpOwoyNiAgICBlbnN1cmVzIFBlcm0oYXJyYXlbdGlkXSwgMSk7CjI3ICAgICAgfQoyOAoyOSAgICAgIGFycmF5W3RpZF0gPSB0ZW1wOwozMCAgIH0KMzEgfQo=') ]) ?>
-<p>This example illustrates a method named "<em>leftRotation</em>" that rotates the elements of an array to the left. In this method there is a parallel block (lines 8-30) named "<em>threads</em>". The keyword "<em>par</em>" is used to define a parallel block and an arbitrary name after that defines the name of that block. Moreover, we should define the number of threads in the parallel block and an arbitrary name as thread identifier. In this example, we have "<em>size</em>" threads in range 0 to "<em>size</em>-1" and "<em>tid</em>" is used to refer to each thread as thread identifier. Inside the parallel block each thread ("<em>tid</em>") stores its right neighbor in a temporary location (i.e., "<em>temp</em>"), except thread "<em>size</em>-1" which stores the first element in the array (lines 15-20). Then each thread synchronizes in a barrier (line 22). The keyword "<em>barrier</em>" followed by the name of the block as an argument (e.g., "<em>threads</em>" in the example) are used to define a barrier in PVL. After that, each thread writes the value read into its own location at index "<em>tid</em>" in the array (line 29).</p>
-<p>To verify this method in VerCors, in addition to the method itself, we should also add annotations to the parallel block and the barrier.</p>
+<?= VerificationWidget::widget(['initialLanguage' => 'pvl', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxIGNvbnRleHRfZXZlcnl3aGVyZSBhICE9IG51bGwgJiYgYiAhPSBudWxsICYmIGMgIT0gbnVsbDsKICAgIDIgY29udGV4dF9ldmVyeXdoZXJlIGEubGVuZ3RoID09IHNpemUgJiYgYi5sZW5ndGggPT0gc2l6ZSAmJiBjLmxlbmd0aCA9PSBzaXplOwogICAgMyBjb250ZXh0IChcZm9yYWxsKiBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgUGVybShhW2ldLCAxXDIpKTsKICAgIDQgY29udGV4dCAoXGZvcmFsbCogaW50IGk7IGkgPj0gMCAmJiAgaSA8IHNpemU7IFBlcm0oYltpXSwgMVwyKSk7CiAgICA1IGNvbnRleHQgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGNbaV0sIDEpKTsKICAgIDYgZW5zdXJlcyAoXGZvcmFsbCBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgY1tpXSA9PSBhW2ldICsgYltpXSk7CiAgICA3IHZvaWQgQWRkKGludFtdIGEsIGludFtdIGIsIGludFtdIGMsIGludCBzaXplKXsKICAgIDgKICAgIDkgICAgcGFyIHRocmVhZHMgKGludCB0aWQgPSAwIC4uIHNpemUpCiAgICAxMCAgICBjb250ZXh0IFBlcm0oYVt0aWRdLCAxXDIpICoqIFBlcm0oYlt0aWRdLCAxXDIpICoqIFBlcm0oY1t0aWRdLCAxKTsKICAgIDExICAgIGVuc3VyZXMgY1t0aWRdID09IGFbdGlkXSArIGJbdGlkXTsKICAgIDEyICAgewogICAgMTMgICAgICBjW3RpZF0gPSBhW3RpZF0gKyBiW3RpZF07CiAgICAxNCAgIH0KICAgIDE1IH0KfQ=='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSBjb250ZXh0X2V2ZXJ5d2hlcmUgYSAhPSBudWxsICYmIGIgIT0gbnVsbCAmJiBjICE9IG51bGw7CjIgY29udGV4dF9ldmVyeXdoZXJlIGEubGVuZ3RoID09IHNpemUgJiYgYi5sZW5ndGggPT0gc2l6ZSAmJiBjLmxlbmd0aCA9PSBzaXplOwozIGNvbnRleHQgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGFbaV0sIDFcMikpOwo0IGNvbnRleHQgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGJbaV0sIDFcMikpOwo1IGNvbnRleHQgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGNbaV0sIDEpKTsKNiBlbnN1cmVzIChcZm9yYWxsIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBjW2ldID09IGFbaV0gKyBiW2ldKTsKNyB2b2lkIEFkZChpbnRbXSBhLCBpbnRbXSBiLCBpbnRbXSBjLCBpbnQgc2l6ZSl7CjgKOSAgICBwYXIgdGhyZWFkcyAoaW50IHRpZCA9IDAgLi4gc2l6ZSkKMTAgICAgY29udGV4dCBQZXJtKGFbdGlkXSwgMVwyKSAqKiBQZXJtKGJbdGlkXSwgMVwyKSAqKiBQZXJtKGNbdGlkXSwgMSk7CjExICAgIGVuc3VyZXMgY1t0aWRdID09IGFbdGlkXSArIGJbdGlkXTsKMTIgICB7CjEzICAgICAgY1t0aWRdID0gYVt0aWRdICsgYlt0aWRdOwoxNCAgIH0KMTUgfQo=') ]) ?>
+<p>In this method there is a parallel block (lines 9-14) named "<em>threads</em>". The keyword "<em>par</em>" is used to define a parallel block and an arbitrary name after that defines the name of that block. Moreover, we should define the number of threads in the parallel block and an arbitrary name as thread identifier. In this example, we have "<em>size</em>" threads in range 0 to "<em>size</em>-1" and "<em>tid</em>" is used to refer to each thread as thread identifier.</p>
+<p>In addition to the specification of the method (lines 1-6), we should add thread-level specification into the parallel block (lines 10-11). The precondition of the method indicates that we have read permission over all locations in arrays "<em>a</em>" and "<em>b</em>" and write permission in array "<em>c</em>" (lines 3-5). In the parallel block, we specify that each thread ("<em>tid</em>") has read permission to its own location in arrays "<em>a</em>" and "<em>b</em>" and write permission to its own location in array "<em>c</em>" (line 10). Then, after termination of the parallel block as postcondition (1) we have the same permission (line 10) and (2) the result of each location in array "<em>c</em>" is the addition of two corresponding locations in arrays "<em>a</em>" and "<em>b</em>" (line 11). From the postcondition of the parallel block, we can specify the postcondition of the method using universal quantifier for all locations in the arrays (line 3-6).</p>
+<h3 id="parallel-block-with-barrier">Parallel Block with Barrier</h3>
+<p>We demonstrate an example of a parallel block which needs barrier to synchronize threads:</p>
+<!-- testMethod -->
+
+<?= VerificationWidget::widget(['initialLanguage' => 'pvl', 'initialCode' => base64_decode('Y2xhc3MgVGVzdCB7CiAgICAxIGNvbnRleHRfZXZlcnl3aGVyZSBhcnJheSAhPSBudWxsICYmIGFycmF5Lmxlbmd0aCA9PSBzaXplOwogICAgMiByZXF1aXJlcyAoXGZvcmFsbCogaW50IGk7IGkgPj0gMCAmJiAgaSA8IHNpemU7IFBlcm0oYXJyYXlbaV0sIDFcMikpOwogICAgMyBlbnN1cmVzIChcZm9yYWxsKiBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgUGVybShhcnJheVtpXSwgMSkpOwogICAgNCBlbnN1cmVzIChcZm9yYWxsIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyAoaSAhPSBzaXplLTEgPT0+IGFycmF5W2ldID09IFxvbGQoYXJyYXlbaSsxXSkpICYmIAogICAgNSAgICAgICAgICAoaSA9PSBzaXplLTEgPT0+IGFycmF5W2ldID09IFxvbGQoYXJyYXlbMF0pKSApOwogICAgNiB2b2lkIGxlZnRSb3RhdGlvbihpbnRbXSBhcnJheSwgaW50IHNpemUpewogICAgNwogICAgOCAgICBwYXIgdGhyZWFkcyAoaW50IHRpZCA9IDAgLi4gc2l6ZSkKICAgIDkgICAgIHJlcXVpcmVzIHRpZCAhPSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbdGlkKzFdLCAxXDIpOwogICAgMTAgICAgcmVxdWlyZXMgdGlkID09IHNpemUtMSA9PT4gUGVybShhcnJheVswXSwgMVwyKTsKICAgIDExICAgIGVuc3VyZXMgUGVybShhcnJheVt0aWRdLCAxKTsKICAgIDEyICAgIGVuc3VyZXMgdGlkICE9IHNpemUtMSA9PT4gYXJyYXlbdGlkXSA9PSBcb2xkKGFycmF5W3RpZCsxXSk7CiAgICAxMyAgICBlbnN1cmVzIHRpZCA9PSBzaXplLTEgPT0+IGFycmF5W3RpZF0gPT0gXG9sZChhcnJheVswXSk7CiAgICAxNCAgIHsKICAgIDE1ICAgICAgaW50IHRlbXA7CiAgICAxNiAgaWYodGlkICE9IHNpemUtMSl7CiAgICAxNyAgICAgIHRlbXAgPSBhcnJheVt0aWQrMV07CiAgICAxOCAgfWVsc2V7CiAgICAxOSAgICAgIHRlbXAgPSBhcnJheVswXTsKICAgIDIwICB9CiAgICAyMQogICAgMjIgICAgICBiYXJyaWVyKHRocmVhZHMpCiAgICAyMyAgICAgIHsKICAgIDI0ICAgICAgICByZXF1aXJlcyB0aWQgIT0gc2l6ZS0xID09PiBQZXJtKGFycmF5W3RpZCsxXSwgMVwyKTsKICAgIDI1ICAgIHJlcXVpcmVzIHRpZCA9PSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbMF0sIDFcMik7CiAgICAyNiAgICBlbnN1cmVzIFBlcm0oYXJyYXlbdGlkXSwgMSk7CiAgICAyNyAgICAgIH0KICAgIDI4CiAgICAyOSAgICAgIGFycmF5W3RpZF0gPSB0ZW1wOwogICAgMzAgICB9CiAgICAzMSB9Cn0='), 'hide' => true, 'initialCodeOnHide' => base64_decode('MSBjb250ZXh0X2V2ZXJ5d2hlcmUgYXJyYXkgIT0gbnVsbCAmJiBhcnJheS5sZW5ndGggPT0gc2l6ZTsKMiByZXF1aXJlcyAoXGZvcmFsbCogaW50IGk7IGkgPj0gMCAmJiAgaSA8IHNpemU7IFBlcm0oYXJyYXlbaV0sIDFcMikpOwozIGVuc3VyZXMgKFxmb3JhbGwqIGludCBpOyBpID49IDAgJiYgIGkgPCBzaXplOyBQZXJtKGFycmF5W2ldLCAxKSk7CjQgZW5zdXJlcyAoXGZvcmFsbCBpbnQgaTsgaSA+PSAwICYmICBpIDwgc2l6ZTsgKGkgIT0gc2l6ZS0xID09PiBhcnJheVtpXSA9PSBcb2xkKGFycmF5W2krMV0pKSAmJiAKNSAgICAgICAgICAoaSA9PSBzaXplLTEgPT0+IGFycmF5W2ldID09IFxvbGQoYXJyYXlbMF0pKSApOwo2IHZvaWQgbGVmdFJvdGF0aW9uKGludFtdIGFycmF5LCBpbnQgc2l6ZSl7CjcKOCAgICBwYXIgdGhyZWFkcyAoaW50IHRpZCA9IDAgLi4gc2l6ZSkKOSAgICAgcmVxdWlyZXMgdGlkICE9IHNpemUtMSA9PT4gUGVybShhcnJheVt0aWQrMV0sIDFcMik7CjEwICAgIHJlcXVpcmVzIHRpZCA9PSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbMF0sIDFcMik7CjExICAgIGVuc3VyZXMgUGVybShhcnJheVt0aWRdLCAxKTsKMTIgICAgZW5zdXJlcyB0aWQgIT0gc2l6ZS0xID09PiBhcnJheVt0aWRdID09IFxvbGQoYXJyYXlbdGlkKzFdKTsKMTMgICAgZW5zdXJlcyB0aWQgPT0gc2l6ZS0xID09PiBhcnJheVt0aWRdID09IFxvbGQoYXJyYXlbMF0pOwoxNCAgIHsKMTUgICAgICBpbnQgdGVtcDsKMTYgIGlmKHRpZCAhPSBzaXplLTEpewoxNyAgICAgIHRlbXAgPSBhcnJheVt0aWQrMV07CjE4ICB9ZWxzZXsKMTkgICAgICB0ZW1wID0gYXJyYXlbMF07CjIwICB9CjIxCjIyICAgICAgYmFycmllcih0aHJlYWRzKQoyMyAgICAgIHsKMjQgICAgICAgIHJlcXVpcmVzIHRpZCAhPSBzaXplLTEgPT0+IFBlcm0oYXJyYXlbdGlkKzFdLCAxXDIpOwoyNSAgICByZXF1aXJlcyB0aWQgPT0gc2l6ZS0xID09PiBQZXJtKGFycmF5WzBdLCAxXDIpOwoyNiAgICBlbnN1cmVzIFBlcm0oYXJyYXlbdGlkXSwgMSk7CjI3ICAgICAgfQoyOAoyOSAgICAgIGFycmF5W3RpZF0gPSB0ZW1wOwozMCAgIH0KMzEgfQo=') ]) ?>
+<p>This example illustrates a method named "<em>leftRotation</em>" that rotates the elements of an array to the left. In this example, we also have "<em>size</em>" threads in range 0 to "<em>size</em>-1" and "<em>tid</em>" is used to refer to each thread as thread identifier. Inside the parallel block each thread ("<em>tid</em>") stores its right neighbor in a temporary location (i.e., "<em>temp</em>"), except thread "<em>size</em>-1" which stores the first element in the array (lines 15-20). Then each thread synchronizes in a barrier (line 22). The keyword "<em>barrier</em>" and the name of the parallel block as an argument (e.g., "<em>threads</em>" in the example) are used to define a barrier in PVL. After that, each thread writes the value read into its own location at index "<em>tid</em>" in the array (line 29).</p>
+<p>To verify this method in VerCors, we should annotate barrier in addition to the the method and the parallel block. As precondition of the method, we have read permission over all locations in the array (line 2). At the beginning of the parallel block, each thread reads from its right neighbor, except thread "<em>size</em>-1" which reads from location 0 (lines 16-20). Therefore, we specify read permissions as precondition of the parallel block in lines 9-10. Since after the barrier each thread ("<em>tid</em>") writes into its own location at index ("<em>tid</em>"), we change the permissions in the barrier in such that each thread has write permissions into its own location (lines 24-26). When a thread reaches a barrier, it has to fulfill the barrier preconditions, and then it may assume the barrier postconditions. Thus barrier postconditions must follow from barrier preconditions.</p>
+<p>As postcondition of the parallel block (1) first each thread has write permission to its own location (comes from the postcondition of the barrier) in line 11 and (2) the elements are truly shifted to the left (lines 12-13). From the postcondition of the parallel block, we can establish the same postcondition for the method (lines 3-5). Note that the keyword "\<em>old</em>" is used for an expression to refer to the value of that expression before entering a method.</p>
 <h1 id="atomics-and-locks">Atomics and Locks</h1>
 <p>TODO @Raul (+invariants)</p>
 <h1 id="models">Models</h1>
@@ -527,6 +610,236 @@ public int val;
 <p>TODO @Bob</p>
 <h1 id="inheritance">Inheritance</h1>
 <p>TODO @Bob</p>
+<h1 id="exceptions--goto">Exceptions &amp; Goto</h1>
+<p>This section discusses support for exceptions and goto in VerCors. First the support that is currently implemented and support that is still being worked on is listed. Then a brief summary of exceptions in Java is given. Then we discuss the <code>signals</code> contract clause, which models exceptions in VerCors. Finally, support for goto is discussed.</p>
+<h2 id="exceptions">Exceptions</h2>
+<h3 id="support">Support</h3>
+<p>VerCors currently only supports Java exceptions. They are not supported in PVL. We also do not support signal handlers in C. The table below lists which facets of exceptions in Java are currently supported in VerCors.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>throw</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>throws</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>try-catch</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>try-finally</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>try-catch-finally</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>try-with-resources</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Multi-catch</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Defining custom exceptions</td>
+<td>Yes, but only if directly inheriting from one of: Exception, RuntimeException, Throwable, Error. This limitation is temporary.</td>
+</tr>
+<tr class="odd">
+<td>JML <code>signals</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>JML <code>signals_only</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Support for exceptions is still being worked on currently. Progress on the implementation can be followed <a href="https://github.com/utwente-fmt/vercors/pull/464">here</a>.</p>
+<h3 id="java-exceptions-example">Java Exceptions Example</h3>
+<p>We will now discuss a basic artificial example of exception usage in Java. For a more thorough overview, we refer the reader to the Java tutorial on exceptions: <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/index.html">https://docs.oracle.com/javase/tutorial/essential/exceptions/index.html</a>.</p>
+<p>In the following code example, the <code>find</code> method determines if an array contains a specific integer value:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="kw">class</span> MyFind {</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">find</span>(<span class="dt">int</span>[] xs, <span class="dt">int</span> value) <span class="kw">throws</span> <span class="bu">Exception</span> {</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a>        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; xs.<span class="fu">length</span>; i++) {</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a>            <span class="kw">if</span> (xs[i] == value) {</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a>                <span class="kw">return</span> <span class="kw">true</span>;</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a>            } <span class="kw">else</span> <span class="kw">if</span> (xs[i] &lt; <span class="dv">0</span>) {</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true"></a>                <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">Exception</span>();</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true"></a>            }</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true"></a>        }</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true"></a>        <span class="kw">return</span> <span class="kw">false</span>;</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true"></a>    }</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true"></a>        <span class="dt">int</span>[] myXs = <span class="dt">int</span>[<span class="dv">3</span>];</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true"></a>        myXs[<span class="dv">0</span>] = <span class="dv">1</span>;</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true"></a>        myXs[<span class="dv">1</span>] = <span class="dv">10</span>;</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true"></a>        myXs[<span class="dv">2</span>] = -<span class="dv">3</span>;</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true"></a>       </span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true"></a>        <span class="kw">try</span> {</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true"></a>            <span class="fu">find</span>(myXs, <span class="dv">22</span>);</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true"></a>        } <span class="kw">catch</span> (<span class="bu">Exception</span> e) {</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An error occurred&quot;</span>);</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true"></a>        }</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true"></a>    }</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true"></a>}</span></code></pre></div>
+<p>If the <code>find</code> method encounters a negative array element while searching, it throws an exception. The fact the method throws an exception at all is indicated by the <code>throws Exception</code> modifier when the <code>find</code> method is defined. Specifically, the exception is thrown by the <code>throw new Exception()</code> statement in the <code>find</code> method.</p>
+<p>The thrown exception is handled in the <code>main</code> method by wrapping the call to <code>find</code> in a <code>try-catch</code> block. Whenever an exception is thrown within a <code>try-catch</code> block, the exception is passed to the <code>catch</code> block of the type of the exception matches the type of the <code>catch</code> block. This catch block can then handle the exception to allow the program to continue, or perform cleanup such that the program can exit safely. If none of the catch blocks can handle the exception, it is passed further up the call stack, possibly terminating the program if it is not caught and handled.</p>
+<!-- this should not be visible -->
+
+<h3 id="the-signals-clause">The signals clause</h3>
+<p>The signals clause supported in VerCors is very similar to the signals clauses supported in JML (documented <a href="http://www.eecs.ucf.edu/~leavens/JML/jmlrefman/jmlrefman_9.html#SEC109">here</a>). It is a contract element like <code>requires</code> or <code>ensures</code>, and declares the post condition in case an exception is thrown. The declared post-condition holds when the thrown type matches the type stated in the <code>signals</code> clause. When an exception is thrown, normal <code>ensures</code> post-conditions never hold, and instead only relevant <code>signals</code> clauses hold.</p>
+<p>As an artificial example, we can define a <code>signals</code> clause for a method that sums two numbers. The method throws an exception if one of the numers is equal to five.</p>
+<!--
+Nice example would be overflowing addition here. But we do not have that yet in vercors
+-->
+
+<!-- standalone-snip plainSum
+class C {
+-->
+
+<!-- snip plainSum -->
+
+<div class="sourceCode" id="cb41"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="co">//@ signals (Exception e) a == 5 || b == 5;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="co">//@ ensures \result == (a + b);</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">sum</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a>    <span class="kw">if</span> (a == <span class="dv">5</span> || b == <span class="dv">5</span>) {</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a>        <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">Exception</span>();</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a>    } <span class="kw">else</span> {</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a>        <span class="kw">return</span> a + b;</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a>    }</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a>}</span></code></pre></div>
+<!-- standalone-snip plainSum
+}
+-->
+
+<p>Similar to the <code>throws</code> attribute, the <code>signals</code> clause can name both checked and unchecked exceptions. The only limitation is that the type must extend <code>Throwable</code>.</p>
+<h5 id="signals-does-not-guarantee-an-exception">Signals does not guarantee an exception</h5>
+<p>A frequently occurring use-case is to guarantee that an exception is thrown, if a certain condition occurs. Furthermore, this is also how the semantics of the <code>signals</code> clause are sometimes misinterpreted. Applying this line of though to the previous example, one might expect the method <code>sum</code> to <em>always</em> throw if one of the arguments equals five. However, this is not the case. The implementation for <code>pickySum</code> below demonstrates this. The implementation for <code>pickySum</code> also satisfies the contract for <code>sum</code>, but clearly <code>pickySum</code> does not <em>always</em> throw an exception if one of the arguments equals 5:</p>
+<!-- standalone-snip pickySum
+class C {
+-->
+
+<!-- snip pickySum -->
+
+<div class="sourceCode" id="cb42"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a><span class="co">//@ signals (Exception e) a == 5 || b == 5;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true"></a><span class="co">//@ ensures \result == (a + b);</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">pickySum</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true"></a>    <span class="kw">if</span> ((a == <span class="dv">5</span> || b == <span class="dv">5</span>) &amp;&amp; <span class="fu">dayOfTheWeek</span>() == <span class="st">&quot;tuesday&quot;</span>) {</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true"></a>        <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">Exception</span>();</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true"></a>    } <span class="kw">else</span> {</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true"></a>        <span class="kw">return</span> a + b;</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true"></a>    }</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true"></a>}</span></code></pre></div>
+<!-- standalone-snip pickySum
+}
+-->
+
+<p>Instead, <code>pickySum</code> only throws an exception if one of the arguments equals five, <em>and</em> today is tuesday. Would <code>pickySum</code> be called on a monday with 5 and 10, an exception would not be thrown, and instead 15 would be returned.</p>
+<p>This artificial example shows how a signals clause should be interpreted: when an exception of the appropriate type is thrown, the <code>signals</code> clause can be assumed to hold. It is <em>not</em> guaranteed that an exception is thrown if a <code>signals</code> condition occurs.</p>
+<p>While VerCors does not support the other <code>signals</code> semantics natively, there is a way to model it using an additional <code>ensures</code> clause. To do this, an <code>ensures</code> clause needs to be added that implies <code>false</code> when the <code>signals</code> condition occurs. For example, <code>pickySum</code> can be made consistent as follows:</p>
+<!-- standalone-snip consistentSum
+class C {
+-->
+
+<!-- snip consistentSum -->
+
+<div class="sourceCode" id="cb43"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="co">//@ signals (Exception e) a == 5 || b == 5;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true"></a><span class="co">//@ ensures (a == 5 || b == 5) ==&gt; false;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true"></a><span class="co">//@ ensures \result == (a + b);</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">consistentSum</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true"></a>    <span class="kw">if</span> (a == <span class="dv">5</span> || b == <span class="dv">5</span>) {</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true"></a>        <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">Exception</span>();</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true"></a>    } <span class="kw">else</span> {</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true"></a>        <span class="kw">return</span> a + b;</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true"></a>    }</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true"></a>}</span></code></pre></div>
+<!-- standalone-snip consistentSum
+}
+-->
+
+<p>By ensuring that the method cannot terminate normally if one of the arguments equals 5, it is guaranteed that an exception is thrown when one of the arguments equals 5.</p>
+<h5 id="exception-guarantees">Exception guarantees</h5>
+<p>Java guarantees that methods only throw checked exceptions if they are explicitly mentioned in the <code>throws</code> attribute. Unchecked exceptions can always be thrown.</p>
+<p>VerCors does not implement this exact semantics. Instead, it assumes that any exception that can be thrown is mentioned in either the <code>throws</code> attribute or in a <code>signals</code> clause. A downside of this is that the VerCors exception semantics do not 100% reflect the Java semantics. The upside is that VerCors can now guarantee that all specified exceptions are caught, as all relevant exceptions are stated explicitly.</p>
+<p>In other words, if a method does not have a <code>signals</code> clause stating it throws a <code>RuntimeException</code>, VerCors assumes this exception will never be thrown by the method. Conversely, if a <code>throw new RuntimeException()</code> statement occurs in method M, VerCors will give an error if M does not have a <code>signals</code> clause for RuntimeException.</p>
+<p>In some situations it might be necessary to opt into the more realistic Java semantics of unchecked exceptions. VerCors does not support this directly, but it can be moddeled with an additional <code>signals</code> clause. To do this, an additional <code>signals</code> clause must be added with the condition <code>true</code>. For example, we can modify the contract of the earlier presented <code>sum</code> method to allow throwing a <code>RuntimeException</code> randomly:</p>
+<!-- header-snip ExcGuarantees Error -->
+
+<!-- wrap-class-snip ExcGuarantees -->
+
+<div class="sourceCode" id="cb44"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true"></a><span class="co">//@ signals (ArithmeticException e) a == 5 || b == 5;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true"></a><span class="co">//@ signals (RuntimeException e) true;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true"></a><span class="co">//@ ensures \result == (a + b);</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">sum</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a>    <span class="kw">if</span> (a == <span class="dv">5</span> || b == <span class="dv">5</span>) {</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true"></a>        <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">ArithmeticException</span>();</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true"></a>    } <span class="kw">else</span> {</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true"></a>        <span class="kw">return</span> a + b;</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true"></a>    }</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true"></a>}</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">useSum</span>() {</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true"></a>    <span class="dt">int</span> result = <span class="fu">sum</span>(<span class="dv">5</span>, <span class="dv">10</span>);</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Result: &quot;</span> + result);</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true"></a>}</span></code></pre></div>
+<p>If this example is checked by VerCors, it will yield an error in the <code>useSum</code> method. The error will complain that <code>sum</code> might throw a <code>RuntimeException</code>, but that it is not specified in the contract nor handled in the <code>useSum</code> body.</p>
+<p>A way to resolve this would be to catch the <code>RuntimeException</code> by wrapping the call to <code>sum</code> in a <code>try-catch</code> block. However, since catching a <code>RuntimeException</code> is bad practice, it is sometimes better to indicate in the contract of <code>useSum</code> that <code>useSum</code> might also throw a <code>RuntimeException</code>. This propagates the responsibility for handling the unchecked exception to the caller.</p>
+<h3 id="the-signals_only-clause">The signals_only clause</h3>
+<p>The <code>signals_only</code> clause from JML (documented <a href="http://www.eecs.ucf.edu/~leavens/JML/jmlrefman/jmlrefman_9.html#SEC110">here</a>) is not supported by VerCors. The clause <code>signals_only T1, T2;</code> can be simulated by adding two <code>signals</code> clauses to a method contract as follows:</p>
+<!-- header-snip TwoSignals -->
+
+<!-- standalone-snip TwoSignals 
+class T1 extends Exception {}
+class T2 extends Exception {}
+-->
+
+<!-- wrap-class-snip TwoSignals -->
+
+<div class="sourceCode" id="cb45"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true"></a><span class="co">//@ signals (T1 e) true;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a><span class="co">//@ signals (T2 e) true;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true"></a><span class="dt">void</span> <span class="fu">m</span>() {</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true"></a>    </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true"></a>}</span></code></pre></div>
+<h2 id="goto-and-labels">Goto and labels</h2>
+<p>PVL has support for <code>goto</code> and <code>label</code>. The semantics are standard: when the <code>goto l</code> statement is encountered, control flow is immediately transferred to the location indicated by the label <code>l</code>. For example, the following program verifies:</p>
+<!-- header-snip GotoEx1 -->
+
+<!-- wrap-method-snip GotoEx1 -->
+
+<div class="sourceCode" id="cb46"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true"></a><span class="dt">int</span> x = <span class="dv">3</span>;</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true"></a><span class="kw">goto</span> l;</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true"></a>x = <span class="dv">4</span>;</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true"></a>label l;</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true"></a>assert x == <span class="dv">3</span>;</span></code></pre></div>
+<p>As PVL does not have a construct like <code>finally</code> in Java, there are no exceptions for the semantics of <code>goto</code> in PVL.</p>
+<p>One example where use of <code>goto</code> might lead to confusing results is the following. In the below example, <code>goto</code> is used to exit the <code>while</code> loop. Because <code>goto</code> redirects control flow to the destination label immediately, checking the loop invariant is skipped.</p>
+<!-- header-snip GotoEx2 -->
+
+<!-- wrap-method-snip GotoEx2 -->
+
+<div class="sourceCode" id="cb47"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a><span class="dt">int</span> r = <span class="dv">10</span>;</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true"></a>loop_invariant r == <span class="dv">10</span>;</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true"></a><span class="kw">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true"></a>  r = <span class="dv">20</span>;</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true"></a>  <span class="kw">goto</span> lbl2;</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true"></a>}</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true"></a>assert r == <span class="dv">10</span>; <span class="co">// Never executed</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true"></a>label lbl2;</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true"></a>assert r == <span class="dv">20</span>;</span></code></pre></div>
+<p>If it is desired that the loop invariant is checked at <code>goto</code> as well, this can be modeled by adding asserts at the exit labels of the <code>while</code> loop.</p>
 <h1 id="term-rewriting-rules">Term Rewriting Rules</h1>
 <p>VerCors allows you to define your own term rewriting rules via <code>jspec</code> files. This chapter shows you how.</p>
 <h1 id="magic-wands">Magic Wands</h1>

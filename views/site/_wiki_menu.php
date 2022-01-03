@@ -11,6 +11,7 @@
 <ul>
 <li><a href="#using-a-release">Using a Release</a></li>
 <li><a href="#building-from-source-code">Building from source code</a></li>
+<li><a href="#syntax-highlighting">Syntax highlighting</a></li>
 </ul>
 </li>
 <li>
@@ -70,6 +71,13 @@
 </li>
 <li>
 <a href="#inheritance">Inheritance</a>
+</li>
+<li>
+<a href="#exceptions--goto">Exceptions & Goto</a>
+<ul>
+<li><a href="#exceptions">Exceptions</a></li>
+<li><a href="#goto-and-labels">Goto and labels</a></li>
+</ul>
 </li>
 <li>
 <a href="#term-rewriting-rules">Term Rewriting Rules</a>
