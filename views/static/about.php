@@ -23,16 +23,16 @@ $this->title = 'About';
         <li><a href="https://petravdbos.nl">dr. Petra van den Bos</a></li>
         <li><a href='https://people.utwente.nl/r.e.monti' target="_blank">dr. Raúl E. Monti</a></li>
         <li><a href="https://people.utwente.nl/l.armborst">Lukas Armborst, MSc</a></li>
-        <li><a href='https://wwwhome.ewi.utwente.nl/~safarim/' target="_blank">Mohsen Safari, MSc</a></li>
-
         <li><a href='https://wwwhome.ewi.utwente.nl/~lathouwerssam/' target="_blank">Sophie Lathouwers, MSc</a></li>
         <li><a href='https://people.utwente.nl/o.f.o.sakar' target="_blank">Ömer Şakar, MSc</a></li>
         <li><a href='https://people.utwente.nl/r.b.rubbens' target="_blank">Bob Rubbens, MSc</a></li>
         <li><a href='' target="_blank">Pieter Bos, MSc</a></li>
+        <li><a href='https://people.utwente.nl/p.b.h.tasche' target="_blank">Philip Tasche, MSc</a></li>
     </ul>
 
     <h3><strong>Alumni</strong></h3>
     <ul style="list-style-type: none">
+        <li><a href='https://wwwhome.ewi.utwente.nl/~safarim/' target="_blank">Mohsen Safari, MSc</a></li>
         <li><a href='http://sjcjoosten.nl' target="_blank">dr.ir. Sebastiaan Joosten</a></li>
         <li><a href='' target="_blank">Fauzia Ehsan, MSc</a></li>
         <li><a href='http://wwwhome.ewi.utwente.nl/~oortwijnwhm/' target="_blank">dr. Wytse Oortwijn</a></li>
