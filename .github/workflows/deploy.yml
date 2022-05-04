@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: '3.x'
+      - shell: bash
+        run: pip3 install virtualenv
       - uses: actions/checkout@v2
         with:
           path: vercors-web
@@ -21,6 +23,7 @@ jobs:
           token: ${{ secrets.VERCORS_BOT_PAT }}
       - shell: bash
         run: |
+          pip3 install virtualenv
           cd vercors-web
           virtualenv venv -p python3
           source venv/bin/activate
