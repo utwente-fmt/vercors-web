@@ -10,7 +10,7 @@ from util import *
 
 
 def build():
-    os.chdir(os.path.dirname(sys.argv[0]))
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
     shutil.rmtree("generated_templates", ignore_errors=True)
     os.mkdir("generated_templates")
