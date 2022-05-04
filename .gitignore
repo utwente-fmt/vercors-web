@@ -1,4 +1,5 @@
-vendor/
-composer.phar
-config/settings/local.php
+__pycache__
+*.pyc
 
+build/
+generated_templates/
