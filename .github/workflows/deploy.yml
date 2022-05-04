@@ -1,0 +1,19 @@
+name: Build and Deploy Website
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Deploy
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: utwente-fmt/vercors-web-build
+          token: ${{ secrets.VERCORS_BOT_PAT }}
+      - shell: bash
+        run: |
+          ls -l vercors-web
+          ls -l vercors-web-build
