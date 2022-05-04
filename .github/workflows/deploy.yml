@@ -18,5 +18,12 @@ jobs:
           token: ${{ secrets.VERCORS_BOT_PAT }}
       - shell: bash
         run: |
-          ls -l vercors-web
-          ls -l vercors-web-build
+          cd vercors-web
+          virtualenv venv -p python3
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python build.py
+          cd ..
+          rm -r vercors-web-build/pub/*
+          cp -r vercors-web/build/* vercors-web-build/pub
+          ls -l vercors/web-build/pub
