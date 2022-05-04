@@ -9,9 +9,12 @@ jobs:
     environment: Deploy
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: vercors-web
       - uses: actions/checkout@v2
         with:
           repository: utwente-fmt/vercors-web-build
+          path: vercors-web-build
           token: ${{ secrets.VERCORS_BOT_PAT }}
       - shell: bash
         run: |
