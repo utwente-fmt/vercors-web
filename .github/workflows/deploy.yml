@@ -30,4 +30,8 @@ jobs:
           python build.py
       - run: rm -r vercors-web-build/pub/*
       - run: cp -r vercors-web/build/* vercors-web-build/pub
-      - run: ls -l vercors-web-build/pub
+      - run: |
+          cd vercors-web-build
+          git add .
+          git status
+          git diff HEAD
