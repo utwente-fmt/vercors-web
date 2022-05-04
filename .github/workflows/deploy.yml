@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy
     steps:
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
       - uses: actions/checkout@v2
         with:
           path: vercors-web
