@@ -1,0 +1,1655 @@
+["Matrix transpose"]
+date = "2017-06-12"
+description = "Specified and verified implementation of a (copying) matrix transpose."
+path = "arrays/Transpose.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 23
+lines_of_spec = 19
+computation_time_ms = 40484
+features = [ "Iteration contracts", "Arrays", "Matrices",]
+
+["Array zipping"]
+date = "2017-06-12"
+description = "Zipping the contents of two given arrays `a` and `b` of equal length into an array of length `|a| + |b|`. This is also the answer to question 4 of the FMSE exam on April 16, 2015 (University of Twente). Also some other verification examples are added (such as shifting elements of the array to the left/right)."
+path = "arrays/JavaArrayExamples.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 109
+lines_of_spec = 35
+computation_time_ms = 61485
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations",]
+
+["Parallel prefix sum"]
+date = "2017-06-12"
+description = "This file shows how to specify the permission flow of an efficient prefix sum implementation for GP-GPU."
+path = "case-studies/prefixsum-drf.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 78
+lines_of_spec = 42
+computation_time_ms = 828957
+features = [ "GPU Kernels", "Arrays", "Matrices", "Barriers",]
+
+["Backward dependencies (error 1)"]
+date = "2017-06-15"
+description = "Verification example with backward loop dependencies that does not verify."
+path = "arrays/backward-dep-e1.c"
+language = "c"
+backend = "Silicon"
+verifies = false
+lines_of_code = 35
+lines_of_spec = 17
+computation_time_ms = 14723
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations",]
+
+["Basic C example"]
+date = "2017-06-15"
+description = "This file shows how arrays and matrices can be initialized to 0 and/or copied. There are also various failing mutants in this directory, but those are on per file for testing purposes."
+path = "arrays/basic-examples.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 233
+lines_of_spec = 101
+computation_time_ms = 62689
+features = [ "Iteration contracts", "Arrays", "Matrices", "Loop parallelisations",]
+
+["Forward dependencies (error 1)"]
+date = "2017-06-15"
+description = "Verification example with forward loop dependencies that does not verify (the example is included for testing puposes)."
+path = "arrays/forward-dep-e1.c"
+language = "c"
+backend = "Silicon"
+verifies = false
+lines_of_code = 32
+lines_of_spec = 13
+computation_time_ms = 14115
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations",]
+
+["Forward dependencies (kernel 1)"]
+date = "2017-06-15"
+description = "A kernel program (written in PVL) with forward dependencies. Barrier synchronisation is used to redistribute permissions for this. This program currently does not verify due to refactoring of the Chalice back-end (we will use Silicon from now)."
+path = "arrays/forward-dep-noauto.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 36
+lines_of_spec = 16
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["Forward dependencies (kernel 2)"]
+date = "2017-06-15"
+description = "A kernel program (written in PVL) with forward dependencies. Barrier synchronisation is used to redistribute permissions for this. This program currently does not verify due to refactoring of the Chalice back-end (we will use Silicon from now)."
+path = "arrays/forward-dep.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 39
+lines_of_spec = 18
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["PVL kernel (version 2)"]
+date = "2017-06-15"
+description = "A kernel program (written in PVL) with forward dependencies. Barrier synchronisation is used to redistribute permissions for this. This program currently does not verify due to refactoring of the Chalice back-end (we will use Silicon from now)."
+path = "arrays/kernel-example-v2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 34
+lines_of_spec = 15
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["PVL kernel (version 3)"]
+date = "2017-06-15"
+description = "A kernel program (written in PVL) with forward dependencies. Barrier synchronisation is used to redistribute permissions for this. This program currently does not verify due to refactoring of the Chalice back-end (we will use Silicon from now)."
+path = "arrays/kernel-example-v3.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 28
+lines_of_spec = 10
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["PVL kernel (version 1)"]
+date = "2017-06-15"
+description = "A kernel program (written in PVL) with forward dependencies. Barrier synchronisation is used to redistribute permissions for this. This program currently does not verify due to refactoring of the Chalice back-end (we will use Silicon from now)."
+path = "arrays/kernel-example.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 24
+lines_of_spec = 6
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["Vector addition"]
+date = "2017-06-15"
+description = "A very simple GPU kernel (written in PVL) that adds the content of two matrices and stores it in an \"output\" array (in GPU programming fashion). This program is currently disabled due to refactoring of the Chalice back-end."
+path = "arrays/vector-add.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 23
+lines_of_spec = 9
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays", "Barriers",]
+
+["Atomic read/write witnesses"]
+date = "2017-06-15"
+description = "Atomically reading and writing to a shared variable, using witness encoding."
+path = "atomics/AtomicReadWrite.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 75
+lines_of_spec = 32
+computation_time_ms = 12903
+features = [ "Atomics", "Witnesses",]
+
+["Deposit/withdraw lock"]
+date = "2017-06-15"
+description = "How to implement a single-entrant lock using AtomicInteger? A single-entrant lock which uses deposit-withdraw approach of AtomicInteger specification."
+path = "atomics/DWLock.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 102
+lines_of_spec = 39
+computation_time_ms = 13517
+features = [ "Atomics", "Witnesses", "Locking",]
+
+["Single-entrant spin lock"]
+date = "2017-06-15"
+description = "SESLock is the single-entrant spin lock using an AtomicInteger as synchroniser. The contracts for the AtomicInteger is the version without magic-wand (delta)."
+path = "atomics/RBLock.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 117
+lines_of_spec = 53
+computation_time_ms = 13039
+features = [ "Atomics", "Witnesses", "Locking",]
+
+["Single producer/consumer"]
+date = "2017-06-15"
+description = "Single producer and single-consumer verification using AtomicInteger. The contracts for the AtomicInteger is the version without magic-wand (delta)."
+path = "atomics/RBProdCons.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 141
+lines_of_spec = 59
+computation_time_ms = 19242
+features = [ "Atomics", "Witnesses",]
+
+["Simple hash table (with find-or-put)"]
+date = "2017-06-15"
+description = "SingleCell is the simplified version of the single method lock-less hash-table using AtomicInteger as synchroniser. The contracts for the AtomicInteger is the version without magic-wand (delta)."
+path = "atomics/RBSingleCell.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 144
+lines_of_spec = 62
+computation_time_ms = 19392
+features = [ "Atomics", "Witnesses",]
+
+["Reentrant locking"]
+date = "2017-06-15"
+description = "ReentLock is the re-entrant lock using AtomicInteger as synchronizer. The contracts for the AtomicInteger is the version without magic-wand (delta)."
+path = "atomics/ReentLock.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 209
+lines_of_spec = 90
+computation_time_ms = 15594
+features = [ "Atomics", "Witnesses", "Locking",]
+
+["Single cell"]
+date = "2017-06-15"
+description = "An atomic integer is used to protect a data field of SingleCell. Multiple threads trying to assign or find the value of the field. This verification example is very related to the \"simple hash table\" example."
+path = "atomics/SingleCell.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 116
+lines_of_spec = 34
+computation_time_ms = 19392
+features = [ "Atomics", "Witnesses",]
+
+["Postfix unary operators"]
+date = "2017-06-15"
+description = "This verification example tests support for verifying the unary \"++\" and \"--\" operators, by incrementing and decrementing some value, respectively."
+path = "basic/postfix-increment.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 24
+lines_of_spec = 2
+computation_time_ms = 18773
+features = []
+
+["Basic contracts"]
+date = "2017-06-15"
+description = "This verification example has a very simple method contract, which can be verified correct."
+path = "basic/test-1.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 10
+lines_of_spec = 2
+computation_time_ms = 8003
+features = []
+
+["Array clearing (succeeding)"]
+date = "2017-06-15"
+description = "Verification example in which a input array is \"cleared\" or \"zero-ed\" by assigning '0' to each element. "
+path = "carp/ZeroArrayIC.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 17
+lines_of_spec = 5
+computation_time_ms = 23129
+features = [ "Iteration contracts", "Arrays",]
+
+["Matrix accessing"]
+date = "2017-06-15"
+description = "Several succeeding and failing verification examples of accessing parts of a matrix (in kernel fashion)."
+path = "carp/access-sub-matrix.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 33
+lines_of_spec = 14
+computation_time_ms = 18194
+features = [ "Matrices",]
+
+["Kernel with host code"]
+date = "2017-06-15"
+description = "Verification example of a GPU kernel, written in PVL, together with host code. Moreover, the kernel has a forward dependency in its execution, and a barrier is used there to redistribute permissions."
+path = "carp/forward-host.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 72
+lines_of_spec = 27
+computation_time_ms = 45850
+features = [ "GPU Kernels", "Arrays", "Barriers", "Loop parallelisations",]
+
+["Forward dependencies (succeeding)"]
+date = "2017-06-15"
+description = "Verification example with a loop where the iterations have forward dependencies. Permissions are redistributed via sends receives."
+path = "carp/forward-loop.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 47
+lines_of_spec = 27
+computation_time_ms = 18190
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations",]
+
+["Histogram matrix"]
+date = "2017-06-15"
+description = "Proving correctness of an algorithm that determines the histogram of a matrix."
+path = "carp/histogram-matrix.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 23
+lines_of_spec = 15
+computation_time_ms = 36425
+features = [ "Iteration contracts", "Arrays", "Matrices",]
+
+["Histogram submatrix"]
+date = "2017-06-15"
+description = "Proving correctness of a program that calculates the histogram of a part of some input matrix."
+path = "carp/histogram-submatrix.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 48
+lines_of_spec = 25
+computation_time_ms = 45346
+features = [ "Iteration contracts", "Arrays", "Matrices",]
+
+["Summation kernel (version 1)"]
+date = "2017-06-15"
+description = "Verification of a GPU kernel program, encoded in PVL, that sums the elements of an input array."
+path = "carp/summation-kernel-0.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 28
+lines_of_spec = 10
+computation_time_ms = 38449
+features = [ "GPU Kernels", "Iteration contracts", "Arrays",]
+
+["Summation kernel (version 2)"]
+date = "2017-06-15"
+description = "Verification of a GPU kernel program, encoded in PVL, that sums the elements of an input array."
+path = "carp/summation-kernel-1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 64
+lines_of_spec = 23
+computation_time_ms = 75863
+features = [ "GPU Kernels", "Iteration contracts", "Arrays", "Barriers", "Loop parallelisations", "Atomics",]
+
+["Summation reduction"]
+date = "2017-06-15"
+description = "Verification of a reduction pattern (summation in this case) of an array of floats."
+path = "carp/summation.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 22
+lines_of_spec = 13
+computation_time_ms = 17046
+features = [ "Sequences", "Iteration contracts", "Arrays", "Summation patterns", "Floats",]
+
+["Array clearing kernel"]
+date = "2017-06-15"
+description = "GPU kernel, implemented in PVL, that \"clears\" an array by setting each element to zero. This verification example is currently disabled due to refactoring of the backends (from Chalice to Silicon)."
+path = "carp/zero-kernel.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 8
+lines_of_spec = 2
+computation_time_ms = -1
+features = [ "GPU Kernels", "Arrays",]
+
+["Array clearing in C (succeeding)"]
+date = "2017-06-15"
+description = "Verification example in which an array of integers is \"cleared\" by assigning 0 to each of its elements. "
+path = "carp/zero-loop.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 17
+lines_of_spec = 7
+computation_time_ms = 12839
+features = [ "Iteration contracts", "Arrays",]
+
+["Submatrix clearing"]
+date = "2017-06-15"
+description = "Clears the content of a submatrix by setting all elements to 0. "
+path = "carp/zero-sub-matrix.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 29
+lines_of_spec = 17
+computation_time_ms = 15261
+features = [ "Iteration contracts", "Arrays", "Matrices",]
+
+["Annotating function declarations in C"]
+date = "2017-06-15"
+description = "This verification example shows a \".h\" file with an annotated function declaration, and a \".c\" file that contains the implementation of the header file. We verify that the implementing method adheres to the contract. See also c-example.h and (c-example-impl.c for the implementation)."
+path = "clang/c-example-use.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 10
+lines_of_spec = 2
+computation_time_ms = 6115
+features = []
+
+["Overloading in Java"]
+date = "2017-06-15"
+description = "Verifying overloaded methods in Java."
+path = "classes/Overloading.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 30
+lines_of_spec = 5
+computation_time_ms = 26375
+features = []
+
+["Domain of floats"]
+date = "2017-06-15"
+description = "This verification example contains a domain of floats, together with a testing method that uses the floats."
+path = "domains/float.sil"
+language = "sil"
+backend = "Silicon"
+verifies = true
+lines_of_code = 58
+lines_of_spec = 5
+computation_time_ms = 25844
+features = [ "Sequences", "Floats",]
+
+["Domain of lists"]
+date = "2017-06-15"
+description = "This verification example contains a (Silver) domain of lists and some example code that uses its axioms."
+path = "domains/list.sil"
+language = "sil"
+backend = "Silicon"
+verifies = true
+lines_of_code = 23
+lines_of_spec = 3
+computation_time_ms = 17396
+features = [ "Lists",]
+
+["Domain of option types"]
+date = "2017-06-15"
+description = "This verification example contains a (Silver) domain for option types, as well as a testing method that use the axioms."
+path = "domains/option.sil"
+language = "sil"
+backend = "Silicon"
+verifies = true
+lines_of_code = 31
+lines_of_spec = 3
+computation_time_ms = 14928
+features = [ "Option types",]
+
+["Counting test"]
+date = "2017-06-16"
+description = "This verification example demonstrates summation patterns, that is, the use of \"\\sum\" expressions to calculate summations over sequences. The program contains both passing and failing verification cases."
+path = "floats/TestCount.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 44
+lines_of_spec = 21
+computation_time_ms = 39674
+features = [ "Sequences", "Arrays", "Summation patterns",]
+
+["Float summations"]
+date = "2017-06-16"
+description = "This verification example contains summations (i.e. the use of \"\\sum\" expressions) over sequences of floats. Both passing and failing cases are included."
+path = "floats/TestFloat.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 89
+lines_of_spec = 32
+computation_time_ms = 57872
+features = [ "Sequences", "Arrays", "Summation patterns", "Floats",]
+
+["Histogram with summations"]
+date = "2017-06-16"
+description = "Verification example of a method that calculates the histogram of an input array `a`. Summation patterns (i.e. the use of \"\\sum\" expressions) are used in the verification."
+path = "floats/TestHist.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 34
+lines_of_spec = 15
+computation_time_ms = 71529
+features = [ "Sequences", "Arrays", "Summation patterns",]
+
+["Fork/join updates"]
+date = "2017-06-16"
+description = "Two threads that concurrently attempt to increase the values `p.x` and `p.y`, respectively, of an object `p` of type Point. The shared state can be splitted into two: one thread having writing permission to `p.x` and the other thread to `p.y`. "
+path = "forkjoin/update-point.pvl"
+language = "pvl"
+backend = "Chalice"
+verifies = true
+lines_of_code = 47
+lines_of_spec = 5
+computation_time_ms = 7551
+features = [ "Fork/join concurrency",]
+
+[No-send-after-read]
+date = "2017-06-16"
+description = "This verification example covers a common security property: a secure device does not send out data when it received privacy-sensitive information. Model-based abstraction is used to verify that the program adheres to a process algebra abstraction, which does not perform a 'send' action after receiving privacy-sensitive information."
+path = "futures/NoSendAfterRead.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 127
+lines_of_spec = 66
+computation_time_ms = 25291
+features = [ "Futures",]
+
+["Parallel GCD"]
+date = "2017-06-16"
+description = "In this example a concurrent GCD algorithm is proven correct, meaning that after the algorithm terminates it has calculated the GCD of the two input values. The verification is done by using model-based abstraction. A process algebraic model of the GCD algorithm is defined and we prove that the program adheres to this abstraction. By analysing the process algebra term we finally verify that the program calculates the correct GCD. "
+path = "futures/ParallelGCD.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 80
+lines_of_spec = 37
+computation_time_ms = 24919
+features = [ "Futures", "Statically-scoped locking", "Statically-scoped parallelism",]
+
+["Simple model abstraction"]
+date = "2017-06-16"
+description = "Very simple verification example with model-based abstraction. A process algebraic model is created that is able to perform a single action: \"step\", which increments some shared variable by one. We verify that this is a valid abstraction of a program that increases some shared value by one."
+path = "futures/TestFuture.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 57
+lines_of_spec = 20
+computation_time_ms = 24786
+features = [ "Futures",]
+
+["Model-abstraction permissions"]
+date = "2017-06-16"
+description = "To establish links/simulations between programs and their abstractions, multiple kinds of points-to predicates are used. This verification example tests the behaviour of these predicates via multiple methods, some of which are failing and some succeeding."
+path = "futures/TestFuturePerms.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 80
+lines_of_spec = 29
+computation_time_ms = 25171
+features = [ "Futures",]
+
+["Model-based reasoning: concurrent counting "]
+date = "2017-06-19"
+description = "An example verification program with concurrent counting: two threads that concurrently decrement a shared counter. The verification uses model-based abstraction/reasoning."
+path = "futures/counteradd_2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 46
+lines_of_spec = 13
+computation_time_ms = 27905
+features = [ "Futures", "Statically-scoped locking", "Statically-scoped parallelism",]
+
+["Model-based reasoning: generalised concurrent counting "]
+date = "2017-06-19"
+description = "Verification example with `n` threads, each decrementing a shared variable. This verification problem shows that our model-based abstraction approach can be applied to applications that spawn a dynamic number of threads. "
+path = "futures/counteradd_n.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 91
+lines_of_spec = 26
+computation_time_ms = 27905
+features = [ "Fork/join concurrency", "Futures", "Statically-scoped locking",]
+
+["Model-based reasoning: locking protocol"]
+date = "2017-06-19"
+description = "Verification example where model-based reasoning is used to verify that the program adheres to a certain locking protocol."
+path = "futures/locking.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 80
+lines_of_spec = 36
+computation_time_ms = 25560
+features = [ "Atomics", "Futures",]
+
+["Model-based reasoning: unequal counting"]
+date = "2017-06-19"
+description = "A variant on the verification example of concurrent counting: two threads that concurrently decrement a shared value, but with unequal amounts. "
+path = "futures/unequalcounting.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 52
+lines_of_spec = 19
+computation_time_ms = 19881
+features = [ "Fork/join concurrency", "Statically-scoped locking", "Statically-scoped parallelism",]
+
+["Verifying goto (failing)"]
+date = "2017-06-19"
+description = "Failing verification example in which a program is verified that uses goto's and labels. "
+path = "goto/goto1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = false
+lines_of_code = 14
+lines_of_spec = 2
+computation_time_ms = 18043
+features = [ "Goto",]
+
+["Verifying goto (succeeding)"]
+date = "2017-06-19"
+description = "Verifying example with goto's and labels. We verify a program with goto's to skip certain code fragments, and show that these fragments do not update the code in some way."
+path = "goto/goto2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 2
+computation_time_ms = 17038
+features = [ "Goto",]
+
+["History-based reasoning: correctness checking (PVL)"]
+date = "2017-06-19"
+description = "A failing verification case in which the correctness of processes and axioms is checked, in the context of history-based reasoning. Currently this example does not verify due to refactoring of VerCors."
+path = "histories/History.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 51
+lines_of_spec = 15
+computation_time_ms = 27045
+features = [ "Histories",]
+
+["History-based reasoning: incrementing (Java)"]
+date = "2017-06-19"
+description = "Very simple verification example with histories: recording a single update (increment) to a shared integer. "
+path = "histories/HistoryAppl.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 30
+lines_of_spec = 14
+computation_time_ms = 25575
+features = [ "Histories",]
+
+["History-based reasoning: correctness checking (Java)"]
+date = "2017-06-19"
+description = "Verification example in Java where there correctness of defined processes and axioms is verified."
+path = "histories/HistoryJava.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 33
+lines_of_spec = 16
+computation_time_ms = 25575
+features = [ "Histories",]
+
+["History-based reasoning: loops"]
+date = "2017-06-19"
+description = "Verification example with history-based reasoning in which the actions in a loop are recorded. In particular, this verification example shows how histories are maintained in loop invariants."
+path = "histories/HistoryLoop.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 41
+lines_of_spec = 18
+computation_time_ms = 27045
+features = [ "Histories",]
+
+["History-based reasoning: incrementing (PVL)"]
+date = "2017-06-19"
+description = "Simple verification example where history-based reasoning is used to capture the incrementation of a shared variable."
+path = "histories/TestHist.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 23
+lines_of_spec = 7
+computation_time_ms = 23867
+features = [ "Histories",]
+
+["Parallel Fibonacci"]
+date = "2017-06-19"
+description = "Verifying a parallel Fibonacci algorithm implemented in Java. The algorithm spawns two threads capturing the left and right recursive invocation of Fibonacci. "
+path = "inheritance/Fibonacci.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 48
+lines_of_spec = 19
+computation_time_ms = -1
+features = [ "Witnesses", "Fork/join concurrency",]
+
+["Java threading"]
+date = "2017-06-19"
+description = "Simple example verification with Java threads. A simple thread (extending from java's Thread class) is forked and later joined. The thread increments a shared integer by one, which is asserted on after joining. Note, this verification example covers more than one file; 'SimpleThreadMain.java' is merely the main file."
+path = "inheritance/SimpleThreadMain.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 25
+lines_of_spec = 10
+computation_time_ms = 25841
+features = [ "Witnesses", "Fork/join concurrency",]
+
+["Function problem"]
+date = "2017-06-19"
+description = "This verification example passes, but produces a Silver warning that \"abstract predicates cannot be (un)folded\". VerCors does however not report this error."
+path = "known-problems/FunctionProblem.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 12
+lines_of_spec = 5
+computation_time_ms = 17104
+features = []
+
+["Layered verification approach"]
+date = "2017-06-19"
+description = "This verification example demonstrates a layered verification approach, where the functional properties of the program are verified via history-based reasoning (that is, recording the changes to a certain shared states as a process algebra). "
+path = "layers/HistoryApplication.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 318
+lines_of_spec = 96
+computation_time_ms = -1
+features = [ "Arrays", "Histories",]
+
+["Verifying Java 6 Lock"]
+date = "2017-06-19"
+description = "In this verification example several functions of the Java 6 lock are verified."
+path = "layers/Java6Lock.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 218
+lines_of_spec = 97
+computation_time_ms = -1
+features = [ "Arrays", "Atomics", "Locking",]
+
+["Verifying a queue"]
+date = "2017-06-19"
+description = "Verification example in which certain operations on a Queue are verified. The verification example also shows the use of methods/functions as lemmas to do certain parts of the proof."
+path = "layers/LFQ.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 210
+lines_of_spec = 80
+computation_time_ms = 39824
+features = [ "Atomics", "Lists",]
+
+["History-based reasoning: verifying a queue"]
+date = "2017-06-20"
+description = "In this verification example a queue implementation is verified. History-based reasoning is applied to capture the behaviour of the queue, in which the queue is abstracted as a sequence. After using the queue the (process algebraic) history is analysed to see how the shared state has changed."
+path = "layers/LFQHist.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 317
+lines_of_spec = 150
+computation_time_ms = 52104
+features = [ "Sequences", "Atomics", "Histories",]
+
+["Linked list"]
+date = "2017-06-20"
+description = "Verifying several operations (e.g. append, clone, concatenate, prepend, etc.) on a linked list structure. "
+path = "lists/linkedlist.pvl"
+language = "pvl"
+backend = "Chalice"
+verifies = true
+lines_of_code = 215
+lines_of_spec = 98
+computation_time_ms = -1
+features = [ "Sequences", "Lists",]
+
+[Owicki-Gries]
+date = "2017-06-20"
+description = "Classical Owicki-Gries verification example: forking two threads that write to a shared location."
+path = "manual/OwickiGries.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 1
+computation_time_ms = 21137
+features = [ "Locking", "Fork/join concurrency",]
+
+["Array properties"]
+date = "2017-06-20"
+description = "is example show how to prove functional properties about the contents of arrays using notation that avoids the problem with functions ensuring quantified properties about quantified permissions."
+path = "manual/array.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 28
+lines_of_spec = 15
+computation_time_ms = 36405
+features = [ "Sequences", "Arrays",]
+
+[Exponentials]
+date = "2017-06-20"
+description = "This verification example shows how to verify code with exponentials (that is, code that uses the binary `^^` operator). This example currently does not verify (not quite sure if it ever did)."
+path = "manual/exp.pvl"
+language = "java"
+backend = "Silicon"
+verifies = false
+lines_of_code = 21
+lines_of_spec = 6
+computation_time_ms = -1
+features = []
+
+["Parallel Fibonacci (PVL)"]
+date = "2017-06-20"
+description = "Verifying parallel Fibonacci, with fork/join parallelism."
+path = "manual/fibonacci.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 24
+lines_of_spec = 4
+computation_time_ms = 20655
+features = [ "Fork/join concurrency",]
+
+["Functions and resources"]
+date = "2017-06-20"
+description = "Simple verification example where the contract of a function invocation relies on resources and functional interfaces."
+path = "manual/functions.pvl"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 22
+lines_of_spec = 9
+computation_time_ms = 19439
+features = []
+
+["Induction lemma (succeeding)"]
+date = "2017-06-20"
+description = "A lemma, written out as a PVL function, that applies induction on the length of an input list."
+path = "manual/induction-lemma.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 18
+lines_of_spec = 4
+computation_time_ms = 19162
+features = [ "Sequences",]
+
+["Linked list properties"]
+date = "2017-06-20"
+description = "In this verification problem several properties of linked lists are verified. This is done via abstraction to sequences and asserting certain properties over these sequences."
+path = "manual/list.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 30
+lines_of_spec = 11
+computation_time_ms = 16674
+features = [ "Sequences", "Lists",]
+
+["Loop invariants"]
+date = "2017-06-20"
+description = "Very simple verification example in which a loop invariant is used to prove correctness of a single while-loop (provided that it terminates)."
+path = "manual/loop.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 7
+computation_time_ms = 18319
+features = [ "Loop invariants",]
+
+["Option types"]
+date = "2017-06-20"
+description = "In this verification example several properties on option types are asserted. Note that `None` cannot be type checked. Type inference is needed and is only implemented for assignment (`=`), and the equality operators (`!=` and `==`)."
+path = "manual/option.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 4
+computation_time_ms = 5178
+features = [ "Option types",]
+
+["Input/output parameters (succeeding)"]
+date = "2017-06-20"
+description = "Function contracts allow for input- and output parameters, in this case a fractional permission. The `drop` function takes as input a fractional permission `p` and gives as output a fractional permission `q` that is at most `p` (so that `q <= p`). This verification example shows how to handle such input/output parameters."
+path = "manual/parameters2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 18
+lines_of_spec = 4
+computation_time_ms = 14523
+features = []
+
+["Witness encoding"]
+date = "2017-06-20"
+description = "This short verification example shows how witness encodings work. This program verifies using Chalice. Witnesses are less needed in Silver, since predicates may have arguments in Silver. However, witnesses still should be used with magic wands."
+path = "manual/witness.pvl"
+language = "pvl"
+backend = "Chalice"
+verifies = true
+lines_of_code = 30
+lines_of_spec = 12
+computation_time_ms = 9238
+features = [ "Witnesses",]
+
+["Zero Array (PVL)"]
+date = "2017-06-20"
+description = "Simple verification example in which an array is \"cleared\" (all its elements set to `0`) using a while-loop. This example shows the use of quantified permissions and iteration contracts."
+path = "manual/zero_array.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 17
+lines_of_spec = 7
+computation_time_ms = 29037
+features = [ "Arrays", "Loop invariants", "Quantified permissions",]
+
+["Incrementing in OpenCL"]
+date = "2017-06-20"
+description = "Simple OpenCL kernel that increments a single element of a shared array. This verification example shows that VerCors is capable of verifying actual OpenCL kernel code."
+path = "opencl/opencl_incr.c"
+language = "cu"
+backend = "Silicon"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 3
+computation_time_ms = 14418
+features = [ "GPU Kernels", "Arrays",]
+
+["OpenMP: SIMD programs"]
+date = "2017-06-20"
+description = "Simple SIMD program written in OpenMP for C, where several arrays are read and written in parallel. We verify that the `#pragma` annotations are correct, meaning that the parallelised version of this program has the same functional meaning as the sequential program."
+path = "openmp/add-spec-simd.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 53
+lines_of_spec = 13
+computation_time_ms = 20933
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations", "Quantified permissions", "Pragmas",]
+
+["OpenMP: Loop fusion"]
+date = "2017-06-20"
+description = "This verification example demonstrates how two loops that must be fused to be race free can be specified and verified."
+path = "openmp/add-spec.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 62
+lines_of_spec = 15
+computation_time_ms = 27785
+features = [ "Iteration contracts", "Arrays", "Quantified permissions", "Pragmas",]
+
+["OpenMP: Vector addition (PVL)"]
+date = "2017-06-20"
+description = "Simple test case for a vector block. Note that vector blocks do not require iteration contracts."
+path = "openmp/addvec1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 17
+lines_of_spec = 8
+computation_time_ms = 25018
+features = [ "Arrays", "Quantified permissions", "Loop vectorisation",]
+
+["OpenMP: SIMD translation"]
+date = "2017-06-20"
+description = "A handwritten translation of a SIMD loop (in the context of OpenMP) to PVL."
+path = "openmp/addvec2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 26
+lines_of_spec = 14
+computation_time_ms = 33918
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations", "Quantified permissions", "Loop vectorisation",]
+
+["OpenMP: Array copying"]
+date = "2017-06-20"
+description = "A simple OpenMP program that performs an array copy in parallel (via parallel for-loops, annotated with pragmas). "
+path = "openmp/copy-spec.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 54
+lines_of_spec = 8
+computation_time_ms = 15439
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations", "Quantified permissions", "Pragmas",]
+
+["Statically-scoped parallelism"]
+date = "2017-06-20"
+description = "Simple PVL program that contains several `par` blocks, thereby allowing statically-scoped parallelism."
+path = "openmp/parallel-example1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 28
+lines_of_spec = 7
+computation_time_ms = 40474
+features = [ "Iteration contracts", "Arrays", "Statically-scoped parallelism", "Quantified permissions",]
+
+["OpenMP: Vector addition (single)"]
+date = "2017-06-20"
+description = "Simple verification test case with a single vectorised loop. We verify that after executing the loop every element of the array has its value increased by one."
+path = "openmp/parvec.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 3
+computation_time_ms = 25708
+features = [ "Arrays", "Quantified permissions", "Loop vectorisation",]
+
+["OpenMP: Parallel sections (succeeding)"]
+date = "2017-06-20"
+description = "Demonstrates how two loops that must be fused to be race free can be specified and verified."
+path = "openmp/sections-reduced.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 106
+lines_of_spec = 22
+computation_time_ms = 42225
+features = [ "Iteration contracts", "Arrays", "Loop parallelisations", "Quantified permissions", "Pragmas",]
+
+["OpenMP: Array blanking"]
+date = "2017-06-20"
+description = "Using a parallel for loop in OpenMP to blank an array."
+path = "openmp/zero-spec.c"
+language = "c"
+backend = "Silicon"
+verifies = true
+lines_of_code = 39
+lines_of_spec = 8
+computation_time_ms = 16228
+features = [ "Iteration contracts", "Arrays", "Quantified permissions", "Pragmas",]
+
+["Barrier with atomics"]
+date = "2017-06-20"
+description = "This simple PVL program contains a parallel for-loop with a barrier to redistribute permissions and an atomic increase of an integer."
+path = "parallel/array_par.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 30
+lines_of_spec = 12
+computation_time_ms = 38027
+features = [ "Arrays", "Barriers", "Loop parallelisations", "Atomics", "Statically-scoped locking", "Statically-scoped parallelism", "Quantified permissions",]
+
+["Block parallelism"]
+date = "2017-06-20"
+description = "Simple PVL program with parallel blocks (that is, code blocks with statically-scoped parallelism), incrementing two variables, `x` and `y`. We verify that, after the parallel blocks have executed, the result of the shared state is (observably) unchanged."
+path = "parallel/block-par.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 21
+lines_of_spec = 5
+computation_time_ms = 13157
+features = [ "Iteration contracts", "Loop parallelisations", "Statically-scoped parallelism",]
+
+["Invariants and atomics"]
+date = "2017-06-20"
+description = "This is a example verification case with atomic blocks and resource invariants, in the style of CSL. This file contains several methods, some of which verify and some not."
+path = "parallel/inv-test.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 55
+lines_of_spec = 9
+computation_time_ms = 23064
+features = [ "Atomics", "Statically-scoped locking",]
+
+["Parallel Block: Blanking"]
+date = "2017-06-20"
+description = "Simple verification example case where multiple sorts of data structures are \"blanked\" (that is, `0` is assigned to each element); first a single variable, then an array, and finally a matrix. All three sorts are connected via consecutive parallel blocks."
+path = "parallel/zero-many.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 36
+lines_of_spec = 17
+computation_time_ms = 53406
+features = [ "Iteration contracts", "Arrays", "Matrices", "Statically-scoped parallelism", "Quantified permissions",]
+
+["Permissions: Bad loop (failing case 1)"]
+date = "2017-06-20"
+description = "Simple verification example case with permissions. A shared variable `val` is updated in a loop, but the order of the clauses in the loop invariant do matter here. This example is failing, since the `Perm(val,100)` invariant clause needs to be placed before the `val+tmp==\\old(val)+n && tmp>0` clause."
+path = "permissions/BadLoop1.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 4
+computation_time_ms = 8266
+features = [ "Loop invariants",]
+
+["Permissions: Bad loop (failing case 2)"]
+date = "2017-06-20"
+description = "Simple verification example case where a shared variable `val` is updated inside a while-loop. This example fails, since the update to `val` can not be done: there is no permission to write to `val`."
+path = "permissions/BadLoop2.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 15
+lines_of_spec = 3
+computation_time_ms = 8028
+features = [ "Loop invariants",]
+
+["Single-threaded counting"]
+date = "2017-06-20"
+description = "This example shows a single-threaded Counter class with several methods (both static and dynamic) to increase the counter. We verify that the different ways to increase `val` are functionally correct and do not have races."
+path = "permissions/Counter.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 43
+lines_of_spec = 10
+computation_time_ms = 8775
+features = [ "Loop invariants",]
+
+["Single-threaded incrementing"]
+date = "2017-06-20"
+description = "Several methods to increment a shared variable `val`, some of which verify and some do not (due to wrong/incomplete specification)."
+path = "permissions/Incr.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 42
+lines_of_spec = 10
+computation_time_ms = 8579
+features = [ "Loop invariants",]
+
+["Permissions: multi-increment"]
+date = "2017-06-20"
+description = "Java class with several methods (some static and some dynamic) to increase a shared integer called `shared`. "
+path = "permissions/MultiIncrement.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 93
+lines_of_spec = 20
+computation_time_ms = 12463
+features = [ "Loop invariants",]
+
+["Permissions: Roster (fixed)"]
+date = "2017-06-20"
+description = "The verification example on page 42 of Clement Hurlin's PhD thesis. The example is a linked list representing grades (in a Roster). The roster has functionality to upgrade grades. We verify that these functions are correct."
+path = "permissions/RosterFixed.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 61
+lines_of_spec = 23
+computation_time_ms = 8679
+features = [ "Lists",]
+
+["Permissions: Integer swapping"]
+date = "2017-06-20"
+description = "Method for swapping the values of two shared integers `F` and `G`. Other methods are included that use the swapping method, some of which verify and some do not."
+path = "permissions/SwapInteger.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 37
+lines_of_spec = 9
+computation_time_ms = 6482
+features = []
+
+["Permissions: Long swapping"]
+date = "2017-06-20"
+description = "Same problem as the \"integer swapping\" example, but now the content of two shared `long`'s are swapped. Methods are included that make use of the swapping method, some of which verify and some do not."
+path = "permissions/SwapLong.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 37
+lines_of_spec = 9
+computation_time_ms = 9023
+features = []
+
+["Permissions: Binary search tree"]
+date = "2017-06-20"
+description = "Verifying a binary search tree with `del_min` operation. Note that only the access permissions are verified (implying that the program is memory safe). Functional properties are not yet checked."
+path = "permissions/TreeStack.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 114
+lines_of_spec = 47
+computation_time_ms = 13682
+features = [ "Loop invariants", "Stacks", "Trees",]
+
+["Permissions: Boxing"]
+date = "2017-06-20"
+description = "Very simple verification case where a `Perm` predicate is transformed into a `PointsTo` predicate, after assignment of a value to the reference protected by the predicate."
+path = "permissions/box.pvl"
+language = "pvl"
+backend = "Chalice"
+verifies = true
+lines_of_code = 16
+lines_of_spec = 5
+computation_time_ms = 8522
+features = []
+
+["Predicates: Linked integer list"]
+date = "2017-06-20"
+description = "Using predicates to abstract a linked list of integers.  Several (static) methods are provided that use the linked list structure, and on the specification level its abstraction."
+path = "predicates/IntegerList.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 89
+lines_of_spec = 46
+computation_time_ms = 11332
+features = [ "Lists",]
+
+["Predicates: Tree traversal"]
+date = "2017-06-20"
+description = "A tree data structure implemented in Java, together with a recursive method `del_min` that deletes the smallest value from the tree. The state of the tree is represented as a `state()` predicate. We verify that `del_min` is correct."
+path = "predicates/TreeRecursive.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 42
+lines_of_spec = 19
+computation_time_ms = 6864
+features = [ "Sequences", "Trees",]
+
+["Predicates: Min-max list"]
+date = "2017-06-20"
+description = "Verifying a min/max list: a linked list of integers with all integers in a certain range (where the range is determined by some `min` and `max`). The property of being a min/max list is captured as a pure function `minmax`. We verify that a fresh list is a min/max list when inserting a variable within some range."
+path = "predicates/minmax-list.pvl"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 33
+lines_of_spec = 8
+computation_time_ms = 10631
+features = [ "Lists",]
+
+["Refute: require false"]
+date = "2017-06-20"
+description = "Very simple verification case that applies both `requires true` and `requires false` in contracts of methods."
+path = "refute/Sat.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 15
+lines_of_spec = 6
+computation_time_ms = 19776
+features = []
+
+["Refute: unsatisfiable"]
+date = "2017-06-20"
+description = "Simple verification example of a method with a precondition that is unsatisfiable."
+path = "refute/Unsat.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 7
+lines_of_spec = 3
+computation_time_ms = 17828
+features = []
+
+["Refute: bad framing"]
+date = "2017-06-20"
+description = "This example complains about the body of the `frame_error` method being unreachable due to the fact that its contract is mal-formed."
+path = "refute/frame_error_1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 6
+lines_of_spec = 1
+computation_time_ms = 17853
+features = []
+
+["Refute: refuting (case 1)"]
+date = "2017-06-20"
+description = "Simple verification where we refute false (as a reachable specification construct)."
+path = "refute/refute1.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 8
+lines_of_spec = 4
+computation_time_ms = 16804
+features = []
+
+["Refute: refuting (case 2)"]
+date = "2017-06-20"
+description = "The refute statement is not reachable, therefore it is invalid."
+path = "refute/refute2.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 12
+lines_of_spec = 4
+computation_time_ms = 18487
+features = []
+
+["Refute: refuting (case 3)"]
+date = "2017-06-20"
+description = "The refute statement is reachable, therefore it is valid. However, the post-conditions is wrong."
+path = "refute/refute3.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 12
+lines_of_spec = 5
+computation_time_ms = 16700
+features = []
+
+["Refute: refuting (case 4)"]
+date = "2017-06-20"
+description = "The refute statement is reachable, therefore it is valid."
+path = "refute/refute4.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 5
+computation_time_ms = 16798
+features = []
+
+["Refute: refuting (case 5)"]
+date = "2017-06-20"
+description = "The refute statement is not reachable, because an error occurs before it."
+path = "refute/refute5.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 6
+computation_time_ms = 17653
+features = []
+
+["Synchronisers: CountDownLatch"]
+date = "2017-06-21"
+description = "Verifying a Java implementation of a countdown latch. The verification uses witness encoding and handles atomic operations (CAS, axiomatised). "
+path = "synchronizers/CountDownLatch.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 101
+lines_of_spec = 60
+computation_time_ms = 19712
+features = [ "Atomics", "Witnesses", "Loop invariants",]
+
+["Synchronisers: ReentrantLock"]
+date = "2017-06-21"
+description = "In this example case a re-entrant lock, implemented in Java, is verified. An atomic integer is used as the synchroniser."
+path = "synchronizers/ReentrantLock.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 140
+lines_of_spec = 81
+computation_time_ms = 20853
+features = [ "Atomics", "Witnesses", "Locking", "Loop invariants",]
+
+["Synchronisers: Semaphore"]
+date = "2017-06-21"
+description = "Verifying a semaphore. implemented in Java, that uses an atomic integer internally as synchroniser. "
+path = "synchronizers/Semaphore.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 99
+lines_of_spec = 50
+computation_time_ms = 19169
+features = [ "Atomics", "Witnesses", "Loop invariants",]
+
+["Fork/join incrementing (succeeding)"]
+date = "2017-06-21"
+description = "Simple fork/join program where the forked thread increments a shared counter by one. We verify that after joining the threads the shared value has indeed been increased by one."
+path = "threads/VerifiedMain.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 5
+computation_time_ms = -1
+features = [ "Fork/join concurrency",]
+
+["Fork/join incrementing (failing 1)"]
+date = "2017-06-21"
+description = "Simple fork/join program where the forked thread increments a shared counter by one. We intend this verification example to fail, as we inserted an incorrect assertion (that checks  whether the state has not been changed)."
+path = "threads/VerifiedMain-E1.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 18
+lines_of_spec = 5
+computation_time_ms = -1
+features = [ "Fork/join concurrency",]
+
+["Fork/join incrementing (failing 2)"]
+date = "2017-06-21"
+description = "Simple fork/join program where the forked thread increments a shared counter by one. We intend this verification example to fail, as we do not unfold the \"postjoin\" predicate that contains information on the shared state after the thread has been joined."
+path = "threads/VerifiedMain-E2.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 13
+lines_of_spec = 4
+computation_time_ms = -1
+features = [ "Fork/join concurrency",]
+
+["Type casting"]
+date = "2017-06-21"
+description = "This example shows how a binary tree with internal <code>Node</code> and <code>Leaf</code>s can be specified if access is by means of casting rather than through a visitor pattern."
+path = "type-casts/CastExample.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 62
+lines_of_spec = 25
+computation_time_ms = 24206
+features = [ "Trees",]
+
+["Using \\\\instanceof and \\\\typeof"]
+date = "2017-06-21"
+description = "This file show how the syntax for stating that an object is an instance of a specific class (\\typeof) works. It is future work to make sure that the knowledge that this is an instance of C is automatically added."
+path = "type-casts/TypeExample1.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 14
+lines_of_spec = 5
+computation_time_ms = 20082
+features = []
+
+["Longest common prefix"]
+date = "2017-06-21"
+description = "Verification challenge from VerifyThis: finding the least-common prefix of an array starting from two given indices."
+path = "verifythis/lcp.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 25
+lines_of_spec = 13
+computation_time_ms = -1
+features = [ "Arrays", "Loop invariants", "Quantified permissions",]
+
+["Relaxed prefix"]
+date = "2017-06-21"
+description = "Verification challenge from the VerifyThis competition: checking whether some given pattern is a _relaxed prefix_ if a given array. With being a _relaxed prefix_ we mean being a prefix when removing at most one element (from the pattern)."
+path = "verifythis/prefix.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 43
+lines_of_spec = 18
+computation_time_ms = -1
+features = [ "Loop invariants", "Quantified permissions",]
+
+["Verifying wait-notify patterns"]
+date = "2017-06-21"
+description = "Verifying a wait/notify concurrency pattern, in the context of two workers/threads that concurrently operate on a shared Queue. When working on the queue all other threads have to _wait_ for completion, and when the working threads has finished it _notifies_ all other waiting threads."
+path = "waitnotify/Queue.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 25
+lines_of_spec = 4
+computation_time_ms = 22453
+features = [ "Locking", "Fork/join concurrency", "Loop invariants",]
+
+["Witnesses: CounterState"]
+date = "2017-06-21"
+description = "Verification of a Counter class that contains a single shared integer as field, and several methods that increase the counter in different ways. In particular, this verification example demonstrates the use of resource predicates and witnesses to do the verification."
+path = "witnesses/CounterState.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 141
+lines_of_spec = 76
+computation_time_ms = 16770
+features = [ "Witnesses", "Loop invariants",]
+
+["Witnesses: Getters"]
+date = "2017-06-21"
+description = "This example shows how to use getters in combination with the witness encoding of predicates with arguments. When calling the tool on this file, the verification result should be a _Pass_."
+path = "witnesses/Getters.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 58
+lines_of_spec = 32
+computation_time_ms = -1
+features = [ "Witnesses",]
+
+["Witnesses: List appending (magic wand)"]
+date = "2017-06-21"
+description = "This example shows how to use the _given_ keyword to pass verification level arguments and also how to use a magic wand to prove the iterative implementation of list append correct."
+path = "witnesses/ListAppend.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 108
+lines_of_spec = 62
+computation_time_ms = 25570
+features = [ "Sequences", "Witnesses", "Lists", "Magic wands",]
+
+["Witnesses: List appending (out-of-sync)"]
+date = "2017-06-21"
+description = "In this version, the structuring of the definitions leads to many (un)fold annotations. This is because the recursion used for state and list is one step out of sync. In the inline version this is solved by inlining list and in ListAppend it is solved by using a single list predicate."
+path = "witnesses/ListAppendASyncDef.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 50
+lines_of_spec = 31
+computation_time_ms = 13797
+features = [ "Sequences", "Lists",]
+
+["Witnesses: List appending (inline)"]
+date = "2017-06-21"
+description = "This verification example shows the usefulness of the inline modifier."
+path = "witnesses/ListAppendASyncDefInline.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 45
+lines_of_spec = 25
+computation_time_ms = 19592
+features = [ "Sequences", "Lists",]
+
+["Witnesses: List iterator"]
+date = "2017-06-21"
+description = "Verifying a list iterator, implemented in Java, using witness encodings. Note that depending on which version of chalice is used, this spec may take a very very long time to check. Also, this example currently does not verify because it must be rewritten."
+path = "witnesses/ListIterator.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 263
+lines_of_spec = 162
+computation_time_ms = -1
+features = [ "Witnesses", "Lists", "Loop invariants", "Magic wands",]
+
+["Witnesses: Roster"]
+date = "2017-06-21"
+description = "This verification example targets a _Roster_, implemented as linked list. For more details we refer to page 42 of Clement Hurlin's. "
+path = "witnesses/Roster.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 90
+lines_of_spec = 62
+computation_time_ms = 11632
+features = [ "Witnesses",]
+
+["Recursive trees: Deleting smallest element"]
+date = "2017-06-21"
+description = "Verification example in which the smallest element of a tree is recursively removed. "
+path = "witnesses/TreeRecursiveSilver.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 36
+lines_of_spec = 19
+computation_time_ms = 19860
+features = [ "Sequences", "Trees",]
+
+["Witnesses: Recursive tree 3 (magic wand)"]
+date = "2017-06-21"
+description = "This file demonstrates how a magic wand can be used to prove that the deletion of a node from a binary search tree is sound."
+path = "witnesses/TreeWandSilver.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 101
+lines_of_spec = 67
+computation_time_ms = 78023
+features = [ "Sequences", "Witnesses", "Trees", "Magic wands",]
+
+["Witnesses: Twice"]
+date = "2017-06-21"
+description = "Example verification case where some abstract function is called twice."
+path = "witnesses/Twice.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 25
+lines_of_spec = 14
+computation_time_ms = 9308
+features = []
+
+["Witnesses: Magic wand"]
+date = "2017-06-21"
+description = "Demo verification example that shows how magic wands can be used in verification."
+path = "witnesses/WandDemo.java"
+language = "java"
+backend = "Chalice"
+verifies = true
+lines_of_code = 54
+lines_of_spec = 31
+computation_time_ms = 9605
+features = [ "Witnesses", "Loop invariants", "Magic wands",]
+
+["Witnesses: Magic wand (Silver)"]
+date = "2017-06-21"
+description = "Demo verification example that shows how magic wands can be used in verification (with the Silver backend)."
+path = "witnesses/WandDemoSilver.java"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 51
+lines_of_spec = 27
+computation_time_ms = 16126
+features = [ "Loop invariants", "Magic wands",]
+
+["Witnesses: Predicates"]
+date = "2017-06-21"
+description = "This example shows how reasoning with explicit witnesses works. It is supposed to work with Chalice, but the assertions are not proven."
+path = "witnesses/predicates.pvl"
+language = "java"
+backend = "Silicon"
+verifies = true
+lines_of_code = 50
+lines_of_spec = 25
+computation_time_ms = -1
+features = [ "Witnesses",]
+
+[GapBuffer]
+date = "2018-05-09"
+description = "Challenge one from the VerifyThis2018 competition: specifying and verifying the behaviour of a gap buffer; a data-structure commonly used in text editors. In particular, we verify the correctness of four standard operations on gap buffers, for moving the text cursor (functions 'left' and 'right'); for inserting a character at the cursors' position (function 'insert'); and for deleting the character at the cursors' position (function 'delete').  Our general approach to show functional correctness is to represent the buffer’s content as a sequence of integers. We prove that, after executing one of the four functions, the contents of the buffer is still validly represented by the proper integer sequence."
+path = "verifythis2018/challenge1.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 231
+lines_of_spec = 144
+computation_time_ms = -1
+features = [ "Sequences", "Arrays", "Loop invariants",]
+
+[ColoredTiles]
+date = "2018-05-09"
+description = "Challenge two of the VerifyThis2018 competition: verifying a combinatorial problem based on Project Euler problem #114. This algorithm calculates the total number of 'valid' sequences of black and white tiles of length 50, where a sequence is defined to be 'valid' if it does not contain a sequence of red tiles shorter than length 3."
+path = "verifythis2018/challenge2.pvl"
+language = "pvl"
+backend = "Silicon"
+verifies = true
+lines_of_code = 199
+lines_of_spec = 156
+computation_time_ms = -1
+features = [ "Sequences", "Iteration contracts", "Arrays", "Loop invariants", "Quantified permissions",]

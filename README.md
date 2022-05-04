@@ -1,17 +1,46 @@
 # VerCors Website
-This repository contains the website of VerCors. It is based on Yii, a PHP framework. Yii and our other dependencies are installed through [composer](https://getcomposer.org/), a dependency manager for PHP.
+This repository contains the code and data of the VerCors website. It is generated as a set of static pages.
 
-## Adding news
-Go to the bottom of the VerCors website and click __Backoffice__. Log in if necessary, then click __News Items__. Some things to keep in mind: on the front page the last five news items are displayed, ordered by date. You need to enter the date in the format `yyyy-mm-dd`. The content is in markdown format, but also supports a limited subset of HTML (e.g. `a`).
+## Building
+The website is built by `build.py`. To pull in the dependencies, e.g. set up a virtualenv:
 
-## Modifying pages
-For modifying pages other than news posts, you can edit the files in `views/static/*.php`. If you are confused about which page to edit, you can follow the trail from a url as follows:
+```bash
+$ virtualenv venv -p python3
+$ source venv/bin/activate
+$ pip3 install -r requirements.txt
+```
 
- * Note the URL of the page you want to edit
- * Check in `config/environments/web.php` which _action_ corresponds to the URL. It should be in the format `controller/action`.
- * Go to the `controllers` directory, and open the controller corresponding to your action. e.g. for `static/index`, the controller would be `StaticController`.
- * Go to the action corresponding to your action. E.g. for `static/index`, the action would be `actionIndex`.
- * Finally, check the first argument of `$this->render`. This is the name of the view that correponds to the URL.
- * Your view will be located at `views/<controller>/<name>`. For the example, if `actionIndex` renders a view called `index`, it will be located at `views/static/index`.
- 
- 
+Then build the website:
+```bash
+$ python3 build.py
+```
+
+You can also run a debug version of the website to inspect your edits, though it does not automatically update on save:
+
+```bash
+$ python3 test.py
+Building the website...
+Now serving on http://localhost:8000/
+```
+
+## Structure
+* `/build` contains the statically rendered website after building;
+* `/generated_templates` contains generated jinja templates after building;
+* `/data` contains the website data structured as [toml](https://toml.io/en/v1.0.0);
+* `/templates` contains html templates rendered with [jinja2](https://jinja.palletsprojects.com/en/3.1.x/);
+* `/static` contains other resources, and is copied as is.
+
+Generally the process of building is as follows:
+* `urls` is loaded from `/data/urls.toml`
+* `data` is constructed by loading the other files in `/data`
+* `pages` couples entries in `urls` to template files
+* `/build` and `/generated_templates` are deleted
+* The templates for the wiki and wiki menu are rendered into `/generated_templates`
+* Everything in `pages` is rendered with `data` as context, plus any additional arguments from `pages`
+  * If the URL ends in `/`, `index.html` is appended automatically
+* `/static/**/*` is copied to `/build`
+
+## Add a page
+* Make a new entry in `/data/urls.toml`
+* Make a new entry in `build.build.pages`
+* If need be, load more data into `data` if you want a separate toml file in `/data`

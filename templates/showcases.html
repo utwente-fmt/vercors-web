@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Example Database{% endblock %}
+
+{% block content %}
+<header class="major">
+    <h2><strong>Example Database</strong></h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Verification Features</th>
+                <th>Language</th>
+                <th>Verify</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for example in examples %}
+            <tr>
+                <td>{{ example.title }}</td>
+                <td>
+                    {% for feature in example.features %}{% if not loop.first %}, {% endif %}<span>{{ feature }}</span>{% endfor %}
+                </td>
+                <td>{{ languages[example.language].name }}</td>
+                <td class="table-verify-button">
+                    <a href="{{ urls.example|format(example.title|slugify) }}">
+                        <span class="fa fa-play fa-lg"></span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</header>
+{% endblock %}

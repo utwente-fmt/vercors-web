@@ -1,0 +1,30 @@
+{% macro verification_editor(initial_code, languages, initial_language="pvl", start_hidden=False, initial_hidden_code="") %}
+<div class="verification-container">
+    {% if start_hidden %}
+        <pre style="position: relative; margin-bottom: 0" class="verification-text">{{ initial_hidden_code }}<span class="code-buttons"><span style="display: none" class="fa fa-times-circle code-close-button plain-close"></span><span class="fa fa-pencil code-edit-button"></span><span class="fa fa-play code-run-button"></span></span></pre>
+    {% endif %}
+    <div class="verification-widget verification-non-plain" {% if start_hidden %}style="display: none"{% endif %}>
+        <div style="position: relative">
+            <textarea name="examplecode" rows="20" {% if not start_hidden %}data-code-mirror="true"{% endif %}>{{ initial_code }}</textarea>
+            <span class="code-buttons">
+                <span class="fa fa-times-circle code-close-button"></span>
+                <span class="fa fa-play code-run-button"></span>
+            </span>
+        </div>
+
+        <div style="background-color: #dddddd; padding: 0.4ex 1ex">
+            <label class="control-label" for="example-backendid">Language:</label>
+            <select name="lang" id="example-backendid" class="form-control">
+                {% for ext, lang in languages.items() %}
+                    <option value="{{ ext }}" {% if initial_language == ext %}selected=""{% endif %}>{{ lang.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="verification-progress verification-non-plain" style="display: none; background-color: #dddddd; padding: 0.4ex 1ex" >
+        <span class="fa"></span>
+        <span class="verification-progress-text"></span>
+    </div>
+    <pre class="verification-log verification-non-plain" style="display: none"></pre>
+</div>
+{% endmacro %}

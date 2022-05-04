@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+<header class="major">
+    <h2><strong>News</strong></h2>
+</header>
+
+<div class="blog-posts">
+    {% for article in news %}
+        <div class="blog-post spacing">
+            <h3><a href="{{ urls.article|format(article.title|slugify) }}">{{ article.title }}</a></h3>
+            <p class="summary">
+                <span class="date">{{ article.date }}</span>
+            </p>
+            {% autoescape false %}
+                {{ article.content|md }}
+            {% endautoescape %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

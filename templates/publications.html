@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+<section>
+    <header class="major">
+        <h2><strong> Publications</strong></h2>
+    </header>
+
+    {% autoescape false %}
+        {{ references_html }}
+    {% endautoescape %}
+</section>
+{% endblock %}

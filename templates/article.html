@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<header class="major">
+    <h2><strong>{{ title }}</strong></h2>
+    <p class="summary">
+        <span class="date">{{ date }}</span>
+    </p>
+</header>
+
+<div class="blog-post spacing">
+    {% autoescape false %}
+        {{ content|md }}
+    {% endautoescape %}
+</div>
+{% endblock %}

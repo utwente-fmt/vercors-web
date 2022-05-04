@@ -1,0 +1,18 @@
+index = "/"
+about = "/about/"
+license = "/license/"
+news = "/news/"
+article = "/news/%s.html"
+publications = "/publications/"
+try_online = "/try_online/"
+examples = "/try_online/examples/"
+example = "/try_online/example/%s.html"
+wiki = "/wiki/"
+
+[external]
+git = "//github.com/utwente-fmt/vercors"
+issues = "//github.com/utwente-fmt/vercors/issues"
+release = "//github.com/utwente-fmt/vercors/releases/latest"
+support = "mailto:vercors@lists.utwente.nl"
+fmt = "//fmt.ewi.utwente.nl"
+vercors = "//fmt.ewi.utwente.nl/research/projects/view/vercors/"

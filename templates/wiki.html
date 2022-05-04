@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Tutorial{% endblock %}
+
+{% block content %}
+<div class="row" style="width: 100%; vertical-align: top">
+    <span style="width: 75%; display: inline-block" id="wiki-content">
+        {% include 'wiki_content.html' %}
+    </span>
+    <span class="wiki-side-menu">
+        {% include 'wiki_menu.html' %}
+    </span>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Try VerCors Online{% endblock %}
+
+{% block content %}
+<h1>Try VerCors online</h1>
+<p>
+    Does the following program verify?
+    You can also start with an <a href="{{ urls.examples }}">existing example</a>!
+</p>
+
+{{ verification_editor("// Write your code here", languages) }}
+{% endblock %}

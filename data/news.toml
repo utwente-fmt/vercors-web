@@ -1,0 +1,302 @@
+["New PhD Students in Mercedes Project"]
+date = "2018-02-15"
+content = """
+>**Two new PhD students started on the [Mercedes project](http://fmttools.ewi.utwente.nl/research/projects/Mercedes/): <a href=" target="_blank">Mohsen Safari</a> and <a href=" target="_blank">Fauzia Ehsan</a>.**
+>
+>Mohsen's project will contribute to further improvement of the verification of GPU programs in VerCors. Fauzia's project will focus on the effective use of abstractions to reason about concurrent or distributed programs, using VerCors."""
+
+["Two papers accepted at iFM 2019"]
+date = "2019-10-09"
+content = """
+>**Two papers written by Wytse Oortwijn and Marieke Huisman have been accepted
+in this year's edition of iFM.**
+>
+>**"Practical Abstractions for Automated Verification of Message Passing Concurrency"** presenting a new
+technique which integrates model based verification and code verification for message passing programs and **"Formal Verification of an Industrial Safety-Critical Traffic Tunnel Control System"**, a case study in the use of VerCors in a critical industrial system, have been accepted at the <a href="https://ifm2019.hvl.no" target="_blank">15th International Conference on integrated Formal Methods</a> taking place between the 2nd and the 6th of December this year, at Bergen, Norway."""
+
+["VerifyThis2019"]
+date = "2019-04-15"
+content = """
+>VerCors Team participated in [ETAPS 2019 conference](https://conf.researchr.org/home/etaps-2019) for [VerifyThis](https://conf.researchr.org/track/etaps-2019/verifythis-2019-papers) competition, held in Parague and have won [two awards](http://www.pm.inf.ethz.ch/research/verifythis/Prizes.html).
+>
+> [Sophie Lathouwers](https://wwwhome.ewi.utwente.nl/~lathouwerssam/) and [Wytse Oortwijn](http://wwwhome.ewi.utwente.nl/~oortwijnwhm/) won the **Best Student Team award!**
+>
+>[Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) and [Sebastiaan Joosten](http://sjcjoosten.nl/) won the **“Most Distinguished Tool Feature Award”** for their usage of ghost method parameters to model sparse matrices!
+>"""
+
+["Towards Reliable Concurrent Software"]
+date = "2018-11-16"
+content = """
+> **During the [symposium](https://dblp.org/db/conf/birthday/poetzsch2018.html) organised for the `60th birthday` of [Arnd Poetzsch-Heffter](https://softech.informatik.uni-kl.de/homepage/de/staff/PoetzschHeffter/), [Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) presented a position paper ["Towards Reliable Concurrent Software"](https://link.springer.com/chapter/10.1007%2F978-3-319-98047-8_9), co-authored with [Sebastiaan Joosten](http://sjcjoosten.nl), which outlines the plans of the [Mercedes](http://fmttools.ewi.utwente.nl/research/projects/Mercedes/) project.**"""
+
+["New VerCors related work"]
+date = "2019-11-04"
+content = """
+>**Anton Wijs and Maciej Wiłkowski present a paper involving VerCors at
+<a href="https://sefm2019.inria.fr/" target="_blank">SEFM 2019</a>**
+>
+>In <a href="https://link.springer.com/chapter/10.1007/978-3-030-30446-1_22" target="_blank">
+Modular Indirect Push-Button Formal Verification of Multi-threaded Code Generators</a>,
+<a href="https://www.win.tue.nl/~awijs/" target="_blank">Anton Wijs</a>
+and Maciej Wiłkowski use VerCors to assist the verification of automated code
+generation of multi-threaded programs for model-driven development."""
+
+["VerifyThis 2018"]
+date = "2018-04-14"
+content = """
+> **Two VerCors teams participated in this year's [VerifyThis](http://www.pm.inf.ethz.ch/research/verifythis.html) program verification competition, held in Thessaloniki as part of [ETAPS 2018](https://www.etaps.org/2018).**
+>
+> [Wytse Oortwijn](http://wwwhome.ewi.utwente.nl/~oortwijnwhm/) and <a href="">Mohsen Safari</a> won the 2nd prize for the best student team."""
+
+["FMT member Sophie Lathouwers wins the Greenhost prize of the Koninklijke Hollandsche Maatschappij der Wetenschappen"]
+date = "2019-11-04"
+content = """
+>**<a href="https://wwwhome.ewi.utwente.nl/~lathouwerssam/" target="_blank">Sophie Lathouwers</a> has won the Greenhost prize of the Koninklijke Hollandsche Maatschappij der Wetenschappen with her Master thesis <a href="https://essay.utwente.nl/76554/" target="_blank">"Reasoning About the Correctness of Sanitizers."</a>**
+>
+>The prize is in the category of __Internet & Technical Sciences__, it is awarded through the KHMW (Royal Dutch Institute of Sciences), and sponsored by <a href=" target="_blank">Greenhost</a>.
+>The prize-giving ceremony will take place on Thursday November 7 next at 15:00 in Amsterdam (REC, room C0.01, Nieuwe Achtergracht 166). There, Sophie will give a short presentation on her work.
+>For more information visit  <a href="https://www.khmw.nl/events/themabijeenkomst-en-uitreiking-internetscriptieprijzen" target="blank"> here </a>."""
+
+["FTfFP 2018"]
+date = "2018-07-16"
+content = """
+> **The workshop [FTfFP 2018](https://conf.researchr.org/track/ecoop-issta-2018/FTfJP-2018-papers) (@ECOOP 2018) features several VerCors related presentations. [Wytse Oortwijn](http://wwwhome.ewi.utwente.nl/~oortwijnwhm/) gives a tool demo of the VerCors tool set, while [Sebastiaan Joosten](http://sjcjoosten.nl) presents the paper [An Exercise in Verifying Sequential Programs with VerCors](https://research.utwente.nl/en/publications/an-exercise-in-verifying-sequential-programs-with-vercors), co-authored by Wytse Oortwijn, Mohsen Safari and Marieke Huisman.**
+>
+> In this paper, we present our solutions to two of the [VerifyThis 2018](https://research.utwente.nl/en/publications/an-exercise-in-verifying-sequential-programs-with-vercors) challenges."""
+
+["Marieke Huisman Inaugural Lecture"]
+date = "2018-01-25"
+content = """
+> **[Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) gives her inaugural lecture, entitled "Software Reliability for Everyone".**
+>
+> In this lecture, she presents her view on the future of software verification research.
+>
+> [Booklet inaugural lecture](https://www.utwente.nl/en/academic-ceremonies/inaugural-lectures/booklets-inaugural-lectures/2018/oratieboekje-marieke-huisman.pdf)"""
+
+["New PhD Candidate in Mercedes"]
+date = "2018-12-03"
+content = """
+> **[Sophie Lathouwers](https://people.utwente.nl/s.a.m.lathouwers?tab=research) started as a PhD student on the [Mercedes](http://fmttools.ewi.utwente.nl/research/projects/Mercedes/) project.**
+>Sophie will investigate the automated generation of auxiliary annotations, which are needed for program verification in VerCors."""
+
+["Wytse Oortwijn's PHD thesis defence: December 12"]
+date = "2019-11-04"
+content = """
+>**Wytse Oortwijn PHD thesis defence is approaching**
+>
+><a href="http://wwwhome.ewi.utwente.nl/~oortwijnwhm/" target="_blank">Wytse</a> has contributed to VerCors for several
+years, during his PhD projects in the FMT group under the supervision of Prof
+Marieke Huisman. He will be defending his thesis, entitled "Deductive Techniques
+for Model-Based Concurrency Verification" on Thursday 12th of December, 16:30 to
+18:00 at Waaier, 4-G, Berkhoffzaal, University of Twente. For an introduction
+to his thesis and more information about the defence follow
+<a href="https://www.utwente.nl/en/eemcs/fmt/news-events/events/" target="_blank">this link</a>."""
+
+["New PostDoc in Mercedes Project"]
+date = "2019-06-03"
+content = """
+>**[Raúl E. Monti]() joined VerCors Team and started as a PostDoc on the <a href="https://fmt.ewi.utwente.nl/research/projects/view/mercedes/" target="_blank">Mercedes project</a>.**
+>
+>"""
+
+["New Master Student"]
+date = "2018-09-01"
+content = """
+> **<a href=" target="_blank">Minh Nguyen</a> starts his final Master thesis project, in which he will try to verify functional correctness of a red black tree using VerCors.**
+>
+> [Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/), [Stefan Blom](https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en) (BetterBe) and [Sebastiaan Joosten](http://sjcjoosten.nl) will supervise the project."""
+
+["NWO OTP grant for ChEOPS (verified Construction of corrEct and Optimised Parallel Software) Project"]
+date = "2019-05-16"
+content = """
+> **[Prof.dr. Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) and [dr. Anton Wijs](https://www.tue.nl/en/research/researchers/anton-wijs/) received an NWO OTP grant for the project “ChEOPS: verified Construction of corrEct and Optimised Parallel Software”.**
+>
+> Two PhD students will be appointed, one in Twente and one in Eindhoven, to make the development and maintenance of software aimed at graphics processing units (GPUs) more insightful and effective in terms of functional correctness and performance.
+>
+> GPUs have an increasingly big impact on industry and academia, due to their great computational capabilities. However, in practice, one usually needs to have expert knowledge on GPU architectures to optimally gain advantage of those capabilities.
+At the Eindhoven University of Technology, Wijs will work on modelling GPU applications using a Domain Specific Language, formally verifying the correctness of the models, and automatically generating GPU code.
+>At the University of Twente, Huisman will work on the structured optimisation of GPU code, while ensuring that functional correctness is preserved.
+>Existing formal verification techniques, model checking and code verification, will be combined to create, for the first time, a complete end-to-end development workflow for GPU applications.
+>
+> To ensure the practical effectiveness of the resulting workflow, a users committee, consisting of SURFsara, the Netherlands eScience Center, Stream HPC, and CodePlay (UK), will provide real-life cases and provide feedback throughout the project."""
+
+["Marieke Huisman talked about software reliability at KNAW"]
+date = "2019-11-04"
+content = """
+>**Prof. <a href="http://wwwhome.ewi.utwente.nl/~marieke/" target="_blank">Marieke Huisman</a>,
+leader of the FMT group and the VerCors team, was one of the speakers at a public symposium called <a href="https://www.knaw.nl/nl/actueel/agenda/verificatie-van-software" target="_blank">Verificatie van software: erg complex maar in ieders belang</a>
+(Software verification: very complex but in everyone's interest) at the _Koninklijke Nederlandse Akademie van Wetenschappen_.**
+>
+>She gave an overview of the area of deductive program verification, and how VerCors contributes to this area. Here’s an <a href="https://twitter.com/EelcoVisser/status/1189973635383083009" target="_blank">impression</a> of the evening. A recording of the symposium will be made available via <a href="https://www.txtradio.nl/home" target="_blank">TXT radio</a>."""
+
+["VERCORS Advisory Board Meeting"]
+date = "2019-06-06"
+content = """
+> **An advisory board meeting of VerCors was held in University of Twente on June 6, 2019. VerCors Team elaborated main tool features with the board members from different industrial organizations.**
+>
+>The board members include people from <a href="https://www.betterbe.com" target="_blank">BetterBe </a>,
+<a href="https://www.thalesgroup.com/en" target="_blank">Thales group</a>,
+<a href="https://www.rosen-group.com" target="_blank">Rosen group</a>,
+<a href="https://poldervalley.com" target="_blank">Polder Valley</a> and
+<a href="https://www.technolution.eu/nl/" target="_blank">Technolution</a>.
+>
+>The board members have shown a deep interest in the tool and gave valuable feedback to make the VerCors tool more applicable and efficient for industrial projects."""
+
+["ISoLA 2018"]
+date = "2018-11-05"
+content = """
+> **[ISOLA 2018](http://www.isola-conference.org/isola2018/) features several presentations around VerCors.**
+>
+> **[Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) presents the position paper ["On Models and Code - A Unified Approach to Support Large-Scale Deductive Program Verification"](https://www.springerprofessional.de/en/on-models-and-code/16231482).**
+>
+> In this paper, she argues that we need a seamless transition between models and code, and she sketches how the VerCors tool provides a first step towards this goal.
+>
+> **[Marieke Huisman](http://wwwhome.ewi.utwente.nl/~marieke/) also presented the paper [Program Correctness by Transformation](https://research.utwente.nl/en/publications/program-correctness-by-transformation), co-authored by [Stefan Blom](https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en), [Saeed Darabi](http://wwwhome.ewi.utwente.nl/~darabis/) and <a href=" target="_blank">Mohsen Safari</a>**, which describes how the VerCors tool can be used to ensure that program transformations and optimisations preserve program correctness.
+ >
+ > **Finally, [Sebastiaan Joosten](http://sjcjoosten.nl) presented [Static Code Verification Through Process Models](https://research.utwente.nl/en/publications/static-code-verification-through-process-models), co-authored by Marieke Huisman, which sketches an alternative approach for the use of abstractions to reason about concurrent software.**"""
+
+["Blind Henk Mulder now receives a master degree"]
+date = "2019-07-10"
+content = """
+>**<a href="https://www.utwente.nl/en/eemcs/fmt/news-events/news/2019/8/216769/blind-henk-mulder-obtains-master-degree" target="_blank">On July 10th, 2019, Henk Mulder got his Master degree at University of Twente</a>**.
+>
+>Henk Mulder did his Master Thesis at the Formal Methods and Tools group, on identifying and solving bottlenecks in the VerCors tool, under the supervision of <a href="http://wwwhome.ewi.utwente.nl/~marieke/" target="_blank">Marieke Huisman</a>.
+>The VerCors toolset can be used to verify memory safety and functional correctness of concurrent and parallel programs.
+>By encoding the problem into an intermediate language the power of existing tools is leveraged to support additional concurrency models.
+>However, for certain programs verification takes significant time. Thanks to the work of Henk Mulder, we now know why, and more importantly, what we can do about it.
+>
+>**<a href="https://essay.utwente.nl/78496/" target="_blank">Thesis document</a>**
+>
+>Henk Mulder got a 9 for his Master project, and graduated Cum laude. Our congratulations go out to Henk Mulder, on this great accomplishment!
+>"""
+
+["2019 VerCors team picture"]
+date = "2019-12-12"
+content = """
+> On the occasion of Wytse Oortwijn’s PhD defence, a big part of the VerCors (former and current) team members got reunited. We were able to take this very nice picture together:
+
+><img src="/images/vercors-team-2019.jpg" alt="VerCors members" style="width:95%">
+
+>May 2020 bring even more people into our picture!"""
+
+["Welcome Petra to the VerCors team!"]
+date = "2020-02-01"
+content = """
+> From February 1st,
+<a href="https://petravdbos.nl/" target="_blank">Petra van den Bos</a> has joined our team as a PostDoc under the
+<a href="https://fmt.ewi.utwente.nl/research/projects/view/mercedes/Mercedes" target="_blank"> Mercedes Project</a>.
+Petra finished her PhD studies at the Institute for Computing and Information Sciences of the Radboud University in Nijmegen, the Netherlands, under the supervision of Jan Tretmans and Frits Vaandrager. During her work she focussed on topics around model-based testing. However, she also enjoys working on other topics inside formal methods and we are very happy to have her working along us and improving VerCors."""
+
+["Paper accepted at TACAS 2020"]
+date = "2020-02-20"
+content = """
+>  **Automated Verification of Parallel Nested DFS** written by Wytse, Marieke, Sebastiaan and Jaco has been accepted for this years edition of <a href="https://www.etaps.org/user-profile/archive/33-uncategorised/412-tacas-2020-accepted-papers" target="_blank">TACAS</a>."""
+
+["Paper accepted at NFM"]
+date = "2020-02-21"
+content = """
+> **Formal Verification of Parallel Prefix Sum** written by Mohsen, Wytse, Sebastiaan and Marieke has been accepted for this year edition of <a href="https://ti.arc.nasa.gov/events/nfm-2020/" target="_blanck"> NFM </a>."""
+
+["Best paper award at IFM 2019"]
+date = "2020-02-19"
+content = """
+> The paper <a href="https://research.utwente.nl/en/publications/practical-abstractions-for-automated-verification-of-message-pass" target="_blank">Practical Abstractions for Automated Verification of Message Passing Concurrency</a> written by Wytse Oortwijn and Marieke Huisman got the best paper award at <a href="https://ifm2019.hvl.no/" target="_blank"> IFM 2019 conference </a>.
+
+><img src="/images/wytse-ifm-best-paper.jpg" alt="Wytse Oortwijn holding IFM best paper award certificate." style="width:95%"> """
+
+["New PhD Student in Mercedes Project"]
+date = "2020-03-11"
+content = """
+>From 1st of March, <a href="https://people.utwente.nl/l.armborst" target="_blank" >Lukas Armborst </a> is our new PhD student working on the <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/" target="_blank" >Mercedes project</a>."""
+
+["Members Graduation!"]
+date = "2020-06-01"
+content = """
+> Two of our ex-master students, <a href='https://people.utwente.nl/r.b.rubbens' target="_blank">Bob Rubbens</a> and <a href='https://people.utwente.nl/o.f.o.sakar' target="_blank">Ömer Şakar</a>, have recently graduated (see <a href='https://essay.utwente.nl/81338/' target="_blank">here</a> and <a href='https://essay.utwente.nl/80892/' target="_blank">here</a> ) and have decided to join the VerCors team as PhD candidates in the <a href='https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/' target="_blank">Mercedes project</a> and <a href='https://www.utwente.nl/en/eemcs/fmt/research/projects/cheops/' target="_blank">ChEOPS project</a> respectively. Nice that we have managed to keep them with us!"""
+
+["Two papers on VerCors accepted at iFM 2020!!!"]
+date = "2020-08-21"
+content = """
+> Our papers **Mohsen Safari and Marieke Huisman - A Generic Approach to the Verification of the Permutation Property of Sequential and Parallel Swap-based Sorting Algorithms**, and **Lars van den Haak, Anton Wijs, Mark van den Brand and Marieke Huisman - Formal methods for GPGPU programming: is the demand met?**  were accepted in <a href="https://ifm20.si.usi.ch/" target="_blank">iFM 2020</a>. Moreover, the latest paper is our first <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/cheops/" target="_blank">ChEOPS</a> project paper."""
+
+["Two new papers around VerCors accepted!"]
+date = "2020-10-26"
+content = """
+> Our papers **Mohsen Safari and Marieke Huisman - Formal Verification of Parallel Stream Compaction and Summed-Area Table Algorithms**, and **Stefan Blom, Saeed Darabi, Marieke Huisman and Mohsen Safari - Correct Program Parallelisation**  were accepted in <a href="https://ictac2020.github.io/" target="_blank">ICTAC 2020</a> and the <a href='https://link.springer.com/article/10.1007/s10009-020-00601-z'>STTT journal</a> respectively."""
+
+["New VerCors project SAVES"]
+date = "2021-01-01"
+content = """
+> <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/saves/" target="_blank">SAVES: Scalable Verification of Industrial Control Systems</a> is a  new project involving VerCors. This project is a cooperation of WWU-Münster and the University of Twente, funded by a WWU - UT collaboration grant.
+>The project aims to formaly analyse **embedded systems** developed with the C++ library **System-C** using **VerCors**."""
+
+["1st prize at Versen PhD Thesis Award 2021"]
+date = "2021-03-01"
+content = """
+> Wytse's thesis  <a href="https://research.utwente.nl/en/publications/deductive-techniques-for-model-based-concurrency-verification" target="_blank"> "Deductive techniques for model-based concurrency verification"</a> gets the 1st prize at the <a href="http://www.versen.nl/contents/winners-phd-award" target="_blank"> Versen PhD thesis Award 2021</a>.
+
+><img src="/images/wytsePhD.png" alt=\"Book cover of Deductive Techniques for Model-Based Concurrency Verification by Wytse Oortwijn" style="width:25%">
+"""
+
+["Paper accepted at FormaliSE 2021"]
+date = "2021-05-21"
+content = """
+> <a href="https://www.computer.org/csdl/proceedings-article/formalise/2021/391300a111/1tB7uvYGnJK" target="_blank">**Permission-Based Verification of Red-Black Trees and Their Merging**</a> by Lukas Armborst and Marieke Huisman has been accepted at <a href="https://www.computer.org/csdl/proceedings/formalise/2021/1uHgVjg2CLS" target="_blank">the 2021 edition of FormaliSE</a>."""
+
+["Paper accepted at SAS 2021"]
+date = "2021-07-21"
+content = """
+> The paper **Automated Verification of the Parallel Bellman–Ford Algorithm** by M. Safari, W. Oortwijn and M. Huisman, has been accepted at <a href="https://conf.researchr.org/home/sas-2021?" target="_blank">the 28th Static Analysis Symposium</a>."""
+
+["New internship to bring VerCors  a nice UI"]
+date = "2021-07-21"
+content = """
+**Théophile Petit** from *TELECOM Nancy* has joined our VerCors team for an internship during this summer period. He will be working on a **VS-code** compatible plugin for VerCors."""
+
+["Paper accepted at FMICS 2021"]
+date = "2021-08-27"
+content = """
+> The paper **Modular Transformation of Java Exceptions Modulo Errors** by Robert Rubbens, Sophie Lathouwers and Marieke Huisman, was accepted at <a href="https://qonfest2021.lacl.fr/fmics21.php" target="_blank">the International Conference on Formal Methods for Industrial Critical Systems (FMICS 2021)</a>. Here is the <a href="https://link.springer.com/chapter/10.1007%2F978-3-030-85248-1_5" target="_blank">link</a> to the paper."""
+
+["Petra van den Bos started as assistant professor in Twente"]
+date = "2021-12-01"
+content = """
+> Our team member <a href="https://petravdbos.nl/">Petra van den Bos</a> started as an assistant professor at the our group! She is interested in applying formal techniques to determine the (in)correctness of software systems. In particular, her research interests include deductive verification and model-based testing."""
+
+["Paper accepted at TACAS 2022"]
+date = "2022-03-09"
+content = """
+> The paper **Alpinist: an Annotation-Aware GPU Program Optimizer** by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs, was accepted at the <a href="https://etaps.org/2022/tacas" target="_blank">28th International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS 2022)</a>. """
+
+["Paper accepted at ESOP 2022"]
+date = "2022-03-09"
+content = """
+> The paper **A Predicate Transformer for Choreographies** by Sung-Shik Jongmans and Petra van den Bos, was accepted at the <a href="https://etaps.org/2022/esop" target="_blank">31st European Symposium on Programming (ESOP 2022)</a>. """
+
+["New PhD candidate Philip Tasche"]
+date = "2022-03-09"
+content = """
+> From last January, <a href="https://people.utwente.nl/p.b.h.tasche" target="_blank">Philip Tasche</a> has joined our VerCors team as a PhD candidate. Philip will be working under the <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/saves/" target="_blank" >SAVES</a> project for the formal verification of SystemC embedded systems software. Welcome Philip!"""
+
+["Paper accepted at FormaliSE"]
+date = "2022-03-11"
+content = """
+> The paper **Formal Specifications Investigated: A Classification and Analysis of Annotations for Deductive Verifiers** by Sophie Lathouwers and Marieke Huisman, was accepted at the <a href="https://conf.researchr.org/home/icse-2022/Formalise-2022" target="_blank">10th International Conference on Formal Methods in Software Engineering (FormaliSE 2022)</a>."""
+
+["Journal paper accepted at TCS"]
+date = "2022-03-11"
+content = """
+> The paper **Formal verification of parallel prefix sum and stream compaction algorithms in CUDA** by Mohsen Safari and Marieke Huisman, was accepted to be published in the journal for  <a href="https://www.sciencedirect.com/journal/theoretical-computer-science" target="_blank">Theoretical Computer Science </a>. Here is the <a href="https://www.sciencedirect.com/science/article/pii/S0304397522001232?via%3Dihub" target="_blank">link</a> to the paper."""
+
+["VerCors present at this year's VerifyThis competition"]
+date = "2022-03-11"
+content = """
+> The VerCors team will bring 3 teams to compete at this year's edition of the <a href="https://etaps.org/2022/workshops" target="_blank">VerifyThis</a> competition taking part in the opening weekend (2nd and 3rd of April) of the <a href="https://etaps.org/2022" target="_blank">ETAPS</a> conferences in Munich."""
+
+["2nd place at VerifyThis 2022"]
+date = "2022-04-14"
+content = """
+> Our team "VerCors team Yellow" got the second place prize at this year's <a href="https://www.pm.inf.ethz.ch/research/verifythis.html" target="_blank">VerifyThis competition</a>!  Congratulations Robert Rubbens and Phillip Tasche for your achievement.
+
+><img src="/images/teamyellow2022.jpeg" alt="Bob Rubbens and Philip Tasche holding certificates reading VerifyThis 2nd place - VerCors Yellow" style="width:25%">
+"""

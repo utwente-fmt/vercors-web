@@ -1,0 +1,5 @@
+pvl = {"name" = "PVL"}
+java = {"name" = "Java"}
+cu = {"name" = "Cuda"}
+c = {"name" = "C / OpenMP / OpenCL"}
+sil = {"name" = "Viper"}

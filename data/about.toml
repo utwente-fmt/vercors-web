@@ -1,0 +1,82 @@
+members = [
+    { url = "//petravdbos.nl", name = "dr. Petra van den Bos" },
+    { url = "//people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti" },
+    { url = "//people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc" },
+    { url = "//wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "Sophie Lathouwers, MSc" },
+    { url = "//people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc" },
+    { url = "//people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc" },
+    { url = "//people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc" },
+    { url = "//people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc" },
+]
+
+alumni = [
+    { url = "//wwwhome.ewi.utwente.nl/~safarim/", name = "Mohsen Safari, MSc" },
+    { url = "//sjcjoosten.nl", name = "dr.ir. Sebastiaan Joosten" },
+    { url = "#", name = "Fauzia Ehsan, MSc" },
+    { url = "//wwwhome.ewi.utwente.nl/~oortwijnwhm/", name = "dr. Wytse Oortwijn" },
+    { url = "//scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en", name = "dr. Stefan Blom" },
+    { url = "//scholar.google.com/citations?user=dmYvWaAAAAAJ&hl=es&oi=sra", name = "dr. Wojciech I. Mostowski" },
+    { url = "#", name = "Henk Mulder, MSc" },
+    { url = "//wwwhome.ewi.utwente.nl/~darabis/", name = "dr. Saeed Darabi" },
+    { url = "#", name = "dr. Afshin Amighi" },
+    { url = "//dblp.org/pers/hd/z/Zaharieva=Stojanovski:Marina", name = "dr. Marina Zaharieva-Stojanovski" },
+    { url = "#", name = "Jelte Zeilstra, MSc" },
+]
+
+[leader]
+name = "prof.dr. Marieke Huisman"
+url = "//wwwhome.ewi.utwente.nl/~marieke/"
+image = "/images/marieke.jpg"
+
+[sponsors.0]
+name = "Mercedes"
+desc = "Maximal Reliability of concurrent and Distributed Software"
+url = "https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/"
+image = "/images/Mercedes%20logo.png"
+funding = """
+Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
+Duration: June 2017 until June 2022"""
+
+[sponsors.1]
+name = "ChEOPS"
+desc = "Verified Construction of Correct and Optimised Parallel Software"
+url = "//www.utwente.nl/en/eemcs/fmt/research/projects/cheops/"
+image = "/images/cheops.png"
+funding = """
+Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
+Duration: September 2019 until August 2022"""
+
+[sponsors.2]
+name = "SAVES"
+desc = "Scalable Verification of Industrial Control Systems"
+url = "//www.utwente.nl/en/eemcs/fmt/research/projects/saves/"
+image = "/images/saves.png"
+funding = """
+Funded by: WWU-UT collaboration grant<br>
+Duration: January 2021 until December 2021"""
+
+[sponsors.3]
+name = "CARP"
+desc = "Correct and Efficient Accelerator Programming"
+url = "//carp.doc.ic.ac.uk/external/objectives.php"
+image = "/images/CARP.png"
+funding = """
+Funded by: <a href="" target="_blank">European Commission FP7</a>
+Duration: December 2011 until December 2014"""
+
+[sponsors.4]
+name = "VerCors"
+desc = "Verification of Concurrent Data Structures"
+url = "//fmt.ewi.utwente.nl/research/projects/view/vercors/"
+image = ""
+funding = """
+Funded by: <a href="//erc.europa.eu" target="_blank">European Resource Council</a><br>
+Duration: 2011 until 2016"""
+
+[sponsors.5]
+name = "VerDi"
+desc = "Verification of Distributed Software"
+url = "//fmttools.ewi.utwente.nl/research/projects/VerDi/"
+image = ""
+funding = """
+Funded by: <a href="//www.nwo.nl/en" target="_blank">NWO</a>"""
