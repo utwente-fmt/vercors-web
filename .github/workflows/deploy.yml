@@ -32,6 +32,9 @@ jobs:
       - run: cp -r vercors-web/build/* vercors-web-build/pub
       - run: |
           cd vercors-web-build
+          git config --global user.name "VerCors Bot"
+          git config --global user.email "vercors-develop@lists.utwente.nl"
           git add .
           git status
-          git diff HEAD
+          git commit -m 'Update Website'
+          git push
