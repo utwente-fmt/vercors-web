@@ -22,12 +22,12 @@ jobs:
           repository: utwente-fmt/vercors-web-build
           path: vercors-web-build
           token: ${{ secrets.VERCORS_BOT_PAT }}
-      - run: cd vercors-web
-      - run: virtualenv venv -p python3
-      - run: source venv/bin/activate
-      - run: pip install -r requirements.txt
-      - run: python build.py
-      - run: cd ..
+      - run: |
+          cd vercors-web
+          virtualenv venv -p python3
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python build.py
       - run: rm -r vercors-web-build/pub/*
       - run: cp -r vercors-web/build/* vercors-web-build/pub
       - run: ls -l vercors/web-build/pub
