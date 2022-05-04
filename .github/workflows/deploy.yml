@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy
     steps:
+      - run: apt install pandoc
       - uses: actions/setup-python@v3
         with:
           python-version: '3.x'
@@ -21,15 +22,12 @@ jobs:
           repository: utwente-fmt/vercors-web-build
           path: vercors-web-build
           token: ${{ secrets.VERCORS_BOT_PAT }}
-      - shell: bash
-        run: |
-          pip3 install virtualenv
-          cd vercors-web
-          virtualenv venv -p python3
-          source venv/bin/activate
-          pip install -r requirements.txt
-          python build.py
-          cd ..
-          rm -r vercors-web-build/pub/*
-          cp -r vercors-web/build/* vercors-web-build/pub
-          ls -l vercors/web-build/pub
+      - run: cd vercors-web
+      - run: virtualenv venv -p python3
+      - run: source venv/bin/activate
+      - run: pip install -r requirements.txt
+      - run: python build.py
+      - run: cd ..
+      - run: rm -r vercors-web-build/pub/*
+      - run: cp -r vercors-web/build/* vercors-web-build/pub
+      - run: ls -l vercors/web-build/pub
