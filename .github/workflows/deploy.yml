@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy
     steps:
-      - run: apt install pandoc
+      - run: sudo apt install pandoc
       - uses: actions/setup-python@v3
         with:
           python-version: '3.x'
