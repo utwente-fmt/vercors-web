@@ -8,7 +8,7 @@ import requests
 import toml
 
 
-VERCORS = "ssh://git@github.com/utwente-fmt/vercors.git"
+VERCORS = "https://github.com/utwente-fmt/vercors.git"
 
 
 def load_data(path):
