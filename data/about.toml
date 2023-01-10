@@ -7,6 +7,7 @@ members = [
     { url = "//people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc" },
     { url = "//people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc" },
     { url = "//people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc" },
+    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc"},
 ]
 
 alumni = [

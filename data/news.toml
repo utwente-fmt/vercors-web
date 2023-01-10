@@ -307,3 +307,21 @@ content = """
 > Our former VerCors team member Mohsen Safari successfully defended his PhD thesis last 6th of July. Congratulations doctor Mohsen Safari! Mohsen will now continue his carrier as an HPC Consultant at <a href="https://www.surf.nl/" target="_blank">SURF</a>.</p>
 > <img src="/images/mohsen.jpg" alt="Mohsen Safari PhD defense" style="width:25%">
 """
+
+["Paper accepted at ETAPS"]
+date = "2022-12-21"
+content = """
+> The paper **"JavaBIP meets VerCors: Towards the Safety of Concurrent Software Systems in Java"** by Simon Bliudze, **Petra van den Bos**, **Marieke Huisman**, **Robert Rubbens**, and Larisa Safina, has been accepted at <a href="https://etaps.org/2023/call-for-papers" target="_blank">ETAPS 2023</a>.
+"""
+
+["Paper presented at ISOLA 2022"]
+date = "2022-10-24"
+content = """
+> Robert Rubbens presented the paper **"On Deductive Verification of an Industrial Concurrent Software Component with VerCors"**, by Raul E. Monti; Robert Rubbens and Marieke Huisman, at the ISOLA conference 2022, in Greece.
+"""
+
+["Paper published"]
+date = "2022-12-21"
+content = """
+> The paper **"The Integration of Testing and Program Verification"**, by Petra van den Bos and Marieke Huisman, has been published in <a href="https://link.springer.com/book/10.1007/978-3-031-15629-8">"A Journey from Process Algebra via Timed Automata to Model Learning. Essays Dedicated to Frits Vaandrager on the Occasion of His 60th Birthday"</a>.
+"""
