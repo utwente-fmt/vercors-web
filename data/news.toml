@@ -325,3 +325,9 @@ date = "2022-12-21"
 content = """
 > The paper **"The Integration of Testing and Program Verification"**, by Petra van den Bos and Marieke Huisman, has been published in <a href="https://link.springer.com/book/10.1007/978-3-031-15629-8">"A Journey from Process Algebra via Timed Automata to Model Learning. Essays Dedicated to Frits Vaandrager on the Occasion of His 60th Birthday"</a>.
 """
+
+["New team member"]
+date = "2022-06-01"
+content = """
+> <a href="https://www.linkedin.com/in/naum-tomov-82a62b21b/">**Naum Tomov**</a> has joined our team as a scientific programmer. We now have 2 scientific programmers to tackle the issues in our tool :D
+"""
