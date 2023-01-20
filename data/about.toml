@@ -36,7 +36,7 @@ url = "https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/"
 image = "/images/Mercedes%20logo.png"
 funding = """
 Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
-Duration: June 2017 until June 2022"""
+Duration: June 2017 until June 2024"""
 
 [sponsors.1]
 name = "ChEOPS"
@@ -45,7 +45,7 @@ url = "//www.utwente.nl/en/eemcs/fmt/research/projects/cheops/"
 image = "/images/cheops.png"
 funding = """
 Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
-Duration: September 2019 until August 2022"""
+Duration: September 2019 until June 2025"""
 
 [sponsors.2]
 name = "SAVES"
@@ -54,7 +54,7 @@ url = "//www.utwente.nl/en/eemcs/fmt/research/projects/saves/"
 image = "/images/saves.png"
 funding = """
 Funded by: WWU-UT collaboration grant<br>
-Duration: January 2021 until December 2021"""
+Duration: January 2021 until December 2025"""
 
 [sponsors.3]
 name = "CARP"
@@ -62,7 +62,7 @@ desc = "Correct and Efficient Accelerator Programming"
 url = "//carp.doc.ic.ac.uk/external/objectives.php"
 image = "/images/CARP.png"
 funding = """
-Funded by: <a href="" target="_blank">European Commission FP7</a>
+Funded by: <a href="" target="_blank">European Commission FP7</a><br>
 Duration: December 2011 until December 2014"""
 
 [sponsors.4]
@@ -80,4 +80,5 @@ desc = "Verification of Distributed Software"
 url = "//fmttools.ewi.utwente.nl/research/projects/VerDi/"
 image = ""
 funding = """
-Funded by: <a href="//www.nwo.nl/en" target="_blank">NWO</a>"""
+Funded by: <a href="//www.nwo.nl/en" target="_blank">NWO</a><br>
+Duration: 2015 until 2019"""
