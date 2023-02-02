@@ -331,3 +331,9 @@ date = "2022-06-01"
 content = """
 > <a href="https://www.linkedin.com/in/naum-tomov-82a62b21b/">**Naum Tomov**</a> has joined our team as a scientific programmer. We now have 2 scientific programmers to tackle the issues in our tool :D
 """
+
+["Paper published on Multiparty Session Typing & VerCors"]
+date = "2023-02-02"
+content = """
+> We wish to congratulate Jelle Bouma and his supervisor Sung-Shik Jongmans with publishing their paper at TACAS 2023. It is titled **"Multiparty Session Typing in Java, Deductively"**, and it presents the BGJ tool, which checks adherence of Java code to a multiparty session type with near-zero overhead. It accomplishes this by generating contracts that encode this protocol, which can then be verified with VerCors. A preprint can be found on Sung-Shik's website: <a href="https://sungshik.github.io/">https://sungshik.github.io/</a>.
+"""
