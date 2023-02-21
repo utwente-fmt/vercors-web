@@ -311,7 +311,7 @@ content = """
 ["Paper accepted at ETAPS"]
 date = "2022-12-21"
 content = """
-> The paper **"JavaBIP meets VerCors: Towards the Safety of Concurrent Software Systems in Java"** by Simon Bliudze, **Petra van den Bos**, **Marieke Huisman**, **Robert Rubbens**, and Larisa Safina, has been accepted at <a href="https://etaps.org/2023/call-for-papers" target="_blank">ETAPS 2023</a>.
+> The paper **"JavaBIP meets VerCors: Towards the Safety of Concurrent Software Systems in Java"** by Simon Bliudze, **Petra van den Bos**, **Marieke Huisman**, **Robert Rubbens**, and Larisa Safina, has been accepted at <a href="https://etaps.org/2023/conferences/" target="_blank">FASE 2023</a>.
 """
 
 ["Paper presented at ISOLA 2022"]
