@@ -343,3 +343,9 @@ date = "2023-03-16"
 content = """
 > VerCors 2.0.0 has been released, and can be obtained [here](https://github.com/utwente-fmt/vercors/releases/tag/v2.0.0).
 """
+
+["Recent presentations at PLACES and ABZ"]
+date = "2023-05-30"
+content = """
+> Marieke Huisman gave a talk titled "VerCors & Alpinist: Verification of Optimised GPU Programs" at the <a href="https://places-workshop.github.io/2023/programme-proceedings">PLACES workshop</a>, co-located at ETAPS, and at the <a href="https://abz-conf.org/2023/">ABZ conference</a>. This talk is based on earlier work done in a collaboration between Ömer Şakar, Mohsen Safari, Marieke Huisman, and Anton Wijs, and <a href="https://research.utwente.nl/en/publications/alpinist-an-annotation-aware-gpu-program-optimizer">can be found here</a>.
+"""
