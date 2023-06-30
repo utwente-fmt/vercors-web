@@ -338,7 +338,7 @@ content = """
 > We wish to congratulate Jelle Bouma, Stijn de Gouw and Sung-Shik Jongmans with publishing their paper at TACAS 2023. It is titled **"Multiparty Session Typing in Java, Deductively"**, and it presents the BGJ tool, which checks adherence of Java code to a multiparty session type with near-zero overhead. It accomplishes this by generating contracts that encode this protocol, which can then be verified with VerCors. A preprint can be found on Sung-Shik's website: <a href="https://sungshik.github.io/">https://sungshik.github.io/</a>.
 """
 
-["Member graduation"]
+["Member graduation: Jan Boerman"]
 date = "2023-02-24"
 content = """
 > One of our ex-master students, Jan Boerman, has graduated today. His mastersthesis is titled "Formal verification of a sequential SCC algorithm". You can find it <a href='https://purl.utwente.nl/essays/94474' target="_blank">here</a>. Congratulations Jan!
@@ -350,7 +350,7 @@ content = """
 > VerCors 2.0.0 has been released, and can be obtained [here](https://github.com/utwente-fmt/vercors/releases/tag/v2.0.0).
 """
 
-["Member goodbye"]
+["Member goodbye: Raúl E. Monti"]
 date = "2023-05-23"
 content = """
 > Today the VerCors team, and FMT as a whole, organized a goodbye party for Raúl E. Monti. Raúl joined the VerCors team on the 3rd of June 2019, and has since then successfully helped us maintain and further develop the VerCors toolset. Raúl's next challenge will be in Veldhoven at ASML. We thank you for your contributions, Raúl, and wish you best of luck at ASML!
@@ -360,4 +360,11 @@ content = """
 date = "2023-05-30"
 content = """
 > Marieke Huisman gave a talk titled "VerCors & Alpinist: Verification of Optimised GPU Programs" at the <a href="https://places-workshop.github.io/2023/programme-proceedings">PLACES workshop</a>, co-located at ETAPS, and at the <a href="https://abz-conf.org/2023/">ABZ conference</a>. This talk is based on earlier work done in a collaboration between Ömer Şakar, Mohsen Safari, Marieke Huisman, and Anton Wijs, and <a href="https://doi.org/10.1007/978-3-030-99527-0_18">can be found here</a>.
+"""
+
+
+["Member graduation: Joël Ledelay"]
+date = "2023-06-30"
+content = """
+> One of our ex-master students, Joël Ledelay, has graduated today. His mastersthesis is titled "Verification of distributed locks: a case study". You can find it <a href="https://purl.utwente.nl/essays/95192">here</a>. Well done Joël! We wish you best of luck in your future endeavors.
 """
