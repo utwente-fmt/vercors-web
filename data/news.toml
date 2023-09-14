@@ -374,3 +374,16 @@ date = "2023-07-28"
 content = """
 > One of our ex-master students, Dré van Oorschot, has graduated today. His mastersthesis is titled "VCLLVM: A Transformation Tool for LLVM IR programs to aid Deductive Verification". You can find it <a href="https://purl.utwente.nl/essays/96536">here</a>. Well done Dré! We wish you best of luck in your future endeavors.
 """
+
+["Paper accepted at iFM"]
+date = "2023-08-10"
+content = """
+> The paper **"Joining Forces! Reusing Contracts for Deductive Verifiers through Automatic Translation"** by **Lukas Armborst**, **Sophie Lathouwers** and **Marieke Huisman**, has been accepted at <a href="https://liacs.leidenuniv.nl/~bonsanguemm/ifm23/index.html" target="_blank">iFM 2023</a>.
+"""
+
+["PhD defense of Sophie Lathouwers"]
+date = "2023-09-12"
+content = """
+> VerCors team member Sophie Lathouwers will defend her PhD thesis on 17th of October, at 14:30. 
+"""
+
