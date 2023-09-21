@@ -378,12 +378,12 @@ content = """
 ["Paper accepted at iFM"]
 date = "2023-08-10"
 content = """
-> The paper **"Joining Forces! Reusing Contracts for Deductive Verifiers through Automatic Translation"** by **Lukas Armborst**, **Sophie Lathouwers** and **Marieke Huisman**, has been accepted at <a href="https://liacs.leidenuniv.nl/~bonsanguemm/ifm23/index.html" target="_blank">iFM 2023</a>.
+> The paper **"Joining Forces! Reusing Contracts for Deductive Verifiers through Automatic Translation"** by **Lukas Armborst**, **Sophie Lathouwers** and **Marieke Huisman**, has been accepted at <a href="https://liacs.leidenuniv.nl/~bonsanguemm/ifm23/index.html" target="_blank">iFM 2023</a>. The corresponding artifact has also been successfully checked for all three badges: Functional, Reusable and Available.
 """
 
 ["PhD defense of Sophie Lathouwers"]
 date = "2023-09-12"
 content = """
-> VerCors team member Sophie Lathouwers will defend her PhD thesis on 17th of October, at 14:30. 
+> VerCors team member **Sophie Lathouwers** will defend her PhD thesis on 17th of October 2023, at 14:30. We wish her the best of luck!
 """
 
