@@ -1,8 +1,6 @@
 members = [
     { url = "//petravdbos.nl", name = "dr. Petra van den Bos" },
-    { url = "//people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti" },
     { url = "//people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc" },
-    { url = "//wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "Sophie Lathouwers, MSc" },
     { url = "//people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc" },
     { url = "//people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc" },
     { url = "//people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc" },
@@ -11,6 +9,8 @@ members = [
 ]
 
 alumni = [
+    { url = "//wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers" },
+    { url = "//people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti" },
     { url = "//wwwhome.ewi.utwente.nl/~safarim/", name = "Mohsen Safari, MSc" },
     { url = "//sjcjoosten.nl", name = "dr.ir. Sebastiaan Joosten" },
     { url = "#", name = "Fauzia Ehsan, MSc" },
