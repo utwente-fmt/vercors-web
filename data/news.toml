@@ -381,9 +381,27 @@ content = """
 > The paper **"Joining Forces! Reusing Contracts for Deductive Verifiers through Automatic Translation"** by **Lukas Armborst**, **Sophie Lathouwers** and **Marieke Huisman**, has been accepted at <a href="https://liacs.leidenuniv.nl/~bonsanguemm/ifm23/index.html" target="_blank">iFM 2023</a>. The corresponding artifact has also been successfully checked for all three badges: Functional, Reusable and Available.
 """
 
-["PhD defense of Sophie Lathouwers"]
-date = "2023-09-12"
+["Paper accepted at VMCAI"]
+date = "2023-10-11"
 content = """
-> VerCors team member **Sophie Lathouwers** will defend her PhD thesis on 17th of October 2023, at 14:30. We wish her the best of luck!
+> The paper **"Deductive Verification of Parameterized Embedded Systems modeled in SystemC"** by **Philip Tasche**, **Raúl E. Monti**, **Stefanie Eva Drerup**, **Pauline Blohm**, **Paula Herber** and **Marieke Huisman** has been accepted at <a href="https://popl24.sigplan.org/home/VMCAI-2024">VMCAI 2024</a>. The artifact has also been evaluated and granted the Available and Reusable badges.
+"""
+
+["PhD defense of Sophie Lathouwers"]
+date = "2023-10-17"
+content = """
+> The former VerCors team member **Sophie Lathouwers** successfully defended her PhD thesis on the 17th of October 2023. Congratulations, Doctor Sophie Lathouwers! 
+"""
+
+["Marieke Huisman appointed NAE fellow"]
+date = "2023-11-02"
+content = """
+> **Prof. Marieke Huisman** has been appointed as one of 62 fellows for the Netherlands Academy of Engineering. The fellowship is awarded to members who stand out in terms of achievements, societal impact and leadership. Congratulations, Marieke!
+"""
+
+["Marieke Huisman to talk at iFM PhD Symposium"]
+date = "2023-11-02"
+content = """
+> **Marieke Huisman** will give an invited talk at the iFM PhD Symposium. The title of her presentation is **"A verification journey: from sequential Java programs to massively-parallel GPU code"**.
 """
 
