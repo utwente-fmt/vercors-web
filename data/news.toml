@@ -410,3 +410,9 @@ date = "2023-11-02"
 content = """
 > Pallas (Program Analysis for LLVM-IR and All its Source languages) is a new project involving VerCors. Pallas aims for a universal approach to ensure correctness in programming languages based on LLVM, simplifying verification tech development. This is crucial given software's pivotal role in our lives, where failures can lead to disasters and financial losses. Software developers urgently seek techniques to improve quality, especially formal verification to prevent errors. Pallas tackles integration challenges by creating deductive program verification for LLVM-IR, applicable to any programming language that compiles to this format.
 """
+
+["Prof. Marieke Huisman receives the 2023 Athena Award"]
+date = "2023-11-30"
+content = """
+> **Prof. Marieke Huisman** has been awarded <a href="https://www.nwo.nl/en/prof-dr-marieke-huisman"> the 2023 Athena Award</a>. The Athena Award rewards female researchers who stand out, and because of that are role models for others, demonstrating that a career in science is possible. Congratulations, Marieke!
+"""
