@@ -1,0 +1,201 @@
+body, input, select, textarea {
+    color: var(--text-light);
+    font-family: 'Raleway', sans-serif;
+    font-size: 13pt;
+    font-weight: 300;
+    line-height: 1.75em;
+}
+
+pre {
+    line-height: 1em;
+}
+
+figure {
+    display: inline-block;
+}
+
+a {
+    color: #3ac984;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+strong, b {
+    font-weight: 700;
+}
+
+em, i {
+    font-style: italic;
+}
+
+p, ul, ol, dl, table, blockquote, pre, figure, .verification-container {
+    margin: 0 0 2em;
+}
+
+ul, ol {
+    padding: 0;
+}
+
+pre {
+    background-color: #2e2e2e;
+    color: #f8f8f2;
+    padding: 1em;
+    overflow-x: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: inherit;
+    font-weight: 700;
+    line-height: 1.75em;
+    margin: 0;
+}
+
+#logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+sub {
+    font-size: 0.8em;
+    position: relative;
+    top: 0.5em;
+}
+
+sup {
+    font-size: 0.8em;
+    position: relative;
+    top: -0.5em;
+}
+
+blockquote {
+    border-left: solid 0.5em #888888;
+    font-style: italic;
+    padding: 1em 0 0.5em 2em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    appearance: none;
+    background: none;
+    border: solid 1px #888888;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0.75em;
+    text-decoration: none;
+    width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #3ac984;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    line-height: 1em;
+}
+
+::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
+
+/* Tables */
+table {
+    width: 100%;
+}
+
+table.default {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.default tbody tr {
+    border-bottom: solid 1px #888888;
+}
+
+table.default td {
+    padding: 1em 1em 1em 1em;
+}
+
+table.default th {
+    font-weight: 700;
+    padding: 8px;
+    text-align: left;
+}
+
+table.default tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+table.default thead {
+    background: #000000;
+    color: #fff;
+}
+
+/* Button */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    -o-transition: background-color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    background: #3ac984;
+    border-radius: 40px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.80em 2em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 600;
+    min-width: 10em;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:hover {
+    background-color: #32b777;
+}
+
+input[type="submit"].fit,
+input[type="reset"].fit,
+input[type="button"].fit,
+.button.fit {
+    width: 100%;
+}
+
+input[type="submit"].small,
+input[type="reset"].small,
+input[type="button"].small,
+.button.small {
+    font-size: 0.8em;
+}

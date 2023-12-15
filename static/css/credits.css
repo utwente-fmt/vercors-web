@@ -1,0 +1,16 @@
+.sponsor-list {
+    list-style-type: none;
+}
+
+.sponsor-list li {
+    display: inline-block;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.sponsor-list li figure, .sponsor-list li p {
+    margin: 0;
+}
