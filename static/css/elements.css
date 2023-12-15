@@ -1,13 +1,48 @@
-body, input, select, textarea {
-    color: var(--text-light);
+:root {
     font-family: 'Raleway', sans-serif;
     font-size: 13pt;
-    font-weight: 300;
-    line-height: 1.75em;
+    font-weight: 500;
+    line-height: 1.75;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+}
+
+strong, b {
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 1em 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+em, i {
+    font-style: italic;
 }
 
 pre {
-    line-height: 1em;
+    line-height: 1rem;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    padding: 1rem;
+    overflow-x: auto;
 }
 
 figure {
@@ -15,7 +50,6 @@ figure {
 }
 
 a {
-    color: #3ac984;
     text-decoration: underline;
 }
 
@@ -23,65 +57,31 @@ a:hover {
     text-decoration: none;
 }
 
-strong, b {
-    font-weight: 700;
-}
-
-em, i {
-    font-style: italic;
-}
-
 p, ul, ol, dl, table, blockquote, pre, figure, .verification-container {
-    margin: 0 0 2em;
+    margin: 0 0 2rem;
 }
 
 ul, ol {
     padding: 0;
 }
 
-pre {
-    background-color: #2e2e2e;
-    color: #f8f8f2;
-    padding: 1em;
-    overflow-x: auto;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: inherit;
-    font-weight: 700;
-    line-height: 1.75em;
-    margin: 0;
-}
-
-#logo a {
-    color: inherit;
-    text-decoration: none;
-}
-
-h2 {
-    font-size: 1.5em;
-}
-
-h3 {
-    font-size: 1.25em;
-}
-
 sub {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     position: relative;
-    top: 0.5em;
+    top: 0.5rem;
 }
 
 sup {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     position: relative;
-    top: -0.5em;
+    top: -0.5rem;
 }
 
 blockquote {
-    border-left: solid 0.5em #888888;
     font-style: italic;
-    padding: 1em 0 0.5em 2em;
+    border-left: solid 0.5rem var(--ruler-light);
+    padding: 1rem 0 0.5rem 2rem;
+    margin-left: -1.5rem;
 }
 
 input[type="text"],
@@ -90,31 +90,23 @@ input[type="email"],
 textarea {
     appearance: none;
     background: none;
-    border: solid 1px #888888;
-    color: inherit;
+    border: solid 1px var(--ruler-light);
     display: block;
     outline: 0;
-    padding: 0.75em;
+    padding: 0.75rem;
     text-decoration: none;
+    line-height: 1rem;
     width: 100%;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-    border-color: #3ac984;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-    line-height: 1em;
-}
-
 ::placeholder {
-    color: inherit;
     opacity: 0.5;
+}
+
+hr {
+    border: none;
+    border-top: 4px solid;
+    margin: 2rem -2rem;
 }
 
 /* Tables */
@@ -132,7 +124,7 @@ table.default tbody tr {
 }
 
 table.default td {
-    padding: 1em 1em 1em 1em;
+    padding: 1rem;
 }
 
 table.default th {
@@ -154,48 +146,25 @@ table.default thead {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-.button {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -o-appearance: none;
-    -ms-appearance: none;
+.button, .mountain-background .button {
     appearance: none;
-    -moz-transition: background-color 0.2s ease-in-out;
-    -webkit-transition: background-color 0.2s ease-in-out;
-    -o-transition: background-color 0.2s ease-in-out;
-    -ms-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
-    background: #3ac984;
     border-radius: 40px;
     border: 0;
-    color: white;
+    color: var(--text-light);
     cursor: pointer;
     display: inline-block;
-    padding: 0.80em 2em;
+    padding: 0.80rem 2rem;
     text-align: center;
     text-decoration: none;
-    font-size: 1.4em;
-    font-weight: 600;
-    min-width: 10em;
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-width: 10rem;
 }
 
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
-.button:hover {
-    background-color: #32b777;
-}
-
-input[type="submit"].fit,
-input[type="reset"].fit,
-input[type="button"].fit,
-.button.fit {
-    width: 100%;
-}
-
-input[type="submit"].small,
-input[type="reset"].small,
-input[type="button"].small,
-.button.small {
-    font-size: 0.8em;
+.button:hover, .mountain-background .button:hover {
+    // TODO background-color: #32b777;
 }

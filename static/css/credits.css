@@ -3,11 +3,10 @@
 }
 
 .sponsor-list li {
-    display: inline-block;
-    width: 50%;
-    border: 1px solid black;
-    border-radius: 12px;
-    padding: 1em;
+    display: block;
+    border-left: solid 0.5rem var(--ruler-light);
+    padding: 1rem 0 0.5rem 2rem;
+    margin-left: -1.5rem;
     margin-bottom: 1em;
 }
 

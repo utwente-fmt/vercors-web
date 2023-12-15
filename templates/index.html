@@ -2,52 +2,43 @@
 
 {% block title %}Home{% endblock %}
 
-{% block headerstyle %}mountain-background{% endblock %}
+{% block headerstyle %}mountain-background secondary{% endblock %}
 {% block banner %}
-<header class="major">
-    <h2>Verification of Concurrent and Distributed Software</h2>
-    <span id="abstract" class="byline">
-        VerCors is a tool for static verification of parallel programs.
-        VerCors aims to verify many different concurrency constructs,
-        including: heterogeneous concurrency (Java and C), GPU kernels
-        using barriers and atomics (OpenCL), and compiler directives
-        as used in deterministic parallelism (OpenMP). VerCors is able
-        to prove data-race freedom, memory safety, and functional
-        correctness of (concurrent) programs written in Java, C,
-        OpenCL, OpenMP, and its own Prototypal Verification Language PVL.
-    </span>
-</header>
+<h1 id="title">Verification of Concurrent<br>and Distributed Software</h1>
+<p id="abstract">
+    VerCors is a tool for static verification of parallel programs.
+    VerCors aims to verify many different concurrency constructs,
+    including: heterogeneous concurrency (Java and C), GPU kernels
+    using barriers and atomics (OpenCL), and compiler directives
+    as used in deterministic parallelism (OpenMP). VerCors is able
+    to prove data-race freedom, memory safety, and functional
+    correctness of (concurrent) programs written in Java, C,
+    OpenCL, OpenMP, and its own Prototypal Verification Language PVL.
+</p>
 {% endblock %}
 
 {% block content %}
-<div class="wrapper style2" style="background-color: #f1f1f1f1;text-align:center;">
+<div class="alt">
     <section class="container">
+        <h2>Latest News</h2>
 
-        <header class="major" id="overview">
-            <h2>Latest News</h2>
-            <span class="byline"></span>
-        </header>
-
-        <p style="position:relative;text-align:center;">
-        <div style="height:400px;width:76%;overflow:auto;background-color:#f1f1f1f1;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;margin:auto;">
-            <div class="blog-posts">
-                {% for article in news %}
-                <div class="blog-post spacing">
-                    <h3><a href="{{ urls.article|format(article.title|slugify) }}">{{ article.title }}</a></h3>
-                    <p class="summary">
-                        <span class="date">{{ article.date }}</span>
-                    </p>
-                    {% autoescape false %}{{ article.content|md }}{% endautoescape %}
-                </div>
-                {% endfor %}
-            </div>
+        <div class="blog-posts">
+            {% for article in news[:5] %}
+            <header>
+                <h3><a href="{{ urls.article|format(article.title|slugify) }}">{{ article.title }}</a></h3>
+                <span class="byline">
+                    <span class="date">{{ article.date }}</span>
+                </span>
+            </header>
+            {% autoescape false %}{{ article.content|md }}{% endautoescape %}
+            </article>
+            {% endfor %}
         </div>
-        </p>
     </section>
 </div>
 
 <!-- Main -->
-<div id="main" class="wrapper style1">
+<div>
     <section class="container">
         <table id="t01" text-align="left">
             <tr>

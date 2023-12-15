@@ -5,6 +5,7 @@ import sys
 import jinja2
 import markdown
 from jinja2 import FileSystemLoader
+from datetime import datetime
 
 from util import *
 
@@ -25,6 +26,7 @@ def build():
         "news": by_date_desc(titled(load_data("news"))),
         "examples": titled(load_data("examples")),
         "languages": load_data("languages"),
+        "year": datetime.now().year,
     }
 
     print("Rendering bibliography...")

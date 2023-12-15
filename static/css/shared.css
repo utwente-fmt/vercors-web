@@ -1,128 +1,127 @@
-header.major {
-    margin-bottom: 1em;
+#logo a {
+    text-decoration: none;
 }
 
-header h2 {
-    margin: 0;
-    padding: 0;
-    font-size: 3em;
-    font-weight: 600;
-}
-
-header .byline {
-    font-size: 1.6em;
-}
-
-footer > :last-child {
-    margin-bottom: 0;
-}
-
-footer.major {
-    padding-top: 3em;
-}
-
-/* Icon */
-ul.style li {
-    clear: both;
+#logo img {
     display: block;
-    padding-top: 3em;
+    height: 5rem;
 }
 
-ul.style > :first-child {
-    padding-top: 0;
-}
-
-ul.style h3 {
+nav {
     display: block;
-    margin: 0;
-    padding-bottom: 0.50em;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #404040;
+    z-index: 100;
+    height: 5rem;
+    margin: 2rem 0;
+    font-size: 1.25rem;
+    text-align: center;
 }
 
-ul.style .fa {
-    float: left;
+nav ul {
+    margin: 0;
+}
+
+nav > .container > * {
     display: inline-block;
-    width: 80px;
-    height: 80px;
-    margin-right: 1em;
-    background: #3ac984;
-    line-height: 80px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 2em;
-    color: white;
+    vertical-align: middle;
 }
 
-ul.list {
-    list-style: none;
+nav a {
+    text-decoration: none;
 }
 
-ul.list li {
+nav > .container > ul > li > a {
+    color: var(--text-dark);
+}
+
+nav > .container > ul > li {
+    display: inline-block;
+    margin-left: 0.5rem;
+    position: relative;
+}
+
+nav > .container > ul > li > a {
+    text-align: left;
+    padding: 0.5rem 1.5rem;
+}
+
+nav > .container > ul > li:hover > a {
+    color: var(--text-light);
+    border-radius: 0.5rem;
+}
+
+nav > .container > ul > li:hover > a:has(+ ul) {
+    /* firefox 121+ */
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+nav > .container > ul > li:hover > a + ul {
     display: block;
-    padding: 0.60em 0;
-    border-top: 1px solid;
-    border-color: red;
 }
 
-ul.list > :first-child {
-    padding-top: 0;
-    border-top: none;
+nav > .container > ul > li > ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(1.75em - 2px);
+    width: 300px;
+
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    text-align: left;
 }
 
-/* Wrapper */
-.wrapper.style1 {
-    background: #fff;
+nav > .container > ul > li > ul > li > a {
+    color: var(--text-light);
 }
 
-.wrapper.style2 {
-    background: #ececec;
-    padding: 1em 0;
-    text-align: center;
+nav > .container > ul > li > ul > li {
+    display: block;
+    padding: 0.5em 1.5em;
+}
+
+.dark {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.alt {
+    background-color: var(--background-light-alt);
+}
+
+#footer {
+    position: sticky;
+    top: 100vh;
+}
+
+footer {
+    padding: 2rem 0;
 }
 
 /* Header */
 #header {
-    background-color: var(--background-light);
-    color: #fff;
     padding: 1em 0;
-    text-align: center;
-    position: relative;
 }
 
 #header.mountain-background {
     background-image: url('/images/background.svg');
     background-position: center top;
-}
-
-#header > * {
-    position: relative;
-    z-index: 1;
-}
-
-#logo {
-    font-size: 2em;
+    background-repeat: no-repeat;
 }
 
 /* Banner */
-#banner {
+#banner-buttons {
     text-align: center;
 }
 
-#banner .major h2 {
-    font-size: 3.5em;
+#title {
+    text-align: center;
+    margin-top: 7rem;
+    margin-bottom: 2rem;
 }
 
-#banner .major .byline {
-    display: block;
-    margin: 0em 2em;
-    line-height: 1.6em;
-    font-size: 1.5em;
-}
-
-#banner a {
-    color: inherit;
+#abstract {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Main */
@@ -134,45 +133,10 @@ ul.list > :first-child {
     padding: 1em 0;
 }
 
-/* Abstract */
-#abstract {
-    font-weight: bold;
-    text-shadow: 2px 2px #696969;
-}
-
-/* Footer */
-#footer {
-    padding: 2% 2%;
-    color: #fff;
-}
-
-#footer .major h2 {
-    font-size: 2em;
-    color: #FFF;
-}
-
-#footer .major .byline {
-    font-size: 1.1em;
-}
-
-#footer .copyright {
-    margin-top: 2em;
-    padding-top: 2em;
-    border-top: 2px solid;
-    border-color: rgba(192, 192, 192, 0.15);
-    text-align: justify;
-    color: inherit;
-
-}
-
-#footer a {
-    color: inherit;
-}
-
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 1400px;
+    width: 1200px;
 }
 
 .row > * {

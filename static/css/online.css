@@ -1,6 +1,6 @@
 .code-buttons {
     z-index: 10;
-    color: white;
+    color: var(--text-light);
     float: right;
     position: absolute;
     top: 16px;

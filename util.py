@@ -6,10 +6,11 @@ from collections import OrderedDict
 
 import requests
 import toml
+import os
 
-
-VERCORS = "https://github.com/utwente-fmt/vercors.git"
-
+ALT_VERCORS = os.environ.get("VERCORS_GIT", "")
+VERCORS = ALT_VERCORS if ALT_VERCORS else "https://github.com/utwente-fmt/vercors.git"
+print(VERCORS)
 
 def load_data(path):
     with open("data/" + path + ".toml") as f:

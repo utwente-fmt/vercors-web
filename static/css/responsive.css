@@ -1,55 +1,5 @@
 @media (min-width: 841px) {
-    #nav {
-        z-index: 100;
-        margin: 2em 0;
-        font-size: 16pt;
-    }
 
-    #nav a {
-        color: white;
-        text-decoration: none;
-    }
-
-    #nav > ul > li {
-        display: inline-block;
-        margin-left: 0.5em;
-        position: relative;
-    }
-
-    #nav > ul > li > a {
-        text-align: left;
-        padding: 0.5em 1.5em;
-    }
-
-    #nav > ul > li:hover > a {
-        background: #3ac984;
-        border-radius: 10px 10px 0 0;
-    }
-
-    #nav > ul > li:hover > a + ul {
-        display: block;
-    }
-
-    #nav > ul > li > ul {
-        display: none;
-        position: absolute;
-        left: 0;
-        top: 1.75em;
-        width: 300px;
-
-        background: #3ac984;
-        border-radius: 0 10px 10px 10px;
-        text-align: left;
-    }
-
-    #nav > ul > li > ul:hover {
-        display: block;
-    }
-
-    #nav > ul > li > ul > li {
-        display: block;
-        padding: 0.5em 1.5em;
-    }
 }
 
 @media (max-width: 1680px) {
