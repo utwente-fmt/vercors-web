@@ -2,10 +2,14 @@
     width: 25%;
     vertical-align: top;
     position: sticky;
-    top: 1em;
+    top: 1rem;
     float: right;
-    max-height: calc(100vh - 2em);
+    max-height: calc(100vh - 2rem);
     overflow-y: auto;
+}
+
+.wiki-side-menu a {
+    max-width: 100%;
 }
 
 .wiki-side-menu ul {
@@ -29,7 +33,7 @@
 }
 
 .wiki-side-menu-js a.focus {
-    border-left: 4px solid #3ac984;
+    border-left: 4px solid var(--primary);
 }
 
 .wiki-side-menu-js a + ul {

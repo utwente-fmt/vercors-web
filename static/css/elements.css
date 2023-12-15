@@ -14,7 +14,16 @@ strong, b {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
     line-height: 1.25;
-    margin: 1em 0;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6 {
+    margin-bottom: 0;
+}
+
+header {
+    margin-bottom: 1em;
 }
 
 h1 {
@@ -112,34 +121,6 @@ hr {
 /* Tables */
 table {
     width: 100%;
-}
-
-table.default {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table.default tbody tr {
-    border-bottom: solid 1px #888888;
-}
-
-table.default td {
-    padding: 1rem;
-}
-
-table.default th {
-    font-weight: 700;
-    padding: 8px;
-    text-align: left;
-}
-
-table.default tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-table.default thead {
-    background: #000000;
-    color: #fff;
 }
 
 /* Button */

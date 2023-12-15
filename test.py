@@ -15,4 +15,4 @@ print("Building the website...")
 build.build()
 print("Now serving on http://localhost:8000/")
 socketserver.TCPServer.allow_reuse_address = True
-socketserver.TCPServer(("127.0.0.1", 8000), Handler).serve_forever()
+socketserver.TCPServer(("0.0.0.0", 8000), Handler).serve_forever()

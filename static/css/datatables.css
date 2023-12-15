@@ -1,3 +1,11 @@
+table.dataTable tbody tr {
+    background-color: var(--background-light-alt) !important;
+}
+
+.alt table.dataTable tbody tr {
+    background-color: var(--background-light) !important;
+}
+
 a.asc:after {
     content: ' (A-Z)';
 }

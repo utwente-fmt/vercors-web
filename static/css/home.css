@@ -1,7 +1,7 @@
 .blog-posts {
     max-height: 40rem;
     overflow-y: scroll;
-    padding: 2rem;
+    padding: 0 2rem;
     background: radial-gradient(
         farthest-side at 50% 100%,
         rgba(0, 0, 0, 0.2),
@@ -11,35 +11,36 @@
 }
 
 /* Icon */
-ul.style li {
-    clear: both;
-    display: block;
-    padding-top: 3em;
-}
-
-ul.style > :first-child {
-    padding-top: 0;
-}
-
-ul.style h3 {
-    display: block;
-    margin: 0;
-    padding-bottom: 0.50em;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #404040;
-}
-
-ul.style .fa {
-    float: left;
+.card {
     display: inline-block;
-    width: 80px;
-    height: 80px;
-    margin-right: 1em;
-    background: #3ac984;
-    line-height: 80px;
-    text-align: center;
+    width: 50%;
+    vertical-align: top;
+    padding: 0.5rem;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.card .icon {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.card .icon .fa {
+    width: 5rem;
+    height: 5rem;
     border-radius: 10px;
-    font-size: 2em;
-    color: white;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 2rem;
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.card .card-content {
+    vertical-align: top;
+    display: inline-block;
+    width: calc(600px - 7rem);
 }

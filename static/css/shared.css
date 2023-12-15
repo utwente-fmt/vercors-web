@@ -7,6 +7,10 @@
     height: 5rem;
 }
 
+#logo #logo-dark {
+    display: none;
+}
+
 nav {
     display: block;
     z-index: 100;
@@ -108,7 +112,7 @@ footer {
 }
 
 /* Banner */
-#banner-buttons {
+.button-row {
     text-align: center;
 }
 
@@ -145,13 +149,6 @@ footer {
 
 #hamburger {
     display: none;
-
-    position: absolute;
-    padding: 0 0.75em;
-    left: 0;
-    top: 0;
-    line-height: 2.75em;
-    cursor: pointer;
 }
 
 .button + .button {

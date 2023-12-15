@@ -3,78 +3,60 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-<header class="major" id="Team">
-    <h2>
-        <strong>The VerCors Team</strong>
-    </h2>
-</header>
+<h2>The VerCors Team</h2>
 
-<section>
-    <h3><strong>Group Leader</strong></h3>
-    <figure>
-        <a href="{{ about.leader.url }}">
-            <img src="{{ about.leader.image }}" width="144" height="200" alt="{{ about.leader.name }}"
-                 style="padding-bottom:0.5em;">
-            <figcaption style="text-align:justify;">{{ about.leader.name }}</figcaption>
-        </a>
-    </figure>
+<h3>Group Leader</h3>
+<figure>
+    <a href="{{ about.leader.url }}">
+        <img src="{{ about.leader.image }}" width="144" height="200" alt="{{ about.leader.name }}"
+             style="padding-bottom:0.5em;">
+        <figcaption style="text-align:justify;">{{ about.leader.name }}</figcaption>
+    </a>
+</figure>
 
-    <h3><strong>Members</strong></h3>
-    <ul style="list-style-type: none">
-        {% for member in about.members %}
-        <li><a href="{{ member.url }}">{{ member.name }}</a></li>
-        {% endfor %}
-    </ul>
+<h3>Members</h3>
+<ul style="list-style-type: none">
+    {% for member in about.members %}
+    <li><a href="{{ member.url }}">{{ member.name }}</a></li>
+    {% endfor %}
+</ul>
 
-    <h3><strong>Alumni</strong></h3>
-    <ul style="list-style-type: none">
-        {% for alumnus in about.alumni %}
-        <li><a href="{{ alumnus.url }}">{{ alumnus.name }}</a></li>
-        {% endfor %}
-    </ul>
-</section>
+<h3>Alumni</h3>
+<ul style="list-style-type: none">
+    {% for alumnus in about.alumni %}
+    <li><a href="{{ alumnus.url }}">{{ alumnus.name }}</a></li>
+    {% endfor %}
+</ul>
 
-<header class="major" id="Contact">
-    <h2>
-        <strong>Contact</strong>
-    </h2>
-</header>
+<h2>Contact</h2>
 
-<section>
-    <p>For any further information about VerCors, you can contact us via:</p>
-    <p><a href='{{ urls.external.support }}' target='_blank' class='url'>vercors@lists.utwente.nl</a></p>
-</section>
+<p>For any further information about VerCors, you can contact us via:</p>
+<p><a href='{{ urls.external.support }}' target='_blank' class='url'>vercors@lists.utwente.nl</a></p>
 
-<header class="major" id="Credits">
-    <h2>
-        <strong>Credits</strong>
-    </h2>
-</header>
+<h2>Credits</h2>
 
-<section>
-    <p>VerCors is and has been supported by several projects:</p>
+<p>VerCors is and has been supported by several projects:</p>
 
-    <ul class="sponsor-list">
-        {% for sponsor in about.sponsors.values() %}
-        <li>
-            {% if sponsor.image %}
-            <figure>
-                <img src="{{ sponsor.image }}" alt="{{ sponsor.name }} Logo" height="150">
-                <figcaption>
-                    <a href="{{ sponsor.url }}" target="_blank">{{ sponsor.name }}: {{ sponsor.desc }}</a>
-                    <br>
-                    {% autoescape false %}{{ sponsor.funding|md }}{% endautoescape %}
-                </figcaption>
-            </figure>
-            {% else %}
-            <p>
-                <a href="{{ sponsor.url }}">{{ sponsor.name }}: {{ sponsor.desc }}</a>
+<ul class="sponsor-list">
+    {% for sponsor in about.sponsors.values() %}
+    <li>
+        {% if sponsor.image %}
+        <figure>
+            <img src="{{ sponsor.image }}" alt="{{ sponsor.name }} Logo" height="150">
+            <figcaption>
+                <a href="{{ sponsor.url }}" target="_blank">{{ sponsor.name }}: {{ sponsor.desc }}</a>
                 <br>
                 {% autoescape false %}{{ sponsor.funding|md }}{% endautoescape %}
-            </p>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-</section>
+            </figcaption>
+        </figure>
+        {% else %}
+        <p>
+            <a href="{{ sponsor.url }}">{{ sponsor.name }}: {{ sponsor.desc }}</a>
+            <br>
+            {% autoescape false %}{{ sponsor.funding|md }}{% endautoescape %}
+        </p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}

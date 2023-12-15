@@ -31,76 +31,63 @@
                 </span>
             </header>
             {% autoescape false %}{{ article.content|md }}{% endautoescape %}
-            </article>
             {% endfor %}
+
+            <p class="button-row">
+                <a href="{{ urls.news }}" class="button">More News</a>
+            </p>
         </div>
     </section>
 </div>
 
 <!-- Main -->
 <div>
-    <section class="container">
-        <table id="t01" text-align="left">
-            <tr>
-                <!-- The ul here is just to be able to see nice buttons -->
-                <td style="text-align: left;">
-                    <ul class="style">
-                        <a href="{{ urls.wiki }}#installing-and-running-vercors" class="link link--dark" target="_self">
-                            <span class="fa fa-wrench"></span>
-                        </a>
-                        <h2>Tool Installation</h2>
-                        <p>
-                            <span style="text-align:justify">
-                                The VerCors toolset can be installed on macOSX, Linux and Windows (via Cygwin). Follow the complete installation guidelines
-                                <a href="{{ urls.wiki }}#installing-and-running-vercors" class="url"
-                                   target="_self">here</a>.
-                            </span>
-                        </p>
-                    </ul>
-                </td>
-                <td style="text-align: left;">
-                    <ul class="style">
-                        <a href="{{ urls.publications }}" target="_blank" class="link link--dark">
-                            <span class="fa fa-cloud"></span>
-                        </a>
-                        <h2>Latest Publications</h2>
-                        <p>A complete list of publications is listed <a href="{{ urls.publications }}" class="url"
-                                                                        target="_self">here</a>.</p>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
-                    <ul class="style">
-                        <a href="{{ urls.external.issues }}" target="_blank" class="link link--dark">
-                        <span class="fa fa-cogs"></span>
-                    </a>
-                        <h2>Report a Bug</h2>
-                        <p>For bug reports and feature requests,<br>
-                            visit
-                            <a href='{{ urls.external.issues }}' target='_blank' class='url'>the issues tracker</a>.
-                            For questions and support,
-                            <a href='{{ urls.external.support }}' target='_blank' class=''>email us</a>.
-                        </p>
-                    </ul>
-                </td>
-                <td style="text-align: left;">
-                    <ul class="style">
-                        <a href="{{ urls.external.release }}" target="_blank"
-                           class="link link--dark">
-                            <span class="fa fa-leaf"></span>
-                        </a>
-                        <h2>Latest Release</h2>
-                        <p>Get VerCors latest release from GitHub.
-                            <a href="{{ urls.external.release }}" target="_blank"
-                               class="link link--dark">
-                                <button>
-                                    <img src="/images/release.png" width="5%" height="5%" alt="Release"></button></p>
-                        </a>
-                    </ul>
-                </td>
-            </tr>
-        </table>
+    <section class="container cards">
+        <h2>Resources</h2>
+
+        <div class="card">
+            <a class="icon" href="{{ urls.wiki }}#installing-and-running-vercors">
+                <span class="fa fa-wrench"></span>
+            </a><div class="card-content">
+                <h3>Tool Installation</h3>
+                <p>
+                The VerCors toolset can be installed on macOSX, Linux and Windows (via Cygwin). Follow the complete installation guidelines
+                    <a href="{{ urls.wiki }}#installing-and-running-vercors" class="url" target="_self">here</a>.
+                </p>
+            </div>
+        </div><div class="card">
+            <a class="icon" href="{{ urls.publications }}" target="_blank">
+                <span class="fa fa-cloud"></span>
+            </a><div class="card-content">
+                <h3>Latest Publications</h3>
+                <p>
+                    A complete list of publications is listed
+                        <a href="{{ urls.publications }}" class="url" target="_self">here</a>.
+                </p>
+            </div>
+        </div><div class="card">
+            <a class="icon" href="{{ urls.external.issues }}" target="_blank">
+                <span class="fa fa-cogs"></span>
+            </a><div class="card-content">
+                <h3>Report a Bug</h3>
+                <p>
+                    For bug reports and feature requests, visit
+                    <a href='{{ urls.external.issues }}' target='_blank' class='url'>the issues tracker</a>.
+                    For questions and support,
+                    <a href='{{ urls.external.support }}' target='_blank' class=''>email us</a>.
+                </p>
+            </div>
+        </div><div class="card">
+            <a class="icon" href="{{ urls.external.release }}" target="_blank">
+                <span class="fa fa-leaf"></span>
+            </a><div class="card-content">
+                <h3>Latest Release</h3>
+                <p>
+                    Get the latest VerCors release from GitHub
+                    <a href="{{ urls.external.release }}" target="_blank" class="link link--dark">here</a>.
+                </p>
+            </div>
+        </div>
     </section>
 </div>
 {% endblock %}

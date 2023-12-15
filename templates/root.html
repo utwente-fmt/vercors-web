@@ -44,8 +44,7 @@ University of Twente, Enschede, The Netherlands
             <nav>
                 <div class="container">
                     <div id="logo">
-                        <span id="hamburger" onclick="document.querySelector('#nav').classList.toggle('open')" class="fa fa-bars"></span>
-                        <a href="{{ urls.index }}"><img src="/images/logo.svg" title="The VerCors Verifier" alt="Logo of the VerCors Verifier"></a>
+                        <span id="hamburger" onclick="document.querySelector('nav').classList.toggle('open')" class="fa fa-bars"></span><a href="{{ urls.index }}"><img id="logo-light" src="/images/logo.svg" title="The VerCors Verifier" alt="Logo of the VerCors Verifier"><img id="logo-dark" src="/images/logo-white.svg" title="The VerCors Verifier" alt="Logo of the VerCors Verifier"></a>
                     </div>
                     <ul>
                         <li>
@@ -79,7 +78,7 @@ University of Twente, Enschede, The Netherlands
             <div id="banner" class="container">
                 <section>
                     {% block banner %}{% endblock %}
-                    <p id="banner-buttons">
+                    <p class="button-row">
                         <a href="{{ urls.external.git }}" class="button" target="_blank">
                             View on Github
                         </a>
