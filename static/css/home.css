@@ -42,5 +42,5 @@
 .card .card-content {
     vertical-align: top;
     display: inline-block;
-    width: calc(600px - 7rem);
+    width: calc(100% - 7rem);
 }

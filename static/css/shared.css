@@ -68,6 +68,7 @@ nav > .container > ul > li > ul {
     left: 0;
     top: calc(1.75em - 2px);
     width: 300px;
+    padding: 0.5rem 0;
 
     border-radius: 0 0.5rem 0.5rem 0.5rem;
     text-align: left;
@@ -75,11 +76,11 @@ nav > .container > ul > li > ul {
 
 nav > .container > ul > li > ul > li > a {
     color: var(--text-light);
+    padding: 0.5rem 1.5rem;
 }
 
 nav > .container > ul > li > ul > li {
     display: block;
-    padding: 0.5em 1.5em;
 }
 
 .dark {
@@ -116,6 +117,32 @@ footer {
     text-align: center;
 }
 
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.button, .secondary .button {
+    appearance: none;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 40px;
+    border: 0;
+    color: var(--text-light);
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.80rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-width: 10rem;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:hover, .secondary .button:hover {
+// TODO background-color: #32b777;
+}
+
 #title {
     text-align: center;
     margin-top: 7rem;
@@ -124,6 +151,7 @@ footer {
 
 #abstract {
     width: 800px;
+    max-width: calc(100% - 2rem);
     margin-left: auto;
     margin-right: auto;
 }
@@ -141,6 +169,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
     width: 1200px;
+    max-width: calc(100% - 2rem);
 }
 
 .row > * {
@@ -153,11 +182,4 @@ footer {
 
 .button + .button {
     margin-left: 16px;
-}
-
-@media (max-width: 840px) {
-    .button + .button {
-        margin-left: 0;
-        margin-top: 16px;
-    }
 }

@@ -122,30 +122,3 @@ hr {
 table {
     width: 100%;
 }
-
-/* Button */
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-.button, .mountain-background .button {
-    appearance: none;
-    transition: background-color 0.2s ease-in-out;
-    border-radius: 40px;
-    border: 0;
-    color: var(--text-light);
-    cursor: pointer;
-    display: inline-block;
-    padding: 0.80rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 700;
-    min-width: 10rem;
-}
-
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover,
-.button:hover, .mountain-background .button:hover {
-    // TODO background-color: #32b777;
-}
