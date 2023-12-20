@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}VeyMont{% endblock %}
+
+{% block content %}
+<h1>VeyMont</h1>
+<p>
+    VeyMont is a deductive verification tool for parallel programs. It can check functional correctness and deadlock
+    freedom of so-called "choreographic programs", in which a program is expressed for not just one thread, but for
+    all threads simultaneously. In addition, VeyMont can generate Java code, such that the choreographic program can
+    be run in a distributed manner. Support for verifying the choreographic program after translating it to one
+    specific thread, as well as allowing the user to customize the handling of permissions, is actively being developed.
+</p>
+{% endblock %}

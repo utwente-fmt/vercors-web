@@ -12,6 +12,8 @@ University of Twente, Enschede, The Netherlands
         <meta name="description" content="">
         <meta name="keywords" content="">
 
+        <link rel="icon" href="/images/icon.svg">
+
         <link rel="stylesheet" href="/css/external/codemirror.css">
         <link rel="stylesheet" href="/css/external/codemirror-monokai.css">
         <link rel="stylesheet" href="/css/highlight/default.css">
@@ -48,10 +50,10 @@ University of Twente, Enschede, The Netherlands
                     </div>
                     <ul>
                         <li>
-                            <a href="{{ urls.wiki }}#introduction">Getting Started</a>
+                            <a href="{{ urls.wiki }}">Getting Started</a>
                             <ul>
                                 <li><a href="{{ urls.wiki }}#installing-and-running-vercors">Installation Guide</a></li>
-                                <li><a href="{{ urls.wiki }}">Tutorial</a></li>
+                                <li><a href="{{ urls.wiki }}#prototypical-verification-language">Tutorial</a></li>
                                 <li>
                                     <a href="{{ urls.external.issues }}" target="_blank">
                                         Issue Tracker
@@ -60,42 +62,41 @@ University of Twente, Enschede, The Netherlands
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ urls.index }}">Tools</a>
+                            <ul>
+                                <li><a href="{{ urls.index }}">Verifier</a></li>
+                                <li><a href="{{ urls.alpinist }}">Alpinist</a></li>
+                                <li><a href="{{ urls.vesuv }}">VeSUV</a></li>
+                                <li><a href="{{ urls.veymont }}">VeyMont</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{ urls.examples }}">Showcases</a></li>
-                        <li><a href="{{ urls.news }}">News</a></li>
                         <li><a href="{{ urls.publications }}">Publications</a></li>
                         <li>
                             <a href="{{ urls.about }}">About</a>
                             <ul>
-                                <li><a href="{{ urls.about }}#Team">VerCors Team</a></li>
-                                <li><a href="{{ urls.about }}#Contact">Contact</a></li>
-                                <li><a href="{{ urls.about }}#Credits">Credits</a></li>
+                                <li><a href="{{ urls.about }}#team">VerCors Team</a></li>
+                                <li><a href="{{ urls.news }}">News</a></li>
+                                <li><a href="{{ urls.about }}#contact">Contact</a></li>
+                                <li><a href="{{ urls.about }}#credits">Credits</a></li>
                                 <li><a href="{{ urls.license }}">License</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <div id="banner" class="container">
-                <section>
-                    {% block banner %}{% endblock %}
-                    <p class="button-row">
-                        <a href="{{ urls.external.git }}" class="button" target="_blank">
-                            View on Github
-                        </a>
-                        <a href="{{ urls.try_online }}" class="button">Try VerCors Online</a>
-                    </p>
-                </section>
-            </div>
+            {% block banner %}{% endblock %}
         </div>
 
         {% block rootcontent %} {% endblock %}
 
         <div id="footer" class="dark">
             <footer class="container">
-                <a href="{{ urls.external.fmt }}" target="_blank"><img src="/images/FMT logo.png" alt=""></a>
+                <a href="{{ urls.external.fmt }}" target="_blank"><img src="/images/FMT logo.png" alt="Formal Methods & Tools logo" title="Formal Methods & Tools"></a>
                 <hr>
                 <div class="copyright">
-                    <a href="{{ urls.external.vercors }}" target="_blank">Copyright <code>&copy</code> The VerCors Project 2007-{{ year }}</a>
+                    <a href="{{ urls.about }}#credits" target="_blank">Copyright <code>&copy</code> The VerCors Project 2007-{{ year }}</a>
                     | <a href="{{ urls.external.fmt }}" target="_blank">FMT - University of Twente</a>
                     | <a href="{{ urls.about }}">About Us</a>
                 </div>

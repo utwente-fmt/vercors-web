@@ -3,37 +3,32 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-<h2>The VerCors Team</h2>
+<h2 id="team">The VerCors Team</h2>
 
 <h3>Group Leader</h3>
-<figure>
-    <a href="{{ about.leader.url }}">
-        <img src="{{ about.leader.image }}" width="144" height="200" alt="{{ about.leader.name }}"
-             style="padding-bottom:0.5em;">
-        <figcaption style="text-align:justify;">{{ about.leader.name }}</figcaption>
-    </a>
-</figure>
+{% set profile = about.leader %}
+{% include 'profile.html' %}
 
 <h3>Members</h3>
-<ul style="list-style-type: none">
-    {% for member in about.members %}
-    <li><a href="{{ member.url }}">{{ member.name }}</a></li>
+<ul class="profiles">
+    {% for profile in about.members %}
+        <li>{% include 'profile.html' %}</li>
     {% endfor %}
 </ul>
 
 <h3>Alumni</h3>
-<ul style="list-style-type: none">
-    {% for alumnus in about.alumni %}
-    <li><a href="{{ alumnus.url }}">{{ alumnus.name }}</a></li>
+<ul class="profiles">
+    {% for profile in about.alumni %}
+        <li>{% include 'profile.html' %}</li>
     {% endfor %}
 </ul>
 
-<h2>Contact</h2>
+<h2 id="contact">Contact</h2>
 
 <p>For any further information about VerCors, you can contact us via:</p>
 <p><a href='{{ urls.external.support }}' target='_blank' class='url'>vercors@lists.utwente.nl</a></p>
 
-<h2>Credits</h2>
+<h2 id="credits">Credits</h2>
 
 <p>VerCors is and has been supported by several projects:</p>
 

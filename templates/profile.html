@@ -1,0 +1,12 @@
+<div class="profile">
+    <div class="photo">
+        {% if profile.image %}
+        <img src="{{ profile.image }}" alt="Photo of {{ profile.name }}">
+        {% else %}
+        <img src="/images/unknown.png" alt="Silhouette of person with question mark" title="No photo provided">
+        {% endif %}
+    </div><ul>
+        <li><span class="fa fa-user"></span> <strong>{{ profile.name }}</strong></li>
+        {% if profile.url %}<li><span class="fa fa-link"></span> <a href="{{ profile.url }}">{{ profile.url|replace("https://", "") }}</a></li>{% endif %}
+    </ul>
+</div>

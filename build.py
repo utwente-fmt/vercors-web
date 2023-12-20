@@ -47,6 +47,9 @@ def build():
         urls["examples"]: ("showcases.html", {}),
         urls["try_online"]: ("try_online.html", {}),
         urls["wiki"]: ("wiki.html", {}),
+        urls["alpinist"]: ("alpinist.html", {}),
+        urls["vesuv"]: ("vesuv.html", {}),
+        urls["veymont"]: ("veymont.html", {}),
     }
 
     pages.update({
