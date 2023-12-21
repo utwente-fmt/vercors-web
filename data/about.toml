@@ -1,33 +1,33 @@
 members = [
-    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos" },
-    { url = "https://people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc" },
+    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/people/petra.jpg" },
+    { url = "https://people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc", image = "/images/people/lukas.jpg" },
     { url = "https://people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc" },
-    { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc" },
+    { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc", image = "/images/people/bob.jpg" },
     { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc" },
     { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc" },
     { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc"},
 ]
 
 alumni = [
-    { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers" },
-    { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti" },
-    { url = "https://wwwhome.ewi.utwente.nl/~safarim/", name = "Mohsen Safari, MSc" },
-    { url = "https://sjcjoosten.nl", name = "dr.ir. Sebastiaan Joosten" },
-    { name = "Fauzia Ehsan, MSc" },
-    { url = "https://wwwhome.ewi.utwente.nl/~oortwijnwhm/", name = "dr. Wytse Oortwijn" },
-    { url = "https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en", name = "dr. Stefan Blom" },
+    { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers", image = "/images/people/sophie.jpg" },
+    { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti", image = "/images/people/raul.jpg" },
+    { url = "https://wwwhome.ewi.utwente.nl/~safarim/", name = "dr. Mohsen Safari", image = "/images/people/mohsen.jpg" },
+    { url = "https://sjcjoosten.nl", name = "dr.ir. Sebastiaan Joosten", image = "/images/people/sebastiaan.jpg" },
+    { name = "Fauzia Ehsan, MSc", image = "/images/people/fauzia.jpg" },
+    { url = "https://wwwhome.ewi.utwente.nl/~oortwijnwhm/", name = "dr. Wytse Oortwijn", image = "/images/people/wytse.jpg" },
+    { url = "https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en", name = "dr. Stefan Blom", image = "/images/people/stefan.jpg" },
     { url = "https://scholar.google.com/citations?user=dmYvWaAAAAAJ&hl=es&oi=sra", name = "dr. Wojciech I. Mostowski" },
-    { name = "Henk Mulder, MSc" },
-    { url = "https://wwwhome.ewi.utwente.nl/~darabis/", name = "dr. Saeed Darabi" },
+    { name = "Henk Mulder, MSc", image = "/images/people/henk.jpg" },
+    { url = "https://wwwhome.ewi.utwente.nl/~darabis/", name = "dr. Saeed Darabi", image = "/images/people/saeed.jpg" },
     { name = "dr. Afshin Amighi" },
     { url = "https://dblp.org/pers/hd/z/Zaharieva=Stojanovski:Marina", name = "dr. Marina Zaharieva-Stojanovski" },
-    { name = "Jelte Zeilstra, MSc" },
+    { name = "Jelte Zeilstra, MSc", image = "/images/people/jelte.jpg" },
 ]
 
 [leader]
 name = "prof.dr. Marieke Huisman"
 url = "https://wwwhome.ewi.utwente.nl/~marieke/"
-image = "/images/marieke.jpg"
+image = "/images/people/marieke.jpg"
 
 [sponsors.0]
 name = "Mercedes"
