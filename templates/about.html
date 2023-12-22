@@ -54,4 +54,11 @@
     </li>
     {% endfor %}
 </ul>
+
+<h2>Oversight Committee</h2>
+<ul class="profiles">
+    {% for profile in about.pets %}
+        <li>{% include 'profile.html' %}</li>
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -8,5 +8,6 @@
     </div><ul>
         <li><span class="fa fa-user"></span> <strong>{{ profile.name }}</strong></li>
         {% if profile.url %}<li><span class="fa fa-link"></span> <a href="{{ profile.url }}">{{ profile.url|replace("https://", "") }}</a></li>{% endif %}
+        {% if profile.job %}<li><span class="fa fa-briefcase"></span> {{ profile.job }}</li>{% endif %}
     </ul>
 </div>
