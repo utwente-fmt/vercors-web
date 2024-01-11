@@ -1,11 +1,11 @@
 members = [
     { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/team/petra.jpg" },
     { url = "https://people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc", image = "/images/team/lukas.jpg" },
-    { url = "https://people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc" },
+    { url = "https://people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc", image = "/images/team/omer.jpg" },
     { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc", image = "/images/team/bob.jpg" },
-    { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc" },
-    { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc" },
-    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc"},
+    { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc", image = "/images/team/pieter.jpg" },
+    { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc", image = "/images/team/philip.jpg" },
+    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc", image = "/images/team/naum.jpg" },
 ]
 
 alumni = [
