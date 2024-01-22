@@ -416,3 +416,9 @@ date = "2023-11-30"
 content = """
 > **Prof. Marieke Huisman** has been awarded <a href="https://www.nwo.nl/en/prof-dr-marieke-huisman"> the 2023 Athena Award</a>. The Athena Award rewards female researchers who stand out, and because of that are role models for others, demonstrating that a career in science is possible. Congratulations, Marieke!
 """
+
+["Member graduation: Ellen Wittingen"]
+date = "2024-01-18"
+content = """
+> One of our ex-master students, Ellen Wittingen, has graduated today. Her mastersthesis is titled "Deductive verification for SYCL". A link to her thesis will appear soon.  Well done Ellen! We wish you best of luck in your future endeavors.
+"""
