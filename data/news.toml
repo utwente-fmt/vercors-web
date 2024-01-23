@@ -422,3 +422,18 @@ date = "2024-01-18"
 content = """
 > One of our ex-master students, Ellen Wittingen, has graduated today. Her mastersthesis is titled "Deductive verification for SYCL". You can find it <a href="https://purl.utwente.nl/essays/97976">here</a>. Well done Ellen! We wish you best of luck in your future endeavors.
 """
+
+["Journal Paper accepted at JSS"]
+date = "2024-01-23"
+content = """
+>  The paper **Survey of Annotation Generators for Deductive Verifiers** written by Sophie and Marieke has been accepted to be published in the journal of <a href="https://www.sciencedirect.com/journal/journal-of-systems-and-software" target="_blank">Systems & Software</a>. """
+
+
+["New PhD candidate Robert Mensing"]
+date = "2024-01-23"
+content = """
+> From this January, <a href="https://people.utwente.nl/r.a.mensing" target="_blank">Robert Mensing</a> has joined our VerCors team as a PhD candidate. Robert will be working under the <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/pallas/" target="_blank" >Pallas</a> project for the program analysis for LLVM-IR and all its source languages. Welcome Robert!
+"""
+
+
+
