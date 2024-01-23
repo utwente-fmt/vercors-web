@@ -426,7 +426,7 @@ content = """
 ["Journal Paper accepted at JSS"]
 date = "2024-01-23"
 content = """
->  The paper **Survey of Annotation Generators for Deductive Verifiers** written by Sophie and Marieke has been accepted to be published in the journal of <a href="https://www.sciencedirect.com/journal/journal-of-systems-and-software" target="_blank">Systems & Software</a>. """
+>  The paper **Survey of Annotation Generators for Deductive Verifiers** written by Sophie Lathouwers and Marieke Huisman has been accepted to be published in the journal of <a href="https://www.sciencedirect.com/journal/journal-of-systems-and-software" target="_blank">Systems & Software</a>. """
 
 
 ["New PhD candidate Robert Mensing"]
