@@ -362,7 +362,6 @@ content = """
 > Marieke Huisman gave a talk titled "VerCors & Alpinist: Verification of Optimised GPU Programs" at the <a href="https://places-workshop.github.io/2023/programme-proceedings">PLACES workshop</a>, co-located at ETAPS, and at the <a href="https://abz-conf.org/2023/">ABZ conference</a>. This talk is based on earlier work done in a collaboration between Ömer Şakar, Mohsen Safari, Marieke Huisman, and Anton Wijs, and <a href="https://doi.org/10.1007/978-3-030-99527-0_18">can be found here</a>.
 """
 
-
 ["Member graduation: Joël Ledelay"]
 date = "2023-06-30"
 content = """
@@ -439,6 +438,24 @@ content = """
 date = "2024-02-01"
 content = """
 > From this February, <a href="https://people.utwente.nl/a.v.stekelenburg" target="_blank">Alexander Stekelenburg</a> has joined our VerCors team as a PhD candidate. Alexander will also be working under the <a href="https://www.utwente.nl/en/eemcs/fmt/research/projects/pallas/" target="_blank" >Pallas</a> project for the program analysis for LLVM-IR and all its source languages. Welcome Alexander!
+"""
+
+["Paper accepted at RRRR Workshop at ETAPS"]
+date = "2024-03-15"
+content = """
+>  The paper **Replication of a Deductive Synthesizer for Programs with Pointers** written by Serge Johanns and Marieke Huisman has been accepted the RRRR workshop at ETAPS. 
+"""
+
+["Lorentz workshop on Contract Languages"]
+date = "2024-03-15"
+content = """
+>   Several VerCors team members participated in the Lorentz workshop on Contract Languages, March 4 – 8 at the Lorentz center in Leiden.<img src="/images/lorentz_2024.jpg" alt="A group photo of the participants of the Lorentz workshop." style="width:95%">
+"""
+
+["VerCors Poster & Tool Demo at ETAPS 2024"]
+date = "2024-03-15"
+content = """
+>   At ETAPS, VerCors will be presented as a poster and during the tool demo session on Wednesday April 10, 14:00 – 16:00. Come and talk to us if you are interested to learn more about VerCors.
 """
 
 
