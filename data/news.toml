@@ -458,4 +458,8 @@ content = """
 >   At ETAPS, VerCors will be presented as a poster and during the tool demo session on Wednesday April 10, 14:00 – 16:00. Come and talk to us if you are interested to learn more about VerCors.
 """
 
-
+["Short Paper acccepted at HCVS Workshop at ETAPS 2024"]
+date = "2024-03-18"
+content = """
+>   The short paper **Using Horn Solvers to Generate Memory Access Permissions for Deductive Verification – A Preliminary Report** by Lukas Armborst and Marieke Huisman has been accepted at the HCVS workshop at ETAPS.
+"""
