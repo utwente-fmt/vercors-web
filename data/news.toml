@@ -463,3 +463,11 @@ date = "2024-03-18"
 content = """
 >   The short paper **Using Horn Solvers to Generate Memory Access Permissions for Deductive Verification – A Preliminary Report** by Lukas Armborst and Marieke Huisman has been accepted at the HCVS workshop at ETAPS.
 """
+
+["2nd place of student teams at VerifyThis 2024"]
+date = "2024-04-08"
+content = """
+> The student team "VerCors {P1*P2}" got the second place in the student team category at the 2024 edition of <a href="https://www.pm.inf.ethz.ch/research/verifythis.html" target="_blank">VerifyThis</a>. Congratulations to Pieter Bos and Alexander Stekelenburg for this achievement!
+
+><img src="/images/VerifyThis2024.JPG" alt="Alexander Stekelenburg and Pieter Bos holding certificates reading Best Student Team - 2nd place - VerCors {P1*P2}">
+"""
