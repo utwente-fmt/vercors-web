@@ -472,10 +472,17 @@ content = """
 ><img src="/images/VerifyThis2024.JPG" alt="Alexander Stekelenburg and Pieter Bos holding certificates reading Best Student Team - 2nd place - VerCors {P1*P2}">
 """
 
+["Prof. Marieke Huisman receives the 2023 Athena Award at ICT.OPEN 2024"]
+date = "2024-04-10"
+content = """
+> **Prof. Marieke Huisman** has received <a href="https://www.nwo.nl/en/prof-dr-marieke-huisman"> the 2023 Athena Award</a> at ICT.OPEN 2024. The Athena Award rewards female researchers who stand out, and because of that are role models for others, demonstrating that a career in science is possible. Congratulations, Marieke!
+
+><img src="/images/athena.jpeg" alt="prof. dr. Marieke Huisman receiving the Athena award.">
+"""
+
 ["Keynote at Dutch Formal Methods Day 2024"]
 date = "2024-04-16"
 content = """
 >  Marieke Huisman gave a keynote talk titled "VerCors: Inclusive Software Verification" at the <a href="https://conf.researchr.org/details/dfdm-2024/dfdm-2024-papers/2/VerCors-Inclusive-Software-Verification" target="_blank">Dutch Formal Methods Day 2024</a>. 
 """
-
 
