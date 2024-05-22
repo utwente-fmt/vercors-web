@@ -492,3 +492,9 @@ date = "2024-05-07"
 content = """
 > One of our ex-master students, Dylan Janssen, has graduated today. His masters thesis is titled "Design and Implementation of new features for Runtime Permission Verification in Concurrent Java Programs using VerCors". You can find it <a href="https://purl.utwente.nl/essays/98745">here</a>. Well done Dylan! We wish you the best of luck in your future endeavors.
 """
+
+["Paper accepted at CAV 2024"]
+date = "2024-05-21"
+content = """
+>  The paper **The VerCors Verifier: a Progress Report** written by Lukas Armborst, Pieter Bos, Lars van den Haak, Marieke Huisman, Robert Rubbens, Ömer Şakar, and Philip Tasche has been accepted at CAV 2024. 
+"""
