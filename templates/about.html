@@ -5,6 +5,11 @@
 {% block content %}
 <h2 id="team">The VerCors Team</h2>
 
+<figure>
+    <img src="{{ about.team.image }}" alt="{{ about.team.alt }}">
+    <figcaption>{{ about.team.caption }}</figcaption>
+</figure>
+
 <h3>Group Leader</h3>
 {% set profile = about.leader %}
 {% include 'profile.html' %}

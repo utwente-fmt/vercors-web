@@ -29,6 +29,11 @@ pets = [
     { name = "Billie", image = "/images/team/billie.jpg", job = "Cable Management"},
 ]
 
+[team]
+image = "/images/vercors-team-2024.jpg"
+alt = "Photo of 8 people on the Zilverling terrace"
+caption = "Left to right: Alexander, Robert, Pieter, Ömer, Philip, Marieke, Lukas, Bob."
+
 [leader]
 name = "prof.dr. Marieke Huisman"
 url = "https://wwwhome.ewi.utwente.nl/~marieke/"
