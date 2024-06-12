@@ -1,5 +1,4 @@
 members = [
-    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/team/petra.jpg" },
     { url = "https://people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc", image = "/images/team/lukas.jpg" },
     { url = "https://people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc", image = "/images/team/omer.jpg" },
     { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc", image = "/images/team/bob.jpg" },
@@ -11,6 +10,7 @@ members = [
 ]
 
 alumni = [
+    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/team/petra.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers", image = "/images/team/sophie.jpg" },
     { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti", image = "/images/team/raul.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~safarim/", name = "dr. Mohsen Safari", image = "/images/team/mohsen.jpg" },
