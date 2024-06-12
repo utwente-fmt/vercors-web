@@ -6,6 +6,8 @@ members = [
     { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc", image = "/images/team/pieter.jpg" },
     { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc", image = "/images/team/philip.jpg" },
     { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc", image = "/images/team/naum.jpg" },
+    { url = "https://people.utwente.nl/a.v.stekelenburg", name = "Alexander Stekelenburg, MSc", image = "/images/team/alexander.jpg" },
+    { url = "https://people.utwente.nl/r.a.mensing", name = "Robert Mensing, MSc" },
 ]
 
 alumni = [
