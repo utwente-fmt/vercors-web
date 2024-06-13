@@ -511,7 +511,7 @@ content = """
  **Marieke Huisman** will give an invited talk at DisCoTec on June 20th 2024. The title of her presentation is **"VerCors: Inclusive Software Verification"**.
 """
 
-["Paper accepted at CAV 2024"]
+["Paper accepted at FMICS 2024"]
 date = "2024-06-13"
 content = """
   The paper **Verifying a Radio Telescope Pipeline using HaliVer: Solving Nonlinear and Quantifier Challenges** written by Lars B. van den Haak, Anton Wijs, Marieke Huisman and Mark van den Brand has been accepted at FMICS 2024. 
