@@ -499,4 +499,23 @@ content = """
   The paper **The VerCors Verifier: a Progress Report** written by Lukas Armborst, Pieter Bos, Lars van den Haak, Marieke Huisman, Robert Rubbens, Ömer Şakar, and Philip Tasche has been accepted at CAV 2024. 
 """
 
+["Invited talk by Marieke Huisman at the Frama-C Days"]
+date = "2024-06-13"
+content = """
+ **Marieke Huisman** will give an invited talk at the Frama-C Days on June 14th 2024. The title of her presentation is **"The VerCors verifier: a verifier for multiple concurrent programming languages"**.
+"""
+
+["Invited talk by Marieke Huisman at DisCoTec"]
+date = "2024-06-13"
+content = """
+ **Marieke Huisman** will give an invited talk at DisCoTec on June 20th 2024. The title of her presentation is **"VerCors: Inclusive Software Verification"**.
+"""
+
+["Paper accepted at CAV 2024"]
+date = "2024-06-13"
+content = """
+  The paper **Verifying a Radio Telescope Pipeline using HaliVer: Solving Nonlinear and Quantifier Challenges** written by Lars B. van den Haak, Anton Wijs, Marieke Huisman and Mark van den Brand has been accepted at FMICS 2024. 
+"""
+
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
