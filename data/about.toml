@@ -4,13 +4,81 @@ members = [
     { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc", image = "/images/team/bob.jpg" },
     { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc", image = "/images/team/pieter.jpg" },
     { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc", image = "/images/team/philip.jpg" },
-    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc", image = "/images/team/naum.jpg" },
     { url = "https://people.utwente.nl/a.v.stekelenburg", name = "Alexander Stekelenburg, MSc", image = "/images/team/alexander.jpg" },
     { url = "https://people.utwente.nl/r.a.mensing", name = "Robert Mensing, MSc", image = "/images/team/robert.jpg" },
+    { url = "https://research.tue.nl/en/persons/lars-van-den-haak", name = "Lars van den Haak, MSc", image = "/images/team/lars.jpg" },
+]
+
+collaborators = [
+    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/team/petra.jpg" },
+    { url = "https://people.utwente.nl/p.herber", name = "prof.dr.ing. Paula Herber", image = "/images/team/paula.jpg" },
+    { url = "https://www.win.tue.nl/~awijs/", name = "dr. Anton Wijs", image = "/images/team/anton.jpg" },
+]
+
+
+
+# Pieter: https://purl.utwente.nl/essays/86508
+# Bob: https://purl.utwente.nl/essays/81338
+# Ömer: https://purl.utwente.nl/essays/80892
+# Sophie: https://purl.utwente.nl/essays/76554
+# Wytse: https://purl.utwente.nl/essays/67755
+
+# Note: years are not rendered, but please keep them for easy merging of
+# capita selecta projects.
+
+students = [
+    # 2024
+    { name = "Dylan Damian Jansen", essay = "https://purl.utwente.nl/essays/98745" },
+    { name = "Ellen Wittingen", essay = "https://purl.utwente.nl/essays/97976" },
+    # 2023
+    { name = "Joël Ledelay", essay = "https://purl.utwente.nl/essays/95192" },
+    { name = "Johannes Gerrit Jan Boerman", essay = "https://purl.utwente.nl/essays/94474" },
+    { name = "Nele Budde" },
+    { name = "Serge Johanns" },
+    # 2022
+    { name = "Connor Bleumink", essay = "https://purl.utwente.nl/essays/91705" },
+    { name = "Damian Verheijen", essay = "https://purl.utwente.nl/essays/91769" },
+    { name = "Andrej Pistek" },
+    { name = "Irina Shcherbakova" },
+    { name = "Joost Sessink" },
+    # 2021
+    { name = "Antoine Veenstra", essay = "https://purl.utwente.nl/essays/88437" },
+    { name = "Johannes Petrus Hollander", essay = "https://purl.utwente.nl/essays/88268" },
+    { name = "Matthias Sleurink", essay = "https://purl.utwente.nl/essays/86828" },
+    { name = "Samarjeet Singh Patil", essay = "https://purl.utwente.nl/essays/85927" },
+    { name = "Daniël Huisman", essay = "https://purl.utwente.nl/essays/85662" },
+    # 2020
+    { name = "Matthijs Roelink", essay = "https://purl.utwente.nl/essays/82062" },
+    { name = "Joran Honig", essay = "https://purl.utwente.nl/essays/81526" },
+    { name = "Leon Alberts", essay = "https://purl.utwente.nl/essays/80849" },
+    { name = "Yernar Kumashev", essay = "https://purl.utwente.nl/essays/80585" },
+    { name = "Dré van Oorschot", essays = ["https://purl.utwente.nl/essays/80589", "https://purl.utwente.nl/essays/96536"] },
+    { name = "Lars van Arkel", essay = "https://purl.utwente.nl/essays/80736" },
+    # 2019
+    { name = "Henk Mulder", essay = "https://purl.utwente.nl/essays/78496" },
+    { name = "Huu-Minh Nguyen", essay = "https://purl.utwente.nl/essays/77569" },
+    # 2018
+    { name = "Matthijs Hofstra", essay = "https://purl.utwente.nl/essays/76873" },
+    # 2017
+    { name = "Tanja de Jong", essay = "https://purl.utwente.nl/essays/73417" },
+    { name = "Paulius Juozelski" },
+    # 2016
+    { name = "Jelte Zeilstra", essay = "https://purl.utwente.nl/essays/71180" },
+    { name = "Jeroen Brinkman" },
+    # 2015
+    { name = "Charl de Leur", essay = "https://purl.utwente.nl/essays/68029" },
+    { name = "Stijn Gijsen", essay = "https://purl.utwente.nl/essays/67993" },
+    { name = "Alessio Parzian, Msc", essay = "https://purl.utwente.nl/essays/67761" },
+    # 2014
+    { name = "Jorne Kandziora", essay = "https://purl.utwente.nl/essays/65882" },
+    # 2013
+    { name = "Freark van den Berg", essay = "https://purl.utwente.nl/essays/65059" },
+    { name = "Jelmer ter Wal", essay = "https://purl.utwente.nl/essays/64428" },
+    { name = "Jeroen Vonk", essay = "https://purl.utwente.nl/essays/63452" },
 ]
 
 alumni = [
-    { url = "https://petravdbos.nl", name = "dr. Petra van den Bos", image = "/images/team/petra.jpg" },
+    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc", image = "/images/team/naum.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers", image = "/images/team/sophie.jpg" },
     { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti", image = "/images/team/raul.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~safarim/", name = "dr. Mohsen Safari", image = "/images/team/mohsen.jpg" },
@@ -19,11 +87,9 @@ alumni = [
     { url = "https://wwwhome.ewi.utwente.nl/~oortwijnwhm/", name = "dr. Wytse Oortwijn", image = "/images/team/wytse.jpg" },
     { url = "https://scholar.google.com/citations?user=zEUh__sAAAAJ&hl=en", name = "dr. Stefan Blom", image = "/images/team/stefan.jpg" },
     { url = "https://scholar.google.com/citations?user=dmYvWaAAAAAJ&hl=es&oi=sra", name = "dr. Wojciech I. Mostowski", image = "/images/team/wojciech.jpg" },
-    { name = "Henk Mulder, MSc", image = "/images/team/henk.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~darabis/", name = "dr. Saeed Darabi", image = "/images/team/saeed.jpg" },
     { name = "dr. Afshin Amighi", image = "/images/team/afshin.jpg" },
     { url = "https://dblp.org/pers/hd/z/Zaharieva=Stojanovski:Marina", name = "dr. Marina Zaharieva-Stojanovski", image = "/images/team/marina.jpg" },
-    { name = "Jelte Zeilstra, MSc", image = "/images/team/jelte.jpg" },
 ]
 
 pets = [
@@ -34,32 +100,41 @@ pets = [
 [team]
 image = "/images/vercors-team-2024.jpg"
 alt = "Photo of 8 people on the Zilverling terrace"
-caption = "Left to right: Alexander, Robert, Pieter, Ömer, Philip, Marieke, Lukas, Bob."
+caption = "Left to right: Alexander, Robert, Pieter, Ömer, Philip, Marieke, Lukas, Bob. (May 2024)"
 
 [leader]
 name = "prof.dr. Marieke Huisman"
 url = "https://wwwhome.ewi.utwente.nl/~marieke/"
 image = "/images/team/marieke.jpg"
 
-[sponsors.0]
+[sponsors.6]
+name = "Pallas"
+desc = "Program Analysis for LLVM-IR and All its Source languages"
+url = "https://www.utwente.nl/en/eemcs/fmt/research/projects/pallas/"
+image = "/images/pallas.png"
+funding = """
+Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
+Duration: January 2024 until January 2028"""
+
+[sponsors.5]
 name = "Mercedes"
 desc = "Maximal Reliability of concurrent and Distributed Software"
 url = "https://www.utwente.nl/en/eemcs/fmt/research/projects/Mercedes/"
 image = "/images/Mercedes%20logo.png"
 funding = """
 Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
-Duration: June 2017 until June 2024"""
+Duration: June 2017 until January 2025"""
 
-[sponsors.1]
+[sponsors.4]
 name = "ChEOPS"
 desc = "Verified Construction of Correct and Optimised Parallel Software"
 url = "//www.utwente.nl/en/eemcs/fmt/research/projects/cheops/"
 image = "/images/cheops.png"
 funding = """
 Funded by: <a href="//www.nwo.nl" target="_blank" >NWO</a><br>
-Duration: September 2019 until June 2025"""
+Duration: September 2019 until May 2026"""
 
-[sponsors.2]
+[sponsors.3]
 name = "SAVES"
 desc = "Scalable Verification of Industrial Control Systems"
 url = "//www.utwente.nl/en/eemcs/fmt/research/projects/saves/"
@@ -68,7 +143,7 @@ funding = """
 Funded by: WWU-UT collaboration grant<br>
 Duration: January 2021 until December 2025"""
 
-[sponsors.3]
+[sponsors.2]
 name = "CARP"
 desc = "Correct and Efficient Accelerator Programming"
 url = "//carp.doc.ic.ac.uk/external/objectives.php"
@@ -77,7 +152,7 @@ funding = """
 Funded by: <a href="" target="_blank">European Commission FP7</a><br>
 Duration: December 2011 until December 2014"""
 
-[sponsors.4]
+[sponsors.1]
 name = "VerCors"
 desc = "Verification of Concurrent Data Structures"
 url = "//fmt.ewi.utwente.nl/research/projects/view/vercors/"
@@ -86,7 +161,7 @@ funding = """
 Funded by: <a href="//erc.europa.eu" target="_blank">European Resource Council</a><br>
 Duration: 2011 until 2016"""
 
-[sponsors.5]
+[sponsors.0]
 name = "VerDi"
 desc = "Verification of Distributed Software"
 url = "//fmttools.ewi.utwente.nl/research/projects/VerDi/"

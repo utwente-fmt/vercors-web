@@ -21,6 +21,34 @@
     {% endfor %}
 </ul>
 
+<h3>Collaborators</h3>
+<ul class="profiles">
+    {% for profile in about.collaborators %}
+        <li>{% include 'profile.html' %}</li>
+    {% endfor %}
+</ul>
+
+<h3>Students</h3>
+<p>
+    We gratefully acknowledge the contributions of students — direct or indirect — that were made as part of a Master
+    project, Bachelor project or the Capita Selecta course:
+</p>
+<ul class="columns">
+    {% for student in about.students %}
+        {% if student.essay %}
+            <li><a href="{{ student.essay }}">{{ student.name }}</a></li>
+        {% elif student.essays %}
+            <li>
+                {{ student.name }}: {% for essay in student.essays %}
+                    <a href="{{ essay }}">[{{loop.index}}]</a>
+                {% endfor %}
+            </li>
+        {% else %}
+            <li>{{ student.name }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
 <h3>Alumni</h3>
 <ul class="profiles">
     {% for profile in about.alumni %}
@@ -38,7 +66,8 @@
 <p>VerCors is and has been supported by several projects:</p>
 
 <ul class="sponsor-list">
-    {% for sponsor in about.sponsors.values() %}
+    {% for kv in about.sponsors|dictsort|reverse %}
+    {% set sponsor = kv.1 %}
     <li>
         {% if sponsor.image %}
         <figure>
