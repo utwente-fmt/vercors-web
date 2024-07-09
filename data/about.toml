@@ -52,28 +52,39 @@ students = [
     { name = "Yernar Kumashev", essay = "https://purl.utwente.nl/essays/80585" },
     { name = "Dré van Oorschot", essays = ["https://purl.utwente.nl/essays/80589", "https://purl.utwente.nl/essays/96536"] },
     { name = "Lars van Arkel", essay = "https://purl.utwente.nl/essays/80736" },
+    { name = "Yernar Kumashev", essay = "https://fmt.ewi.utwente.nl/education/bachelor/387/" },
     # 2019
     { name = "Danny Bergsma", essay = "http://essay.utwente.nl/80270/" },
     { name = "Henk Mulder", essay = "https://purl.utwente.nl/essays/78496" },
     { name = "Huu-Minh Nguyen", essay = "https://purl.utwente.nl/essays/77569" },
+    { name = "Jan Smits", essay = "https://fmt.ewi.utwente.nl/education/bachelor/302/" },
     # 2018
     { name = "Matthijs Hofstra", essay = "https://purl.utwente.nl/essays/76873" },
+    { name = "Tim Kerkhoven", essay = "https://fmt.ewi.utwente.nl/education/bachelor/317/" },
     # 2017
     { name = "Paulius Juozelski" },
     # 2016
     { name = "Jelte Zeilstra", essay = "https://purl.utwente.nl/essays/71180" },
-    { name = "Jeroen Brinkman" },
+    { name = "Jeroen Brinkman", essay = "https://fmt.ewi.utwente.nl/education/bachelor/158/" },
+    { name = "Lars Stegeman", essay = "https://fmt.ewi.utwente.nl/education/bachelor/191/" },
     # 2015
     { name = "Charl de Leur", essay = "https://purl.utwente.nl/essays/68029" },
     { name = "Stijn Gijsen", essay = "https://purl.utwente.nl/essays/67993" },
+    { name = "Thijs Wiefferink", essay = "https://fmt.ewi.utwente.nl/education/bachelor/147/" },
     # 2014
     { name = "Jorne Kandziora", essay = "https://purl.utwente.nl/essays/65882" },
     { name = "Steven de Heus", essay = "https://fmt.ewi.utwente.nl/education/bachelor/117/" },
+    { name = "Martijn Roo", essay = "https://fmt.ewi.utwente.nl/education/bachelor/97/" },
     # 2013
     { name = "Jelmer ter Wal", essay = "https://purl.utwente.nl/essays/64428" },
     { name = "Jeroen Vonk", essay = "https://purl.utwente.nl/essays/63452" },
+    # 2012
+    { name = "Dennis van der Zwet", essay = "https://fmt.ewi.utwente.nl/education/bachelor/87/" },
+    { name = "Remco Swenker", essay = "https://fmt.ewi.utwente.nl/education/bachelor/71/" },
     # 2011
     { name = "Jeroen Meijer", essay = "https://fmt.ewi.utwente.nl/education/bachelor/70/" },
+    # 2010
+    { name = "Ronald Burgman", essay = "https://fmt.ewi.utwente.nl/education/bachelor/53/" },
 
 ]
 
