@@ -42,25 +42,23 @@ students = [
     { name = "Irina Shcherbakova" },
     { name = "Joost Sessink" },
     # 2021
-    { name = "Antoine Veenstra", essay = "https://purl.utwente.nl/essays/88437" },
+    { name = "Antoine Veenstra" },
     { name = "Johannes Petrus Hollander", essay = "https://purl.utwente.nl/essays/88268" },
     { name = "Matthias Sleurink", essay = "https://purl.utwente.nl/essays/86828" },
-    { name = "Samarjeet Singh Patil", essay = "https://purl.utwente.nl/essays/85927" },
-    { name = "Daniël Huisman", essay = "https://purl.utwente.nl/essays/85662" },
+    { name = "Stefanie Eva Drerup", essay = "https://www.utwente.nl/en/eemcs/fmt/education/master-projects/Thesis%20S.%20Drerup.pdf" },
     # 2020
     { name = "Matthijs Roelink", essay = "https://purl.utwente.nl/essays/82062" },
-    { name = "Joran Honig", essay = "https://purl.utwente.nl/essays/81526" },
     { name = "Leon Alberts", essay = "https://purl.utwente.nl/essays/80849" },
     { name = "Yernar Kumashev", essay = "https://purl.utwente.nl/essays/80585" },
     { name = "Dré van Oorschot", essays = ["https://purl.utwente.nl/essays/80589", "https://purl.utwente.nl/essays/96536"] },
     { name = "Lars van Arkel", essay = "https://purl.utwente.nl/essays/80736" },
     # 2019
+    { name = "Danny Bergsma", essay = "http://essay.utwente.nl/80270/" },
     { name = "Henk Mulder", essay = "https://purl.utwente.nl/essays/78496" },
     { name = "Huu-Minh Nguyen", essay = "https://purl.utwente.nl/essays/77569" },
     # 2018
     { name = "Matthijs Hofstra", essay = "https://purl.utwente.nl/essays/76873" },
     # 2017
-    { name = "Tanja de Jong", essay = "https://purl.utwente.nl/essays/73417" },
     { name = "Paulius Juozelski" },
     # 2016
     { name = "Jelte Zeilstra", essay = "https://purl.utwente.nl/essays/71180" },
@@ -68,13 +66,15 @@ students = [
     # 2015
     { name = "Charl de Leur", essay = "https://purl.utwente.nl/essays/68029" },
     { name = "Stijn Gijsen", essay = "https://purl.utwente.nl/essays/67993" },
-    { name = "Alessio Parzian, Msc", essay = "https://purl.utwente.nl/essays/67761" },
     # 2014
     { name = "Jorne Kandziora", essay = "https://purl.utwente.nl/essays/65882" },
+    { name = "Steven de Heus", essay = "https://fmt.ewi.utwente.nl/education/bachelor/117/" },
     # 2013
-    { name = "Freark van den Berg", essay = "https://purl.utwente.nl/essays/65059" },
     { name = "Jelmer ter Wal", essay = "https://purl.utwente.nl/essays/64428" },
     { name = "Jeroen Vonk", essay = "https://purl.utwente.nl/essays/63452" },
+    # 2011
+    { name = "Jeroen Meijer", essay = "https://fmt.ewi.utwente.nl/education/bachelor/70/" },
+
 ]
 
 alumni = [
