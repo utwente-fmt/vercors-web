@@ -146,10 +146,10 @@ Duration: January 2021 until December 2025"""
 [sponsors.2]
 name = "CARP"
 desc = "Correct and Efficient Accelerator Programming"
-url = "//carp.doc.ic.ac.uk/external/objectives.php"
+url = "http://carp.doc.ic.ac.uk/external/"
 image = "/images/CARP.png"
 funding = """
-Funded by: <a href="" target="_blank">European Commission FP7</a><br>
+Funded by: <a href="" target="https://cordis.europa.eu/programme/id/FP7">European Commission FP7</a><br>
 Duration: December 2011 until December 2014"""
 
 [sponsors.1]
@@ -158,7 +158,7 @@ desc = "Verification of Concurrent Data Structures"
 url = "//fmt.ewi.utwente.nl/research/projects/view/vercors/"
 image = ""
 funding = """
-Funded by: <a href="//erc.europa.eu" target="_blank">European Resource Council</a><br>
+Funded by: <a href="//erc.europa.eu" target="_blank">European Research Council</a><br>
 Duration: 2011 until 2016"""
 
 [sponsors.0]
