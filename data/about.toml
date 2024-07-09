@@ -162,13 +162,13 @@ desc = "Correct and Efficient Accelerator Programming"
 url = "http://carp.doc.ic.ac.uk/external/"
 image = "/images/CARP.png"
 funding = """
-Funded by: <a href="" target="https://cordis.europa.eu/programme/id/FP7">European Commission FP7</a><br>
+Funded by: <a href="https://cordis.europa.eu/programme/id/FP7" target="_blank">European Commission FP7</a><br>
 Duration: December 2011 until December 2014"""
 
 [sponsors.1]
 name = "VerCors"
 desc = "Verification of Concurrent Data Structures"
-url = "//fmt.ewi.utwente.nl/research/projects/view/vercors/"
+url = "//www.utwente.nl/en/eemcs/fmt/research/projects/completed/vercors.html"
 image = ""
 funding = """
 Funded by: <a href="//erc.europa.eu" target="_blank">European Research Council</a><br>
@@ -177,7 +177,7 @@ Duration: 2011 until 2016"""
 [sponsors.0]
 name = "VerDi"
 desc = "Verification of Distributed Software"
-url = "//fmttools.ewi.utwente.nl/research/projects/VerDi/"
+url = "//www.utwente.nl/en/eemcs/fmt/research/projects/completed/verdi.html"
 image = ""
 funding = """
 Funded by: <a href="//www.nwo.nl/en" target="_blank">NWO</a><br>
