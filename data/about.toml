@@ -53,6 +53,7 @@ students = [
     { name = "Dré van Oorschot", essays = ["https://purl.utwente.nl/essays/80589", "https://purl.utwente.nl/essays/96536"] },
     { name = "Lars van Arkel", essay = "https://purl.utwente.nl/essays/80736" },
     { name = "Yernar Kumashev", essay = "https://fmt.ewi.utwente.nl/education/bachelor/387/" },
+    { name = "Coen van Kampen", essay = "https://fmt.ewi.utwente.nl/education/bachelor/359/" },
     # 2019
     { name = "Danny Bergsma", essay = "http://essay.utwente.nl/80270/" },
     { name = "Henk Mulder", essay = "https://purl.utwente.nl/essays/78496" },
@@ -71,6 +72,7 @@ students = [
     { name = "Charl de Leur", essay = "https://purl.utwente.nl/essays/68029" },
     { name = "Stijn Gijsen", essay = "https://purl.utwente.nl/essays/67993" },
     { name = "Thijs Wiefferink", essay = "https://fmt.ewi.utwente.nl/education/bachelor/147/" },
+    { name = "Twan Coenraad", essay = "https://fmt.ewi.utwente.nl/education/bachelor/146/" },
     # 2014
     { name = "Jorne Kandziora", essay = "https://purl.utwente.nl/essays/65882" },
     { name = "Steven de Heus", essay = "https://fmt.ewi.utwente.nl/education/bachelor/117/" },
