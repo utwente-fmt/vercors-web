@@ -91,7 +91,7 @@ students = [
 ]
 
 alumni = [
-    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, BSc", image = "/images/team/naum.jpg" },
+    { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, MSc", image = "/images/team/naum.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers", image = "/images/team/sophie.jpg" },
     { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti", image = "/images/team/raul.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~safarim/", name = "dr. Mohsen Safari", image = "/images/team/mohsen.jpg" },
