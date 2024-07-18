@@ -517,5 +517,21 @@ content = """
   The paper **Verifying a Radio Telescope Pipeline using HaliVer: Solving Nonlinear and Quantifier Challenges** written by Lars B. van den Haak, Anton Wijs, Marieke Huisman and Mark van den Brand has been accepted at FMICS 2024. 
 """
 
+["Two Member Graduation: Jort Mol Lous & Tycho Dubbeling"]
+date = "2024-01-18"
+content = """
+ Two of our ex-bachelor students, Jort Mol Lous & Tycho Dubbeling, have graduated. Jort's bachelor thesis is titled <a href="https://purl.utwente.nl/essays/100726">"Automatic Precondition Generation For VerCors"</a> and Tycho's bachelor thesis is titled <a href="https://purl.utwente.nl/essays/100843">"Predicate Subtyping in VerCors"</a>. Well done Tycho and Jort! We wish you best of luck in your future endeavors.
+"""
+
+
+
+["Former VerCors Team Member Graduation: Naum Tomov"]
+date = "2024-01-18"
+content = """
+ A former member of the VerCors team and now ex-master student, Naum Tomov has graduated. Well done Naum! We wish you best of luck in your future endeavors.
+"""
+
+
+
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
