@@ -532,7 +532,7 @@ content = """
 ["Paper accepted at iFM 2024"]
 date = "2024-08-20"
 content = """
-  The paper **VeyMont: Choreography-Based Generation of Correct Concurrent Programs with Shared Memory** written by Robert Rubbens, Marieke Huisman and Petra van den Bos has been accepted at iFM 2024.
+  The paper **VeyMont: Choreography-Based Generation of Correct Concurrent Programs with Shared Memory** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at iFM 2024.
 """
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
