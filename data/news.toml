@@ -535,16 +535,10 @@ content = """
   The paper **VeyMont: Choreography-Based Generation of Correct Concurrent Programs with Shared Memory** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at iFM 2024.
 """
 
-["Paper accepted at SEFM 2024"]
+["Two papers accepted at SEFM 2024"]
 date = "2024-08-22"
 content = """
-  The paper **Deductive verification of SYCL in VerCors** written by Ellen Wittingen, Marieke Huisman and Ömer Şakar has been accepted at SEFM 2024.
-"""
-
-["Paper accepted at SEFM 2024"]
-date = "2024-08-22"
-content = """
-  The paper **Automated Invariant Generation for Efficient Deductive Reasoning about Embedded Systems** written by Philip Tasche, Paula Herber and Marieke Huisman has been accepted at SEFM 2024.
+  Two papers have been accepted for publication at SEFM 2024: **Deductive verification of SYCL in VerCors** written by Ellen Wittingen, Marieke Huisman and Ömer Şakar, and **Automated Invariant Generation for Efficient Deductive Reasoning about Embedded Systems** written by Philip Tasche, Paula Herber and Marieke Huisman.
 """
 
 
