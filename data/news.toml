@@ -529,10 +529,10 @@ content = """
  A former member of the VerCors team and now ex-master student, Naum Tomov has graduated. Well done Naum! We wish you best of luck in your future endeavors.
 """
 
-["Paper accepted at iFM 2024"]
+["Paper & artifact accepted at iFM 2024"]
 date = "2024-08-20"
 content = """
-  The paper **VeyMont: Choreography-Based Generation of Correct Concurrent Programs with Shared Memory** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at iFM 2024.
+  The paper **VeyMont: Choreography-Based Generation of Correct Concurrent Programs with Shared Memory** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at iFM 2024. The accompaniying artifact (available <a href="https://doi.org/10.5281/zenodo.13348214">here</a>) has also been accepted with available & reusable badges.
 """
 
 ["Two papers accepted at SEFM 2024"]
