@@ -541,5 +541,11 @@ content = """
   Two papers have been accepted for publication at SEFM 2024: **Deductive verification of SYCL in VerCors** written by Ellen Wittingen, Marieke Huisman and Ömer Şakar, and **Automated Invariant Generation for Efficient Deductive Reasoning about Embedded Systems** written by Philip Tasche, Paula Herber and Marieke Huisman.
 """
 
+["VerCors’ Scientific Programmer leaving"]
+date = "2024-09-09"
+content = """
+  We are saddened to announce that Pieter Bos, VerCors’ Scientific Programmer, is leaving the team. Pieter has been working on VerCors since 2018. We would like to thank Pieter for all his hard work over many years to improve the VerCors tool. We wish Pieter the best at his new job as a Formal Methods Engineer at QBayLogic!
+"""
+
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
