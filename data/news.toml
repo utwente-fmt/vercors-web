@@ -547,5 +547,17 @@ content = """
   We are saddened to announce that Pieter Bos, VerCors’ Scientific Programmer, is leaving the team. Pieter has been working on VerCors since 2018. We would like to thank Pieter for all his hard work over many years to improve the VerCors tool. We wish Pieter the best at his new job as a Formal Methods Engineer at QBayLogic!
 """
 
+["Presentation 'The VerCors verifier' at Radboud University"]
+date = "2024-02-03"
+content = """
+  On Monday February 3rd, Marieke Huisman gave a presentation titled 'The VerCors verifier: a verifier for multiple concurrent programming languages' for the Software Science group at the Radboud University Nijmegen, during a seminar organized on the occasion of the PhD defense of Ike Mulder.
+ """
+
+["Keynote at ICT.Open"]
+date = "2024-02-11"
+content = """
+ Marieke Huisman will be on the keynote speakers during ICT.Open, the annual Dutch Computer Science event. ICT.Open will take place on April 15 and 16 in the Jaarbeurs in Utrecht. Registration is open, see https://ictopen.nl/
+"""
+ 
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
