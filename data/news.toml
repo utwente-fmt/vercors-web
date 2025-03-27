@@ -558,6 +558,11 @@ date = "2025-02-11"
 content = """
  Marieke Huisman will be on the keynote speakers during ICT.Open, the annual Dutch Computer Science event. ICT.Open will take place on April 15 and 16 in the Jaarbeurs in Utrecht. Registration is open, see https://ictopen.nl/
 """
- 
+
+["ChEOPS Poster at ICT.Open"]
+date = "2025-03-27"
+content = """
+ A poster on the ChEOPS project will be presented at ICT.Open, the annual Dutch Computer Science event. ICT.Open will take place on April 15 and 16 in the Jaarbeurs in Utrecht. Registration is open, see https://ictopen.nl/
+"""
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
