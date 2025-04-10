@@ -568,7 +568,7 @@ content = """
 ["Paper accepted at COORDINATION 2025"]
 date = "2025-04-04"
 content = """
-The paper **Verified Parameterized Choreographies** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at COORDINATION 2025. The accompanying artefact was also accepted with Available and Functional badges. See you in Lille!
+The paper **Verified Parameterized Choreographies** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at COORDINATION 2025. The accompanying artefact ([doi](https://doi.org/10.5281/zenodo.14900265)) was also accepted with Available and Functional badges. See you in Lille!
 """
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
