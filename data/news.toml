@@ -571,4 +571,10 @@ content = """
 The paper **Verified Parameterized Choreographies** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at COORDINATION 2025. The accompanying artefact ([doi](https://doi.org/10.5281/zenodo.14900265)) was also accepted with Available and Functional badges. See you in Lille!
 """
 
+["Paper accepted at FMICS 2025"]
+date = "2025-05-16"
+content = """
+  The paper **AutoSV-Annotator: Integrating Deductive and Automatic Software Verification** written by Lukas Armborst, Dirk Beyer, Marieke Huisman and Marian Lingsch-Rosenfeld has been accepted at FMICS 2025. 
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
