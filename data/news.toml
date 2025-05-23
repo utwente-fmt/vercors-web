@@ -571,10 +571,33 @@ content = """
 The paper **Verified Parameterized Choreographies** written by Robert Rubbens, Petra van den Bos and Marieke Huisman has been accepted at COORDINATION 2025. The accompanying artefact ([doi](https://doi.org/10.5281/zenodo.14900265)) was also accepted with Available and Functional badges. See you in Lille!
 """
 
+["Marieke Huisman Board member IPN"]
+date = "2025-04-25"
+content = """
+At the ICT.OPEN conference of 15 and 16 April, Marieke Huisman has been appointed as chair of the ICT-Research Platform Netherlands (IPN) for the coming three years. We wish Marieke lots of success and fun in this new role!
+"""
+
+["Journal paper accepted at FMSD"]
+date = "2025-05-12"
+content = """
+   The journal paper **Preserving Provability over GPU Program Optimizations with Annotation-Aware Transformations** written by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs has been accepted at the journal Formal Methods in System Design. 
+"""
+
 ["Paper accepted at FMICS 2025"]
 date = "2025-05-16"
 content = """
   The paper **AutoSV-Annotator: Integrating Deductive and Automatic Software Verification** written by Lukas Armborst, Dirk Beyer, Marieke Huisman and Marian Lingsch-Rosenfeld has been accepted at FMICS 2025. 
 """
+
+["Marieke Huisman ended her term as SC chair of the ETAPS conferences"]
+date = "2025-05-21"
+content = """
+Marieke Huisman ended her term as SC chair of the ETAPS conferences. Her role will be taken over by Laura Kovacs. During the general assembly held during the recent ETAPS conference in Hamilton, she was thanked for her contributions to ETAPS.
+<img src="/images/marieke_SC_chair.jpg" alt="" style="width:95%">
+"""
+
+
+
+
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
