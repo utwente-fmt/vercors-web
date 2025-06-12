@@ -596,8 +596,13 @@ Marieke Huisman ended her term as SC chair of the ETAPS conferences. Her role wi
 <img src="/images/marieke_SC_chair.jpg" alt="" style="width:95%">
 """
 
+["VERSEN MSc awards 2024"]
+date = "2025-05-23"
+content = """
+Our former Master student Ellen Wittingen won third prize at the VERSEN MSc awards 2024. Congratulations Ellen!
 
-
-
+Her master thesis is titled "Deductive verification for SYCL". You can find it <a href="https://purl.utwente.nl/essays/97976">here</a>.
+<img src="/images/ellen-msc-prize.jpg" alt="" style="width:95%">
+"""
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
