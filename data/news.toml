@@ -605,4 +605,11 @@ Her master thesis is titled "Deductive verification for SYCL". You can find it <
 <img src="/images/ellen-msc-prize.jpg" alt="" style="width:95%">
 """
 
+["Best Paper Award at COORDINATION 2025"]
+date = "2025-06-18"
+content = """
+Bob Rubbens, Petra van den Bos and Marieke Huisman won the COORDINATION 2025 Best Paper Award for their submission titled "Verified Parameterized Choreographies". Congratulations! The prize was awarded and celebrated at the DisCoTec umbrella conference banquet on Wednesday.
+<img src="/images/coordination-2025-award.jpg" alt="" style="width:95%">
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
