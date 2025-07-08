@@ -618,4 +618,10 @@ content = """
  One of our ex-master students, Wander Nauta, has graduated today. His masters thesis is titled "AValAnCHE: Improving robustness of the VerCors verification toolset using fuzzing". You can find it <a href="https://purl.utwente.nl/essays/106440">here</a>. Well done Wander! We wish you the best of luck in your future endeavors.
 """
 
+["Member graduation: Ioan-Alexandru Zambori"]
+date = "2025-07-04"
+content = """
+One of our ex-bachelor students, Ioan-Alexandru Zambori, has graduated today. He presented his Bachelor's thesis titled "Loop Invariant Generation for Deductive Verification of Embedded Systems". Congratulations, Alex! We wish you best of luck in your future endeavors.
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
