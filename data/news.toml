@@ -624,4 +624,10 @@ content = """
 One of our ex-bachelor students, Ioan-Alexandru Zambori, has graduated today. He presented his Bachelor's thesis titled "Loop Invariant Generation for Deductive Verification of Embedded Systems". Congratulations, Alex! We wish you best of luck in your future endeavors.
 """
 
+["Paper accepted at EMSOFT 2025"]
+date = "2025-05-16"
+content = """
+  The paper **Deductive Verification of Cooperative RTOS Applications** ([DOI](https://doi.org/10.1145/3759251)) written by Philip Tasche, Paula Herber and Marieke Huisman has been accepted at EMSOFT 2025. The accompanying artifact ([DOI](https://doi.org/10.4121/62dcf604-3009-4e09-a002-52c12e9504fa)) also received the Available, Reusable and Results Reproduced badges.
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
