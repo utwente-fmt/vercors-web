@@ -625,7 +625,7 @@ One of our ex-bachelor students, Ioan-Alexandru Zambori, has graduated today. He
 """
 
 ["Paper accepted at EMSOFT 2025"]
-date = "2025-05-16"
+date = "2025-08-26"
 content = """
   The paper **Deductive Verification of Cooperative RTOS Applications** ([DOI](https://doi.org/10.1145/3759251)) written by Philip Tasche, Paula Herber and Marieke Huisman has been accepted at EMSOFT 2025. The accompanying artifact ([DOI](https://doi.org/10.4121/62dcf604-3009-4e09-a002-52c12e9504fa)) also received the Available, Reusable and Results Reproduced badges.
 """
