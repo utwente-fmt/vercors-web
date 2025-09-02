@@ -2,7 +2,6 @@ members = [
     { url = "https://people.utwente.nl/l.armborst", name = "Lukas Armborst, MSc", image = "/images/team/lukas.jpg" },
     { url = "https://people.utwente.nl/o.f.o.sakar", name = "Ömer Şakar, MSc", image = "/images/team/omer.jpg" },
     { url = "https://people.utwente.nl/r.b.rubbens", name = "Bob Rubbens, MSc", image = "/images/team/bob.jpg" },
-    { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc", image = "/images/team/pieter.jpg" },
     { url = "https://people.utwente.nl/p.b.h.tasche", name = "Philip Tasche, MSc", image = "/images/team/philip.jpg" },
     { url = "https://people.utwente.nl/a.v.stekelenburg", name = "Alexander Stekelenburg, MSc", image = "/images/team/alexander.jpg" },
     { url = "https://people.utwente.nl/r.a.mensing", name = "Robert Mensing, MSc", image = "/images/team/robert.jpg" },
@@ -27,9 +26,12 @@ collaborators = [
 # capita selecta projects.
 
 students = [
+    # 2025
+    { name = "Alex Zambori", essay = "https://purl.utwente.nl/essays/107529" },
     # 2024
     { name = "Dylan Damian Jansen", essay = "https://purl.utwente.nl/essays/98745" },
     { name = "Ellen Wittingen", essay = "https://purl.utwente.nl/essays/97976" },
+    { name = "Tycho Dubbeling", essay = "https://purl.utwente.nl/essays/100843" },
     # 2023
     { name = "Joël Ledelay", essay = "https://purl.utwente.nl/essays/95192" },
     { name = "Johannes Gerrit Jan Boerman", essay = "https://purl.utwente.nl/essays/94474" },
@@ -91,6 +93,7 @@ students = [
 ]
 
 alumni = [
+    { url = "https://people.utwente.nl/p.h.bos", name = "Pieter Bos, MSc", image = "/images/team/pieter.jpg" },
     { url = "https://www.linkedin.com/in/naum-tomov-82a62b21b/", name = "Naum Tomov, MSc", image = "/images/team/naum.jpg" },
     { url = "https://wwwhome.ewi.utwente.nl/~lathouwerssam/", name = "dr. Sophie Lathouwers", image = "/images/team/sophie.jpg" },
     { url = "https://people.utwente.nl/r.e.monti", name = "dr. Raúl E. Monti", image = "/images/team/raul.jpg" },

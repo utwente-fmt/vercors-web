@@ -630,4 +630,10 @@ content = """
   The paper **Deductive Verification of Cooperative RTOS Applications** ([DOI](https://doi.org/10.1145/3759251)) written by Philip Tasche, Paula Herber and Marieke Huisman has been accepted at EMSOFT 2025. The accompanying artifact ([DOI](https://doi.org/10.4121/62dcf604-3009-4e09-a002-52c12e9504fa)) also received the Available, Reusable and Results Reproduced badges.
 """
 
+["Team member changes"]
+date = "2025-09-02"
+content = """
+We welcome Bob Rubbens, former PhD of the VerCor team, as a postdoc on the VerCors team. In collaboration with Andrea Continella and Marieke Huisman, he will be investigating how formal methods and tools such as VerCors can guarantee the security of software, both on a practical and theoretical level. 
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
