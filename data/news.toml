@@ -1,3 +1,11 @@
+["The beginning of time"]
+date = "1970-01-01"
+content = """
+** Big bang! **
+
+Mohsen's project will contribute to further improvement of the verification of GPU programs in VerCors. Fauzia's project will focus on the effective use of abstractions to reason about concurrent or distributed programs, using VerCors."""
+
+
 ["New PhD Students in Mercedes Project"]
 date = "2018-02-15"
 content = """
