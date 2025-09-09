@@ -633,7 +633,7 @@ content = """
 ["Team member changes"]
 date = "2025-09-02"
 content = """
-We welcome Bob Rubbens, former PhD of the VerCor team, as a postdoc on the VerCors team. In collaboration with Andrea Continella and Marieke Huisman, he will be investigating how formal methods and tools such as VerCors can guarantee the security of software, both on a practical and theoretical level. 
+We welcome Bob Rubbens, former PhD of the VerCors team, as a postdoc on the VerCors team. In collaboration with Andrea Continella and Marieke Huisman, he will be investigating how formal methods and tools such as VerCors can guarantee the security of software, both on a practical and theoretical level. 
 """
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
