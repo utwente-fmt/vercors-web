@@ -644,4 +644,10 @@ The VerCors team member **Bob Rubbens** sucessfully defended his PhD thesis on t
 <img src="/images/bob-phd-vercors-group-picture-2025-10-15.jpg" alt="VerCors group picture at Bob's defenses" style="width:95%">
 """
 
+["Keynote at VERSEN community event about research funding in software engineering research"]
+date = "2025-10-21"
+content = """
+Marieke Huisman will give a keynote about NWO funding at the next VERSEN community event. The community event is titled "How to Navigate the SE Funding Landscape: An Academic Perspective", and features several keynotes by community leaders and other activities. More information and a sign-up link are available [on the VERSEN website](https://www.versen.nl/contents/events/2025-10-23-NavigateFunding).
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
