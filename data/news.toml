@@ -389,7 +389,7 @@ content = """
 ["PhD defense of Sophie Lathouwers"]
 date = "2023-10-17"
 content = """
- The former VerCors team member **Sophie Lathouwers** successfully defended her PhD thesis on the 17th of October 2023. Congratulations, Doctor Sophie Lathouwers! 
+ The former VerCors team member **Sophie Lathouwers** successfully defended her PhD thesis on the 17th of October 2023. Congratulations, Doctor Sophie Lathouwers!
 """
 
 ["Marieke Huisman appointed NAE fellow"]
@@ -443,7 +443,7 @@ content = """
 ["Paper accepted at RRRR Workshop at ETAPS"]
 date = "2024-03-15"
 content = """
-  The paper **Replication of a Deductive Synthesizer for Programs with Pointers** written by Serge Johanns and Marieke Huisman has been accepted the RRRR workshop at ETAPS. 
+  The paper **Replication of a Deductive Synthesizer for Programs with Pointers** written by Serge Johanns and Marieke Huisman has been accepted the RRRR workshop at ETAPS.
 """
 
 ["Lorentz workshop on Contract Languages"]
@@ -483,7 +483,7 @@ content = """
 ["Keynote at Dutch Formal Methods Day 2024"]
 date = "2024-04-16"
 content = """
-  Marieke Huisman gave a keynote talk titled "VerCors: Inclusive Software Verification" at the <a href="https://conf.researchr.org/details/dfdm-2024/dfdm-2024-papers/2/VerCors-Inclusive-Software-Verification" target="_blank">Dutch Formal Methods Day 2024</a>. 
+  Marieke Huisman gave a keynote talk titled "VerCors: Inclusive Software Verification" at the <a href="https://conf.researchr.org/details/dfdm-2024/dfdm-2024-papers/2/VerCors-Inclusive-Software-Verification" target="_blank">Dutch Formal Methods Day 2024</a>.
 """
 
 
@@ -496,7 +496,7 @@ content = """
 ["Paper accepted at CAV 2024"]
 date = "2024-05-21"
 content = """
-  The paper **The VerCors Verifier: a Progress Report** written by Lukas Armborst, Pieter Bos, Lars van den Haak, Marieke Huisman, Robert Rubbens, Ömer Şakar, and Philip Tasche has been accepted at CAV 2024. 
+  The paper **The VerCors Verifier: a Progress Report** written by Lukas Armborst, Pieter Bos, Lars van den Haak, Marieke Huisman, Robert Rubbens, Ömer Şakar, and Philip Tasche has been accepted at CAV 2024.
 """
 
 ["Invited talk by Marieke Huisman at the Frama-C Days"]
@@ -514,7 +514,7 @@ content = """
 ["Paper accepted at FMICS 2024"]
 date = "2024-06-13"
 content = """
-  The paper **Verifying a Radio Telescope Pipeline using HaliVer: Solving Nonlinear and Quantifier Challenges** written by Lars B. van den Haak, Anton Wijs, Marieke Huisman and Mark van den Brand has been accepted at FMICS 2024. 
+  The paper **Verifying a Radio Telescope Pipeline using HaliVer: Solving Nonlinear and Quantifier Challenges** written by Lars B. van den Haak, Anton Wijs, Marieke Huisman and Mark van den Brand has been accepted at FMICS 2024.
 """
 
 ["Two Member Graduation: Jort Mol Lous & Tycho Dubbeling"]
@@ -580,13 +580,13 @@ At the ICT.OPEN conference of 15 and 16 April, Marieke Huisman has been appointe
 ["Journal paper accepted at FMSD"]
 date = "2025-05-12"
 content = """
-   The journal paper **Preserving Provability over GPU Program Optimizations with Annotation-Aware Transformations** written by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs has been accepted at the journal Formal Methods in System Design. 
+   The journal paper **Preserving Provability over GPU Program Optimizations with Annotation-Aware Transformations** written by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs has been accepted at the journal Formal Methods in System Design.
 """
 
 ["Paper accepted at FMICS 2025"]
 date = "2025-05-16"
 content = """
-  The paper **AutoSV-Annotator: Integrating Deductive and Automatic Software Verification** written by Lukas Armborst, Dirk Beyer, Marieke Huisman and Marian Lingsch-Rosenfeld has been accepted at FMICS 2025. 
+  The paper **AutoSV-Annotator: Integrating Deductive and Automatic Software Verification** written by Lukas Armborst, Dirk Beyer, Marieke Huisman and Marian Lingsch-Rosenfeld has been accepted at FMICS 2025.
 """
 
 ["Marieke Huisman ended her term as SC chair of the ETAPS conferences"]
@@ -633,7 +633,7 @@ content = """
 ["Team member changes"]
 date = "2025-09-02"
 content = """
-We welcome Bob Rubbens, former PhD of the VerCors team, as a postdoc on the VerCors team. In collaboration with Andrea Continella and Marieke Huisman, he will be investigating how formal methods and tools such as VerCors can guarantee the security of software, both on a practical and theoretical level. 
+We welcome Bob Rubbens, former PhD of the VerCors team, as a postdoc on the VerCors team. In collaboration with Andrea Continella and Marieke Huisman, he will be investigating how formal methods and tools such as VerCors can guarantee the security of software, both on a practical and theoretical level.
 """
 
 ["PhD defense of Bob Rubbens"]
@@ -641,7 +641,7 @@ date = "2025-10-15"
 content = """
 The VerCors team member **Bob Rubbens** sucessfully defended his PhD thesis on the 15th of October 2025. Congratulations, Doctor Robert Benjamin Rubbens! The thesis titled "Bridging the Implementation Gap: Advancements in Model-Based Concurrent Program Verification" is [available online](https://doi.org/10.3990/1.9789036569101).
 
-<img src="/images/bob-phd-vercors-group-picture-2025-10-15.jpg" alt="VerCors group picture at Bobs defenses" style="width:95%">
+<img src="/images/bob-phd-vercors-group-picture-2025-10-15.jpg" alt="VerCors group picture at Bob's defenses" style="width:95%">
 """
 
 ["Keynote at VERSEN community event about research funding in software engineering research"]
