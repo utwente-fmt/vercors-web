@@ -639,7 +639,7 @@ We welcome Bob Rubbens, former PhD of the VerCors team, as a postdoc on the VerC
 ["PhD defense of Bob Rubbens"]
 date = "2025-10-15"
 content = """
-The VerCors team member **Bob Rubbens** sucessfully defended his PhD thesis on the 15th of October 2025. Congratulations, Doctor Robert Benjamin Rubbens! The thesis titled "Bridging the Implementation Gap: Advancements in Model-Based Concurrent Program Verification" is [available online](https://doi.org/10.3990/1.9789036569101). Bob will continue as a postdoc under supervision of Marieke Huisman and Andrea Continella. The topic will be about enhancing vulnerability analysis with formal methods.
+The VerCors team member **Bob Rubbens** sucessfully defended his PhD thesis on the 15th of October 2025. Congratulations, Doctor Robert Benjamin Rubbens! The thesis titled "Bridging the Implementation Gap: Advancements in Model-Based Concurrent Program Verification" is [available online](https://doi.org/10.3990/1.9789036569101).
 
 <img src="/images/bob-phd-vercors-group-picture-2025-10-15.jpg" alt="VerCors group picture at Bob's defenses" style="width:95%">
 """
