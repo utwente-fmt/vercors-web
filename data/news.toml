@@ -650,4 +650,16 @@ content = """
 Marieke Huisman will give a keynote about NWO funding at the next VERSEN community event. The community event is titled "How to Navigate the SE Funding Landscape: An Academic Perspective", and features several keynotes by community leaders and other activities. More information and a sign-up link are available [on the VERSEN website](https://www.versen.nl/contents/events/2025-10-23-NavigateFunding).
 """
 
+["Marieke Huisman will present at the Bits & Chips event"]
+date = "2025-11-18"
+content = """
+Marieke Huisman will give a presentation at the [Bits & Chips](https://events.bits-chips.com/bitschips-event/) on November 20th 2025 in Eindhoven. The title of her talk is: "Bug-free software: a realizable dream?".
+"""
+
+["Marieke Huisman to talk at the iFM conference"]
+date = "2025-11-18"
+content = """
+Marieke Huisman will give an invited talk at the [iFM conference](https://ifm2025.ens.psl.eu/) on November 21st 2025 in Paris. The title of her talk is: "Bug-free software: a realisable dream? (and how VerCors will help...)".
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
