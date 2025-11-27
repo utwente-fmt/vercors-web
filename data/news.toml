@@ -662,4 +662,9 @@ content = """
 Marieke Huisman will give an invited talk at the [iFM conference](https://ifm2025.ens.psl.eu/) on November 21st 2025 in Paris. The title of her talk is: "Bug-free software: a realisable dream? (and how VerCors will help...)".
 """
 
+["Journal Paper accepted at FMSD"]
+date = "2025-11-22"
+content = """
+  The paper **Preserving Provability over GPU Program Optimizations with Annotation-Aware Transformations** written by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs has been published at the journal <a href="https://doi.org/10.1007/s10703-025-00480-7" target="_blank">Formal Methods in System Design.</a> """
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
