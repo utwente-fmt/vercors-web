@@ -667,4 +667,10 @@ date = "2025-11-22"
 content = """
   The paper **Preserving Provability over GPU Program Optimizations with Annotation-Aware Transformations** written by Ömer Şakar, Mohsen Safari, Marieke Huisman and Anton Wijs has been published at the journal <a href="https://doi.org/10.1007/s10703-025-00480-7" target="_blank">Formal Methods in System Design.</a> """
 
+["VerCors-related talks at Dagstuhl Seminar"]
+date = "2026-01-06"
+content = """
+The VerCors team will be represented at the Dagstuhl Seminar "Software Contracts meet System Contracts". Marieke Huisman will give a presentation titled "Software Contracts" on Tuesday, January 13th 2026, and Philip Tasche will give a short talk titled "Local Proofs of Global Properties" on Thursday, January 15th 2026.
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
