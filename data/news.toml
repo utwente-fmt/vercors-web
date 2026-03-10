@@ -673,10 +673,10 @@ content = """
 The VerCors team will be represented at the Dagstuhl Seminar "Software Contracts meet System Contracts". Marieke Huisman will give a presentation titled "Software Contracts" on Tuesday, January 13th 2026, and Philip Tasche will give a short talk titled "Local Proofs of Global Properties" on Thursday, January 15th 2026.
 """
 
-["Paper accepted at SPIN 2026"]
+["Two papers accepted at SPIN 2026"]
 date = "2026-03-06"
 content = """
-  The paper **Deductive Verification of Weak Memory Programs with View-based Protocols** written by Ömer Şakar, Soham Chakraborty, Marieke Huisman and Anton Wijs has been accepted at SPIN 2026.
+  Two papers have been accepted at SPIN 2026. The first paper is titled **Crash-free Deductive Verifiers** by Wander Nauta, Marcus Gerhold and Marieke Huisman. The second paper is titled **Deductive Verification of Weak Memory Programs with View-based Protocols** by Ömer Şakar, Soham Chakraborty, Marieke Huisman and Anton Wijs.
 """
 
 ["Paper accepted at PLACES 2026"]
