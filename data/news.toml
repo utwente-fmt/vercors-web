@@ -679,4 +679,10 @@ content = """
   The paper **Deductive Verification of Weak Memory Programs with View-based Protocols** written by Ömer Şakar, Soham Chakraborty, Marieke Huisman and Anton Wijs has been accepted at SPIN 2026.
 """
 
+["Paper accepted at PLACES 2026"]
+date = "2026-03-10"
+content = """
+  The paper **Predicate Subtypes in VerCors** written by Tycho Dubbeling, Marieke Huisman and Ömer Şakar has been accepted at PLACES 2026.
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
