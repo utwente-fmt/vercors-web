@@ -1,0 +1,14 @@
+["On Using VeriFast, VerCors, Plural, and KeY to Check Object Usage"]
+date = "2023"
+url = "https://doi.org/10.4230/LIPIcs.ECOOP.2023.40"
+content = """
+Mota, J.; Giunti, M.; and Ravara, A. In 37th European Conference on Object-Oriented Programming (ECOOP 2023). Leibniz International Proceedings in Informatics (LIPIcs), Volume 263, pp. 40:1-40:29, Schloss Dagstuhl – Leibniz-Zentrum für Informatik. 2023.
+"""
+
+["ProofWright: Towards Agentic Formal Verification of CUDA"]
+date = "2025"
+url = "https://doi.org/10.48550/arXiv.2511.12294"
+content = """
+Chatterjee, B.; Zagieboylo, D.; Damani, S.; Hari, S.; and Kozyrakis, C. 2025.
+"""
+

@@ -27,6 +27,7 @@ def build():
         "examples": titled(load_data("examples")),
         "languages": load_data("languages"),
         "year": datetime.now().year,
+        "external_papers": by_date_desc(titled(load_data("external_papers"))),
     }
 
     print("Rendering bibliography...")

@@ -18,8 +18,17 @@
         <h3><strong> External Publications Relating to VerCors</strong></h2>
     </header>
 
+    <ul>
+    {% for paper in external_papers %}
+    {% if "url" in paper %}
     {% autoescape false %}
-        {{ external_references_html }}
+    <li><b><a href="{{ paper.url }}">{{ paper.title }}.</a></b> {{ paper.content }} <a href="{{ paper.url }}">{{ paper.url }}</a></li>
     {% endautoescape %}
-</section>
+    {% else %}
+    {% autoescape false %}
+    <li><b>{{ paper.title }}</b> {{ paper.content }} </li>   
+    {% endautoescape %}
+    {% endif %}
+    {% endfor %}
+    </ul></section>
 {% endblock %}
