@@ -38,6 +38,8 @@ def clone(url, tag):
 def fetch_bibliography_into(data):
     data["references_html"] = requests.get(
         "https://bibbase.org/show?bib=https://raw.githubusercontent.com/utwente-fmt/vercors-web/master/static/references.bib&nocache=1").text
+    data["external_references_html"] = requests.get(
+        "https://bibbase.org/show?bib=https://raw.githubusercontent.com/utwente-fmt/vercors-web/master/static/external_papers.bib&nocache=1").text
 
 
 def fetch_examples_into(data, vercors_release_tag):
