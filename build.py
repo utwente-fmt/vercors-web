@@ -29,7 +29,7 @@ def build():
         "year": datetime.now().year,
     }
 
-    print("Rendering bibliography...")
+    print("Rendering bibliographies...")
     fetch_bibliography_into(data)
 
     print("Fetching example data from git repository...")
