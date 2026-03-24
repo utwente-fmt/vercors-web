@@ -23,6 +23,8 @@ Building the website...
 Now serving on http://localhost:8000/
 ```
 
+**Note**: On Windows, you may have to explicitly use UTF-8 encoding, using `python.exe -X utf8 build.py` and `python.exe -X utf8 test.py`, respectively.
+
 ## Structure
 * `/build` contains the statically rendered website after building;
 * `/generated_templates` contains generated jinja templates after building;
