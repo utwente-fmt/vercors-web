@@ -27,7 +27,6 @@ def build():
         "examples": titled(load_data("examples")),
         "languages": load_data("languages"),
         "year": datetime.now().year,
-        "external_papers": by_date_desc(titled(load_data("external_papers"))),
     }
 
     print("Rendering bibliography...")
@@ -44,6 +43,7 @@ def build():
         urls["index"]: ("index.html", {}),
         urls["about"]: ("about.html", {}),
         urls["publications"]: ("publications.html", {}),
+        urls["external_papers"]: ("external_publications.html", {}),
         urls["news"]: ("news.html", {}),
         urls["examples"]: ("showcases.html", {}),
         urls["try_online"]: ("try_online.html", {}),
