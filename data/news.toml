@@ -685,4 +685,14 @@ content = """
   The paper **Predicate Subtypes in VerCors** written by Tycho Dubbeling, Marieke Huisman and Ömer Şakar has been accepted at PLACES 2026.
 """
 
+["Best student team at VerifyThis 2026"]
+date = "2026-04-13"
+content = """ 
+ The student team "VerCors --dev-unsafe-optimization" got chosen as one of the two best student teams at the 2026 edition of <a href="https://www.pm.inf.ethz.ch/research/verifythis.html" target="_blank">VerifyThis</a>. Congratulations to Alexander Stekelenburg and Ömer Şakar for this achievement!
+
+<img src="/images/verifythis2026.jpg" alt="Alexander Stekelenburg and Ömer Şakar holding certificates reading Best Student Team - 2nd place - VerCors --dev-unsafe-optimization">
+"""
+
+
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
