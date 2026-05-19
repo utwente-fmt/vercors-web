@@ -693,6 +693,9 @@ content = """
 <img src="/images/verifythis2026.jpg" alt="Alexander Stekelenburg and Ömer Şakar holding certificates reading Best Student Team - 2nd place - VerCors --dev-unsafe-optimization">
 """
 
-
+["Paper accepted at SoSyM"]
+date = "2026-04-27"
+content = """
+  The paper **Deductive Reasoning about Embedded Systems using Reachable Abstract States Invariants** written by Philip Tasche, Paula Herber and Marieke Huisman has been accepted for publication at the International Journal on Software and Systems Modeling."""
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
