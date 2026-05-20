@@ -707,6 +707,6 @@ content = """
 ["Interview on VerCors and Software Reliability"]
 date = "2026-05-20"
 content = """
- **Marieke Huisman** gave an interview for Computable in which she talked about VerCors and software verification. You can find the article <a href="https://www.computable.nl/e-magazine/editie-04-2026/van-vertrouwen-naar-bewijs-0403/" target="_blank">Here</a>"""
+ **Marieke Huisman** gave an interview for Computable in which she talked about VerCors and software verification. You can find the article <a href="https://www.computable.nl/e-magazine/editie-04-2026/van-vertrouwen-naar-bewijs-0403/" target="_blank">here</a>"""
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
