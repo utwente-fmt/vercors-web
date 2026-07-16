@@ -732,7 +732,7 @@ Filiz Yıldız joined the VerCors Team and started as a summer intern. She will 
 ["Keynote at Dutch Formal Methods Day 2024"]
 date = "2026-07-16"
 content = """
-  Marieke Huisman is going to give a keynote talk titled "Bug-free embedded software: a realisable dream? (and how VerCors will help…)" on July 21st at the <a href="https://acm-rep.github.io/2026/keynotes/" target="_blank">ACM REP 2026</a>.
+  Marieke Huisman will give a keynote talk on July 21st titled 'Bug-free embedded software: a realisable dream? (and how VerCors will help…)' at the <a href="https://acm-rep.github.io/2026/keynotes/" target="_blank">ACM REP 2026</a>.
 """
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
