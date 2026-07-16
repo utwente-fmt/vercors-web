@@ -723,4 +723,10 @@ content = """
  <img src="/images/PhilipDefence.jpg" alt="Philip Tasche PhD defense" style="width:100%">
 """
 
+["Intern Student joining the Team!"]
+date = "2026-07-01"
+content = """
+Filiz Yıldız joined the VerCors Team and started as a summer intern. She will join us for two months to work on robustness testing of VerCors. Welcome, Filiz!
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
