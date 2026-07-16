@@ -729,7 +729,7 @@ content = """
 Filiz Yıldız joined the VerCors Team and started as a summer intern. She will join us for two months to work on robustness testing of VerCors. Welcome, Filiz!
 """
 
-["Keynote at Dutch Formal Methods Day 2024"]
+["Keynote at ACM REP 2026"]
 date = "2026-07-16"
 content = """
   Marieke Huisman will give a keynote talk on July 21st titled 'Bug-free embedded software: a realisable dream? (and how VerCors will help...)' at <a href="https://acm-rep.github.io/2026/keynotes/" target="_blank">ACM REP 2026</a>.
