@@ -1,0 +1,13 @@
+[book]
+authors = ["Lars"]
+language = "en"
+src = "src"
+title = "VerCors Tutorial"
+
+[output.html]
+# additional-js = ["js/mode-c_cpp.js"] # ["js/mode-java.js"]#, "js/theme-chrome.js"]#, "js/mode-c_cpp.js"]
+
+[output.html.playground]
+editable = true
+copyable = true
+line-numbers = true

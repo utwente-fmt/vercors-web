@@ -5,3 +5,5 @@ build/
 generated_templates/
 
 .idea
+wiki_book/src
+.vscode
