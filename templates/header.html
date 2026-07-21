@@ -1,0 +1,44 @@
+
+            <nav class="top-nav">
+                <div class="container">
+                    <div id="logo">
+                        <span id="hamburger" onclick="document.querySelector('nav.top-nav').classList.toggle('open')"><span class="fa fa-bars"></span></span><!--
+                        --><a href="{{ urls.index }}"><img id="logo-light" src="/images/logo.svg" title="The VerCors Verifier" alt="Logo of the VerCors Verifier"><img id="logo-dark" src="/images/logo-white.svg" title="The VerCors Verifier" alt="Logo of the VerCors Verifier"></a>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="{{ urls.wiki }}">Getting Started</a>
+                            <ul>
+                                <li><a href="{{ urls.wiki }}#installing-and-running-vercors">Installation Guide</a></li>
+                                <li><a href="{{ urls.wiki }}#prototypical-verification-language">Tutorial</a></li>
+                                <li>
+                                    <a href="{{ urls.external.issues }}" target="_blank">
+                                        Issue Tracker
+                                        <span class="fa fa-external-link" style="font-size: 10pt"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ urls.index }}">Tools</a>
+                            <ul>
+                                <li><a href="{{ urls.index }}">Verifier</a></li>
+                                <li><a href="{{ urls.alpinist }}">Alpinist</a></li>
+                                <li><a href="{{ urls.vesuv }}">VeSUV</a></li>
+                                <li><a href="{{ urls.veymont }}">VeyMont</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ urls.publications }}">Publications</a></li>
+                        <li>
+                            <a href="{{ urls.about }}">About</a>
+                            <ul>
+                                <li><a href="{{ urls.about }}#team">VerCors Team</a></li>
+                                <li><a href="{{ urls.news }}">News</a></li>
+                                <li><a href="{{ urls.about }}#contact">Contact</a></li>
+                                <li><a href="{{ urls.about }}#credits">Credits</a></li>
+                                <li><a href="{{ urls.license }}">License</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
