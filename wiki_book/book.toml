@@ -6,8 +6,6 @@ title = "VerCors Tutorial"
 
 [output.html]
 default-theme = "vercors"
-admonitions = true
-# additional-js = ["js/mode-c_cpp.js"] # ["js/mode-java.js"]#, "js/theme-chrome.js"]#, "js/mode-c_cpp.js"]
 
 [output.html.playground]
 editable = true

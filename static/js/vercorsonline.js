@@ -10,8 +10,9 @@ function setProgress(progress, text, icon) {
 }
 
 function setRunButtonRunning(button, isRunning) {
-	button.removeClass('fa-play fa-times');
-	button.addClass(isRunning ? 'fa-times' : 'fa-play');
+	button.context.innerHTML = 
+		document.getElementById(isRunning ? 'fa-xmark' : 'fa-play').innerHTML;
+
 	button.attr('title', isRunning ? 'Stop verification' : 'Verify this code');
 	button.attr('aria-label', isRunning ? 'Stop verification' : 'Verify this code');
 }
@@ -104,46 +105,6 @@ function getCodeToVerify(container) {
 
 	const textArea = container.find('textarea[name=examplecode]').first();
 	return textArea.length ? textArea.val() : '';
-}
-
-function getSnippetCode(container) {
-	const codeNode = container.find('pre.playground code').first();
-	if(codeNode.length) {
-		if(window.ace && codeNode.hasClass('editable')) {
-			try {
-				return window.ace.edit(codeNode.get(0)).getValue();
-			} catch (err) {
-				console.log(err);
-			}
-		}
-		return codeNode.text();
-	}
-
-	const textArea = container.find('textarea[name=examplecode]').first();
-	return textArea.length ? textArea.val() : '';
-}
-
-function copyTextToClipboard(text) {
-	if (navigator.clipboard && navigator.clipboard.writeText) {
-		return navigator.clipboard.writeText(text);
-	}
-
-	return new Promise((resolve, reject) => {
-		try {
-			const temp = document.createElement('textarea');
-			temp.value = text;
-			temp.setAttribute('readonly', '');
-			temp.style.position = 'absolute';
-			temp.style.left = '-9999px';
-			document.body.appendChild(temp);
-			temp.select();
-			document.execCommand('copy');
-			document.body.removeChild(temp);
-			resolve();
-		} catch (err) {
-			reject(err);
-		}
-	});
 }
 
 function verify_code(raw_button) {
@@ -246,38 +207,3 @@ function verify_code(raw_button) {
 		}));
 	};
 }
-
-// $(function() { $('.reset-button').click(function() {
-// 	const self = $(this).closest('.verification-container');
-// 	const codeNode = self.find('pre.playground code').first();
-// 	if(!(window.ace && codeNode.length && codeNode.hasClass('editable'))) {
-// 		return;
-// 	}
-
-// 	try {
-// 		const editor = window.ace.edit(codeNode.get(0));
-// 		if(typeof editor.originalCode !== 'undefined') {
-// 			editor.setValue(editor.originalCode);
-// 			editor.clearSelection();
-// 		}
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// }) });
-
-// $(function() { $('.clip-button').click(function() {
-// 	const button = $(this);
-// 	const self = button.closest('.verification-container');
-// 	copyTextToClipboard(getSnippetCode(self))
-// 		.then(() => {
-// 			button.attr('title', 'Copied!');
-// 			button.attr('aria-label', 'Copied!');
-// 			setTimeout(() => {
-// 				button.attr('title', 'Copy to clipboard');
-// 				button.attr('aria-label', 'Copy to clipboard');
-// 			}, 1000);
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 		});
-// }) });
