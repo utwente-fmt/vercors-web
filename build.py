@@ -44,17 +44,18 @@ def postprocess_wiki_html(wiki_root, urls, data):
                 count=1,
             )
 
-            text = re.sub(
-                r"(<body[^>]*>)(.*?)",
-                lambda m: f"{m.group(1)}\n{fragments['header']}\n{m.group(2)}",
-                text,
-                flags=re.S,
-                count=1,
-            )
+            if filename != "print.html":
+                text = re.sub(
+                    r"(<body[^>]*>)(.*?)",
+                    lambda m: f"{m.group(1)}\n{fragments['header']}\n{m.group(2)}",
+                    text,
+                    flags=re.S,
+                    count=1,
+                )
 
-            parts = text.rsplit("</body>", 1)
-            if len(parts) == 2:
-                text = parts[0] + fragments["footer"] + "\n</body>" + parts[1]
+                parts = text.rsplit("</body>", 1)
+                if len(parts) == 2:
+                    text = parts[0] + fragments["footer"] + "\n</body>" + parts[1]
 
             with open(path, "w", encoding="utf-8") as f:
                 f.write(text)

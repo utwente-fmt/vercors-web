@@ -9,8 +9,9 @@ window.onunload = function() { };
 function playground_text(playground, hidden = true) {
     const code_block = playground.querySelector('code');
 
-    const editor = window.ace.edit(code_block);
+    
     if (window.ace && code_block.classList.contains('editable')) {
+        const editor = window.ace.edit(code_block);
         return editor.getValue();
     } else if (hidden) {
         return code_block.textContent;
@@ -165,7 +166,7 @@ aria-label="Show hidden lines"></button>';
         }
 
         const code_block = pre_block.querySelector('code');
-        if (window.ace && code_block.classList.contains('editable')) {
+        if (window.ace && code_block && code_block.classList.contains('editable')) {
             const undoChangesButton = document.createElement('button');
             undoChangesButton.className = 'fa fa-history reset-button';
             undoChangesButton.title = 'Undo changes';

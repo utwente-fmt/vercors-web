@@ -5,6 +5,20 @@
     color-scheme: var(--color-scheme);
 }
 
+#footer {
+  font-weight: 500;
+  line-height: 1.75;  
+}
+
+#footer hr {
+    border: none;
+    border-top: 4px solid;
+    margin: 2rem -2rem;
+    max-width: calc(100vw + 1rem);
+    border-color: var(--ruler-dark);
+}
+
+
 div.top-header {
   font-weight: 500;
   line-height: 1.75;
@@ -34,7 +48,7 @@ body {
     overflow-x: hidden;
 }
 
-code {
+code:not(#copyright) {
     font-family: var(--mono-font) !important;
     font-size: var(--code-font-size);
     direction: ltr !important;
