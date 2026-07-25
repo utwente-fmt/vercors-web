@@ -135,7 +135,7 @@ def build():
     env.filters["slugify"] = slugify
 
     for path, (template, extra_data) in pages.items():
-        if path == "/wiki/":
+        if path == "/wiki":
             # The wiki is rendered by mdBook, so we don't need to render it here.
             continue
         print("Rendering {}...".format(path))

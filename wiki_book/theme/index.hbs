@@ -311,14 +311,18 @@
         {{#if playground_js}}
         <script src="{{ resource "ace.js" }}"></script>
         <script src="{{ resource "mode-rust.js" }}"></script>
-
-        <script src="{{ resource "js/mode-java.js" }}"></script>
-        <script src="{{ resource "js/mode-c_cpp.js" }}"></script>
+        <script src="../js/mode-annotated_c.js"></script>
+        <script src="../js/mode-annotated_cuda.js"></script>
+        <script src="../js/mode-annotated_java.js"></script>
+        <script src="../js/mode-annotated_opencl.js"></script>
+        <script src="../js/mode-annotated_sycl.js"></script>
+        <script src="../js/mode-pvl.js"></script>
+        <script src="../js/mode-viper.js"></script>
 
         <script src="{{ resource "editor.js" }}"></script>
         <script src="{{ resource "theme-dawn.js" }}"></script>
         <script src="{{ resource "theme-tomorrow_night.js" }}"></script>
-        <script src="{{ resource "js/theme-chrome.js" }}"></script>
+        <script src="../js/theme-chrome.js"></script>
 
         {{/if}}
 

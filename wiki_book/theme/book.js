@@ -5,19 +5,6 @@
 // Fix back button cache problem
 window.onunload = function() { };
 
-// Global variable, shared between modules
-function playground_text(playground, hidden = true) {
-    const code_block = playground.querySelector('code');
-
-    if (window.ace && code_block.classList.contains('editable')) {
-        const editor = window.ace.edit(code_block);
-        return editor.getValue();
-    } else if (hidden) {
-        return code_block.textContent;
-    } else {
-        return code_block.innerText;
-    }
-}
 
 /**
  * Helper for global keypress handlers so they don't trigger when certain elements are active.
@@ -72,18 +59,6 @@ function mdbook_something_else_has_focus(e) {
         });
     }
 
-    // Adding the hljs class gives code blocks the color css
-    // even if highlighting doesn't apply
-    code_nodes
-        .filter(function(node) {
-            return node.classList.contains('language-opencl') || node.classList.contains('language-cuda');
-        })
-        .forEach(function(block) {
-            block.classList.remove('language-opencl');
-            block.classList.remove('language-cuda');
-            block.classList.add('language-C');
-            hljs.highlightBlock(block);
-        });
 
     code_nodes.forEach(function(block) {
         block.classList.add('hljs');
@@ -125,78 +100,7 @@ aria-label="Show hidden lines"></button>';
         });
     });
 
-    if (window.playground_copyable) {
-        Array.from(document.querySelectorAll('pre code')).forEach(function(block) {
-            const pre_block = block.parentNode;
-            if (!pre_block.classList.contains('playground')) {
-                let buttons = pre_block.querySelector('.buttons');
-                if (!buttons) {
-                    buttons = document.createElement('div');
-                    buttons.className = 'buttons';
-                    pre_block.insertBefore(buttons, pre_block.firstChild);
-                }
-
-                const clipButton = document.createElement('button');
-                clipButton.className = 'clip-button';
-                clipButton.title = 'Copy to clipboard';
-                clipButton.setAttribute('aria-label', clipButton.title);
-                clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-                buttons.insertBefore(clipButton, buttons.firstChild);
-            }
-        });
-    }
-
-    // Process playground code blocks
-    Array.from(document.querySelectorAll('.playground')).forEach(function(pre_block) {
-        // Add play button
-        let buttons = pre_block.querySelector('.buttons');
-        if (!buttons) {
-            buttons = document.createElement('div');
-            buttons.className = 'buttons';
-            pre_block.insertBefore(buttons, pre_block.firstChild);
-        }
-
-        const runCodeButton = document.createElement('button');
-        runCodeButton.className = 'play-button';
-        runCodeButton.hidden = false;
-        runCodeButton.title = 'Verify this code';
-        runCodeButton.setAttribute('aria-label', runCodeButton.title);
-        runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
-
-        buttons.insertBefore(runCodeButton, buttons.firstChild);
-        runCodeButton.addEventListener('click', () => {
-            verify_code(runCodeButton);
-        });
-
-        if (window.playground_copyable) {
-            const copyCodeClipboardButton = document.createElement('button');
-            copyCodeClipboardButton.className = 'clip-button';
-            copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
-            copyCodeClipboardButton.title = 'Copy to clipboard';
-            copyCodeClipboardButton.setAttribute('aria-label', copyCodeClipboardButton.title);
-
-            buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
-        }
-
-        const code_block = pre_block.querySelector('code');
-        if (window.ace && code_block.classList.contains('editable')) {
-            const undoChangesButton = document.createElement('button');
-            undoChangesButton.className = 'reset-button';
-            undoChangesButton.title = 'Undo changes';
-            undoChangesButton.setAttribute('aria-label', undoChangesButton.title);
-            undoChangesButton.innerHTML +=
-                document.getElementById('fa-clock-rotate-left').innerHTML;
-
-            buttons.insertBefore(undoChangesButton, buttons.firstChild);
-
-            undoChangesButton.addEventListener('click', function() {
-                const editor = window.ace.edit(code_block);
-                editor.setValue(editor.originalCode);
-                editor.clearSelection();
-            });
-        }
-    });
+    addButtons(window.playground_copyable);
 })();
 
 (function themes() {
@@ -640,43 +544,6 @@ aria-label="Show hidden lines"></button>';
             }
             break;
         }
-    });
-})();
-
-(function clipboard() {
-    const clipButtons = document.querySelectorAll('.clip-button');
-
-    function hideTooltip(elem) {
-        elem.firstChild.innerText = '';
-        elem.className = 'clip-button';
-    }
-
-    function showTooltip(elem, msg) {
-        elem.firstChild.innerText = msg;
-        elem.className = 'clip-button tooltipped';
-    }
-
-    const clipboardSnippets = new ClipboardJS('.clip-button', {
-        text: function(trigger) {
-            hideTooltip(trigger);
-            const playground = trigger.closest('pre');
-            return playground_text(playground, false);
-        },
-    });
-
-    Array.from(clipButtons).forEach(function(clipButton) {
-        clipButton.addEventListener('mouseout', function(e) {
-            hideTooltip(e.currentTarget);
-        });
-    });
-
-    clipboardSnippets.on('success', function(e) {
-        e.clearSelection();
-        showTooltip(e.trigger, 'Copied!');
-    });
-
-    clipboardSnippets.on('error', function(e) {
-        showTooltip(e.trigger, 'Clipboard error!');
     });
 })();
 

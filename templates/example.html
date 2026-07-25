@@ -22,6 +22,7 @@
             {% endif %}
         </ul>
 
-        {{ verification_editor(data, languages) }}
+        {{ verification_editor(data, languages, initial_language=language) }}
     </div>
+    <script> addButtons() </script>
 {% endblock %}

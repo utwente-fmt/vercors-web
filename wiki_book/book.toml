@@ -6,6 +6,7 @@ title = "VerCors Tutorial"
 
 [output.html]
 default-theme = "vercors"
+site-url = "https://vercors.ewi.utwente.nl/wiki"
 
 [output.html.playground]
 editable = true

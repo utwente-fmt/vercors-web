@@ -29,6 +29,7 @@ html {
 #mdbook-menu-bar-hover-placeholder {
     z-index: 101;
     margin: auto calc(0px - var(--page-padding));
+    background-color: var(--bg);
 }
 #mdbook-menu-bar {
     position: relative;
@@ -104,7 +105,7 @@ html:not(.js) .left-buttons button {
 .menu-title {
     display: inline-block;
     font-weight: 200;
-    font-size: 2.4rem;
+    font-size: 1.4rem;
     line-height: var(--menu-bar-height);
     text-align: center;
     margin: 0;
@@ -290,7 +291,7 @@ pre > .buttons button.clip-button:hover::before {
 @media (pointer: coarse) {
     pre > .buttons button {
         /* On mobile, make it easier to tap buttons. */
-        padding: 0.3rem 1rem;
+        padding: 0.17rem 0.6rem;
     }
 
     .sidebar-resize-indicator {
@@ -300,7 +301,7 @@ pre > .buttons button.clip-button:hover::before {
 }
 pre > code {
     display: block;
-    padding: 1rem;
+    padding: 0.6rem;
 }
 
 /* FIXME: ACE editors overlap their buttons because ACE does absolute
@@ -470,7 +471,7 @@ ul#mdbook-searchresults span.teaser em {
     background-color: var(--sidebar-bg);
     padding: var(--padding);
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 0.75rem;
     color: var(--sidebar-fg);
     min-height: calc(100vh - var(--padding) * 2);
 }

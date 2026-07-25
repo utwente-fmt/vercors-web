@@ -5,9 +5,23 @@
     color-scheme: var(--color-scheme);
 }
 
+
+.ace_hidden-cursors {
+  opacity:0
+} 
+
 #footer {
   font-weight: 500;
-  line-height: 1.75;  
+  line-height: 1.75;
+  z-index: 2;
+}
+
+pre.verification-log {
+    line-height: 1rem;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    padding: 1rem;
+    overflow-x: auto;
 }
 
 #footer hr {
@@ -18,12 +32,14 @@
     border-color: var(--ruler-dark);
 }
 
-
-div.top-header {
-  font-weight: 500;
-  line-height: 1.75;
-  color: var(--text-dark);
-  background-color: var(--background-light);
+#header {
+    padding-bottom: 0;
+    font-weight: 500;
+    line-height: 1.75;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    position: relative;
+    z-index: 2;
 }
 
 nav.top-nav > * {
@@ -197,15 +213,15 @@ blockquote tags. */
 
 .warning:before {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
-    margin-inline-start: calc(-1.5rem - 21px);
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-inline-start: calc(-0.86rem - 21px);
     content: "ⓘ";
     text-align: center;
     background-color: var(--bg);
     color: var(--warning-border);
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 blockquote .warning:before {

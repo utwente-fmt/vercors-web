@@ -1,4 +1,4 @@
-define("ace/mode/jsdoc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module){"use strict";
+ace.define("ace/mode/jsdoc_comment_highlight_rules",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var JsDocCommentHighlightRules = function () {
@@ -121,7 +121,7 @@ exports.JsDocCommentHighlightRules = JsDocCommentHighlightRules;
 
 });
 
-define("ace/mode/javascript_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/jsdoc_comment_highlight_rules","ace/mode/text_highlight_rules"], function(require, exports, module){"use strict";
+ace.define("ace/mode/javascript_highlight_rules",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var DocCommentHighlightRules = require("./jsdoc_comment_highlight_rules").JsDocCommentHighlightRules;
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -653,7 +653,7 @@ exports.JavaScriptHighlightRules = JavaScriptHighlightRules;
 
 });
 
-define("ace/mode/matching_brace_outdent",["require","exports","module","ace/range"], function(require, exports, module){"use strict";
+ace.define("ace/mode/matching_brace_outdent",[], function(require, exports, module){"use strict";
 var Range = require("../range").Range;
 var MatchingBraceOutdent = function () { };
 (function () {
@@ -682,7 +682,7 @@ exports.MatchingBraceOutdent = MatchingBraceOutdent;
 
 });
 
-define("ace/mode/behaviour/xml",["require","exports","module","ace/lib/oop","ace/mode/behaviour","ace/token_iterator"], function(require, exports, module){"use strict";
+ace.define("ace/mode/behaviour/xml",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var Behaviour = require("../behaviour").Behaviour;
 var TokenIterator = require("../../token_iterator").TokenIterator;
@@ -829,7 +829,7 @@ exports.XmlBehaviour = XmlBehaviour;
 
 });
 
-define("ace/mode/behaviour/javascript",["require","exports","module","ace/lib/oop","ace/token_iterator","ace/mode/behaviour/cstyle","ace/mode/behaviour/xml"], function(require, exports, module){"use strict";
+ace.define("ace/mode/behaviour/javascript",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var TokenIterator = require("../../token_iterator").TokenIterator;
 var CstyleBehaviour = require("../behaviour/cstyle").CstyleBehaviour;
@@ -859,7 +859,7 @@ exports.JavaScriptBehaviour = JavaScriptBehaviour;
 
 });
 
-define("ace/mode/folding/xml",["require","exports","module","ace/lib/oop","ace/range","ace/mode/folding/fold_mode"], function(require, exports, module){"use strict";
+ace.define("ace/mode/folding/xml",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
 var BaseFoldMode = require("./fold_mode").FoldMode;
@@ -969,7 +969,7 @@ function is(token, type) {
 
 });
 
-define("ace/mode/folding/cstyle",["require","exports","module","ace/lib/oop","ace/range","ace/mode/folding/fold_mode"], function(require, exports, module){"use strict";
+ace.define("ace/mode/folding/cstyle",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
 var BaseFoldMode = require("./fold_mode").FoldMode;
@@ -1085,7 +1085,7 @@ oop.inherits(FoldMode, BaseFoldMode);
 
 });
 
-define("ace/mode/folding/javascript",["require","exports","module","ace/lib/oop","ace/mode/folding/xml","ace/mode/folding/cstyle"], function(require, exports, module){"use strict";
+ace.define("ace/mode/folding/javascript",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var XmlFoldMode = require("./xml").FoldMode;
 var CFoldMode = require("./cstyle").FoldMode;
@@ -1117,7 +1117,7 @@ oop.inherits(FoldMode, CFoldMode);
 
 });
 
-define("ace/mode/javascript",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/javascript_highlight_rules","ace/mode/matching_brace_outdent","ace/worker/worker_client","ace/mode/behaviour/javascript","ace/mode/folding/javascript"], function(require, exports, module){"use strict";
+ace.define("ace/mode/javascript",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var TextMode = require("./text").Mode;
 var JavaScriptHighlightRules = require("./javascript_highlight_rules").JavaScriptHighlightRules;
@@ -1184,7 +1184,95 @@ exports.Mode = Mode;
 
 });
 
-define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module){"use strict";
+ace.define("ace/mode/spec_highlight_rules",[], function(require, exports, module){"use strict";
+var oop = require("../lib/oop");
+var deepCopy = require("../lib/deep_copy").deepCopy;
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+var specTypeModifiers = ("pure|thread_local|bip_annotation|opaque|unique|" +
+    "unique_pointer_field");
+var specStatementKeywords = ("modifies|accessible|decreases|signals|" +
+    "requires|ensures|context|context_everywhere|loop_invariant|" +
+    "kernel_invariant|lock_invariant|" +
+    "with|then|given|yields|reveal|" +
+    "apply|fold|unfold|open|close|assert|assume|inhale|exhale|label|" +
+    "extract|extract_body|frame|outline|refute|witness|ghost|send|recv|" +
+    "transfer|csl_subject|spec_ignore|action|" +
+    "atomic|commit");
+var specSlashKeywords = ("replacing_done|replacing" +
+    "unfolding|Unfolding|in|memberof|current_thread|forall|exists|" +
+    "forperm|forpermwithvalue|let|sum|choose|choose_fresh|length|old|" +
+    "asserting|assuming|typeof|type|matrix|array|pointer|pointer_index|" +
+    "pointer_block|pointer_block_length|pointer_block_offset|" +
+    "pointer_length|shared_mem_size|values|vcmp|vrep|msum|mcmp|mrep|result|" +
+    "ltid|gtid|nd_index|nd_length|nd_partial_index|polarity_dependent|" +
+    "smtlib|boogie|euclidean_div|euclidean_mod|pow|is_int|");
+var specExpressionKeywords = ("Reducible|AddsTo|APerm|ArrayPerm|Contribution|held|committed|HPerm|" +
+    "idle|perm|Perm|PointsTo|running|Some|Left|Right|Value|AutoValue|" +
+    "false|true|" +
+    "none|None|write|read|empty");
+var specOperators = ("\\?\\.|\\\\|\\*\\*|==>|-\\*|\\.\\.|<-|:\\|{:|:}");
+function createSpecBodyRules() {
+    return [{
+            token: "support.constant",
+            regex: "\\b(?:" + specStatementKeywords + ")\\b"
+        }, {
+            token: "constant.language",
+            regex: "\\b(?:" + specExpressionKeywords + ")\\b"
+        }, {
+            token: "storage.modifier",
+            regex: "\\b(?:" + specTypeModifiers + ")\\b"
+        }, {
+            token: "keyword.other",
+            regex: "\\\\(?:" + specSlashKeywords + ")\\b|∀\\*|∀|∃"
+        }, {
+            token: "keyword.operator",
+            regex: specOperators
+        }];
+}
+function createSpecRules() {
+    return {
+        "start": [
+            { include: "specs" },
+            { include: "spec-body" }
+        ],
+        "specs": [{
+                token: "support.constant",
+                regex: "\\/\\/@",
+                push: [{
+                        token: "text",
+                        regex: /$/,
+                        next: "pop"
+                    }, {
+                        include: "spec-body"
+                    }]
+            }, {
+                token: "support.constant",
+                regex: "\\/\\*@",
+                push: [{
+                        token: "support.constant",
+                        regex: /@?\*\//,
+                        next: "pop"
+                    }, {
+                        include: "spec-body"
+                    }]
+            }],
+        "spec-body": createSpecBodyRules()
+    };
+}
+var SpecHighlightRules = function () {
+    this.$rules = createSpecRules();
+    this.normalizeRules();
+};
+oop.inherits(SpecHighlightRules, TextHighlightRules);
+exports.SpecHighlightRules = SpecHighlightRules;
+exports.createSpecRules = createSpecRules;
+exports.getSpecBodyRules = function () {
+    return deepCopy(createSpecBodyRules());
+};
+
+});
+
+ace.define("ace/mode/doc_comment_highlight_rules",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var DocCommentHighlightRules = function () {
@@ -1225,7 +1313,7 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
-define("ace/mode/java_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules"], function(require, exports, module){"use strict";
+ace.define("ace/mode/java_highlight_rules",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var DocCommentHighlightRules = require("./doc_comment_highlight_rules").DocCommentHighlightRules;
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -1489,7 +1577,49 @@ exports.JavaHighlightRules = JavaHighlightRules;
 
 });
 
-define("ace/mode/folding/java",["require","exports","module","ace/lib/oop","ace/mode/folding/cstyle","ace/range"], function(require, exports, module){"use strict";
+ace.define("ace/mode/annotated_java_highlight_rules",[], function(require, exports, module){"use strict";
+var oop = require("../lib/oop");
+var deepCopy = require("../lib/deep_copy").deepCopy;
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+var getSpecBodyRules = require("./spec_highlight_rules").getSpecBodyRules;
+var annotated_javaHighlightRules = function () {
+    var JavaHighlightRules = require("./java_highlight_rules").JavaHighlightRules;
+    var javaRules = new JavaHighlightRules().getRules();
+    this.$rules = javaRules;
+    var specBodyRules = getSpecBodyRules();
+    this.$rules.start.unshift({
+        token: "support.constant",
+        regex: "//@",
+        push: "spec-line-start"
+    }, {
+        token: "support.constant",
+        regex: "/\\*@",
+        push: "spec-block-start"
+    });
+    var specLineRules = deepCopy(javaRules);
+    this.embedRules(specLineRules, "spec-line-", [{
+            token: "text",
+            regex: /$/,
+            next: "pop"
+        }]);
+    var specBlockRules = deepCopy(javaRules);
+    this.embedRules(specBlockRules, "spec-block-");
+    this.$rules["spec-block-start"].unshift({
+        token: "support.constant",
+        regex: "\\s*@?\\*\\/",
+        next: "pop"
+    });
+    this.$rules["spec-line-start"] = [this.$rules["spec-line-start"][0]].concat(specBodyRules, this.$rules["spec-line-start"].slice(1));
+    this.$rules["spec-block-start"] = [this.$rules["spec-block-start"][0]].concat(specBodyRules, this.$rules["spec-block-start"].slice(1));
+    this.normalizeRules();
+};
+oop.inherits(annotated_javaHighlightRules, TextHighlightRules);
+exports.annotated_javaHighlightRules = annotated_javaHighlightRules;
+exports.HighlightRules = annotated_javaHighlightRules;
+
+});
+
+ace.define("ace/mode/folding/java",[], function(require, exports, module){"use strict";
 var oop = require("../../lib/oop");
 var CStyleFoldMode = require("./cstyle").FoldMode;
 var Range = require("../../range").Range;
@@ -1535,14 +1665,14 @@ oop.inherits(FoldMode, CStyleFoldMode);
 
 });
 
-define("ace/mode/java",["require","exports","module","ace/lib/oop","ace/mode/javascript","ace/mode/java_highlight_rules","ace/mode/folding/java"], function(require, exports, module){"use strict";
+ace.define("ace/mode/annotated_java",[], function(require, exports, module){"use strict";
 var oop = require("../lib/oop");
 var JavaScriptMode = require("./javascript").Mode;
-var JavaHighlightRules = require("./java_highlight_rules").JavaHighlightRules;
+var HighlightRules = require("./annotated_java_highlight_rules").annotated_javaHighlightRules;
 var JavaFoldMode = require("./folding/java").FoldMode;
 var Mode = function () {
     JavaScriptMode.call(this);
-    this.HighlightRules = JavaHighlightRules;
+    this.HighlightRules = HighlightRules;
     this.foldingRules = new JavaFoldMode();
     this.$behaviour = this.$defaultBehaviour;
 };
@@ -1551,13 +1681,13 @@ oop.inherits(Mode, JavaScriptMode);
     this.createWorker = function (session) {
         return null;
     };
-    this.$id = "ace/mode/java";
+    this.$id = "ace/mode/annotated_java";
     this.snippetFileId = "ace/snippets/java";
 }).call(Mode.prototype);
 exports.Mode = Mode;
 
 });                (function() {
-                    window.require(["ace/mode/java"], function(m) {
+                    ace.require(["ace/mode/annotated_java"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {
                             module.exports = m;
                         }
