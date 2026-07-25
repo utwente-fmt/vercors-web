@@ -2,7 +2,6 @@ import os.path
 import re
 import subprocess
 import sys
-import shutil
 from collections import OrderedDict
 from contextlib import contextmanager
 
@@ -69,43 +68,31 @@ def fetch_examples_into(data, vercors_release_tag):
 
 
 def fetch_wiki(vercors_release_tag):
-    # Prefer the local wiki_book sources if available.
-    if os.path.isdir("wiki_book"):
-        print("Building local wiki_book sources with mdbook...")
-        subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)
-        return
-
+    print("Creating wiki_book sources for mdbook...")
     local_vercors = None
     if os.path.isdir(VERCORS):
         local_vercors = VERCORS
     elif VERCORS.startswith("file://") and os.path.isdir(VERCORS[len("file://"):]):
         local_vercors = VERCORS[len("file://"):]
 
+    mdbook_src = os.path.abspath(os.path.join("wiki_book", "src"))
+
     if local_vercors is not None:
-        wiki_util_path = os.path.join(local_vercors, "util", "wiki")
-        mdbook_root = "generated_mdbook"
-        shutil.rmtree(mdbook_root, ignore_errors=True)
-        command = [
+        print("Using local vercors repository: {}".format(local_vercors))
+        vercors_dir = local_vercors
+        subprocess.run([
             sys.executable,
-            os.path.join(wiki_util_path, "generate_wiki_pdf.py"),
-            "--mdbook", mdbook_root,
-        ]
-
-        local_wiki_path = os.path.join(local_vercors, "vercors.wiki")
-        if os.path.isdir(local_wiki_path):
-            command.extend(["-i", local_wiki_path])
-
-        subprocess.run(command, check=True)
-        subprocess.run(["mdbook", "build", mdbook_root], check=True)
+            os.path.join("util", "wiki", "generate_wiki_pdf.py"),
+            "--mdbook", mdbook_src,
+        ], cwd=vercors_dir, check=True)
+        subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)
         return
 
     with clone(VERCORS, vercors_release_tag) as dir:
-        wiki_util_path = dir + "/vercors/util/wiki/"
-        subprocess.run(["virtualenv", "venv"], cwd=wiki_util_path)
-        subprocess.run(["./venv/local/bin/pip", "install", "-r", "requirements.txt"], cwd=wiki_util_path)
+        vercors_dir = os.path.join(dir, "vercors")
         subprocess.run([
-            wiki_util_path + "venv/local/bin/python",
-            wiki_util_path + "generate_wiki_pdf.py",
-            "--mdbook", "generated_mdbook"
-        ], check=True)
-        subprocess.run(["mdbook", "build", "generated_mdbook"], check=True)
+            sys.executable,
+            os.path.join("util", "wiki", "generate_wiki_pdf.py"),
+            "--mdbook", mdbook_src,
+        ], cwd=vercors_dir, check=True)
+        subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)

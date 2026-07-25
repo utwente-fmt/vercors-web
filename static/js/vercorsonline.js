@@ -40,6 +40,20 @@ function getLanguageExtension(container) {
   return 'pvl';
 }
 
+function syncVerificationEditorMode(container) {
+  if (!window.ace) {
+    return;
+  }
+
+  const codeNode = container.find('pre.playground code').first();
+  if (!codeNode.length) {
+    return;
+  }
+
+  const editor = getOrCreateAceEditor(codeNode.get(0));
+  editor.getSession().setMode(detectAceModeFromLanguage(getLanguageExtension(container)));
+}
+
 function indentBlock(amount, text) {
   const prefix = '    '.repeat(amount);
   return text.split('\n').map((line) => prefix + line).join('\n');
@@ -260,6 +274,12 @@ function clipboard() {
 
 // Process playground code blocks
 function addButtons(playground_copyable = true) {
+  $(document)
+    .off('change.vercorsonline', '.verification-container [name=lang]')
+    .on('change.vercorsonline', '.verification-container [name=lang]', function () {
+      syncVerificationEditorMode($(this).closest('.verification-container'));
+    });
+
   if (playground_copyable) {
         Array.from(document.querySelectorAll('pre code')).forEach(function(block) {
             const pre_block = block.parentNode;

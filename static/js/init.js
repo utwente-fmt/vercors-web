@@ -6,13 +6,16 @@ function detectAceModeFromLanguage(language) {
 		return 'ace/mode/pvl';
 	case 'c':
 			return 'ace/mode/annotated_c';
+	case 'cl':
 	case 'cu':
 	case 'cuda':
 		return 'ace/mode/annotated_cuda';
-	case 'opencl':
-		return 'ace/mode/annotated_opencl';
+	case 'cpp':
 	case 'sycl':
 		return 'ace/mode/annotated_sycl';
+	case 'opencl':
+		return 'ace/mode/annotated_opencl';
+	case 'vpr':
 	case 'viper':
 		return 'ace/mode/viper';
 	default:
@@ -55,16 +58,27 @@ function initAceOnDemand(codeNode) {
 		return null;
 	}
 
+	if (codeNode.dataset && codeNode.dataset.aceInitialized === '1') {
+		return getOrCreateAceEditor(codeNode);
+	}
+
 	// codeNode.classList.add('editable');
 	const editor = getOrCreateAceEditor(codeNode);
 	configureAceEditor(editor, detectAceModeFromClass(codeNode));
 	if (codeNode.classList.contains('read-only')) {
 		editor.setReadOnly(true);
 		editor.setHighlightGutterLine(false);
+		const value = editor.getValue();
+		if (value.endsWith('\n')) {
+			editor.setValue(value.replace(/\n$/, ''), -1);
+		}
 		// editor.setHighlightIndentGuides(false);
 	}
 	if(typeof editor.originalCode === 'undefined') {
 		editor.originalCode = editor.getValue();
+	}
+	if (codeNode.dataset) {
+		codeNode.dataset.aceInitialized = '1';
 	}
 	return editor;
 }
