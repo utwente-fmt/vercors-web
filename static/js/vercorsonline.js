@@ -59,21 +59,121 @@ function indentBlock(amount, text) {
   return text.split('\n').map((line) => prefix + line).join('\n');
 }
 
-function renderTemplateCase(templateKind, caseName, verdict, languageExt, snippetCode) {
-  const header = `//:: cases ${caseName}\n//:: verdict ${verdict}\n//:: tools silicon\n`;
-
-  if (templateKind === 'test') {
-    return header + snippetCode;
+function decodeExampleCode(fullCodeBase64) {
+  if (!fullCodeBase64) {
+    return '';
   }
 
-  if (templateKind === 'testMethod') {
-    const maybeFinal = languageExt === 'java' ? 'final ' : '';
-    return `${header}${maybeFinal}class Test {\n${indentBlock(1, snippetCode)}\n}`;
+  try {
+    return atob(fullCodeBase64);
+  } catch (err) {
+    console.log(err);
+    return '';
+  }
+}
+
+function isCodeSnippetContainer(container) {
+  return container.find('pre.playground code').first().hasClass('code_snippet');
+}
+
+function isEditingCode(container) {
+  return container.data('editingCode') === true;
+}
+
+function setEditingCode(container, isEditing) {
+  container.data('editingCode', isEditing === true);
+}
+
+function getVerificationEditor(container) {
+  if (!window.ace) {
+    return null;
+  }
+
+  const codeNode = container.find('pre.playground code').first();
+  if (!codeNode.length || !codeNode.hasClass('editable')) {
+    return null;
+  }
+
+  try {
+    return getOrCreateAceEditor(codeNode.get(0));
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+function setVerificationEditorReadOnly(editor, isReadOnly) {
+  editor.setReadOnly(isReadOnly);
+  editor.setHighlightActiveLine(!isReadOnly);
+  editor.setHighlightGutterLine(!isReadOnly);
+  editor.renderer.$cursorLayer.element.style.display = isReadOnly ? 'none' : '';
+}
+
+function setEditButtonState(button, isEditing) {
+  const title = isEditing ? 'Undo changes' : 'Edit code';
+  button.className = isEditing ? 'reset-button' : 'edit-button';
+  button.title = title;
+  button.setAttribute('aria-label', title);
+  button.innerHTML = document.getElementById(isEditing ? 'fa-clock-rotate-left' : 'fa-pencil').innerHTML;
+}
+
+function getRenderedEditableCode(container, editor) {
+  const templateKind = container.attr('data-template-kind') || '';
+  const caseName = container.attr('data-case-name') || '';
+  const verdict = container.attr('data-case-verdict') || 'Pass';
+  const snippetCode = typeof editor.snippetCode === 'string' ? editor.snippetCode : editor.originalCode || editor.getValue();
+
+  if (templateKind) {
+    return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
+  }
+
+  return editor.fullCode || snippetCode;
+}
+
+function resetVerificationEditor(container, button) {
+  const editor = getVerificationEditor(container);
+  if (!editor) {
+    return;
+  }
+
+  const snippetCode = typeof editor.snippetCode === 'string' ? editor.snippetCode : editor.originalCode;
+  editor.setValue(snippetCode || '', -1);
+  editor.clearSelection();
+  setVerificationEditorReadOnly(editor, true);
+  setEditingCode(container, false);
+  if (button) {
+    setEditButtonState(button, false);
+  }
+}
+
+function enableVerificationEditing(container, button) {
+  const editor = getVerificationEditor(container);
+  if (!editor) {
+    return;
+  }
+
+  editor.setValue(getRenderedEditableCode(container, editor), -1);
+  editor.clearSelection();
+  setVerificationEditorReadOnly(editor, false);
+  setEditingCode(container, true);
+  if (button) {
+    setEditButtonState(button, true);
+  }
+  editor.focus();
+}
+
+function renderTemplateCase(templateKind, caseName, verdict, languageExt, snippetCode) {
+  
+  if (templateKind === 'testMethod' && languageExt === 'java') {
+    return `final class Test {\n${indentBlock(1, snippetCode)}\n}`;
   }
 
   if (templateKind === 'testBlock') {
-    const maybeFinal = languageExt === 'java' ? 'final ' : '';
-    return `${header}${maybeFinal}class Test {\n    void test() {\n${indentBlock(2, snippetCode)}\n    }\n}`;
+    if (languageExt === 'java') {
+      return `final class Test {\n    void test() {\n${indentBlock(2, snippetCode)}\n    }\n}`;
+    } else {
+      return `void test() {\n${indentBlock(1, snippetCode)}\n}`;
+    }
   }
 
   return snippetCode;
@@ -84,13 +184,10 @@ function getCodeToVerify(container) {
   const templateKind = container.attr('data-template-kind') || '';
   const caseName = container.attr('data-case-name') || '';
   const verdict = container.attr('data-case-verdict') || 'Pass';
+  const usesCodeSnippetFlow = isCodeSnippetContainer(container);
 
   if (fullCodeBase64 && !(window.ace && container.find('pre.playground code').first().hasClass('editable'))) {
-    try {
-      return atob(fullCodeBase64);
-    } catch (err) {
-      console.log(err);
-    }
+    return decodeExampleCode(fullCodeBase64);
   }
 
   const codeNode = container.find('pre.playground code').first();
@@ -98,16 +195,23 @@ function getCodeToVerify(container) {
     if (window.ace && codeNode.hasClass('editable')) {
       try {
         const editor = window.ace.edit(codeNode.get(0));
+        if (isEditingCode(container)) {
+          return editor.getValue();
+        }
+
         const snippetCode = editor.getValue();
-        if (templateKind && typeof editor.originalCode !== 'undefined' && snippetCode !== editor.originalCode) {
+        if (usesCodeSnippetFlow) {
+          if (templateKind) {
+            return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
+          }
+
+          return editor.fullCode || decodeExampleCode(fullCodeBase64) || snippetCode;
+        }
+        if (templateKind) {
           return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
         }
         if (fullCodeBase64) {
-          try {
-            return atob(fullCodeBase64);
-          } catch (err) {
-            console.log(err);
-          }
+          return decodeExampleCode(fullCodeBase64);
         }
         return snippetCode;
       } catch (err) {
@@ -335,19 +439,32 @@ function addButtons(playground_copyable = true) {
     }
     const code_block = pre_block.querySelector('code');
     if (window.ace && code_block.classList.contains('editable')) {
-      const undoChangesButton = document.createElement('button');
-      undoChangesButton.className = 'reset-button';
-      undoChangesButton.title = 'Undo changes';
-      undoChangesButton.setAttribute('aria-label', undoChangesButton.title);
-      undoChangesButton.innerHTML +=
-        document.getElementById('fa-clock-rotate-left').innerHTML;
+      const container = $(pre_block).closest('.verification-container');
+      const editor = getOrCreateAceEditor(code_block);
+      if (typeof editor.originalCode === 'undefined') {
+        editor.originalCode = editor.getValue();
+      }
+      if (typeof editor.snippetCode === 'undefined') {
+        editor.snippetCode = editor.originalCode;
+      }
+      if (typeof editor.fullCode === 'undefined') {
+        editor.fullCode = decodeExampleCode(container.attr('data-examplecode-b64'));
+      }
 
-      buttons.insertBefore(undoChangesButton, buttons.firstChild);
+      const editButton = document.createElement('button');
+      setEditButtonState(editButton, false);
+      buttons.insertBefore(editButton, buttons.firstChild);
 
-      undoChangesButton.addEventListener('click', function () {
-        const editor = window.ace.edit(code_block);
-        editor.setValue(editor.originalCode);
-        editor.clearSelection();
+      setVerificationEditorReadOnly(editor, true);
+      setEditingCode(container, false);
+
+      editButton.addEventListener('click', function () {
+        if (isEditingCode(container)) {
+          resetVerificationEditor(container, editButton);
+          return;
+        }
+
+        enableVerificationEditing(container, editButton);
       });
     }
   });

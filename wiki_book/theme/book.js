@@ -177,7 +177,12 @@ aria-label="Show hidden lines"></button>';
     function set_theme(theme, store = true) {
         let ace_theme;
 
-        if (theme === 'coal' || theme === 'navy') {
+        if (theme === 'vercors') {
+            stylesheets.ayuHighlight.disabled = true;
+            stylesheets.tomorrowNight.disabled = true;
+            stylesheets.highlight.disabled = false;
+            ace_theme = 'ace/theme/chrome';
+        } else if (theme === 'coal' || theme === 'navy') {
             stylesheets.ayuHighlight.disabled = true;
             stylesheets.tomorrowNight.disabled = false;
             stylesheets.highlight.disabled = true;

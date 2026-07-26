@@ -10,6 +10,20 @@
   opacity:0
 } 
 
+.fa-spinner {
+    animation: rotation 1s infinite steps(8, end);
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 #footer {
   font-weight: 500;
   line-height: 1.75;

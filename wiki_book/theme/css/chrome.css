@@ -118,6 +118,20 @@ html:not(.js) .left-buttons button {
     cursor: pointer;
 }
 
+.menu-title .wiki-button {
+    align-items: center;
+}
+
+.online-button {
+    border-radius: 40px;
+    color: var(--text-light);
+    padding: 0.3rem 0.3rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: var(--primary)
+}
+
 .menu-bar,
 .menu-bar:visited,
 .nav-chapters,

@@ -38,13 +38,12 @@ function getOrCreateAceEditor(editorNode) {
 }
 
 function configureAceEditor(editor, mode) {
-	editor.setTheme('ace/theme/chrome');
 	editor.setOptions({
 		highlightActiveLine: false,
 		showPrintMargin: false,
 		showLineNumbers: true,
 		showGutter: true,
-		maxLines: Infinity,
+		maxLines: 30,
 		fontSize: '0.875em'
 	});
 	editor.$blockScrolling = Infinity;
