@@ -6,13 +6,13 @@ function detectAceModeFromLanguage(language) {
 		return 'ace/mode/pvl';
 	case 'c':
 			return 'ace/mode/annotated_c';
-	case 'cl':
 	case 'cu':
 	case 'cuda':
 		return 'ace/mode/annotated_cuda';
 	case 'cpp':
 	case 'sycl':
 		return 'ace/mode/annotated_sycl';
+	case 'cl':
 	case 'opencl':
 		return 'ace/mode/annotated_opencl';
 	case 'vpr':
@@ -30,7 +30,7 @@ function detectAceModeFromClass(codeNode) {
 }
 
 function getOrCreateAceEditor(editorNode) {
-	if (editorNode.env && editorNode.env.editor) {
+	if (editorNode.env?.editor) {
 		return editorNode.env.editor;
 	}
 
@@ -96,11 +96,11 @@ if(window.location.pathname === "/" && window.location.hash.startsWith("#")) {
 	window.location.href = '/wiki/#' + window.location.hash.substring(1);
 }
 
-(function($) {
-	$(function() {
+(($) => {
+	$(() => {
 		$('.data-table').each(function () {
-			let self = $(this);
-			let count = self.find('th').length;
+			const self = $(this);
+			const count = self.find('th').length;
 			self.DataTable({
 				lengthMenu: [[50, -1], [50, "All"]],
 				columns: Array(count - 1).fill(null).concat([{orderable: false}]),
@@ -108,7 +108,7 @@ if(window.location.pathname === "/" && window.location.hash.startsWith("#")) {
 		});
 	});
 
-	$(window).load(function() {
+	$(window).load(() => {
 		initVerificationPlaygroundEditors();
 	});
 })(jQuery);

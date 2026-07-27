@@ -328,9 +328,12 @@ def is_known_language(language):
 
 def language_to_extension(language):
     # Ok, this looks a bit stupid, but we cannot assume the "language" attribute github uses for markdown code snippets will never diverge from extensions used for files of that type...
+    language = language.lower()
     if language == "java":
         return "java"
-    elif language == "c" or language == "opencl":
+    if language == "opencl":
+        return "cl"
+    elif language == "c":
         return "c"
     elif language == "pvl":
         return "pvl"
@@ -341,7 +344,7 @@ def language_to_extension(language):
     elif language == "viper": 
         return "vpr"
     else:
-        raise UnknownLanguageError
+        raise UnknownLanguageError(language)
 
 def output_cases(path, cases):
     os.makedirs(path, exist_ok=True)
@@ -385,7 +388,12 @@ def render_verification_editor_html(initial_code, initial_hidden_code, language_
 def convert_block_mdbook(block, cases, source_name, current_header):
     if block['t'] == 'CodeBlock' and '_case_label' in block:
         case = cases[block['_case_label']]
-        language_extension = language_to_extension(case.language)
+        try:
+            language_extension = language_to_extension(case.language)
+        except UnknownLanguageError: 
+            print(f"Warning: {source_name} / {current_header}: code block has unknown language '{case.language}'.", file=sys.stderr)
+            sys.exit(1)
+            # return block
         template_kind = case.template_kind if isinstance(case, TemplateTestcase) else None
         case_name = case.case_name if isinstance(case, TemplateTestcase) else None
         verdict = case.verdict if isinstance(case, TemplateTestcase) else 'Pass'
@@ -436,7 +444,13 @@ def transform_markdown_for_mdbook(markdown_text, source_name):
         'pandoc-api-version': document['pandoc-api-version'],
         'meta': document['meta'],
     })
-    return pypandoc.convert_text(transformed_document, "gfm", "json")
+    converted = pypandoc.convert_text(
+        transformed_document,
+        "gfm",
+        "json",
+        extra_args=["--wrap=none"],
+    )
+    return unescape_blockquote_callouts(converted)
 
 def render_mdbook_summary_nodes(nodes, depth=1):
     lines = []
@@ -490,6 +504,32 @@ def rewrite_vercors_wiki_links(markdown_text):
         r"\[([^\]]+)\]\(https://github\.com/utwente-fmt/vercors/wiki/([^)#]+?)(?:\.md)?(?:#.*)?\)",
         replace_link,
         markdown_text,
+    )
+
+
+def unescape_blockquote_callouts(markdown_text):
+    # Pandoc may escape callout markers like > \[!WARNING\],
+    # but mdBook expects > [!WARNING].
+    markdown_text = re.sub(
+        r"(^\s*>\s*)\\\[(![A-Za-z0-9_-]+)\\\]",
+        r"\1[\2]",
+        markdown_text,
+        flags=re.MULTILINE,
+    )
+    markdown_text = re.sub(
+        r"(^\s*>\s*)\\(\[![A-Za-z0-9_-]+\])",
+        r"\1\2",
+        markdown_text,
+        flags=re.MULTILINE,
+    )
+    # Keep GitHub-style callout markers on their own quote line:
+    # > [!NOTE]
+    # > body text...
+    return re.sub(
+        r"(^\s*>\s*\[![A-Za-z0-9_-]+\])\s+([^\n].*)$",
+        r"\1\n> \2",
+        markdown_text,
+        flags=re.MULTILINE,
     )
 
 if __name__ == "__main__":
