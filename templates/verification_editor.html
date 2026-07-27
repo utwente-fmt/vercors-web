@@ -1,6 +1,6 @@
 {% macro verification_editor(initial_code, languages, initial_language="pvl") %}
 <div class="verification-container" data-template-kind="test">
-    <pre style="margin-bottom: 0" class="verification-text playground"><code class="language-{{ initial_language }} no_run editable">{{ initial_code }}</code></pre><div style="background-color: #dddddd; padding: 0.4ex 1ex">
+    <pre style="margin-bottom: 0" class="verification-text playground"><code class="language-{{ initial_language }} no_run editable always_editable">{{ initial_code }}</code></pre><div style="background-color: #dddddd; padding: 0.4ex 1ex">
         <label class="control-label" for="example-backendid">Language:</label>
         <select name="lang" id="example-backendid" class="form-control">
             {% for ext, lang in languages.items() %}

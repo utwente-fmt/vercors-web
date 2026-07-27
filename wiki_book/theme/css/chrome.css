@@ -116,9 +116,6 @@ html:not(.js) .left-buttons button {
 }
 .menu-title {
     cursor: pointer;
-}
-
-.menu-title .wiki-button {
     align-items: center;
 }
 

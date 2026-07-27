@@ -1,5 +1,4 @@
 const VERIFICATION_SERVER = 'wss://vercors-server.apps.utwente.nl/';
-const PROGRESS_BADGE = '[progress] ';
 const PROGRESS_RE = /^\[[0-9.%]+\]/;
 const LOG_RE = /^\s*\[[A-Z]+\]/
 const FIRST_NON_LOG_RE = /^\s*=+/
@@ -76,6 +75,10 @@ function isCodeSnippetContainer(container) {
   return container.find('pre.playground code').first().hasClass('code_snippet');
 }
 
+function isAlwaysEditable(container) {
+  return container.find('pre.playground code').first().hasClass('always_editable');
+}
+
 function isEditingCode(container) {
   return container.data('editingCode') === true;
 }
@@ -110,11 +113,15 @@ function setVerificationEditorReadOnly(editor, isReadOnly) {
 }
 
 function setEditButtonState(button, isEditing) {
+  const iconTemplate = document.getElementById(isEditing ? 'fa-clock-rotate-left' : 'fa-pencil');
   const title = isEditing ? 'Undo changes' : 'Edit code';
   button.className = isEditing ? 'reset-button' : 'edit-button';
   button.title = title;
   button.setAttribute('aria-label', title);
-  button.innerHTML = document.getElementById(isEditing ? 'fa-clock-rotate-left' : 'fa-pencil').innerHTML;
+  button.innerHTML = iconTemplate ? iconTemplate.innerHTML : '';
+  if (!iconTemplate) {
+    button.textContent = isEditing ? 'Undo' : 'Edit';
+  }
 }
 
 function getRenderedEditableCode(container, editor) {
@@ -139,10 +146,11 @@ function resetVerificationEditor(container, button) {
   const snippetCode = typeof editor.snippetCode === 'string' ? editor.snippetCode : editor.originalCode;
   editor.setValue(snippetCode || '', -1);
   editor.clearSelection();
-  setVerificationEditorReadOnly(editor, true);
-  setEditingCode(container, false);
+  const alwaysEditable = isAlwaysEditable(container);
+  setVerificationEditorReadOnly(editor, !alwaysEditable);
+  setEditingCode(container, alwaysEditable);
   if (button) {
-    setEditButtonState(button, false);
+    setEditButtonState(button, alwaysEditable);
   }
 }
 
@@ -440,6 +448,7 @@ function addButtons(playground_copyable = true) {
     const code_block = pre_block.querySelector('code');
     if (window.ace && code_block.classList.contains('editable')) {
       const container = $(pre_block).closest('.verification-container');
+      const alwaysEditable = isAlwaysEditable(container);
       const editor = getOrCreateAceEditor(code_block);
       if (typeof editor.originalCode === 'undefined') {
         editor.originalCode = editor.getValue();
@@ -452,11 +461,11 @@ function addButtons(playground_copyable = true) {
       }
 
       const editButton = document.createElement('button');
-      setEditButtonState(editButton, false);
+      setEditButtonState(editButton, alwaysEditable);
       buttons.insertBefore(editButton, buttons.firstChild);
 
-      setVerificationEditorReadOnly(editor, true);
-      setEditingCode(container, false);
+      setVerificationEditorReadOnly(editor, !alwaysEditable);
+      setEditingCode(container, alwaysEditable);
 
       editButton.addEventListener('click', function () {
         if (isEditingCode(container)) {
