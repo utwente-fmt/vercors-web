@@ -117,14 +117,8 @@ def build():
     os.mkdir("build")
 
     local_wiki_book = os.path.join("wiki_book", "book")
-    if os.path.isdir(local_wiki_book):
-        print("Copying local wiki_book build output into build/wiki...")
-        shutil.copytree(local_wiki_book, os.path.join("build", "wiki"), dirs_exist_ok=True)
-    else:
-        mdbook_book = os.path.join("generated_mdbook", "book")
-        if os.path.isdir(mdbook_book):
-            print("Copying generated mdBook output into build/wiki...")
-            shutil.copytree(mdbook_book, os.path.join("build", "wiki"), dirs_exist_ok=True)
+    print("Copying local wiki_book build output into build/wiki...")
+    shutil.copytree(local_wiki_book, os.path.join("build", "wiki"), dirs_exist_ok=True)
 
     print("Post-processing wiki HTML with Jinja fragments...")
     postprocess_wiki_html(os.path.join("build", "wiki"), urls, data)
