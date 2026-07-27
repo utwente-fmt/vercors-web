@@ -1,3 +1,4 @@
+import os
 import os.path
 import re
 import subprocess
@@ -7,11 +8,13 @@ from contextlib import contextmanager
 
 import requests
 import toml
-import os
 
 ALT_VERCORS = os.environ.get("VERCORS_GIT", "")
 VERCORS = ALT_VERCORS if ALT_VERCORS else "https://github.com/utwente-fmt/vercors.git"
 print(VERCORS)
+
+ALT_VERCORS_WIKI = os.environ.get("VERCORS_WIKI_GIT", "")
+VERCORS_WIKI = ALT_VERCORS_WIKI if ALT_VERCORS_WIKI else "https://github.com/utwente-fmt/vercors.wiki"
 
 def load_data(path):
     with open("data/" + path + ".toml") as f:
@@ -23,7 +26,7 @@ def slugify(text):
 
 
 def by_date_desc(xs):
-    return list(reversed(sorted(xs, key=lambda x: x["date"])))
+    return sorted(xs, key=lambda x: x["date"], reverse=True)
 
 
 def titled(xs):
@@ -69,30 +72,23 @@ def fetch_examples_into(data, vercors_release_tag):
 
 def fetch_wiki(vercors_release_tag):
     print("Creating wiki_book sources for mdbook...")
-    local_vercors = None
-    if os.path.isdir(VERCORS):
-        local_vercors = VERCORS
-    elif VERCORS.startswith("file://") and os.path.isdir(VERCORS[len("file://"):]):
-        local_vercors = VERCORS[len("file://"):]
-
     mdbook_src = os.path.abspath(os.path.join("wiki_book", "src"))
+    generate_wiki = os.path.join(os.path.dirname(os.path.abspath(__file__)), "generate_wiki.py")
 
-    if local_vercors is not None:
-        print("Using local vercors repository: {}".format(local_vercors))
-        vercors_dir = local_vercors
-        subprocess.run([
-            sys.executable,
-            os.path.join("util", "wiki", "generate_wiki_pdf.py"),
-            "--mdbook", mdbook_src,
-        ], cwd=vercors_dir, check=True)
-        subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)
-        return
+    wiki_source = None
+    if os.path.isdir(VERCORS_WIKI):
+        wiki_source = VERCORS_WIKI
+    elif VERCORS_WIKI.startswith("file://") and os.path.isdir(VERCORS_WIKI[len("file://"):]):
+        wiki_source = VERCORS_WIKI[len("file://"):]
 
-    with clone(VERCORS, vercors_release_tag) as dir:
-        vercors_dir = os.path.join(dir, "vercors")
-        subprocess.run([
-            sys.executable,
-            os.path.join("util", "wiki", "generate_wiki_pdf.py"),
-            "--mdbook", mdbook_src,
-        ], cwd=vercors_dir, check=True)
-        subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)
+    run_args = [
+        sys.executable,
+        generate_wiki,
+        "--mdbook", mdbook_src,
+    ]
+    if wiki_source is not None:
+        print(f"Using local wiki repository: {wiki_source}")
+        run_args[2:2] = ["--input", wiki_source]
+
+    subprocess.run(run_args, check=True)
+    subprocess.run(["mdbook", "build"], cwd="wiki_book", check=True)

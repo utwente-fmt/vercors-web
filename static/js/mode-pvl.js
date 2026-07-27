@@ -209,10 +209,10 @@ var PVLHighlightRules = function () {
                 token: "keyword.operator",
                 regex: "&&|\\*\\*|!|%|&|\\||\\^|\\*|\\/|\\-|\\+|~|==|=|!=|<=|>=|<|>|\\?|\\:|\\*=|\\/=|%=|\\+=|\\-=|&=|\\|=|\\^=|:\\|"
             }, {
-                token: "lparen",
-                regex: "[[({]"
+                token: "paren.lparen",
+                regex: "[\\[({]"
             }, {
-                token: "rparens",
+                token: "paren.rparen",
                 regex: "[\\])}]"
             }, {
                 token: "texts",

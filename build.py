@@ -1,12 +1,11 @@
 import os
 import re
 import shutil
-import sys
+from datetime import datetime, timezone
 
 import jinja2
 import markdown
 from jinja2 import FileSystemLoader
-from datetime import datetime
 
 from util import *
 
@@ -40,7 +39,7 @@ def postprocess_wiki_html(wiki_root, urls, data):
                 r"(<head>)(.*?)(</head>)",
                 lambda m: f"{m.group(1)}\n{fragments['head']}\n{m.group(2)}{m.group(3)}",
                 text,
-                flags=re.S,
+                flags=re.DOTALL,
                 count=1,
             )
 
@@ -49,7 +48,7 @@ def postprocess_wiki_html(wiki_root, urls, data):
                     r"(<body[^>]*>)(.*?)",
                     lambda m: f"{m.group(1)}\n{fragments['header']}\n{m.group(2)}",
                     text,
-                    flags=re.S,
+                    flags=re.DOTALL,
                     count=1,
                 )
 
@@ -77,7 +76,7 @@ def build():
         "news": by_date_desc(titled(load_data("news"))),
         "examples": titled(load_data("examples")),
         "languages": load_data("languages"),
-        "year": datetime.now().year,
+        "year": datetime.now(tz=timezone.utc).year,
     }
 
     print("Rendering bibliographies...")
@@ -138,7 +137,7 @@ def build():
         if path == "/wiki":
             # The wiki is rendered by mdBook, so we don't need to render it here.
             continue
-        print("Rendering {}...".format(path))
+        print(f"Rendering {path}...")
         assert path[0] == "/"
         path = path[1:]
         *dir, file = path.split("/")

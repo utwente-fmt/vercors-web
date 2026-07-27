@@ -4,7 +4,7 @@ const LOG_RE = /^\s*\[[A-Z]+\]/
 const FIRST_NON_LOG_RE = /^\s*=+/
 
 function setProgress(progress, text, icon) {
-  progress.find('.fa').removeClass().addClass('fa').addClass('fa-' + icon);
+  progress.find('.fa').removeClass().addClass('fa').addClass(`fa-${icon}`);
   progress.find('.verification-progress-text').text(text);
 }
 
@@ -27,15 +27,6 @@ function getLanguageExtension(container) {
     return selected;
   }
 
-  const codeNode = container.find('pre.playground code').first();
-  if (codeNode.length) {
-    const className = codeNode.attr('class') || '';
-    const match = className.match(/(?:^|\s)language-([a-zA-Z0-9_+-]+)/);
-    if (match) {
-      return match[1];
-    }
-  }
-
   return 'pvl';
 }
 
@@ -54,7 +45,7 @@ function syncVerificationEditorMode(container) {
 }
 
 function indentBlock(amount, text) {
-  const prefix = '    '.repeat(amount);
+  const prefix = '  '.repeat(amount);
   return text.split('\n').map((line) => prefix + line).join('\n');
 }
 
@@ -126,12 +117,10 @@ function setEditButtonState(button, isEditing) {
 
 function getRenderedEditableCode(container, editor) {
   const templateKind = container.attr('data-template-kind') || '';
-  const caseName = container.attr('data-case-name') || '';
-  const verdict = container.attr('data-case-verdict') || 'Pass';
   const snippetCode = typeof editor.snippetCode === 'string' ? editor.snippetCode : editor.originalCode || editor.getValue();
 
   if (templateKind) {
-    return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
+    return renderTemplateCase(templateKind, getLanguageExtension(container), snippetCode);
   }
 
   return editor.fullCode || snippetCode;
@@ -170,7 +159,7 @@ function enableVerificationEditing(container, button) {
   editor.focus();
 }
 
-function renderTemplateCase(templateKind, caseName, verdict, languageExt, snippetCode) {
+function renderTemplateCase(templateKind, languageExt, snippetCode) {
   
   if (templateKind === 'testMethod' && languageExt === 'java') {
     return `final class Test {\n${indentBlock(1, snippetCode)}\n}`;
@@ -190,38 +179,24 @@ function renderTemplateCase(templateKind, caseName, verdict, languageExt, snippe
 function getCodeToVerify(container) {
   const fullCodeBase64 = container.attr('data-examplecode-b64');
   const templateKind = container.attr('data-template-kind') || '';
-  const caseName = container.attr('data-case-name') || '';
-  const verdict = container.attr('data-case-verdict') || 'Pass';
   const usesCodeSnippetFlow = isCodeSnippetContainer(container);
-
-  if (fullCodeBase64 && !(window.ace && container.find('pre.playground code').first().hasClass('editable'))) {
-    return decodeExampleCode(fullCodeBase64);
-  }
 
   const codeNode = container.find('pre.playground code').first();
   if (codeNode.length) {
     if (window.ace && codeNode.hasClass('editable')) {
       try {
         const editor = window.ace.edit(codeNode.get(0));
-        if (isEditingCode(container)) {
-          return editor.getValue();
-        }
-
         const snippetCode = editor.getValue();
-        if (usesCodeSnippetFlow) {
-          if (templateKind) {
-            return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
-          }
 
+        if (isEditingCode(container)) {
+          return snippetCode;
+        }
+        
+        if (usesCodeSnippetFlow) {
           return editor.fullCode || decodeExampleCode(fullCodeBase64) || snippetCode;
         }
-        if (templateKind) {
-          return renderTemplateCase(templateKind, caseName, verdict, getLanguageExtension(container), snippetCode);
-        }
-        if (fullCodeBase64) {
-          return decodeExampleCode(fullCodeBase64);
-        }
-        return snippetCode;
+
+        return renderTemplateCase(templateKind, getLanguageExtension(container), snippetCode);
       } catch (err) {
         console.log(err);
       }
@@ -260,32 +235,35 @@ function verify_code(raw_button) {
   var ws = new WebSocket(VERIFICATION_SERVER, 'fmt-tool');
   self.data('verificationSocket', ws);
 
-  const resetRunState = function () {
+  const resetRunState = () => {
     self.data('verificationRunning', false);
     self.removeData('verificationSocket');
     setRunButtonRunning(button, false);
   };
 
-  ws.onerror = function (err) {
+  ws.onerror = (err) => {
     progress.text('An error occurred: cannot connect to verification server');
     resetRunState();
     console.log(err);
   };
 
-  ws.onmessage = function (e) {
+  ws.onmessage = (e) => {
+    var message;
+    var parts;
+    var i;
     try {
-      var message = JSON.parse(e.data);
+      message = JSON.parse(e.data);
 
       switch (message.type) {
         case 'error':
-          setProgress(progress, 'An error occurred: ' + message.errorDescription, 'times');
+          setProgress(progress, `An error occurred: ${message.errorDescription}`, 'times');
           ws.close();
           resetRunState();
           break;
         case 'stdout':
         case 'stderr':
-          var parts = message.data.split("\n");
-          for (var i = 0; i < parts.length; i++) {
+          parts = message.data.split("\n");
+          for (i = 0; i < parts.length; i++) {
             const line = parts[i].trim();
             if (line === '') {
               continue;
@@ -294,32 +272,32 @@ function verify_code(raw_button) {
             if (PROGRESS_RE.test(line)) {
               setProgress(progress, line.replaceAll("?", "›"), 'spinner');
             } else if (LOG_RE.test(parts[i]) || FIRST_NON_LOG_RE.test(parts[i])) {
-              log.text(log.text() + line + '\n');
+              log.text(`${log.text() + line}\n`);
             } else {
-              log.text(log.text() + parts[i] + '\n');
+              log.text(`${log.text() + parts[i]}\n`);
             }
           }
           break;
         case 'finished':
-          setProgress(progress, 'VerCors exited with exit code ' + message.exitCode, message.exitCode === 0 ? 'check' : 'times');
+          setProgress(progress, `VerCors exited with exit code ${message.exitCode}`, message.exitCode === 0 ? 'check' : 'times');
           ws.close();
           resetRunState();
           break;
       }
     } catch (err) {
-      setProgress(progress, 'An error occurred: ' + err, 'times');
+      setProgress(progress, `An error occurred: ${err}`, 'times');
       resetRunState();
       console.log(err);
     }
   };
 
-  ws.onclose = function () {
+  ws.onclose = () => {
     resetRunState();
   };
 
-  ws.onopen = function (e) {
+  ws.onopen = (_e) => {
     setProgress(progress, 'Connected; sending file...', 'spinner');
-    const fileName = 'test.' + getLanguageExtension(self);
+    const fileName = `test.${getLanguageExtension(self)}`;
     const sourceCode = getCodeToVerify(self);
     ws.send(JSON.stringify({
       type: 'submit',
@@ -361,25 +339,25 @@ function clipboard() {
     }
 
     const clipboardSnippets = new ClipboardJS('.clip-button', {
-        text: function(trigger) {
+        text: (trigger) => {
             hideTooltip(trigger);
             const playground = trigger.closest('pre');
             return playground_text(playground, false);
         },
     });
 
-    Array.from(clipButtons).forEach(function(clipButton) {
-        clipButton.addEventListener('mouseout', function(e) {
+    Array.from(clipButtons).forEach((clipButton) => {
+        clipButton.addEventListener('mouseout', (e) => {
             hideTooltip(e.currentTarget);
         });
     });
 
-    clipboardSnippets.on('success', function(e) {
+    clipboardSnippets.on('success', (e) => {
         e.clearSelection();
         showTooltip(e.trigger, 'Copied!');
     });
 
-    clipboardSnippets.on('error', function(e) {
+    clipboardSnippets.on('error', (e) => {
         showTooltip(e.trigger, 'Clipboard error!');
     });
 }
@@ -393,7 +371,7 @@ function addButtons(playground_copyable = true) {
     });
 
   if (playground_copyable) {
-        Array.from(document.querySelectorAll('pre code')).forEach(function(block) {
+        Array.from(document.querySelectorAll('pre code')).forEach((block) => {
             const pre_block = block.parentNode;
             if (!pre_block.classList.contains('playground')) {
                 let buttons = pre_block.querySelector('.buttons');
@@ -414,7 +392,7 @@ function addButtons(playground_copyable = true) {
         });
     }
 
-  Array.from(document.querySelectorAll('.playground')).forEach(function (pre_block) {
+  Array.from(document.querySelectorAll('.playground')).forEach((pre_block) => {
     // Add play button
     let buttons = pre_block.querySelector('.buttons');
     if (!buttons) {
@@ -467,7 +445,7 @@ function addButtons(playground_copyable = true) {
       setVerificationEditorReadOnly(editor, !alwaysEditable);
       setEditingCode(container, alwaysEditable);
 
-      editButton.addEventListener('click', function () {
+      editButton.addEventListener('click', () => {
         if (isEditingCode(container)) {
           resetVerificationEditor(container, editButton);
           return;

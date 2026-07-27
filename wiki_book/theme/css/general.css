@@ -36,6 +36,7 @@ pre.verification-log {
     color: var(--text-light);
     padding: 1rem;
     overflow-x: auto;
+    margin: 0 0 2rem;
 }
 
 #footer hr {
