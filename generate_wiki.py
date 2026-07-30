@@ -86,8 +86,7 @@ class TemplateTestcase:
 """
 
     def __init__(self, case_name, template_kind, verdict):
-        if verdict and not (verdict == "Pass" or verdict == "Fail" 
-                            or verdict == "Error"):
+        if verdict and not verdict in {"Pass", "Fail", "Error", "PassOnLatest", "FailOnLatest"}:
                 raise UnknownVerdict()
 
         self.template_kind = template_kind
@@ -305,6 +304,8 @@ def get_html(elements):
             result += element['c']
         elif element['t'] == 'Space':
             result += ' '
+        elif element['t'] == 'SoftBreak':
+                    result += '\n'
         elif element['t'] == 'Code':
             result += '<code>' + element['c'][1] + '</code>'
         elif element['t'] == 'RawInline':
@@ -426,7 +427,16 @@ def convert_block_mdbook(block, cases, source_name, current_header):
         }
     return block
 
+
+def remove_proselint_ignore_lines(markdown_text):
+    return re.sub(
+        r"(?m)^[ \t]*<!-- proselint-ignore -->[ \t]*\r?\n?",
+        "",
+        markdown_text,
+    )
+
 def transform_markdown_for_mdbook(markdown_text, source_name):
+    markdown_text = remove_proselint_ignore_lines(markdown_text)
     markdown_text = rewrite_vercors_wiki_links(markdown_text)
     document = json.loads(pypandoc.convert_text(markdown_text, "json", "gfm"))
     cases = {}
