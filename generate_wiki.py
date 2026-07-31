@@ -386,6 +386,14 @@ def render_verification_editor_html(initial_code, initial_hidden_code, language_
 
     return f"""<div class="verification-container" data-examplecode-b64="{full_code_base64}" data-template-kind="{template_kind_attr}" data-case-name="{case_name_attr}" data-case-verdict="{verdict_attr}" data-language-ext="{language_extension_attr}" data-language-label="{language_label_attr}"><pre style="margin-bottom: 0" class="verification-text playground"><code class="language-{escape(language_extension)} no_run editable{code_snippet}">{hidden_code}</code></pre><div class="verification-language" style="background-color: #dddddd; padding: 0.4ex 1ex">Language for VerCors: <strong>{escape(language_label)}</strong></div><div class="verification-progress verification-non-plain" style="display: none; background-color: #dddddd; padding: 0.4ex 1ex"><span class="fa"></span><span class="verification-progress-text"></span></div><pre class="verification-log verification-non-plain" style="display: none"></pre></div>"""
 
+
+def render_onlatest_warning_markdown():
+    return (
+        "> [!WARNING]\n"
+        "> The following example verifies only on the latest [VerCors development version](https://github.com/utwente-fmt/vercors/tree/dev), "
+        "not on the version currently used by the online verifier."
+    )
+
 def convert_block_mdbook(block, cases, source_name, current_header):
     if block['t'] == 'CodeBlock' and '_case_label' in block:
         case = cases[block['_case_label']]
@@ -398,17 +406,24 @@ def convert_block_mdbook(block, cases, source_name, current_header):
         template_kind = case.template_kind if isinstance(case, TemplateTestcase) else None
         case_name = case.case_name if isinstance(case, TemplateTestcase) else None
         verdict = case.verdict if isinstance(case, TemplateTestcase) else 'Pass'
-        return {
+        converted_blocks = []
+        if verdict.endswith('OnLatest'):
+            converted_blocks.append({
+                't': 'RawBlock',
+                'c': ['markdown', render_onlatest_warning_markdown()],
+            })
+        converted_blocks.append({
             't': 'RawBlock',
             'c': ['html', render_verification_editor_html(case.render(), block['c'][1], language_extension, case.language, template_kind, case_name, verdict)],
-        }
+        })
+        return converted_blocks
     if block['t'] == 'CodeBlock':
         classes = block['c'][0][1]
         if len(classes) == 0:
             header_text = current_header if current_header else 'document start'
             print(f"Warning: {source_name} / {header_text}: code block has no language specified.", file=sys.stderr)
         if all(not is_known_language(c) for c in classes):
-            return block
+            return [block]
         info_string = ','.join(classes)
         new_classes = classes
         if not 'editable' in classes:
@@ -421,11 +436,11 @@ def convert_block_mdbook(block, cases, source_name, current_header):
         fence = '```'
         while fence in code_text:
             fence += '`'
-        return {
+        return [{
             't': 'RawBlock',
             'c': ['markdown', f"{fence}{info_string}\n{code_text}\n{fence}"]
-        }
-    return block
+        }]
+    return [block]
 
 
 def remove_proselint_ignore_lines(markdown_text):
@@ -447,7 +462,7 @@ def transform_markdown_for_mdbook(markdown_text, source_name):
     for block in document['blocks']:
         if block['t'] == 'Header':
             current_header = get_html(block['c'][2]).strip()
-        transformed_blocks.append(convert_block_mdbook(block, cases, source_name, current_header))
+        transformed_blocks.extend(convert_block_mdbook(block, cases, source_name, current_header))
 
     transformed_document = json.dumps({
         'blocks': transformed_blocks,
