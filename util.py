@@ -43,7 +43,7 @@ def clone(url, tag):
     cache_dir = os.path.join(cache_root, _cache_key(url), _cache_key(tag), )
 
     if not os.path.isdir(cache_dir):
-        os.makedirs(cache_root, exist_ok=True)
+        os.makedirs(cache_dir, exist_ok=True)
         subprocess.run(
             ["git", "clone", "--depth=1", "--branch", tag, url, os.path.join(cache_dir, "vercors")],
             check=True,

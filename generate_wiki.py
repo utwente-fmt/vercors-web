@@ -372,7 +372,7 @@ def output_cases(path, cases):
     
 def render_verification_editor_html(initial_code, initial_hidden_code, language_extension, language_label, template_kind=None, case_name=None, verdict='Pass'):
     def html_text_no_markdown_breaks(text):
-    # Keep raw HTML blocks stable in mdBook markdown by avoiding literal blank lines.
+        # Keep raw HTML blocks stable in mdBook markdown by avoiding literal blank lines.
         return escape(text).replace('\r\n', '\n').replace('\r', '\n').replace('\n', '&#10;')
 
     hidden_code = html_text_no_markdown_breaks(initial_hidden_code)
