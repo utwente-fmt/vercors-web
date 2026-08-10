@@ -450,9 +450,9 @@ def remove_proselint_ignore_lines(markdown_text):
         markdown_text,
     )
 
-def transform_markdown_for_mdbook(markdown_text, source_name):
+def transform_markdown_for_mdbook(markdown_text, source_name, source_markdown_pages):
     markdown_text = remove_proselint_ignore_lines(markdown_text)
-    markdown_text = rewrite_vercors_wiki_links(markdown_text)
+    markdown_text = rewrite_vercors_wiki_links(markdown_text, source_name, source_markdown_pages)
     document = json.loads(pypandoc.convert_text(markdown_text, "json", "gfm"))
     cases = {}
     collect_testcases(document, cases)
@@ -495,12 +495,18 @@ def render_mdbook_summary_nodes(nodes, depth=1):
     return lines
 
 def copy_mdbook_sources(source_path, book_root, sidebar):
+    source_markdown_pages = {
+        os.path.splitext(name)[0]
+        for name in os.listdir(source_path)
+        if name.endswith('.md')
+    }
+
     for name in os.listdir(source_path):
         if not name.endswith('.md') or name == '_Sidebar.md':
             continue
         source_file = os.path.join(source_path, name)
         with open(source_file, 'r') as f:
-            transformed_markdown = transform_markdown_for_mdbook(f.read(), name)
+            transformed_markdown = transform_markdown_for_mdbook(f.read(), name, source_markdown_pages)
         with open(os.path.join(book_root, name), 'w') as f:
             f.write(transformed_markdown)
 
@@ -519,14 +525,27 @@ def output_mdbook(path, source_path, sidebar):
     copy_mdbook_sources(source_path, path, sidebar)
 
 
-def rewrite_vercors_wiki_links(markdown_text):
+def rewrite_vercors_wiki_links(markdown_text, source_name, source_markdown_pages):
     def replace_link(match):
         title = match.group(1)
         target = match.group(2)
+        if not target:
+            raise ValueError(
+                "Malformed VerCors wiki link: missing target path in regex group 2. "
+                f"Matched text: {match.group(0)!r}"
+            )
+        target = unquote(target)
+        if target not in source_markdown_pages:
+            raise ValueError(
+                f"Broken VerCors wiki link in {source_name}: target markdown file '{target}.md' does not exist in source_path. "
+                f"Matched text: {match.group(0)!r}"
+            )
+        if match.group(3):
+            return f"[{title}]({target}.md{match.group(3)})"
         return f"[{title}]({target}.md)"
 
     return re.sub(
-        r"\[([^\]]+)\]\(https://github\.com/utwente-fmt/vercors/wiki/([^)#]+?)(?:\.md)?(?:#.*)?\)",
+        r"\[([^\]]+)\]\((?:https://)?github\.com/utwente-fmt/vercors/wiki/([^)#]+?)(?:\.md)?(#.[^)]*)?\)",
         replace_link,
         markdown_text,
     )

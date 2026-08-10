@@ -1,23 +1,36 @@
 # VerCors Website
 This repository contains the code and data of the VerCors website. It is generated as a set of static pages.
 
-## Building
-The website is built by `build.py`. To pull in the dependencies, e.g. set up a virtualenv:
-
+## Building \& Testing
+First the dependencies must be pulled in. For python we recommend using a [virtualenv](https://virtualenv.pypa.io/en/latest/how-to/install.html):
 ```bash
-$ virtualenv venv -p python3
-$ source venv/bin/activate
-$ pip3 install -r requirements.txt
+virtualenv venv -p python3
+source venv/bin/activate
+pip3 install -r requirements.txt
 ```
 
-You also need a working `mdbook` command at version [0.5.4](https://github.com/rust-lang/mdBook/releases/tag/v0.5.4) for the wiki build, and `node` if you want to regenerate the Ace syntax highlighters.
+You also need a working `mdbook` command at version [0.5.4](https://github.com/rust-lang/mdBook/releases/tag/v0.5.4) for the wiki build, and (`node`)[https://nodejs.org/en/download/current] if you want to regenerate the Ace syntax highlighters.
+
+### Building
 
 Then build the website:
 ```bash
 $ python3 build.py
 ```
 
-## Environment variables
+### Testing
+You can also run a debug version of the website to inspect your edits, though it does not automatically update on save:
+
+```bash
+$ python3 test.py
+Building the website...
+Now serving on http://localhost:8000/
+```
+
+**Note**: On Windows, you may have to explicitly use UTF-8 encoding, using `python.exe -X utf8 build.py` and `python.exe -X utf8 test.py`, respectively.
+
+
+### Environment variables
 The build scripts can be pointed at local VerCors checkouts with environment variables:
 
 * `VERCORS_GIT` overrides the VerCors repository used to fetch examples and other VerCors sources. It can point to a local repository path or a git URL.
@@ -36,23 +49,13 @@ The build process renders the wiki into the mdBook project under `wiki_book/`, r
 ## Ace syntax highlighting
 The website ships syntax highlighting files generated from [Ace](https://ace.c9.io/#nav=higlighter), using the fork at [sakehl/ace](https://github.com/sakehl/ace). The generated highlighter files are stored under `static/js/mode-*`.
 
-If you add or change language keywords or other syntax rules, clone the ace fork, edit the relevant highlighter source, for example `src/mode/spec_highlight_rules.js`, and then regenerate the Ace build artifacts with:
+If you add or change language keywords or other syntax rules, clone the ace fork, edit the relevant highlighter source, for example [`src/mode/spec_highlight_rules.js`](https://github.com/sakehl/ace/blob/master/src/mode/spec_highlight_rules.js), and then regenerate the Ace build artifacts with:
 
 ```bash
 node ./Makefile.dryice.js -nc
 ```
 
 The resulting files will be written to `build/src-noconflict`. Copy the relevant files again to `static/js/`.
-
-You can also run a debug version of the website to inspect your edits, though it does not automatically update on save:
-
-```bash
-$ python3 test.py
-Building the website...
-Now serving on http://localhost:8000/
-```
-
-**Note**: On Windows, you may have to explicitly use UTF-8 encoding, using `python.exe -X utf8 build.py` and `python.exe -X utf8 test.py`, respectively.
 
 ## Structure
 * `/build` contains the statically rendered website after building;
