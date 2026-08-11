@@ -52,8 +52,35 @@ html.sidebar-visible #mdbook-menu-bar {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    height: var(--menu-bar-height);
+    height: 10pt;
 }
+
+@media (max-width: 840px) {
+  #mdbook-menu-bar-hover-placeholder {
+    height: var(--menu-bar-height);
+  }
+}
+
+.ace_gutter-cell {
+  background: var(--table-header-bg);
+  color: var(--sidebar-fg);
+}
+
+.ace_gutter-active-line {
+  color: var(--sidebar-active);
+}
+
+
+.verification-language, .verification-progress {
+    background: var(--table-header-bg);
+    color: var(--sidebar-fg);
+    padding: 0.4ex 1ex;
+}
+.verification-language {
+    text-align: right;
+}
+
+
 #mdbook-menu-bar.bordered {
     border-block-end-color: var(--table-border-color);
 }

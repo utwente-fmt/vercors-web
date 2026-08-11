@@ -50,6 +50,7 @@ function configureAceEditor(editor, mode) {
 	editor.getSession().setUseSoftTabs(false);
 	editor.getSession().setTabSize(2);
 	editor.getSession().setMode(mode);
+	editor.setTheme("ace/theme/chrome");
 }
 
 function initAceOnDemand(codeNode) {

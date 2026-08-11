@@ -9,7 +9,7 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-You also need a working `mdbook` command at version [0.5.4](https://github.com/rust-lang/mdBook/releases/tag/v0.5.4) for the wiki build, and (`node`)[https://nodejs.org/en/download/current] if you want to regenerate the Ace syntax highlighters.
+You also need a working `pandoc` [command](https://pandoc.org/installing.html) (works with version 2.19.2), `mdbook` command at version [0.5.4](https://github.com/rust-lang/mdBook/releases/tag/v0.5.4) for the wiki build, and (`node`)[https://nodejs.org/en/download/current] if you want to regenerate the Ace syntax highlighters.
 
 ### Building
 
