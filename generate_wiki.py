@@ -63,9 +63,13 @@ class SnippetTestcase:
     -->
     """
 
-    def __init__(self) -> None:
+    def __init__(self, verdict: str = "Pass") -> None:
+        if verdict and verdict not in {"Pass", "Fail", "Error", "PassOnLatest", "FailOnLatest"}:
+            raise UnknownVerdict()
+
         self.content: str = ""
         self.language: str = ""
+        self.verdict: str = verdict if verdict else "Pass"
 
     def add_content(self, content: str) -> None:
         self.content += content
@@ -337,21 +341,30 @@ def collect_testcases(document: dict[str, object], cases: dict[str, SnippetTestc
                 if kind == 'standaloneSnip':
                     label_prefix = breadcrumbs[0] if breadcrumbs else 'wiki'
                     label = label_prefix + '-' + args[0]
+                    snippet_lines = lines[1:]
+                    verdict_from_snippet = parse_verdict_from_snippet_lines(snippet_lines)
 
                     if label not in cases:
-                        cases[label] = SnippetTestcase()
+                        cases[label] = SnippetTestcase(verdict_from_snippet or 'Pass')
                     else:
                         cases[label].add_content("\n")
+                        if verdict_from_snippet and isinstance(cases[label], SnippetTestcase):
+                            cases[label].verdict = SnippetTestcase(verdict_from_snippet).verdict
 
-                    cases[label].add_content('\n'.join(lines[1:]) + '\n')
+                    cases[label].add_content('\n'.join(snippet_lines) + '\n')
 
                 # Snippet label for code block
                 if kind == 'codeSnip':
                     label_prefix = breadcrumbs[0] if breadcrumbs else 'wiki'
                     code_block_label = label_prefix + '-' + args[0]
+                    has_explicit_verdict = len(args) > 1
+                    verdict = args[1] if has_explicit_verdict else None
 
                     if code_block_label not in cases:
-                        cases[code_block_label] = SnippetTestcase()
+                        cases[code_block_label] = SnippetTestcase(verdict or 'Pass')
+                    elif has_explicit_verdict and isinstance(cases[code_block_label], SnippetTestcase):
+                        # Validate verdict values consistently, even when the snippet already exists.
+                        cases[code_block_label].verdict = SnippetTestcase(cast(str, verdict)).verdict
 
 def get_html(elements: list[dict[str, object]]) -> str:
     result: str = ""
@@ -382,6 +395,13 @@ class UnknownLanguageError(Exception):
 
 class CasesExtractionFailed(Exception):
     pass
+
+def parse_verdict_from_snippet_lines(lines: list[str]) -> str | None:
+    for line in lines:
+        match = re.match(r"^//::\s*verdict\s+(\S+)\s*$", line)
+        if match:
+            return match.group(1)
+    return None
 
 def is_known_language(language: str) -> bool:
     return language.lower() in {"java", "c", "opencl", "pvl", "cu", "cuda", "cpp", "c++", "sycl", "viper"}
@@ -464,7 +484,7 @@ def convert_block_mdbook(block: dict[str, object], cases: dict[str, SnippetTestc
             # return block
         template_kind: str | None = case.template_kind if isinstance(case, TemplateTestcase) else None
         case_name: str | None = case.case_name if isinstance(case, TemplateTestcase) else None
-        verdict: str = case.verdict if isinstance(case, TemplateTestcase) else 'Pass'
+        verdict: str = case.verdict
         language_label: str = case.language or language_extension
         converted_blocks: list[dict[str, object]] = []
         if verdict.endswith('OnLatest'):
