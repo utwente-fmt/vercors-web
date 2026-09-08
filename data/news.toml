@@ -741,4 +741,10 @@ content = """
 The paper **Failure-Proof Specification Writing: Smoke Tests in VerCors** written by Alexandra Jakovleva, Alexander Stekelenburg, and Marieke Huisman has been accepted at VSTTE 2026.
 """
 
+["Paper accepted at ATVA 2026"]
+date = "2026-09-08"
+content = """
+The tool paper **Spectral - Translating Specifications for Deductive Verification into LLVM-IR** written by Robert Mensing and Marieke Huisman has been accepted at ATVA 2026.
+"""
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
