@@ -747,4 +747,14 @@ content = """
 The tool paper **Spectral - Translating Specifications for Deductive Verification into LLVM-IR** written by Robert Mensing and Marieke Huisman has been accepted at ATVA 2026.
 """
 
+["Intern Student leaving"]
+date = "2026-09-09"
+content = """
+Last week Filiz Yıldız who had joined the VerCors team as a summer intern went back home. Thanks for working with us Filiz!
+
+<img src="/images/FilizLeaving.jpeg" alt="Picture with from left to right Marieke, Filiz, Robert, Ömer, and Alexander standing in front of the VerCors office">
+"""
+
+
+
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
