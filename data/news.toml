@@ -761,5 +761,41 @@ content = """
 The paper **Efficient Verification of C Programs with Pointers, Structs, and Arrays** written by Alexander Stekelenburg and Marieke Huisman has been accepted at SEFM 2026.
 """
 
+["Member Graduation: Alexandra Jakovleva"]
+date = "2026-10-16"
+content = """
+One of our ex-bachelor students, Alexandra Jakovleva, has graduated. Alexandra's bachelor thesis is titled <a href="https://easychair.org/smart-program/LPAR-26/invited.html">"Extending Smoke Tests in VerCors for Detecting Specification Inconsistencies"</a>. Congratulations Alexandra! We wish you the best of luck in your future endeavours.
+
+
+<img src="/images/AlexandraBScGraduation.jpg" alt="Picture of the graduation ceremony with Alexandra on the left and Marieke on the right shaking hands.">
+"""
+
+["Invited talk at LPAR 2026"]
+date = "2026-10-30"
+content = """
+Marieke Huisman gave an invited talk on October 30th titled 'Bug-free embedded software: a realisable dream? (and how VerCors will help...)' at <a href="https://easychair.org/smart-program/LPAR-26/invited.html" target="_blank">LPAR-26</a>.
+"""
+
+["Capita Selecta Presentations: Jacco te Poel and Enrique Ramos"]
+date = "2026-11-09"
+content = """
+On the 13th of November at 11:00 Jacco te Poel and Enrique Ramos will present their capita selecta projects.
+
+Jacco will talk about adding support for OpenMP annotations in VerCors v2, reductions, and the sum and product quantifiers. In particular, he added support for OpenMP's parallel regions, sections, and parallel for loops. Support for reductions enables more concise specifications code that concurrently modifies an accumulator variable. The sum and product quantifiers enable reasoning about the sum and product of a whole sequence of values.
+
+Enrique will talk about using the TriCera model checker to generate VerCors annotations, such as preconditions and loop invariants, for C programs. By transforming the input program such that it can be processed by TriCera, parsing TriCera's output, and automatically inserting the annotations into the file, Enrique's tool reduces the number of annotations the user needs to write manually.
+
+You can join in person at the University of Twente in room Zilverling 2008 or join the <a href="https://teams.microsoft.com/meet/3275829067399587?p=AxjJX4YSZffKYz6A7T">teams meeting</a>.
+"""
+
+["Upcoming Talk at Mini-Symposium on Engineering the future"]
+date = "2026-11-10"
+content = """
+To mark the honorary doctorate that the University of Twente will confer to Martin van den Brink there will be a mini-symposium on the 26th of November. Marieke Huisman will give a talk titled 'How Do We Develop Reliable Software'.
+
+You can find out more and sign up to attend <a href="https://www.utwente.nl/en/service-portal/resources/dossiers/chiptech-beethoven/vier-lezingen-26-11-26/">here</a>.
+"""
+
+
 
 # Previously we started all lines with `>`: this is a block quote, so please don't do this anymore :)
